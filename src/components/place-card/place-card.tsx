@@ -1,10 +1,12 @@
-// ^======================== place-card ========================^ //
+// ^======================== offer-card ========================^ //
 
-import { PlaceCardType } from '../../pages/main-page/main-page';
+import { PlaceCardType } from '../../mock/offers';
 
-export default function PlaceCard({ image, isPremium, price, isFavorite, rating, name, type }: PlaceCardType): JSX.Element {
+export default function PlaceCard({ classModifier, image, isPremium, price, isFavorite, rating, name, type }: PlaceCardType): JSX.Element {
   return (
-    <article className='cities__card place-card'>
+    <article
+      className={`${classModifier} place-card`}
+    >
       {
         isPremium ?
           <div className='place-card__mark'>
