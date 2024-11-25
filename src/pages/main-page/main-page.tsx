@@ -66,7 +66,7 @@ const PLACE_CARDS: PlaceCardType[] = [
   },
 ];
 
-export default function MainPage() {
+export default function MainPage(): JSX.Element {
   return (
     <div className='page page--gray page--main'>
       <header className='header'>
