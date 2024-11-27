@@ -1,14 +1,15 @@
-// #======================== OfferPage ========================# //
-
-import Header from '../../components/header/header';
+import { Helmet } from 'react-helmet-async';
 import PlaceCard from '../../components/place-card/place-card';
 import { NEAR_PLACES } from '../../mock/near-places';
+
+// #======================== OfferPage ========================# //
 
 export default function OfferPage(): JSX.Element {
   return (
     <div className='page'>
-
-      <Header pageType='any' />
+      <Helmet>
+        <title>6 cities - offer</title>
+      </Helmet>
 
       <main className='page__main page__main--offer'>
         <section className='offer'>

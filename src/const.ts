@@ -24,4 +24,17 @@ type PlaceCardType = {
   previewImage: string;
 };
 
+enum AppRoute {
+  Main = '/',
+  Favorites = '/favorites',
+  Offer = '/offer',
+  Login = '/login',
+}
+
+enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
+export { AppRoute, AuthorizationStatus };
 export type { PlaceCardType };

@@ -1,12 +1,13 @@
-// #======================== LoginPage ========================# //
+import { Helmet } from 'react-helmet-async';
 
-import Header from '../../components/header/header';
+// #======================== LoginPage ========================# //
 
 export default function LoginPage(): JSX.Element {
   return (
     <div className='page page--gray page--login'>
-
-      <Header pageType='login'/>
+      <Helmet>
+        <title>6 cities - login</title>
+      </Helmet>
 
       <main className='page__main page__main--login'>
         <div className='page__login-container container'>
