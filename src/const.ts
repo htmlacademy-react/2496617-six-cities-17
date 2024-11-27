@@ -36,5 +36,28 @@ enum AuthorizationStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
-export { AppRoute, AuthorizationStatus };
+
+const PLACES_SORTING_OPTIONS = [
+  {
+    id: 1,
+    name: 'Popular',
+    isActive: true,
+  },
+  {
+    id: 2,
+    name: 'Price: low to high',
+    isActive: false,
+  },
+  {
+    id: 3,
+    name: 'Price: high to low',
+    isActive: false,
+  },
+  {
+    id: 4,
+    name: 'Top rated first',
+    isActive: false,
+  },
+];
+export { AppRoute, AuthorizationStatus, PLACES_SORTING_OPTIONS };
 export type { PlaceCardType };
