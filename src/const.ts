@@ -59,5 +59,7 @@ const PLACES_SORTING_OPTIONS = [
     isActive: false,
   },
 ];
-export { AppRoute, AuthorizationStatus, PLACES_SORTING_OPTIONS };
+
+const DATE_FORMAT: string = 'MMMM YYYY';
+export { AppRoute, AuthorizationStatus, PLACES_SORTING_OPTIONS, DATE_FORMAT };
 export type { PlaceCardType };
