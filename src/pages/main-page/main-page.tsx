@@ -22,7 +22,9 @@ export default function MainPage(): JSX.Element {
 
             <MainOffers />
 
-            <Map />
+            <div className='cities__right-section'>
+              <Map />
+            </div>
 
           </div>
         </div>

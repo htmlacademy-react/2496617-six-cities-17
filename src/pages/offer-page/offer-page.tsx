@@ -1,9 +1,10 @@
 import { Helmet } from 'react-helmet-async';
-import PlaceCard from '../../components/place-card/place-card';
 import { NEAR_PLACES } from '../../mock/near-places';
 import { REVIEWS } from '../../mock/reviews';
+import PlaceCard from '../../components/place-card/place-card';
 import Review from '../../components/review/review';
 import ReviewForm from '../../components/review-form/review-form';
+import Map from '../../components/map/map';
 
 // #======================== OfferPage ========================# //
 
@@ -157,7 +158,9 @@ export default function OfferPage(): JSX.Element {
             </section>
           </div>
         </div>
-        <section className='offer__map map' />
+
+        <Map />
+
       </section>
       <div className='container'>
         <section className='near-places places'>
