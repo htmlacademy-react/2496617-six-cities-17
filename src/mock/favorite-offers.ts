@@ -1,8 +1,10 @@
+// *======================== favorites ========================* //
+
 import { PlaceCardType } from '../const';
 
 // *======================== offers ========================* //
 
-const OFFERS: PlaceCardType[] = [
+const FAVORITE_OFFERS: PlaceCardType[] = [
   {
     id: '764fe695-f984-422e-add8-e369f88ac21a',
     title: 'Amazing and Extremely Central Flat',
@@ -45,7 +47,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 2.330499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 1.7
   },
@@ -68,7 +70,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 2.335499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 1.1
   },
@@ -91,7 +93,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 2.358499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 3.2
   },
@@ -114,7 +116,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 2.375499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 1.9
   },
@@ -137,7 +139,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 2.353499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 2.3
   },
@@ -160,7 +162,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 2.364499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 3.9
   },
@@ -183,7 +185,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 2.3454990000000002,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 1.7
   },
@@ -206,7 +208,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 2.356499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 3.6
   },
@@ -229,7 +231,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 2.369499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.4
   },
@@ -252,7 +254,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 2.350499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 2.3
   },
@@ -275,7 +277,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 2.340499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 2.5
   },
@@ -298,7 +300,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 2.357499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.1
   },
@@ -321,7 +323,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 2.333499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.9
   },
@@ -344,7 +346,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 2.342499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 3.5
   },
@@ -367,7 +369,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 2.350499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.9
   },
@@ -390,7 +392,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 2.374499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.4
   },
@@ -413,7 +415,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 2.364499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 2
   },
@@ -436,7 +438,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 2.338499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 2.6
   },
@@ -459,7 +461,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 2.374499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 3.6
   },
@@ -482,7 +484,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.961974,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.2
   },
@@ -505,7 +507,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.937974,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.1
   },
@@ -528,7 +530,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.943974,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.2
   },
@@ -551,7 +553,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.9799739999999995,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.1
   },
@@ -574,7 +576,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.967974,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 1.6
   },
@@ -597,7 +599,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.956974,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.6
   },
@@ -620,7 +622,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.944974,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 1.7
   },
@@ -643,7 +645,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.976974,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.7
   },
@@ -666,7 +668,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.9509739999999995,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 3.9
   },
@@ -689,7 +691,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.937974,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 1.7
   },
@@ -712,7 +714,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.9509739999999995,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 3.6
   },
@@ -735,7 +737,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.969974,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.9
   },
@@ -758,7 +760,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.9509739999999995,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 2
   },
@@ -781,7 +783,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.944974,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 2.4
   },
@@ -804,7 +806,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.978974,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.9
   },
@@ -827,7 +829,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.960974,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 1.4
   },
@@ -850,7 +852,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.982974,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 3.2
   },
@@ -873,7 +875,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.962974,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.9
   },
@@ -896,7 +898,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.977974,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.5
   },
@@ -919,7 +921,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.935974,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4
   },
@@ -942,7 +944,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.364697,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.7
   },
@@ -965,7 +967,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.371696999999999,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 3.3
   },
@@ -988,7 +990,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.336697,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.3
   },
@@ -1011,7 +1013,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.374696999999999,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.3
   },
@@ -1034,7 +1036,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.339697,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2
   },
@@ -1057,7 +1059,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.374696999999999,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.7
   },
@@ -1080,7 +1082,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.3376969999999995,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 3.7
   },
@@ -1103,7 +1105,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.362697,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 2.9
   },
@@ -1126,7 +1128,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.354697,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 3.3
   },
@@ -1149,7 +1151,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.339697,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 3.8
   },
@@ -1172,7 +1174,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.346697,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.5
   },
@@ -1195,7 +1197,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.346697,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.6
   },
@@ -1218,7 +1220,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.371696999999999,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 3.4
   },
@@ -1241,7 +1243,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.332697,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 1.2
   },
@@ -1264,7 +1266,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.376697,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2
   },
@@ -1287,7 +1289,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.375697,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 1.4
   },
@@ -1310,7 +1312,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.3536969999999995,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 2.2
   },
@@ -1333,7 +1335,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.347697,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.1
   },
@@ -1356,7 +1358,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.357697,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.8
   },
@@ -1379,7 +1381,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.363696999999999,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 1.3
   },
@@ -1402,7 +1404,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.911976,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 1.2
   },
@@ -1425,7 +1427,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.902976,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 3.6
   },
@@ -1448,7 +1450,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.9099759999999995,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.6
   },
@@ -1471,7 +1473,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.881976,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 1.7
   },
@@ -1494,7 +1496,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.883976,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.3
   },
@@ -1517,7 +1519,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.883976,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.8
   },
@@ -1540,7 +1542,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.9179759999999995,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 1.9
   },
@@ -1563,7 +1565,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.894976,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 2
   },
@@ -1586,7 +1588,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.887976,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.1
   },
@@ -1609,7 +1611,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.9099759999999995,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 1
   },
@@ -1632,7 +1634,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.883976,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.1
   },
@@ -1655,7 +1657,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.908976,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 1.8
   },
@@ -1678,7 +1680,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.889976,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 2.7
   },
@@ -1701,7 +1703,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.9019759999999994,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.7
   },
@@ -1724,7 +1726,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.911976,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.4
   },
@@ -1747,7 +1749,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.889976,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.5
   },
@@ -1770,7 +1772,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.899976,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.6
   },
@@ -1793,7 +1795,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.914976,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.2
   },
@@ -1816,7 +1818,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.9019759999999994,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.3
   },
@@ -1839,7 +1841,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 4.886976,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.4
   },
@@ -1862,7 +1864,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 10.018654000000002,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 1.5
   },
@@ -1885,7 +1887,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 9.976654000000002,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 1.9
   },
@@ -1908,7 +1910,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 10.019654000000001,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.9
   },
@@ -1931,7 +1933,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 9.975654,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.3
   },
@@ -1954,7 +1956,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 9.980654000000001,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 3.3
   },
@@ -1977,7 +1979,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 10.022654000000001,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 1.1
   },
@@ -2000,7 +2002,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 9.978654,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 1.6
   },
@@ -2023,7 +2025,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 9.975654,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 3.3
   },
@@ -2046,7 +2048,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 10.001654,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.7
   },
@@ -2069,7 +2071,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 10.009654000000001,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 3.8
   },
@@ -2092,7 +2094,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 9.994654,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.6
   },
@@ -2115,7 +2117,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 9.982654,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.4
   },
@@ -2138,7 +2140,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 10.025654000000001,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.8
   },
@@ -2161,7 +2163,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 9.975654,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 3.9
   },
@@ -2184,7 +2186,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 9.998654,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.6
   },
@@ -2207,7 +2209,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 9.975654,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 3.5
   },
@@ -2230,7 +2232,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 10.022654000000001,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.4
   },
@@ -2253,7 +2255,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 10.025654000000001,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.1
   },
@@ -2276,7 +2278,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 9.980654000000001,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4
   },
@@ -2299,7 +2301,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 9.999654000000001,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 3.1
   },
@@ -2322,7 +2324,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.784314,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 3.8
   },
@@ -2345,7 +2347,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.798314,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 1.7
   },
@@ -2368,7 +2370,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.756314000000001,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 1.9
   },
@@ -2391,7 +2393,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.784314,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 3.9
   },
@@ -2414,7 +2416,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.7773140000000005,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.6
   },
@@ -2437,7 +2439,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.7693140000000005,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 1.3
   },
@@ -2460,7 +2462,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.782314,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.8
   },
@@ -2483,7 +2485,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.800314,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.1
   },
@@ -2506,7 +2508,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.779314,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 1.8
   },
@@ -2529,7 +2531,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.797314,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 1.4
   },
@@ -2552,7 +2554,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.786314,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.6
   },
@@ -2575,7 +2577,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.800314,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 2.2
   },
@@ -2598,7 +2600,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.758314,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 3.1
   },
@@ -2621,7 +2623,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.7613140000000005,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 3.3
   },
@@ -2644,7 +2646,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.763314,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.1
   },
@@ -2667,7 +2669,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.7853140000000005,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.7
   },
@@ -2690,7 +2692,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.756314000000001,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 1.1
   },
@@ -2713,7 +2715,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.791314,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.4
   },
@@ -2736,7 +2738,7 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.764314000000001,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.6
   },
@@ -2759,10 +2761,10 @@ const OFFERS: PlaceCardType[] = [
       longitude: 6.784314,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 3
   }
 ];
 
-export { OFFERS };
+export { FAVORITE_OFFERS };

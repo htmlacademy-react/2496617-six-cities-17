@@ -1,5 +1,5 @@
 import PlaceCard from '../place-card/place-card';
-import { OFFERS_CARDS } from '../../mock/offers';
+import { OFFERS } from '../../mock/offers';
 import PlacesSorting from '../places-sorting/places-sorting';
 
 // ^======================== MainOffers ========================^ //
@@ -13,11 +13,11 @@ export default function MainOffers(): JSX.Element {
       <PlacesSorting />
 
       <div className="cities__places-list places__list tabs__content">
-        {OFFERS_CARDS.map((offerCard) => (
+        {OFFERS.map((offer) => (
           <PlaceCard
-            key={offerCard.id}
+            key={offer.id}
             pageType="cities"
-            placeCardData={offerCard}
+            placeCardData={offer}
           />
         ))}
       </div>

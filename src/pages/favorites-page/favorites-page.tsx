@@ -1,7 +1,42 @@
 import { Helmet } from 'react-helmet-async';
 import PlaceCard from '../../components/place-card/place-card';
+import { FAVORITE_OFFERS } from '../../mock/favorite-offers';
+import { Link } from 'react-router-dom';
 
 // #======================== FavoritesPage ========================# //
+
+type FavoriteOffer = {
+  id: string;
+  title: string;
+  type: string;
+  price: number;
+  city: {
+    name: string;
+    location: {
+      latitude: number;
+      longitude: number;
+      zoom: number;
+    };
+  };
+  location: {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+  };
+  isFavorite: boolean;
+  isPremium: boolean;
+  rating: number;
+  previewImage: string;
+};
+
+const offersByCity = FAVORITE_OFFERS.reduce<Record<string, FavoriteOffer[]>>((acc, offer) => {
+  const city = offer.city.name;
+  if (!acc[city]) {
+    acc[city] = [];
+  }
+  acc[city].push(offer);
+  return acc;
+}, {});
 
 export default function FavoritesPage(): JSX.Element {
   return (
@@ -15,78 +50,26 @@ export default function FavoritesPage(): JSX.Element {
           <section className='favorites'>
             <h1 className='favorites__title'>Saved listing</h1>
             <ul className='favorites__list'>
-              <li className='favorites__locations-items'>
-                <div className='favorites__locations locations locations--current'>
-                  <div className='locations__item'>
-                    <a className='locations__item-link' href='#'>
-                      <span>Amsterdam</span>
-                    </a>
+              {Object.entries(offersByCity).map(([city, cityOffers]) => (
+                <li key={city} className='favorites__locations-items'>
+                  <div className='favorites__locations locations locations--current'>
+                    <div className='locations__item'>
+                      <Link className='locations__item-link' to='/'>
+                        <span>{city}</span>
+                      </Link>
+                    </div>
                   </div>
-                </div>
-                <div className='favorites__places'>
-
-                  <PlaceCard
-                    pageType='favorites'
-                    placeCardData={{
-                      id: '1',
-                      price: 180,
-                      rating: 5,
-                      previewImage: 'img/apartment-small-03.jpg',
-                      isFavorite: true,
-                      type: 'Apartment',
-                      isPremium: false,
-                      title: 'Nice, cozy, warm big bed apartment',
-                      city: {},
-                      location: {},
-                    }}
-
-                  />
-
-                  <PlaceCard
-                    pageType='favorites'
-                    placeCardData={{
-                      id: '1',
-                      price: 80,
-                      rating: 5,
-                      previewImage: 'img/room-small.jpg',
-                      isFavorite: true,
-                      type: 'Room',
-                      isPremium: false,
-                      title: 'Wood and stone place',
-                      city: {},
-                      location: {},
-                    }}
-                  />
-                </div>
-              </li>
-              <li className='favorites__locations-items'>
-                <div className='favorites__locations locations locations--current'>
-                  <div className='locations__item'>
-                    <a className='locations__item-link' href='#'>
-                      <span>Cologne</span>
-                    </a>
+                  <div className='favorites__places'>
+                    {cityOffers.map((offer) => (
+                      <PlaceCard
+                        key={offer.id}
+                        pageType='favorites'
+                        placeCardData={offer}
+                      />
+                    ))}
                   </div>
-                </div>
-                <div className='favorites__places'>
-
-                  <PlaceCard
-                    pageType='favorites'
-                    placeCardData={{
-                      id: '1',
-                      price: 180,
-                      rating: 5,
-                      previewImage: 'img/apartment-small-04.jpg',
-                      isFavorite: true,
-                      type: 'Apartment',
-                      isPremium: false,
-                      title: 'White castle',
-                      city: {},
-                      location: {},
-                    }}
-                  />
-
-                </div>
-              </li>
+                </li>
+              ))}
 
             </ul>
           </section>
@@ -104,6 +87,5 @@ export default function FavoritesPage(): JSX.Element {
         </a>
       </footer>
     </div>
-
   );
 }
