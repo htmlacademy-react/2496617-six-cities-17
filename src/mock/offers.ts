@@ -22,7 +22,7 @@ const OFFERS_CARDS: PlaceCardType[] = [
       longitude: 2.342499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.2
   },

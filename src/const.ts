@@ -24,6 +24,18 @@ type PlaceCardType = {
   previewImage: string;
 };
 
+type ReviewType = {
+  id: string;
+  comment: string;
+  date: string;
+  rating: number;
+  user: {
+    name: string;
+    avatarUrl: string;
+    isPro: boolean;
+  };
+};
+
 enum AppRoute {
   Main = '/',
   Favorites = '/favorites',
@@ -62,4 +74,4 @@ const PLACES_SORTING_OPTIONS = [
 
 const DATE_FORMAT: string = 'MMMM YYYY';
 export { AppRoute, AuthorizationStatus, PLACES_SORTING_OPTIONS, DATE_FORMAT };
-export type { PlaceCardType };
+export type { PlaceCardType, ReviewType };

@@ -1,6 +1,8 @@
+import { ReviewType } from '../const';
+
 // *======================== reviews ========================* //
 
-const REVIEWS = [
+const REVIEWS: ReviewType[] = [
   {
     id: 'da1679ad-4d17-4506-a6d5-3e7fb37b914d',
     comment: 'We loved it so much, the house, the view, the location just great.. Highly recommend :)',

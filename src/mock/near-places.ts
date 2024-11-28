@@ -1,6 +1,8 @@
+import { PlaceCardType } from '../const';
+
 // *======================== near-places ========================* //
 
-const NEAR_PLACES = [
+const NEAR_PLACES: PlaceCardType[] = [
   {
     id: 'ae9218e7-dfe9-4d3d-b807-a0fdff9d0a58',
     title: 'Beautiful & luxurious apartment at great location',
