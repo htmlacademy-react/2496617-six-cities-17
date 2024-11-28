@@ -2,27 +2,38 @@
 
 const REVIEWS = [
   {
-    'id': 'b67ddfd5-b953-4a30-8c8d-bd083cd6b62a',
-    'date': '2019-04-08T14:13:56.569Z',
-    'user': {
-      'name': 'Max',
-      'avatarUrl': 'img/avatar-max.jpg',
-      'isPro': false
-    },
-    'comment': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-    'rating': 4
+    id: 'da1679ad-4d17-4506-a6d5-3e7fb37b914d',
+    comment: 'We loved it so much, the house, the view, the location just great.. Highly recommend :)',
+    date: '2024-11-06T21:00:00.490Z',
+    rating: 4,
+    user: {
+      name: 'Jack',
+      avatarUrl: 'https://16.design.htmlacademy.pro/static/avatar/4.jpg',
+      isPro: false
+    }
   },
   {
-    'id': 'b67ddfd5-b953-4a30-8c8d-bd083cd6b62b',
-    'date': '2019-05-09T14:13:56.569Z',
-    'user': {
-      'name': 'Angelina',
-      'avatarUrl': 'img/avatar-angelina.jpg',
-      'isPro': true
-    },
-    'comment': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-    'rating': 5
+    id: '4ece28ca-843c-4791-beb7-7691f4a47e8b',
+    comment: 'The deluxe room was a quite comfortable one with all the adequate facilities. The only thing that made me feel uncomfortable was the rude behavior of an impolite staff at the reception desk.',
+    date: '2024-11-06T21:00:00.490Z',
+    rating: 3,
+    user: {
+      name: 'Max',
+      avatarUrl: 'https://16.design.htmlacademy.pro/static/avatar/3.jpg',
+      isPro: true
+    }
   },
+  {
+    id: '2f0cdca5-68b3-43bb-ad0d-838ebe713121',
+    comment: 'We loved it so much, the house, the view, the location just great.. Highly recommend :)',
+    date: '2024-11-03T21:00:00.490Z',
+    rating: 2,
+    user: {
+      name: 'Jack',
+      avatarUrl: 'https://16.design.htmlacademy.pro/static/avatar/1.jpg',
+      isPro: true
+    }
+  }
 ];
 
 export { REVIEWS };

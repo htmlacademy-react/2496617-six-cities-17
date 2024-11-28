@@ -8,6 +8,7 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 import Layout from '../layout/layout';
+import ScrollToTop from '../scroll-to-top/scroll-to-top';
 
 // ^======================== App ========================^ //
 
@@ -15,6 +16,7 @@ export default function App(): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route index element={<MainPage />} />
