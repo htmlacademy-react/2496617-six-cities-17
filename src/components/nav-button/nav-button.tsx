@@ -12,10 +12,11 @@ type isActive = {
   isActive: boolean;
 };
 
-const setActiveClass = ({ isActive }: isActive): string =>
-  `locations__item-link tabs__item ${isActive ? 'tabs__item--active' : ''}`;
-
 export default function NavButton(navButtonProps: NavButtonProps): JSX.Element {
+
+  const setActiveClass = ({ isActive }: isActive): string =>
+    `locations__item-link tabs__item ${isActive ? 'tabs__item--active' : ''}`;
+
   const { name } = navButtonProps;
   return (
     <li className='locations__item'>

@@ -1,10 +1,16 @@
+import { nanoid } from '@reduxjs/toolkit';
+import { PlaceCardType } from '../../types/place-card-type';
+
+// %------------ components ------------% //
 import PlaceCard from '../place-card/place-card';
-import { OFFERS } from '../../mock/offers';
 import PlacesSorting from '../places-sorting/places-sorting';
 
 // ^======================== MainOffers ========================^ //
-
-export default function MainOffers(): JSX.Element {
+type MainOffersProps = {
+  offers: PlaceCardType[];
+};
+export default function MainOffers(mainOffersProps: MainOffersProps): JSX.Element {
+  const { offers } = mainOffersProps;
   return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
@@ -13,9 +19,9 @@ export default function MainOffers(): JSX.Element {
       <PlacesSorting />
 
       <div className="cities__places-list places__list tabs__content">
-        {OFFERS.map((offer) => (
+        {offers.map((offer) => (
           <PlaceCard
-            key={offer.id}
+            key={nanoid()}
             pageType="cities"
             placeCardData={offer}
           />

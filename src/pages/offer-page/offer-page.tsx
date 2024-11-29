@@ -1,6 +1,8 @@
 import { Helmet } from 'react-helmet-async';
-import { NEAR_PLACES } from '../../mock/near-places';
-import { REVIEWS } from '../../mock/reviews';
+import { PlaceCardType } from '../../types/place-card-type';
+import { ReviewType } from '../../types/review-type';
+
+// %------------ components ------------% //
 import PlaceCard from '../../components/place-card/place-card';
 import Review from '../../components/review/review';
 import ReviewForm from '../../components/review-form/review-form';
@@ -8,7 +10,13 @@ import Map from '../../components/map/map';
 
 // #======================== OfferPage ========================# //
 
-export default function OfferPage(): JSX.Element {
+type OfferPageProps = {
+  nearPlaces: PlaceCardType[];
+  reviews: ReviewType[];
+};
+
+export default function OfferPage(offerPageProps: OfferPageProps): JSX.Element {
+  const { nearPlaces, reviews } = offerPageProps;
   return (
     <main className='page__main page__main--offer'>
       <Helmet>
@@ -145,7 +153,7 @@ export default function OfferPage(): JSX.Element {
                 Reviews · <span className='reviews__amount'>1</span>
               </h2>
               <ul className='reviews__list'>
-                {REVIEWS.map((review) => (
+                {reviews.map((review) => (
                   <Review
                     key={review.id}
                     {...review}
@@ -168,7 +176,7 @@ export default function OfferPage(): JSX.Element {
             Other places in the neighborhood
           </h2>
           <div className='near-places__list places__list'>
-            {NEAR_PLACES.map((nearPlace) => (
+            {nearPlaces.map((nearPlace) => (
               <PlaceCard
                 pageType='near-places'
                 key={nearPlace.id}

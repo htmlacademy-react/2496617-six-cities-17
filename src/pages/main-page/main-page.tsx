@@ -1,11 +1,19 @@
 import { Helmet } from 'react-helmet-async';
+import { PlaceCardType } from '../../types/place-card-type';
+
+// %------------ components ------------% //
 import MainOffers from '../../components/main-offers/main-offers';
 import Map from '../../components/map/map';
 import Navigation from '../../components/navigation/navigation';
 
 // #======================== MainPage ========================# //
 
-export default function MainPage(): JSX.Element {
+type MainPageProps = {
+  offers: PlaceCardType[];
+};
+
+export default function MainPage(mainPageProps: MainPageProps): JSX.Element {
+  const { offers } = mainPageProps;
   return (
     <div className='page page--gray page--main'>
       <Helmet>
@@ -20,7 +28,7 @@ export default function MainPage(): JSX.Element {
         <div className='cities'>
           <div className='cities__places-container container'>
 
-            <MainOffers />
+            <MainOffers offers={offers} />
 
             <div className='cities__right-section'>
               <Map />

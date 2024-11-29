@@ -1,7 +1,7 @@
-// ^======================== Review ========================^ //
-
 import { DATE_FORMAT } from '../../const';
 import { humanizeTime } from '../../utils/utils';
+
+// ^======================== Review ========================^ //
 
 type ReviewProps = {
   id: string;
@@ -14,7 +14,6 @@ type ReviewProps = {
   comment: string;
   rating: number;
 };
-
 
 export default function Review(reviewProps: ReviewProps): JSX.Element {
   const { date, user: { name, avatarUrl }, comment, rating } = reviewProps;

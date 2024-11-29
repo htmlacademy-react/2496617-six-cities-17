@@ -1,44 +1,28 @@
 import { Helmet } from 'react-helmet-async';
-import PlaceCard from '../../components/place-card/place-card';
-import { FAVORITE_OFFERS } from '../../mock/favorite-offers';
 import { Link } from 'react-router-dom';
+import { PlaceCardType } from '../../types/place-card-type';
+import { FavoriteOffer } from '../../types/favorite-offer-type';
+import PlaceCard from '../../components/place-card/place-card';
 
 // #======================== FavoritesPage ========================# //
 
-type FavoriteOffer = {
-  id: string;
-  title: string;
-  type: string;
-  price: number;
-  city: {
-    name: string;
-    location: {
-      latitude: number;
-      longitude: number;
-      zoom: number;
-    };
-  };
-  location: {
-    latitude: number;
-    longitude: number;
-    zoom: number;
-  };
-  isFavorite: boolean;
-  isPremium: boolean;
-  rating: number;
-  previewImage: string;
+type FavoritePageProps = {
+  favoriteOffers: PlaceCardType[];
 };
 
-const offersByCity = FAVORITE_OFFERS.reduce<Record<string, FavoriteOffer[]>>((acc, offer) => {
-  const city = offer.city.name;
-  if (!acc[city]) {
-    acc[city] = [];
-  }
-  acc[city].push(offer);
-  return acc;
-}, {});
+export default function FavoritesPage(favoritePageProps: FavoritePageProps): JSX.Element {
 
-export default function FavoritesPage(): JSX.Element {
+  const { favoriteOffers } = favoritePageProps;
+
+  const offersByCity = favoriteOffers.reduce<Record<string, FavoriteOffer[]>>((acc, offer) => {
+    const city = offer.city.name;
+    if (!acc[city]) {
+      acc[city] = [];
+    }
+    acc[city].push(offer);
+    return acc;
+  }, {});
+
   return (
     <div className='page'>
       <Helmet>

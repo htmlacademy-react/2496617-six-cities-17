@@ -1,4 +1,4 @@
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 
 // %======================== utils ========================% //
 const capitalize = (value: string) => value[0].toUpperCase() + value.slice(1);

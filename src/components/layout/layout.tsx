@@ -1,8 +1,10 @@
 import { Outlet, useLocation } from 'react-router-dom';
-import Logo from '../logo/logo';
-import HeaderNav from '../header-nav/header-nav';
 import { AppRoute } from '../../const';
 import classNames from 'classnames';
+
+// %------------ components ------------% //
+import Logo from '../logo/logo';
+import HeaderNav from '../header-nav/header-nav';
 
 // ^======================== Layout ========================^ //
 
@@ -15,7 +17,7 @@ export default function Layout(): JSX.Element {
     <div
       className={classNames(
         'page',
-        {'page--gray': isGrayPage}
+        { 'page--gray': isGrayPage }
       )}
     >
       <header className='header'>
