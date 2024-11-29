@@ -1,4 +1,4 @@
-import { ReviewType } from '../const';
+import { ReviewType } from '../types/review-type';
 
 // *======================== reviews ========================* //
 

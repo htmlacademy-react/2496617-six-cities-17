@@ -1,6 +1,5 @@
 // *======================== locations ========================* //
 
-
 const LOCATIONS: string[] = [
   'paris',
   'cologne',

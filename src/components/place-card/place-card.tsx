@@ -1,5 +1,6 @@
 import classNames from 'classnames';
-import { AppRoute, PlaceCardType } from '../../const';
+import { AppRoute } from '../../const';
+import { PlaceCardType } from '../../types/place-card-type';
 import { capitalize } from '../../utils/utils';
 import { Link } from 'react-router-dom';
 

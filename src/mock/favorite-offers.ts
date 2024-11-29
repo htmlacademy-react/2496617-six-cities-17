@@ -1,6 +1,4 @@
-// *======================== favorites ========================* //
-
-import { PlaceCardType } from '../const';
+import { PlaceCardType } from '../types/place-card-type';
 
 // *======================== offers ========================* //
 
