@@ -1,5 +1,7 @@
 import classNames from 'classnames';
-import { PlaceCardType } from '../../const';
+import { AppRoute, PlaceCardType } from '../../const';
+import { capitalize } from '../../utils/utils';
+import { Link } from 'react-router-dom';
 
 // ^======================== place-card ========================^ //
 
@@ -18,7 +20,7 @@ export default function PlaceCard({ pageType, placeCardData, }: PlaceCardProps):
         </div>
       ) : null}
       <div className={`${pageType}__image-wrapper place-card__image-wrapper`}>
-        <a href="#">
+        <Link to={AppRoute.Offer}>
           <img
             className="place-card__image"
             src={previewImage}
@@ -26,7 +28,7 @@ export default function PlaceCard({ pageType, placeCardData, }: PlaceCardProps):
             height="auto"
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -37,7 +39,7 @@ export default function PlaceCard({ pageType, placeCardData, }: PlaceCardProps):
           <button
             className={classNames(
               'place-card__bookmark-button', 'button',
-              {'place-card__bookmark-button--active': isFavorite}
+              { 'place-card__bookmark-button--active': isFavorite }
             )}
             type="button"
           >
@@ -54,9 +56,9 @@ export default function PlaceCard({ pageType, placeCardData, }: PlaceCardProps):
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={AppRoute.Offer}>{title}</Link>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">{capitalize(type)}</p>
       </div>
     </article>
   );
