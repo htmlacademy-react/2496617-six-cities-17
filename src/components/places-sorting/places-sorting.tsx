@@ -1,4 +1,3 @@
-import { nanoid } from '@reduxjs/toolkit';
 import { PLACES_SORTING_OPTIONS } from '../../const';
 
 // ^======================== PlacesSorting ========================^ //
@@ -14,9 +13,9 @@ export default function PlacesSorting(): JSX.Element {
         </svg>
       </span>
       <ul className="places__options places__options--custom places__options--opened">
-        {PLACES_SORTING_OPTIONS.map(({name, isActive }) => (
-          <li key={nanoid()} className={isActive ? 'places__option places__option--active' : 'places__option'} tabIndex={0}>
-            {name}
+        {PLACES_SORTING_OPTIONS.map((placesSortingOption) => (
+          <li key={placesSortingOption} className='places__option places__option--active places__option' tabIndex={0}>
+            {placesSortingOption}
           </li>
         ))}
       </ul>

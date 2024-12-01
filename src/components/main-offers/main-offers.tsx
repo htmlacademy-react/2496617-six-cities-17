@@ -1,4 +1,3 @@
-import { nanoid } from '@reduxjs/toolkit';
 import { PlaceCardType } from '../../types/place-card-type';
 
 // %------------ components ------------% //
@@ -14,14 +13,14 @@ export default function MainOffers(mainOffersProps: MainOffersProps): JSX.Elemen
   return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
-      <b className="places__found">312 places to stay in Amsterdam</b>
+      <b className="places__found">{offers.length} places to stay in Amsterdam</b>
 
       <PlacesSorting />
 
       <div className="cities__places-list places__list tabs__content">
         {offers.map((offer) => (
           <PlaceCard
-            key={nanoid()}
+            key={offer.id}
             pageType="cities"
             placeCardData={offer}
           />

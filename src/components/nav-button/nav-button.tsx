@@ -1,31 +1,27 @@
-import { NavLink } from 'react-router-dom';
 import { capitalize } from '../../utils/utils';
+import classNames from 'classnames';
 
 // ^======================== NavButton ========================^ //
 
 type NavButtonProps = {
   name: string;
-  to: string;
-};
-
-type isActive = {
   isActive: boolean;
 };
 
+
 export default function NavButton(navButtonProps: NavButtonProps): JSX.Element {
 
-  const setActiveClass = ({ isActive }: isActive): string =>
-    `locations__item-link tabs__item ${isActive ? 'tabs__item--active' : ''}`;
-
-  const { name } = navButtonProps;
+  const { name, isActive } = navButtonProps;
   return (
     <li className='locations__item'>
-      <NavLink
-        className={setActiveClass}
-        to={`/${name}`}
+      <a
+        className={classNames(
+          'locations__item-link', 'tabs__item',
+          { 'tabs__item--active': isActive }
+        )}
       >
         <span>{capitalize(name)}</span>
-      </NavLink>
+      </a>
     </li>
   );
 }

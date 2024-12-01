@@ -13,25 +13,22 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-const PLACES_SORTING_OPTIONS = [
-  {
-    name: 'Popular',
-    isActive: true,
-  },
-  {
-    name: 'Price: low to high',
-    isActive: false,
-  },
-  {
-    name: 'Price: high to low',
-    isActive: false,
-  },
-  {
-    name: 'Top rated first',
-    isActive: false,
-  },
+const PLACES_SORTING_OPTIONS: string[] = [
+  'Popular',
+  'Price: low to high',
+  'Price: high to low',
+  'Top rated first',
+];
+
+const LOCATIONS: string[] = [
+  'paris',
+  'cologne',
+  'brussels',
+  'amsterdam',
+  'hamburg',
+  'dusseldorf',
 ];
 
 const DATE_FORMAT: string = 'MMMM YYYY';
 
-export { AppRoute, AuthorizationStatus, PLACES_SORTING_OPTIONS, DATE_FORMAT };
+export { AppRoute, AuthorizationStatus, PLACES_SORTING_OPTIONS, DATE_FORMAT, LOCATIONS };
