@@ -1,27 +1,39 @@
-import Header from '../../components/header/header';
-import Locations from '../../components/locations/locations';
+import { Helmet } from 'react-helmet-async';
+import { PlaceCardType } from '../../types/place-card-type';
+
+// %------------ components ------------% //
 import MainOffers from '../../components/main-offers/main-offers';
 import Map from '../../components/map/map';
+import Navigation from '../../components/navigation/navigation';
 
 // #======================== MainPage ========================# //
 
-export default function MainPage(): JSX.Element {
+type MainPageProps = {
+  offers: PlaceCardType[];
+};
+
+export default function MainPage(mainPageProps: MainPageProps): JSX.Element {
+  const { offers } = mainPageProps;
   return (
     <div className='page page--gray page--main'>
-
-      <Header pageType='any' />
+      <Helmet>
+        <title>6 cities</title>
+      </Helmet>
 
       <main className='page__main page__main--index'>
         <h1 className='visually-hidden'>Cities</h1>
-        <div className='tabs'>
-          <Locations />
-        </div>
+
+        <Navigation />
+
         <div className='cities'>
           <div className='cities__places-container container'>
 
-            <MainOffers />
+            <MainOffers offers={offers} />
 
-            <Map />
+            <div className='cities__right-section'>
+              <Map />
+            </div>
+
           </div>
         </div>
       </main>
