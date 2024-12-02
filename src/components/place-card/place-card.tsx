@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 // ^======================== place-card ========================^ //
 
 type PlaceCardProps = {
-  pageType: 'favorites' | 'near-places';
+  pageType: 'favorites' | 'near-places' | 'cities';
   placeCardData: PlaceCardType;
 };
 

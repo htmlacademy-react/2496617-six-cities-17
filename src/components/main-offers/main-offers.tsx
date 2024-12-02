@@ -21,7 +21,7 @@ export default function MainOffers(mainOffersProps: MainOffersProps): JSX.Elemen
         {offers.map((offer) => (
           <PlaceCard
             key={offer.id}
-            pageType="cities"
+            pageType='cities'
             placeCardData={offer}
           />
         ))}
