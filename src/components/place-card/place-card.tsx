@@ -1,13 +1,13 @@
 import classNames from 'classnames';
 import { AppRoute } from '../../const';
 import { PlaceCardType } from '../../types/place-card-type';
-import { capitalize } from '../../utils/utils';
+import { capitalize, convertRating } from '../../utils/utils';
 import { Link } from 'react-router-dom';
 
 // ^======================== place-card ========================^ //
 
 type PlaceCardProps = {
-  pageType: string;
+  pageType: 'favorites' | 'near-places';
   placeCardData: PlaceCardType;
 };
 
@@ -52,7 +52,7 @@ export default function PlaceCard({ pageType, placeCardData, }: PlaceCardProps):
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${rating * 2 * 10}%` }} />
+            <span style={{ width: `${convertRating(rating)}` }} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
