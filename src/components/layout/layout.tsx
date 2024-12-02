@@ -12,6 +12,7 @@ export default function Layout(): JSX.Element {
 
   const path = useLocation().pathname as AppRoute;
   const isGrayPage = path === AppRoute.Main || path === AppRoute.Login;
+  const isFavoritesPage = path === AppRoute.Favorites;
 
   return (
     <div
@@ -35,6 +36,22 @@ export default function Layout(): JSX.Element {
       <main>
         <Outlet />
       </main>
+
+      {
+        isFavoritesPage ?
+          <footer className='footer container'>
+            <a className='footer__logo-link' href='main.html'>
+              <img
+                className='footer__logo'
+                src='img/logo.svg'
+                alt='6 cities logo'
+                width={64}
+                height={33}
+              />
+            </a>
+          </footer>
+          : null
+      }
     </div>
   );
 }
