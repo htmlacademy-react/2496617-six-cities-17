@@ -2,7 +2,8 @@ import { Helmet } from 'react-helmet-async';
 import { PlaceCardType } from '../../types/place-card-type';
 
 // %------------ components ------------% //
-import MainOffers from '../../components/main-offers/main-offers';
+import PlacesSorting from '../../components/places-sorting/places-sorting';
+import PlacesList from '../../components/places-list/places-list';
 import Map from '../../components/map/map';
 import Navigation from '../../components/navigation/navigation';
 
@@ -28,7 +29,17 @@ export default function MainPage(mainPageProps: MainPageProps): JSX.Element {
         <div className='cities'>
           <div className='cities__places-container container'>
 
-            <MainOffers offers={offers} />
+            <section className="cities__places places">
+              <h2 className="visually-hidden">Places</h2>
+              <b className="places__found">
+                {offers.length} places to stay in Amsterdam
+              </b>
+
+              <PlacesSorting />
+
+              <PlacesList offers={offers} />
+
+            </section>
 
             <div className='cities__right-section'>
               <Map />

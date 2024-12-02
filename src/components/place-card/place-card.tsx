@@ -9,12 +9,20 @@ import { Link } from 'react-router-dom';
 type PlaceCardProps = {
   pageType: 'favorites' | 'near-places' | 'cities';
   placeCardData: PlaceCardType;
+  onPlaceCardMouseEnter: () => void;
 };
 
-export default function PlaceCard({ pageType, placeCardData, }: PlaceCardProps): JSX.Element {
+export default function PlaceCard({
+  pageType, placeCardData, onPlaceCardMouseEnter
+}: PlaceCardProps): JSX.Element {
+
   const { previewImage, isPremium, price, isFavorite, rating, title, type } = placeCardData;
+
   return (
-    <article className={`${pageType}__card place-card`}>
+    <article
+      className={`${pageType}__card place-card`}
+      onMouseEnter={onPlaceCardMouseEnter}
+    >
       {isPremium ? (
         <div className="place-card__mark">
           <span>Premium</span>
