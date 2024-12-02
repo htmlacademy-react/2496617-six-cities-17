@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { PlaceCardType } from '../../types/place-card-type';
-import { FavoriteOffer } from '../../types/favorite-offer-type';
+import { FavoriteOfferType } from '../../types/favorite-offer-type';
 import PlaceCard from '../../components/place-card/place-card';
 
 // #======================== FavoritesPage ========================# //
@@ -14,7 +14,7 @@ export default function FavoritesPage(favoritePageProps: FavoritePageProps): JSX
 
   const { favoriteOffers } = favoritePageProps;
 
-  const offersByCity = favoriteOffers.reduce<Record<string, FavoriteOffer[]>>((acc, offer) => {
+  const offersByCity = favoriteOffers.reduce<Record<string, FavoriteOfferType[]>>((acc, offer) => {
     const city = offer.city.name;
     if (!acc[city]) {
       acc[city] = [];
