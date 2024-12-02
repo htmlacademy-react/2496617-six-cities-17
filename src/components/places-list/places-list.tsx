@@ -13,10 +13,14 @@ export default function PlacesList(placesListProps: PlacesListProps): JSX.Elemen
 
   const { offers } = placesListProps;
 
-  const [activeCard, setActiveCard] = useState('');
+  const [activeCard, setActiveCard] = useState<string | null>('');
 
   const placeCardMouseEnterHandler = (id: string): void => {
     setActiveCard(id);
+  };
+
+  const placeCardMouseLeaveHandler = (): void => {
+    setActiveCard(null);
   };
 
   return (
@@ -29,9 +33,9 @@ export default function PlacesList(placesListProps: PlacesListProps): JSX.Elemen
           onPlaceCardMouseEnter={() => {
             placeCardMouseEnterHandler(offer.title);
           }}
+          onPlaceCardMouseLeave={placeCardMouseLeaveHandler}
         />
       ))}
     </div>
   );
 }
-
