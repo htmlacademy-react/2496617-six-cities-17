@@ -1,8 +1,19 @@
 import { Helmet } from 'react-helmet-async';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { Navigate } from 'react-router-dom';
 
 // #======================== LoginPage ========================# //
 
-export default function LoginPage(): JSX.Element {
+type LoginPageProps = {
+  authorizationStatus: AuthorizationStatus;
+};
+
+export default function LoginPage({ authorizationStatus }: LoginPageProps): JSX.Element {
+
+  if (authorizationStatus === AuthorizationStatus.Auth) {
+    return <Navigate to={AppRoute.Main} />;
+  }
+
   return (
     <div className='page page--gray page--login'>
       <Helmet>
@@ -49,6 +60,5 @@ export default function LoginPage(): JSX.Element {
         </div>
       </main>
     </div>
-
   );
 }

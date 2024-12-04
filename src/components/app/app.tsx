@@ -46,7 +46,7 @@ export default function App({ mocks }: AppProps): JSX.Element {
                 </PrivateRoute>
               }
             />
-            <Route path={AppRoute.Login} element={<LoginPage />} />
+            <Route path={AppRoute.Login} element={<LoginPage authorizationStatus={AuthorizationStatus.Unknown} />} />
             <Route path='*' element={<NotFoundPage />} />
           </Route>
         </Routes>
