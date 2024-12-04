@@ -7,6 +7,7 @@ import PlaceCard from '../../components/place-card/place-card';
 import Review from '../../components/review/review';
 import ReviewForm from '../../components/review-form/review-form';
 import Map from '../../components/map/map';
+import { useScrollToTop } from '../../hooks/use-scroll-to-top';
 
 // #======================== OfferPage ========================# //
 
@@ -17,6 +18,9 @@ type OfferPageProps = {
 
 export default function OfferPage(offerPageProps: OfferPageProps): JSX.Element {
   const { nearPlaces, reviews } = offerPageProps;
+
+  useScrollToTop();
+
   return (
     <main className='page__main page__main--offer'>
       <Helmet>

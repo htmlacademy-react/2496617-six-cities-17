@@ -5,7 +5,6 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 // %------------ components ------------% //
 import PrivateRoute from '../private-route/private-route';
 import Layout from '../layout/layout';
-import ScrollToTop from '../scroll-to-top/scroll-to-top';
 import MainPage from '../../pages/main-page/main-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
@@ -27,7 +26,6 @@ export default function App({ mocks }: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
-        <ScrollToTop />
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route index element={<MainPage offers={OFFERS} />} />
