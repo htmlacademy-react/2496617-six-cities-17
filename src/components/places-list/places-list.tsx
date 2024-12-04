@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { PlaceCardType } from '../../types/place-card-type';
 import PlaceCard from '../place-card/place-card';
+import { CardListType } from '../../const';
 
 // ^======================== PlacesList ========================^ //
 
@@ -28,7 +29,7 @@ export default function PlacesList(placesListProps: PlacesListProps): JSX.Elemen
       {offers.map((offer) => (
         <PlaceCard
           key={offer.id}
-          pageType='cities'
+          cardListType={CardListType.CITIES}
           placeCardData={offer}
           onPlaceCardMouseEnter={() => {
             placeCardMouseEnterHandler(offer.title);

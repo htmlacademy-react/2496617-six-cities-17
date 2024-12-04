@@ -13,6 +13,12 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+enum CardListType {
+  CITIES = 'cities',
+  FAVORITES = 'favorites',
+  NEAR_PLACES = 'near-places'
+}
+
 const PLACES_SORTING_OPTIONS: string[] = [
   'Popular',
   'Price: low to high',
@@ -54,4 +60,4 @@ const RATING_OPTIONS = [
 
 const DATE_FORMAT: string = 'MMMM YYYY';
 
-export { AppRoute, AuthorizationStatus, PLACES_SORTING_OPTIONS, DATE_FORMAT, LOCATIONS, RATING_OPTIONS };
+export { AppRoute, AuthorizationStatus, PLACES_SORTING_OPTIONS, DATE_FORMAT, LOCATIONS, RATING_OPTIONS, CardListType };

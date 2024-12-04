@@ -8,6 +8,7 @@ import Review from '../../components/review/review';
 import ReviewForm from '../../components/review-form/review-form';
 import Map from '../../components/map/map';
 import { useScrollToTop } from '../../hooks/use-scroll-to-top';
+import { CardListType } from '../../const';
 
 // #======================== OfferPage ========================# //
 
@@ -182,7 +183,7 @@ export default function OfferPage(offerPageProps: OfferPageProps): JSX.Element {
           <div className='near-places__list places__list'>
             {nearPlaces.map((nearPlace) => (
               <PlaceCard
-                pageType='near-places'
+                cardListType={CardListType.NEAR_PLACES}
                 key={nearPlace.id}
                 placeCardData={nearPlace}
               />

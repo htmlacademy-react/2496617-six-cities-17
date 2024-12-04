@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { PlaceCardType } from '../../types/place-card-type';
 import { FavoriteOfferType } from '../../types/favorite-offer-type';
 import PlaceCard from '../../components/place-card/place-card';
+import { CardListType } from '../../const';
 
 // #======================== FavoritesPage ========================# //
 
@@ -47,7 +48,7 @@ export default function FavoritesPage(favoritePageProps: FavoritePageProps): JSX
                     {cityOffers.map((offer) => (
                       <PlaceCard
                         key={offer.id}
-                        pageType='favorites'
+                        cardListType={CardListType.FAVORITES}
                         placeCardData={offer}
                       />
                     ))}

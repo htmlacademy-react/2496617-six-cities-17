@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { AppRoute } from '../../const';
+import { AppRoute, CardListType } from '../../const';
 import { PlaceCardType } from '../../types/place-card-type';
 import { capitalize, convertRating } from '../../utils/utils';
 import { Link } from 'react-router-dom';
@@ -7,21 +7,21 @@ import { Link } from 'react-router-dom';
 // ^======================== place-card ========================^ //
 
 type PlaceCardProps = {
-  pageType: 'favorites' | 'near-places' | 'cities';
+  cardListType: CardListType;
   placeCardData: PlaceCardType;
   onPlaceCardMouseEnter?: () => void;
   onPlaceCardMouseLeave?: () => void;
 };
 
 export default function PlaceCard({
-  pageType, placeCardData, onPlaceCardMouseEnter, onPlaceCardMouseLeave
+  cardListType, placeCardData, onPlaceCardMouseEnter, onPlaceCardMouseLeave
 }: PlaceCardProps): JSX.Element {
 
   const { previewImage, isPremium, price, isFavorite, rating, title, type } = placeCardData;
 
   return (
     <article
-      className={`${pageType}__card place-card`}
+      className={`${cardListType}__card place-card`}
       onMouseEnter={onPlaceCardMouseEnter}
       onMouseLeave={onPlaceCardMouseLeave}
     >
@@ -30,12 +30,12 @@ export default function PlaceCard({
           <span>Premium</span>
         </div>
       )}
-      <div className={`${pageType}__image-wrapper place-card__image-wrapper`}>
+      <div className={`${cardListType}__image-wrapper place-card__image-wrapper`}>
         <Link to={AppRoute.Offer}>
           <img
             className="place-card__image"
             src={previewImage}
-            width={pageType === 'favorites' ? 150 : 260}
+            width={cardListType === CardListType.FAVORITES ? 150 : 260}
             height="auto"
             alt="Place image"
           />
