@@ -25,11 +25,11 @@ export default function PlaceCard({
       onMouseEnter={onPlaceCardMouseEnter}
       onMouseLeave={onPlaceCardMouseLeave}
     >
-      {isPremium ? (
+      {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
-      ) : null}
+      )}
       <div className={`${pageType}__image-wrapper place-card__image-wrapper`}>
         <Link to={AppRoute.Offer}>
           <img
