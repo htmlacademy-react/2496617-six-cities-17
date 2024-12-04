@@ -1,25 +1,35 @@
 import classNames from 'classnames';
 import { AppRoute } from '../../const';
 import { PlaceCardType } from '../../types/place-card-type';
-import { capitalize } from '../../utils/utils';
+import { capitalize, convertRating } from '../../utils/utils';
 import { Link } from 'react-router-dom';
 
 // ^======================== place-card ========================^ //
 
 type PlaceCardProps = {
-  pageType: string;
+  pageType: 'favorites' | 'near-places' | 'cities';
   placeCardData: PlaceCardType;
+  onPlaceCardMouseEnter?: () => void;
+  onPlaceCardMouseLeave?: () => void;
 };
 
-export default function PlaceCard({ pageType, placeCardData, }: PlaceCardProps): JSX.Element {
+export default function PlaceCard({
+  pageType, placeCardData, onPlaceCardMouseEnter, onPlaceCardMouseLeave
+}: PlaceCardProps): JSX.Element {
+
   const { previewImage, isPremium, price, isFavorite, rating, title, type } = placeCardData;
+
   return (
-    <article className={`${pageType}__card place-card`}>
-      {isPremium ? (
+    <article
+      className={`${pageType}__card place-card`}
+      onMouseEnter={onPlaceCardMouseEnter}
+      onMouseLeave={onPlaceCardMouseLeave}
+    >
+      {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
-      ) : null}
+      )}
       <div className={`${pageType}__image-wrapper place-card__image-wrapper`}>
         <Link to={AppRoute.Offer}>
           <img
@@ -52,7 +62,7 @@ export default function PlaceCard({ pageType, placeCardData, }: PlaceCardProps):
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${rating * 2 * 10}%` }} />
+            <span style={{ width: `${convertRating(rating)}` }} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

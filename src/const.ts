@@ -29,6 +29,29 @@ const LOCATIONS: string[] = [
   'dusseldorf',
 ];
 
+const RATING_OPTIONS = [
+  {
+    value: 5,
+    title: 'perfect',
+  },
+  {
+    value: 4,
+    title: 'good',
+  },
+  {
+    value: 3,
+    title: 'not bad',
+  },
+  {
+    value: 2,
+    title: 'badly'
+  },
+  {
+    value: 1,
+    title: 'terribly'
+  }
+];
+
 const DATE_FORMAT: string = 'MMMM YYYY';
 
-export { AppRoute, AuthorizationStatus, PLACES_SORTING_OPTIONS, DATE_FORMAT, LOCATIONS };
+export { AppRoute, AuthorizationStatus, PLACES_SORTING_OPTIONS, DATE_FORMAT, LOCATIONS, RATING_OPTIONS };

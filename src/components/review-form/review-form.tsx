@@ -1,99 +1,53 @@
+import { useState } from 'react';
+import { RATING_OPTIONS } from '../../const';
+import RatingButton from '../rating-button/rating-button';
+
 // ^======================== review-form ========================^ //
 
 export default function ReviewForm(): JSX.Element {
+
+  const [reviewFormState, setReviewFormState] = useState({
+    rating: 0,
+    text: ''
+  });
+
+  const handleRatingChange = (value: number): void => {
+    setReviewFormState((prevState) => ({
+      ...prevState,
+      rating: value,
+    }));
+  };
+
   return (
     <form className='reviews__form form' action='#' method='post'>
       <label className='reviews__label form__label' htmlFor='review'>
         Your review
       </label>
+
       <div className='reviews__rating-form form__rating'>
-        <input
-          className='form__rating-input visually-hidden'
-          name='rating'
-          defaultValue={5}
-          id='5-stars'
-          type='radio'
-        />
-        <label
-          htmlFor='5-stars'
-          className='reviews__rating-label form__rating-label'
-          title='perfect'
-        >
-          <svg className='form__star-image' width={37} height={33}>
-            <use xlinkHref='#icon-star' />
-          </svg>
-        </label>
-        <input
-          className='form__rating-input visually-hidden'
-          name='rating'
-          defaultValue={4}
-          id='4-stars'
-          type='radio'
-        />
-        <label
-          htmlFor='4-stars'
-          className='reviews__rating-label form__rating-label'
-          title='good'
-        >
-          <svg className='form__star-image' width={37} height={33}>
-            <use xlinkHref='#icon-star' />
-          </svg>
-        </label>
-        <input
-          className='form__rating-input visually-hidden'
-          name='rating'
-          defaultValue={3}
-          id='3-stars'
-          type='radio'
-        />
-        <label
-          htmlFor='3-stars'
-          className='reviews__rating-label form__rating-label'
-          title='not bad'
-        >
-          <svg className='form__star-image' width={37} height={33}>
-            <use xlinkHref='#icon-star' />
-          </svg>
-        </label>
-        <input
-          className='form__rating-input visually-hidden'
-          name='rating'
-          defaultValue={2}
-          id='2-stars'
-          type='radio'
-        />
-        <label
-          htmlFor='2-stars'
-          className='reviews__rating-label form__rating-label'
-          title='badly'
-        >
-          <svg className='form__star-image' width={37} height={33}>
-            <use xlinkHref='#icon-star' />
-          </svg>
-        </label>
-        <input
-          className='form__rating-input visually-hidden'
-          name='rating'
-          defaultValue={1}
-          id='1-star'
-          type='radio'
-        />
-        <label
-          htmlFor='1-star'
-          className='reviews__rating-label form__rating-label'
-          title='terribly'
-        >
-          <svg className='form__star-image' width={37} height={33}>
-            <use xlinkHref='#icon-star' />
-          </svg>
-        </label>
+        {RATING_OPTIONS.map(({ value, title }) => (
+          <RatingButton
+            key={value}
+            value={value}
+            title={title}
+            onRatingButtonChange={handleRatingChange}
+            checked={reviewFormState.rating === value}
+          />
+        ))}
       </div>
+
       <textarea
         className='reviews__textarea form__textarea'
         id='review'
         name='review'
         placeholder='Tell how was your stay, what you like and what can be improved'
-        defaultValue={''}
+        value={reviewFormState.text}
+        onChange={(e) => {
+          setReviewFormState((prevState) => ({
+            ...prevState,
+            text: e.target.value,
+          }));
+        }}
       />
       <div className='reviews__button-wrapper'>
         <p className='reviews__help'>

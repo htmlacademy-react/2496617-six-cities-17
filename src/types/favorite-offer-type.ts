@@ -1,4 +1,4 @@
-export type FavoriteOffer = {
+export type FavoriteOfferType = {
   id: string;
   title: string;
   type: string;
