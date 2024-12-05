@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { PlaceCardType } from '../../types/place-card-type';
+import { useState } from 'react';
 
 // %------------ components ------------% //
 import PlacesSorting from '../../components/places-sorting/places-sorting';
@@ -15,6 +16,7 @@ type MainPageProps = {
 
 export default function MainPage(mainPageProps: MainPageProps): JSX.Element {
   const { offers } = mainPageProps;
+
   return (
     <div className='page page--gray page--main'>
       <Helmet>
@@ -37,12 +39,17 @@ export default function MainPage(mainPageProps: MainPageProps): JSX.Element {
 
               <PlacesSorting />
 
-              <PlacesList offers={offers} />
+              <PlacesList
+                offers={offers}
+              />
 
             </section>
 
             <div className='cities__right-section'>
-              <Map />
+              <Map
+                defaultLocation={offers[0].city.location}
+                offers={offers}
+              />
             </div>
 
           </div>
