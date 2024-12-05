@@ -11,9 +11,10 @@ import { LocationType } from '../../types/location-type';
 type MapProps = {
   defaultLocation: LocationType;
   offers?: PlaceCardType[];
+  selectedPoint?: PlaceCardType | undefined;
 };
 
-export default function Map({ defaultLocation, offers }: MapProps): JSX.Element {
+export default function Map({ defaultLocation, offers, selectedPoint }: MapProps): JSX.Element {
 
   const path = useLocation().pathname;
   const mapClassDictionary: Record<string, string> = {
@@ -40,23 +41,23 @@ export default function Map({ defaultLocation, offers }: MapProps): JSX.Element 
   useEffect(() => {
 
     if (map && offers) {
-      const points = offers.map((offer) => offer.location);
-
-      points.forEach((point) => {
+      offers.forEach((offer) => {
         leaflet
           .marker(
             {
-              lat: point.latitude,
-              lng: point.longitude,
+              lat: offer.location.latitude,
+              lng: offer.location.longitude,
             },
             {
-              icon: defaultCustomIcon,
+              icon: offer.id === selectedPoint?.id
+                ? currentCustomIcon
+                : defaultCustomIcon,
             }
           )
           .addTo(map);
       });
     }
-  }, [map, offers, defaultCustomIcon]);
+  }, [map, offers, selectedPoint, defaultCustomIcon, currentCustomIcon]);
 
   return (
     <section

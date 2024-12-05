@@ -7,8 +7,6 @@ export const useMap = (
   mapRef: MutableRefObject<HTMLDivElement | null>,
   defaultLocation: LocationType
 ) => {
-
-
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef(false);
 

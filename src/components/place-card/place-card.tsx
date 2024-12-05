@@ -9,21 +9,23 @@ import { Link } from 'react-router-dom';
 type PlaceCardProps = {
   cardListType: CardListType;
   placeCardData: PlaceCardType;
-  onPlaceCardMouseEnter?: () => void;
-  onPlaceCardMouseLeave?: () => void;
+  onPlaceCardMouseEnter?: (id: string) => void;
 };
 
 export default function PlaceCard({
-  cardListType, placeCardData, onPlaceCardMouseEnter, onPlaceCardMouseLeave
+  cardListType, placeCardData, onPlaceCardMouseEnter,
 }: PlaceCardProps): JSX.Element {
 
-  const { previewImage, isPremium, price, isFavorite, rating, title, type } = placeCardData;
+  const { id, previewImage, isPremium, price, isFavorite, rating, title, type } = placeCardData;
 
   return (
     <article
       className={`${cardListType}__card place-card`}
-      onMouseEnter={onPlaceCardMouseEnter}
-      onMouseLeave={onPlaceCardMouseLeave}
+      onMouseEnter={() => {
+        if (onPlaceCardMouseEnter) {
+          onPlaceCardMouseEnter(id);
+        }
+      }}
     >
       {isPremium && (
         <div className="place-card__mark">

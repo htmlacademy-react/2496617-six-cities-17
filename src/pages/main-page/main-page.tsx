@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { PlaceCardType } from '../../types/place-card-type';
+import { useState } from 'react';
 
 // %------------ components ------------% //
 import PlacesSorting from '../../components/places-sorting/places-sorting';
@@ -15,6 +16,13 @@ type MainPageProps = {
 
 export default function MainPage(mainPageProps: MainPageProps): JSX.Element {
   const { offers } = mainPageProps;
+
+  const [selectedPoint, setSelectedPoint] = useState<PlaceCardType | undefined>(undefined);
+
+  const handleListItemHover = (listItemId: string) => {
+    const currentPoint = offers.find((offer) => offer.id === listItemId);
+    setSelectedPoint(currentPoint);
+  };
 
   return (
     <div className='page page--gray page--main'>
@@ -40,6 +48,7 @@ export default function MainPage(mainPageProps: MainPageProps): JSX.Element {
 
               <PlacesList
                 offers={offers}
+                onListItemHover={handleListItemHover}
               />
 
             </section>
@@ -48,6 +57,7 @@ export default function MainPage(mainPageProps: MainPageProps): JSX.Element {
               <Map
                 defaultLocation={offers[0].city.location}
                 offers={offers}
+                selectedPoint={selectedPoint}
               />
             </div>
 
