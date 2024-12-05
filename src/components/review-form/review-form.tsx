@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { RATING_OPTIONS } from '../../const';
 import RatingButton from '../rating-button/rating-button';
-
 // ^======================== review-form ========================^ //
 
 export default function ReviewForm(): JSX.Element {
@@ -11,13 +10,14 @@ export default function ReviewForm(): JSX.Element {
     text: ''
   });
 
+  const { rating, text } = reviewFormState;
+
   const handleRatingChange = (value: number): void => {
     setReviewFormState((prevState) => ({
       ...prevState,
       rating: value,
     }));
   };
-
   return (
     <form className='reviews__form form' action='#' method='post'>
       <label className='reviews__label form__label' htmlFor='review'>
@@ -58,7 +58,7 @@ export default function ReviewForm(): JSX.Element {
         <button
           className='reviews__submit form__submit button'
           type='submit'
-          disabled
+          disabled={!(rating || text.length >= 50)}
         >
           Submit
         </button>
