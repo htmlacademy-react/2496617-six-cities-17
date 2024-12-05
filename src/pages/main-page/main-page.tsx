@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { PlaceCardType } from '../../types/place-card-type';
+import { PlaceCardType } from '../../types';
 import { useState } from 'react';
 
 // %------------ components ------------% //

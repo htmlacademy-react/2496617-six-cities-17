@@ -3,9 +3,8 @@ import { AppRoute, URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 import { useEffect, useRef } from 'react';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { PlaceCardType } from '../../types/place-card-type';
+import { PlaceCardType, LocationType } from '../../types';
 import { useMap } from '../../hooks/use-map';
-import { LocationType } from '../../types/location-type';
 
 // ^======================== map ========================^ //
 type MapProps = {

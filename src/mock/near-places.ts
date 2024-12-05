@@ -1,4 +1,4 @@
-import { PlaceCardType } from '../types/place-card-type';
+import { PlaceCardType } from '../types';
 
 // *======================== near-places ========================* //
 

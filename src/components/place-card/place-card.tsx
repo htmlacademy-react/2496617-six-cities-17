@@ -1,5 +1,5 @@
 import { AppRoute, CardListType } from '../../const';
-import { PlaceCardType } from '../../types/place-card-type';
+import { PlaceCardType } from '../../types';
 import { capitalize, convertRating } from '../../utils/utils';
 import { Link } from 'react-router-dom';
 import BookmarkButton from '../../ui/bookmark-button/bookmark-button';

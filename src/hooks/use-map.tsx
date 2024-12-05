@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, MutableRefObject } from 'react';
 import leaflet, { Map } from 'leaflet';
-import { LocationType } from '../types/location-type';
+import { LocationType } from '../types';
 // %======================== useMap ========================% //
 
 export const useMap = (

@@ -10,9 +10,7 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
-import { PlaceCardType } from '../../types/place-card-type';
-import { ReviewType } from '../../types/review-type';
-import { OfferType } from '../../types/offer-type';
+import { PlaceCardType, ReviewType, OfferType } from '../../types';
 import { OFFER } from '../../mock/offer';
 
 // ^======================== App ========================^ //

@@ -1,7 +1,7 @@
 // %------------ components ------------% //
-import { PlaceCardType } from '../../types/place-card-type';
-import PlaceCard from '../place-card/place-card';
+import { PlaceCardType } from '../../types';
 import { CardListType } from '../../const';
+import PlaceCard from '../place-card/place-card';
 
 // ^======================== PlacesList ========================^ //
 

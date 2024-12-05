@@ -1,5 +1,5 @@
 import { CardListType } from '../../const';
-import { PlaceCardType } from '../../types/place-card-type';
+import { PlaceCardType } from '../../types';
 import PlaceCard from '../place-card/place-card';
 
 // ^======================== NearPlaces ========================^ //

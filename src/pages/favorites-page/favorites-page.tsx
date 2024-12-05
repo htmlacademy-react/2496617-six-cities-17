@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { PlaceCardType } from '../../types/place-card-type';
-import { FavoriteOfferType } from '../../types/favorite-offer-type';
+import { PlaceCardType, FavoriteOfferType } from '../../types';
 import PlaceCard from '../../components/place-card/place-card';
 import { CardListType } from '../../const';
 

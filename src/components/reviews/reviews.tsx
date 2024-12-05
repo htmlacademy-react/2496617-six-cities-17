@@ -1,6 +1,6 @@
 import Review from '../../components/review/review';
 import ReviewForm from '../../components/review-form/review-form';
-import { ReviewType } from '../../types/review-type';
+import { ReviewType } from '../../types';
 
 // ^======================== Reviews ========================^ //
 
