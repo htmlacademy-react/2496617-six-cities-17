@@ -1,16 +1,13 @@
 import { useLocation } from 'react-router-dom';
-import { AppRoute } from '../../const';
-import { useRef, useEffect } from 'react';
+import { AppRoute, URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
+import { useEffect, useRef } from 'react';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { PlaceCardType } from '../../types/place-card-type';
+import { useMap } from '../../hooks/use-map';
+import { LocationType } from '../../types/location-type';
 
 // ^======================== map ========================^ //
-type LocationType = {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-};
 type MapProps = {
   defaultLocation: LocationType;
   offers?: PlaceCardType[];
@@ -24,34 +21,42 @@ export default function Map({ defaultLocation, offers }: MapProps): JSX.Element 
     [AppRoute.Offer]: 'offer',
   };
 
-  const points = offers?.map((offer) => offer.location);
 
   const mapRef = useRef(null);
+  const map = useMap(mapRef, defaultLocation);
+
+  const defaultCustomIcon = leaflet.icon({
+    iconUrl: URL_MARKER_DEFAULT,
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+  });
+
+  const currentCustomIcon = leaflet.icon({
+    iconUrl: URL_MARKER_CURRENT,
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+  });
 
   useEffect(() => {
-    if (!mapRef.current) {
-      return;
+
+    if (map && offers) {
+      const points = offers.map((offer) => offer.location);
+
+      points.forEach((point) => {
+        leaflet
+          .marker(
+            {
+              lat: point.latitude,
+              lng: point.longitude,
+            },
+            {
+              icon: defaultCustomIcon,
+            }
+          )
+          .addTo(map);
+      });
     }
-
-    const map = leaflet.map(mapRef.current, {
-      center: [defaultLocation.latitude, defaultLocation.longitude],
-      zoom: defaultLocation.zoom
-    });
-
-    leaflet
-      .tileLayer(
-        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
-      )
-      .addTo(map);
-
-    points?.forEach((point) => {
-      leaflet.marker([point.latitude, point.longitude]).addTo(map);
-    });
-
-    return () => {
-      map.remove();
-    };
-  }, [offers, points, defaultLocation]);
+  }, [map, offers, defaultCustomIcon]);
 
   return (
     <section

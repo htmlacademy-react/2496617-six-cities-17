@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async';
 import { PlaceCardType } from '../../types/place-card-type';
-import { useState } from 'react';
 
 // %------------ components ------------% //
 import PlacesSorting from '../../components/places-sorting/places-sorting';
