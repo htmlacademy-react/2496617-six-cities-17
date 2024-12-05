@@ -14,14 +14,14 @@ export default function PlacesList(placesListProps: PlacesListProps): JSX.Elemen
 
   const { offers } = placesListProps;
 
-  const [activeCard, setActiveCard] = useState<string | null>('');
+  const [activeCard, setActiveCard] = useState('');
 
   const placeCardMouseEnterHandler = (id: string): void => {
     setActiveCard(id);
   };
 
   const placeCardMouseLeaveHandler = (): void => {
-    setActiveCard(null);
+    setActiveCard('');
   };
 
   return (
