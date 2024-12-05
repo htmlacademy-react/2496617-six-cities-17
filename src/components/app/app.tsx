@@ -12,12 +12,14 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import { PlaceCardType } from '../../types/place-card-type';
 import { ReviewType } from '../../types/review-type';
+import { OfferType } from '../../types/offer-type';
+import { OFFER } from '../../mock/offer';
 
 // ^======================== App ========================^ //
 
 type AppProps = {
   mocks: [
-    PlaceCardType[], PlaceCardType[], PlaceCardType[], ReviewType[]
+    PlaceCardType[], PlaceCardType[], PlaceCardType[], ReviewType[], OfferType,
   ];
 };
 
@@ -33,6 +35,7 @@ export default function App({ mocks }: AppProps): JSX.Element {
               path={AppRoute.Offer}
               element={
                 <OfferPage
+                  offerData={OFFER}
                   nearPlaces={NEAR_PLACES}
                   reviews={REVIEWS}
                 />

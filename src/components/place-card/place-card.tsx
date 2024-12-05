@@ -1,8 +1,9 @@
-import classNames from 'classnames';
 import { AppRoute, CardListType } from '../../const';
 import { PlaceCardType } from '../../types/place-card-type';
 import { capitalize, convertRating } from '../../utils/utils';
 import { Link } from 'react-router-dom';
+import BookmarkButton from '../../ui/bookmark-button/bookmark-button';
+import PremiumMark from '../../ui/premium-mark/premium-mark';
 
 // ^======================== place-card ========================^ //
 
@@ -27,11 +28,8 @@ export default function PlaceCard({
         }
       }}
     >
-      {isPremium && (
-        <div className="place-card__mark">
-          <span>Premium</span>
-        </div>
-      )}
+      {isPremium && (<PremiumMark className='place-card__mark' />)}
+
       <div className={`${cardListType}__image-wrapper place-card__image-wrapper`}>
         <Link to={AppRoute.Offer}>
           <img
@@ -49,18 +47,13 @@ export default function PlaceCard({
             <b className="place-card__price-value ">€{price}&nbsp;</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button
-            className={classNames(
-              'place-card__bookmark-button', 'button',
-              { 'place-card__bookmark-button--active': isFavorite }
-            )}
-            type="button"
-          >
-            <svg className="place-card__bookmark-icon" width={18} height={19}>
-              <use xlinkHref="#icon-bookmark" />
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+
+          <BookmarkButton
+            elementClass='place-card__bookmark'
+            isFavorite={isFavorite}
+            parameters={{ width: 18, height: 19 }}
+          />
+
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
