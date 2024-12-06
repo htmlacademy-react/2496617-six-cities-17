@@ -1,14 +1,16 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { RATING_OPTIONS } from '../../const';
 import RatingButton from '../rating-button/rating-button';
 // ^======================== review-form ========================^ //
 
 export default function ReviewForm(): JSX.Element {
 
-  const [reviewFormState, setReviewFormState] = useState({
+  const reviewFormInitialState = {
     rating: 0,
     text: ''
-  });
+  };
+
+  const [reviewFormState, setReviewFormState] = useState(reviewFormInitialState);
 
   const { rating, text } = reviewFormState;
 
@@ -18,8 +20,19 @@ export default function ReviewForm(): JSX.Element {
       rating: value,
     }));
   };
+
+  const formSubmitHandler = (e: ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setReviewFormState(reviewFormInitialState);
+  };
+
   return (
-    <form className='reviews__form form' action='#' method='post'>
+    <form
+      className='reviews__form form'
+      action='#'
+      method='post'
+      onSubmit={formSubmitHandler}
+    >
       <label className='reviews__label form__label' htmlFor='review'>
         Your review
       </label>
@@ -64,6 +77,5 @@ export default function ReviewForm(): JSX.Element {
         </button>
       </div>
     </form>
-
   );
 }
