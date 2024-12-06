@@ -22,11 +22,7 @@ export default function PlaceCard({
   return (
     <article
       className={`${cardListType}__card place-card`}
-      onMouseEnter={() => {
-        if (onPlaceCardMouseEnter) {
-          onPlaceCardMouseEnter(id);
-        }
-      }}
+      onMouseEnter={() => onPlaceCardMouseEnter && onPlaceCardMouseEnter(id)}
     >
       {isPremium && (<PremiumMark className='place-card__mark' />)}
 
