@@ -11,7 +11,6 @@ import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import { PlaceCardType, ReviewType, OfferType } from '../../types';
-import { OFFER } from '../../mock/offer';
 
 // ^======================== App ========================^ //
 
@@ -22,7 +21,7 @@ type AppProps = {
 };
 
 export default function App({ mocks }: AppProps): JSX.Element {
-  const [OFFERS, NEAR_PLACES, FAVORITE_OFFERS, REVIEWS] = mocks;
+  const [OFFERS, NEAR_PLACES, FAVORITE_OFFERS, REVIEWS, OFFER] = mocks;
   return (
     <HelmetProvider>
       <BrowserRouter>
