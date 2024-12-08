@@ -24,7 +24,7 @@ export default function BookmarkButton(bookmarkButtonProps: BookmarkButtonProps)
       <svg className={`${elementClass}-icon`} width={width} height={height}>
         <use xlinkHref='#icon-bookmark' />
       </svg>
-      <span className='visually-hidden'>To bookmarks</span>
+      <span className='visually-hidden'>{isFavorite ? 'Remove from bookmarks' : 'To bookmarks'}</span>
     </button >
 
 
