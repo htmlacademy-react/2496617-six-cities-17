@@ -5,14 +5,14 @@ import classNames from 'classnames';
 type BookmarkButtonProps = {
   elementClass: string;
   isFavorite: boolean;
-  parameters: {
+  sizes: {
     width: number;
     height: number;
   };
 };
 
 export default function BookmarkButton(bookmarkButtonProps: BookmarkButtonProps): JSX.Element {
-  const { elementClass, isFavorite, parameters: { width, height } } = bookmarkButtonProps;
+  const { elementClass, isFavorite, sizes: { width, height } } = bookmarkButtonProps;
   return (
     <button
       className={classNames(
