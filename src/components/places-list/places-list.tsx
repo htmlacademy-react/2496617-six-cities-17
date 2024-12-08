@@ -1,26 +1,21 @@
 // %------------ components ------------% //
-import { useState } from 'react';
-import { PlaceCardType } from '../../types/place-card-type';
+import { PlaceCardType } from '../../types';
+import { CardListType } from '../../const';
 import PlaceCard from '../place-card/place-card';
 
 // ^======================== PlacesList ========================^ //
 
 type PlacesListProps = {
   offers: PlaceCardType[];
+  onListItemHover: (id: string) => void;
 };
 
 export default function PlacesList(placesListProps: PlacesListProps): JSX.Element {
 
-  const { offers } = placesListProps;
+  const { offers, onListItemHover } = placesListProps;
 
-  const [activeCard, setActiveCard] = useState<string | null>('');
-
-  const placeCardMouseEnterHandler = (id: string): void => {
-    setActiveCard(id);
-  };
-
-  const placeCardMouseLeaveHandler = (): void => {
-    setActiveCard(null);
+  const handleListItemHover = (id: string) => {
+    onListItemHover(id);
   };
 
   return (
@@ -28,12 +23,9 @@ export default function PlacesList(placesListProps: PlacesListProps): JSX.Elemen
       {offers.map((offer) => (
         <PlaceCard
           key={offer.id}
-          pageType='cities'
+          cardListType={CardListType.CITIES}
           placeCardData={offer}
-          onPlaceCardMouseEnter={() => {
-            placeCardMouseEnterHandler(offer.title);
-          }}
-          onPlaceCardMouseLeave={placeCardMouseLeaveHandler}
+          onPlaceCardMouseEnter={handleListItemHover}
         />
       ))}
     </div>

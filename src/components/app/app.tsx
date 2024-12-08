@@ -5,29 +5,26 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 // %------------ components ------------% //
 import PrivateRoute from '../private-route/private-route';
 import Layout from '../layout/layout';
-import ScrollToTop from '../scroll-to-top/scroll-to-top';
 import MainPage from '../../pages/main-page/main-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
-import { PlaceCardType } from '../../types/place-card-type';
-import { ReviewType } from '../../types/review-type';
+import { PlaceCardType, ReviewType, OfferType } from '../../types';
 
 // ^======================== App ========================^ //
 
 type AppProps = {
   mocks: [
-    PlaceCardType[], PlaceCardType[], PlaceCardType[], ReviewType[]
+    PlaceCardType[], PlaceCardType[], PlaceCardType[], ReviewType[], OfferType,
   ];
 };
 
 export default function App({ mocks }: AppProps): JSX.Element {
-  const [OFFERS, NEAR_PLACES, FAVORITE_OFFERS, REVIEWS] = mocks;
+  const [OFFERS, NEAR_PLACES, FAVORITE_OFFERS, REVIEWS, OFFER] = mocks;
   return (
     <HelmetProvider>
       <BrowserRouter>
-        <ScrollToTop />
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route index element={<MainPage offers={OFFERS} />} />
@@ -35,6 +32,7 @@ export default function App({ mocks }: AppProps): JSX.Element {
               path={AppRoute.Offer}
               element={
                 <OfferPage
+                  offerData={OFFER}
                   nearPlaces={NEAR_PLACES}
                   reviews={REVIEWS}
                 />
@@ -48,7 +46,7 @@ export default function App({ mocks }: AppProps): JSX.Element {
                 </PrivateRoute>
               }
             />
-            <Route path={AppRoute.Login} element={<LoginPage />} />
+            <Route path={AppRoute.Login} element={<LoginPage authorizationStatus={AuthorizationStatus.Unknown} />} />
             <Route path='*' element={<NotFoundPage />} />
           </Route>
         </Routes>

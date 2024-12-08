@@ -1,4 +1,4 @@
-import { ReviewType } from '../types/review-type';
+import { ReviewType } from '../types';
 
 // *======================== reviews ========================* //
 

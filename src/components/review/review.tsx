@@ -1,5 +1,5 @@
 import { DATE_FORMAT } from '../../const';
-import { humanizeTime } from '../../utils/utils';
+import { convertRating, humanizeTime } from '../../utils/utils';
 
 // ^======================== Review ========================^ //
 
@@ -34,7 +34,7 @@ export default function Review(reviewProps: ReviewProps): JSX.Element {
       <div className='reviews__info'>
         <div className='reviews__rating rating'>
           <div className='reviews__stars rating__stars'>
-            <span style={{ width: `${rating * 2 * 10}%` }} />
+            <span style={{ width: convertRating(rating) }} />
             <span className='visually-hidden'>Rating</span>
           </div>
         </div>
