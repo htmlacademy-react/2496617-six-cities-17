@@ -29,8 +29,6 @@ export default function ReviewForm(): JSX.Element {
   return (
     <form
       className='reviews__form form'
-      action='#'
-      method='post'
       onSubmit={formSubmitHandler}
     >
       <label className='reviews__label form__label' htmlFor='review'>
