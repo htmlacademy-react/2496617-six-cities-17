@@ -10,7 +10,7 @@ import { useMap } from '../../hooks/use-map';
 type MapProps = {
   defaultLocation: LocationType;
   offers?: PlaceCardType[];
-  selectedPoint: PlaceCardType;
+  selectedPoint?: PlaceCardType;
 };
 
 export default function Map({ defaultLocation, offers, selectedPoint }: MapProps): JSX.Element {
