@@ -62,10 +62,10 @@ const RATING_OPTIONS = [
 const DATE_FORMAT: string = 'MMMM YYYY';
 
 const URL_MARKER_DEFAULT =
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
+  '../markup/img/pin.svg';
 
 const URL_MARKER_CURRENT =
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
+  '../markup/img/pin-active.svg';
 
 
 export { AppRoute, AuthorizationStatus, PLACES_SORTING_OPTIONS, DATE_FORMAT, LOCATIONS, RATING_OPTIONS, CardListType, URL_MARKER_CURRENT, URL_MARKER_DEFAULT };
