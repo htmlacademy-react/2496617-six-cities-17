@@ -1,7 +1,7 @@
 import { AppRoute, CardListType } from '../../const';
 import { PlaceCardType } from '../../types';
 import { capitalize, convertRating } from '../../utils/utils';
-import { Link } from 'react-router-dom';
+import { generatePath, Link } from 'react-router-dom';
 import BookmarkButton from '../../ui/bookmark-button/bookmark-button';
 import PremiumMark from '../../ui/premium-mark/premium-mark';
 
@@ -27,7 +27,7 @@ export default function PlaceCard({
       {isPremium && (<PremiumMark className='place-card__mark' />)}
 
       <div className={`${cardListType}__image-wrapper place-card__image-wrapper`}>
-        <Link to={AppRoute.Offer}>
+        <Link to={generatePath(AppRoute.Offer, {id}) }>
           <img
             className="place-card__image"
             src={previewImage}
@@ -58,7 +58,7 @@ export default function PlaceCard({
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={AppRoute.Offer}>{title}</Link>
+          <Link to={generatePath(AppRoute.Offer, {id})}>{title}</Link>
         </h2>
         <p className="place-card__type">{capitalize(type)}</p>
       </div>
