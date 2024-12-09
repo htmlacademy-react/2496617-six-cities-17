@@ -1,10 +1,11 @@
 import { useLocation } from 'react-router-dom';
-import { AppRoute, URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
+import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 import { useEffect, useRef } from 'react';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { PlaceCardType, LocationType } from '../../types';
 import { useMap } from '../../hooks/use-map';
+import classNames from 'classnames';
 
 // ^======================== map ========================^ //
 type MapProps = {
@@ -16,11 +17,6 @@ type MapProps = {
 export default function Map({ defaultLocation, offers, selectedPoint }: MapProps): JSX.Element {
 
   const path = useLocation().pathname;
-  const mapClassDictionary: Record<string, string> = {
-    [AppRoute.Main]: 'cities',
-    [AppRoute.Offer]: 'offer',
-  };
-
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, defaultLocation);
@@ -60,7 +56,11 @@ export default function Map({ defaultLocation, offers, selectedPoint }: MapProps
 
   return (
     <section
-      className={`${mapClassDictionary[path]}__map map`}
+      className={classNames(
+        { 'offer__map': path.startsWith('/offer') },
+        { 'cities__map': path === '/' },
+        'map',
+      )}
       ref={mapRef}
     />
   );
