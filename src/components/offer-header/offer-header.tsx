@@ -4,18 +4,20 @@ import { capitalize, convertRating } from '../../utils/utils';
 
 // ^======================== OfferHeader ========================^ //
 type OfferHeaderProps = {
-  rating: number;
-  type: string;
-  bedrooms: number;
-  maxAdults: number;
-  price: number;
-  isFavorite: boolean;
-  isPremium: boolean;
+  offerHeaderData: {
+    rating: number;
+    type: string;
+    bedrooms: number;
+    maxAdults: number;
+    price: number;
+    isFavorite: boolean;
+    isPremium: boolean;
+  };
 };
 
-export default function OfferHeader(offerHeaderProps: OfferHeaderProps): JSX.Element {
+export default function OfferHeader({ offerHeaderData }: OfferHeaderProps): JSX.Element {
 
-  const { rating, type, bedrooms, maxAdults, price, isFavorite, isPremium } = offerHeaderProps;
+  const { rating, type, bedrooms, maxAdults, price, isFavorite, isPremium } = offerHeaderData;
 
   return (
     <>

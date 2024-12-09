@@ -26,6 +26,9 @@ export default function OfferPage(offerPageProps: OfferPageProps): JSX.Element {
     host: { name, isPro, avatarUrl }, location, isPremium
   } = offerData;
 
+  const offerHeaderData = { rating, type, maxAdults, bedrooms, price, isFavorite, isPremium };
+  const offerHostData = { name, isPro, avatarUrl, description };
+
   useScrollToTop();
 
   return (
@@ -40,24 +43,11 @@ export default function OfferPage(offerPageProps: OfferPageProps): JSX.Element {
         <div className='offer__container container'>
           <div className='offer__wrapper'>
 
-            <OfferHeader
-              rating={rating}
-              type={type}
-              maxAdults={maxAdults}
-              bedrooms={bedrooms}
-              price={price}
-              isFavorite={isFavorite}
-              isPremium={isPremium}
-            />
+            <OfferHeader offerHeaderData={offerHeaderData} />
 
             <OfferInside goods={goods} />
 
-            <OfferHost
-              name={name}
-              isPro={isPro}
-              avatarUrl={avatarUrl}
-              description={description}
-            />
+            <OfferHost offerHostData={offerHostData} />
 
             <Reviews reviews={reviews} />
           </div>
