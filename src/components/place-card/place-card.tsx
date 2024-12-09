@@ -47,7 +47,7 @@ export default function PlaceCard({
           <BookmarkButton
             elementClass='place-card__bookmark'
             isFavorite={isFavorite}
-            parameters={{ width: 18, height: 19 }}
+            sizes={{ width: 18, height: 19 }}
           />
 
         </div>

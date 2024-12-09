@@ -27,7 +27,7 @@ export default function OfferHeader(offerHeaderProps: OfferHeaderProps): JSX.Ele
         </h1>
         <BookmarkButton
           elementClass='offer__bookmark'
-          parameters={{ width: 31, height: 33 }}
+          sizes={{ width: 31, height: 33 }}
           isFavorite={isFavorite}
         />
       </div>

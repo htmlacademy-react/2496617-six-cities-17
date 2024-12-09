@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { PlaceCardType, ReviewType, OfferType } from '../../types';
-import { useScrollToTop } from '../../hooks/use-scroll-to-top';
+import useScrollToTop from '../../hooks/use-scroll-to-top';
 
 // %------------ components ------------% //
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
