@@ -3,14 +3,16 @@
 import classNames from 'classnames';
 
 type OfferHostProps = {
-  name: string;
-  isPro: boolean;
-  avatarUrl: string;
-  description: string;
+  offerHostData: {
+    name: string;
+    isPro: boolean;
+    avatarUrl: string;
+    description: string;
+  };
 };
 
-export default function OfferHost(offerHostProps: OfferHostProps): JSX.Element {
-  const { name, isPro, avatarUrl, description } = offerHostProps;
+export default function OfferHost({ offerHostData }: OfferHostProps): JSX.Element {
+  const { name, isPro, avatarUrl, description } = offerHostData;
   return (
     <div className='offer__host'>
       <h2 className='offer__host-title'>Meet the host</h2>

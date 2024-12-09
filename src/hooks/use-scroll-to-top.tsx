@@ -12,4 +12,4 @@ const useScrollToTop = () => {
 
 };
 
-export { useScrollToTop };
+export default useScrollToTop;

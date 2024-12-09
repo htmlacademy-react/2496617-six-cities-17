@@ -26,11 +26,14 @@ export default function ReviewForm(): JSX.Element {
     setReviewFormState(reviewFormInitialState);
   };
 
+  const submitCondition: boolean =
+    Boolean(rating) && !text
+    || Boolean(rating) && (text.length >= 50 && text.length < 300)
+    || (text.length >= 50 && text.length < 300);
+
   return (
     <form
       className='reviews__form form'
-      action='#'
-      method='post'
       onSubmit={formSubmitHandler}
     >
       <label className='reviews__label form__label' htmlFor='review'>
@@ -71,7 +74,7 @@ export default function ReviewForm(): JSX.Element {
         <button
           className='reviews__submit form__submit button'
           type='submit'
-          disabled={!(rating || text.length >= 50)}
+          disabled={submitCondition}
         >
           Submit
         </button>

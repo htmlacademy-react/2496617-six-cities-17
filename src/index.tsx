@@ -16,6 +16,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App mocks={[OFFERS, NEAR_PLACES, FAVORITE_OFFERS, REVIEWS, OFFER]} />
+    <App mocks={{ OFFERS, NEAR_PLACES, FAVORITE_OFFERS, REVIEWS, OFFER }} />
   </React.StrictMode>
 );

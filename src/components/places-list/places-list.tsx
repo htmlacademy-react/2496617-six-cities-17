@@ -2,12 +2,14 @@
 import { PlaceCardType } from '../../types';
 import { CardListType } from '../../const';
 import PlaceCard from '../place-card/place-card';
+import classNames from 'classnames';
+import { useLocation } from 'react-router-dom';
 
 // ^======================== PlacesList ========================^ //
 
 type PlacesListProps = {
   offers: PlaceCardType[];
-  onListItemHover: (id: string) => void;
+  onListItemHover?: (id: string) => void;
 };
 
 export default function PlacesList(placesListProps: PlacesListProps): JSX.Element {
@@ -15,11 +17,21 @@ export default function PlacesList(placesListProps: PlacesListProps): JSX.Elemen
   const { offers, onListItemHover } = placesListProps;
 
   const handleListItemHover = (id: string) => {
-    onListItemHover(id);
+    if (onListItemHover) {
+      onListItemHover(id);
+    }
   };
 
+  const path = useLocation().pathname;
+
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <div
+      className={classNames(
+        'places__list',
+        { 'cities__places-list tabs__content': path === '/' },
+        { 'near-places__list': path.startsWith('/offer') }
+      )}
+    >
       {offers.map((offer) => (
         <PlaceCard
           key={offer.id}

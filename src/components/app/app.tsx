@@ -15,13 +15,17 @@ import { PlaceCardType, ReviewType, OfferType } from '../../types';
 // ^======================== App ========================^ //
 
 type AppProps = {
-  mocks: [
-    PlaceCardType[], PlaceCardType[], PlaceCardType[], ReviewType[], OfferType,
-  ];
+  mocks: {
+    OFFERS: PlaceCardType[];
+    NEAR_PLACES: PlaceCardType[];
+    FAVORITE_OFFERS: PlaceCardType[];
+    REVIEWS: ReviewType[];
+    OFFER: OfferType;
+  };
 };
 
 export default function App({ mocks }: AppProps): JSX.Element {
-  const [OFFERS, NEAR_PLACES, FAVORITE_OFFERS, REVIEWS, OFFER] = mocks;
+  const { OFFERS, NEAR_PLACES, FAVORITE_OFFERS, REVIEWS, OFFER } = mocks;
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -47,7 +51,7 @@ export default function App({ mocks }: AppProps): JSX.Element {
               }
             />
             <Route path={AppRoute.Login} element={<LoginPage authorizationStatus={AuthorizationStatus.Unknown} />} />
-            <Route path='*' element={<NotFoundPage />} />
+            <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
           </Route>
         </Routes>
       </BrowserRouter >
