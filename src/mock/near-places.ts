@@ -4,11 +4,11 @@ import { PlaceCardType } from '../types';
 
 const NEAR_PLACES: PlaceCardType[] = [
   {
-    id: 'ae9218e7-dfe9-4d3d-b807-a0fdff9d0a58',
-    title: 'Beautiful & luxurious apartment at great location',
+    id: 'bf73f0ff-f29e-4133-8ce1-3aa95808d980',
+    title: 'Loft Studio in the Central Area',
     type: 'room',
-    price: 198,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/9.jpg',
+    price: 132,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/8.jpg',
     city: {
       name: 'Paris',
       location: {
@@ -18,20 +18,20 @@ const NEAR_PLACES: PlaceCardType[] = [
       }
     },
     location: {
-      latitude: 48.868610000000004,
-      longitude: 2.342499,
+      latitude: 48.858610000000006,
+      longitude: 2.330499,
       zoom: 16
     },
     isFavorite: false,
-    isPremium: false,
-    rating: 2.2
+    isPremium: true,
+    rating: 3.1
   },
   {
-    id: 'ab1dea79-819e-48a3-9800-bfd4aab82c38',
-    title: 'Canal View Prinsengracht',
+    id: '7f180145-ca37-41d6-b4a4-fa6103eb1438',
+    title: 'The Joshua Tree House',
     type: 'apartment',
-    price: 195,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/13.jpg',
+    price: 370,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/10.jpg',
     city: {
       name: 'Paris',
       location: {
@@ -47,14 +47,14 @@ const NEAR_PLACES: PlaceCardType[] = [
     },
     isFavorite: false,
     isPremium: false,
-    rating: 3.3
+    rating: 1.1
   },
   {
-    id: '66d7ec91-8f59-44a5-8bf8-554ad3f486a7',
-    title: 'Wood and stone place',
-    type: 'hotel',
-    price: 375,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/9.jpg',
+    id: '279da314-be3e-4c25-817a-cef0390d2dc7',
+    title: 'House in countryside',
+    type: 'room',
+    price: 128,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/3.jpg',
     city: {
       name: 'Paris',
       location: {
@@ -69,15 +69,15 @@ const NEAR_PLACES: PlaceCardType[] = [
       zoom: 16
     },
     isFavorite: false,
-    isPremium: true,
-    rating: 1.7
+    isPremium: false,
+    rating: 4.5
   },
   {
-    id: 'bedf4b45-f404-4cb0-bb3f-e62e3936fc0d',
-    title: 'Amazing and Extremely Central Flat',
-    type: 'hotel',
-    price: 159,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/6.jpg',
+    id: '72280ecd-3e99-4b83-847e-a319490622dc',
+    title: 'The house among olive ',
+    type: 'apartment',
+    price: 360,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/14.jpg',
     city: {
       name: 'Paris',
       location: {
@@ -92,15 +92,15 @@ const NEAR_PLACES: PlaceCardType[] = [
       zoom: 16
     },
     isFavorite: false,
-    isPremium: false,
-    rating: 4.7
+    isPremium: true,
+    rating: 3.2
   },
   {
-    id: '6a89e1df-ba50-41ad-88b1-5269fe98f8e2',
-    title: 'Beautiful & luxurious apartment at great location',
-    type: 'house',
-    price: 512,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/15.jpg',
+    id: 'b311c81e-17c4-47bf-924c-1cda6a42a3e2',
+    title: 'Amazing and Extremely Central Flat',
+    type: 'apartment',
+    price: 313,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/11.jpg',
     city: {
       name: 'Paris',
       location: {
@@ -115,15 +115,15 @@ const NEAR_PLACES: PlaceCardType[] = [
       zoom: 16
     },
     isFavorite: false,
-    isPremium: true,
-    rating: 4.4
+    isPremium: false,
+    rating: 2.4
   },
   {
-    id: '09bde127-7ef9-4237-8ede-7f45101e79e8',
-    title: 'Canal View Prinsengracht',
+    id: 'ede2384a-8a01-4376-b794-932c13cea894',
+    title: 'Nice, cozy, warm big bed apartment',
     type: 'house',
-    price: 479,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/4.jpg',
+    price: 109,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/20.jpg',
     city: {
       name: 'Paris',
       location: {
@@ -138,15 +138,15 @@ const NEAR_PLACES: PlaceCardType[] = [
       zoom: 16
     },
     isFavorite: false,
-    isPremium: true,
-    rating: 2
+    isPremium: false,
+    rating: 4.4
   },
   {
-    id: '7c84ab50-7856-4e96-bd16-96a8b7329cd9',
-    title: 'The Pondhouse - A Magical Place',
-    type: 'house',
-    price: 703,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/14.jpg',
+    id: '99c01b76-cf0a-491d-943a-4b73e774c428',
+    title: 'Nice, cozy, warm big bed apartment',
+    type: 'hotel',
+    price: 173,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/5.jpg',
     city: {
       name: 'Paris',
       location: {
@@ -162,14 +162,14 @@ const NEAR_PLACES: PlaceCardType[] = [
     },
     isFavorite: false,
     isPremium: true,
-    rating: 1.6
+    rating: 2.2
   },
   {
-    id: 'a53c3fa1-1138-4615-b3a3-3bc1ba50fd8c',
-    title: 'The Joshua Tree House',
+    id: '0e10f845-8ee1-4c44-9712-96cbc98f28b4',
+    title: 'Canal View Prinsengracht',
     type: 'house',
-    price: 932,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/11.jpg',
+    price: 599,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/15.jpg',
     city: {
       name: 'Paris',
       location: {
@@ -185,14 +185,14 @@ const NEAR_PLACES: PlaceCardType[] = [
     },
     isFavorite: false,
     isPremium: false,
-    rating: 2.2
+    rating: 4.7
   },
   {
-    id: 'cb0b4fc2-24a5-4250-a3cf-88ff407b76d5',
-    title: 'Wood and stone place',
+    id: 'bd663aa9-7e39-46de-916d-68b1f78db0ae',
+    title: 'Perfectly located Castro',
     type: 'house',
-    price: 143,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/5.jpg',
+    price: 342,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/3.jpg',
     city: {
       name: 'Paris',
       location: {
@@ -208,14 +208,14 @@ const NEAR_PLACES: PlaceCardType[] = [
     },
     isFavorite: false,
     isPremium: true,
-    rating: 1.6
+    rating: 4.6
   },
   {
-    id: 'ee722b2a-35b5-4e24-98e9-fc058c6db438',
-    title: 'House in countryside',
+    id: '3f38babc-4ebc-420c-8aee-f7dbcfad1d2e',
+    title: 'The Joshua Tree House',
     type: 'room',
-    price: 148,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/3.jpg',
+    price: 124,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/20.jpg',
     city: {
       name: 'Paris',
       location: {
@@ -230,15 +230,15 @@ const NEAR_PLACES: PlaceCardType[] = [
       zoom: 16
     },
     isFavorite: false,
-    isPremium: true,
-    rating: 4.9
+    isPremium: false,
+    rating: 4.8
   },
   {
-    id: '7e8aab12-3d3d-4658-a190-749c0f93d4bf',
-    title: 'Waterfront with extraordinary view',
-    type: 'apartment',
-    price: 229,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/3.jpg',
+    id: '46d1f2ab-12ea-400a-b5a8-d43a7b1fe794',
+    title: 'House in countryside',
+    type: 'house',
+    price: 485,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/13.jpg',
     city: {
       name: 'Paris',
       location: {
@@ -253,15 +253,15 @@ const NEAR_PLACES: PlaceCardType[] = [
       zoom: 16
     },
     isFavorite: false,
-    isPremium: true,
-    rating: 4.4
+    isPremium: false,
+    rating: 3.8
   },
   {
-    id: '01e29398-3423-4a96-a5d9-60b2d35aa959',
-    title: 'The Pondhouse - A Magical Place',
+    id: 'ce23a70f-b9bf-48e2-a754-98dcf1a3ee70',
+    title: 'Canal View Prinsengracht',
     type: 'apartment',
-    price: 495,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/9.jpg',
+    price: 176,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/11.jpg',
     city: {
       name: 'Paris',
       location: {
@@ -277,14 +277,14 @@ const NEAR_PLACES: PlaceCardType[] = [
     },
     isFavorite: false,
     isPremium: false,
-    rating: 1.2
+    rating: 2.2
   },
   {
-    id: '8dd5e048-c97a-4ed6-875d-4c0511ac5f10',
-    title: 'Loft Studio in the Central Area',
-    type: 'room',
-    price: 204,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/11.jpg',
+    id: '3983232f-9932-48fb-828a-6b3c1467ddbd',
+    title: 'Nice, cozy, warm big bed apartment',
+    type: 'hotel',
+    price: 213,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/4.jpg',
     city: {
       name: 'Paris',
       location: {
@@ -300,14 +300,14 @@ const NEAR_PLACES: PlaceCardType[] = [
     },
     isFavorite: false,
     isPremium: true,
-    rating: 1.8
+    rating: 2.8
   },
   {
-    id: '2a63998f-a548-429c-bd2e-e5579a649d23',
-    title: 'Canal View Prinsengracht',
-    type: 'house',
-    price: 551,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/11.jpg',
+    id: '5e15c3b9-1dc3-406d-94f4-cc1c5bb3e125',
+    title: 'Loft Studio in the Central Area',
+    type: 'hotel',
+    price: 462,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/3.jpg',
     city: {
       name: 'Paris',
       location: {
@@ -323,14 +323,14 @@ const NEAR_PLACES: PlaceCardType[] = [
     },
     isFavorite: false,
     isPremium: false,
-    rating: 4.7
+    rating: 2.2
   },
   {
-    id: 'c40df209-317a-4d25-b650-603e7ee85eb0',
-    title: 'Beautiful & luxurious apartment at great location',
-    type: 'apartment',
-    price: 472,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/19.jpg',
+    id: '19873cec-ea75-40a2-8cb9-df0151b0ee53',
+    title: 'Loft Studio in the Central Area',
+    type: 'hotel',
+    price: 288,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/9.jpg',
     city: {
       name: 'Paris',
       location: {
@@ -345,15 +345,15 @@ const NEAR_PLACES: PlaceCardType[] = [
       zoom: 16
     },
     isFavorite: false,
-    isPremium: true,
-    rating: 3.6
+    isPremium: false,
+    rating: 3.2
   },
   {
-    id: '5d9b003e-e041-4111-99e8-227d18c9df70',
-    title: 'Perfectly located Castro',
-    type: 'room',
-    price: 248,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/18.jpg',
+    id: 'b2be608a-de53-44b6-bd66-3ae53bfdd70a',
+    title: 'Canal View Prinsengracht',
+    type: 'apartment',
+    price: 383,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/15.jpg',
     city: {
       name: 'Paris',
       location: {
@@ -369,14 +369,14 @@ const NEAR_PLACES: PlaceCardType[] = [
     },
     isFavorite: false,
     isPremium: false,
-    rating: 4.4
+    rating: 2.1
   },
   {
-    id: 'ad6106c5-b1d1-451a-8da0-90bf8df03acf',
-    title: 'Perfectly located Castro',
-    type: 'house',
-    price: 572,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/10.jpg',
+    id: '33305e29-fe7e-4df2-b5e6-925a1b0604ad',
+    title: 'Wood and stone place',
+    type: 'hotel',
+    price: 253,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/2.jpg',
     city: {
       name: 'Paris',
       location: {
@@ -392,14 +392,14 @@ const NEAR_PLACES: PlaceCardType[] = [
     },
     isFavorite: false,
     isPremium: true,
-    rating: 1.7
+    rating: 3.6
   },
   {
-    id: '5d79a599-2d5a-40e5-8b72-3d916a1a9c24',
-    title: 'Perfectly located Castro',
-    type: 'apartment',
-    price: 219,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/12.jpg',
+    id: 'd981c557-9652-469d-9053-507e773da7c9',
+    title: 'House in countryside',
+    type: 'house',
+    price: 463,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/19.jpg',
     city: {
       name: 'Paris',
       location: {
@@ -414,15 +414,15 @@ const NEAR_PLACES: PlaceCardType[] = [
       zoom: 16
     },
     isFavorite: false,
-    isPremium: false,
-    rating: 5
+    isPremium: true,
+    rating: 3.5
   },
   {
-    id: 'c4a22d9f-ebe4-4362-9891-06f618ff4052',
-    title: 'Beautiful & luxurious apartment at great location',
-    type: 'house',
-    price: 989,
-    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/10.jpg',
+    id: '1c140931-ff0f-4e47-b86d-3b69d0591850',
+    title: 'Amazing and Extremely Central Flat',
+    type: 'hotel',
+    price: 412,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/1.jpg',
     city: {
       name: 'Paris',
       location: {
@@ -438,7 +438,7 @@ const NEAR_PLACES: PlaceCardType[] = [
     },
     isFavorite: false,
     isPremium: false,
-    rating: 3.2
+    rating: 1.9
   }
 ];
 

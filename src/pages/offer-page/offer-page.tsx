@@ -9,7 +9,7 @@ import OfferInside from '../../components/offer-inside/offer-inside';
 import OfferHeader from '../../components/offer-header/offer-header';
 import OfferHost from '../../components/offer-host/offer-host';
 import Reviews from '../../components/reviews/reviews';
-import NearPlaces from '../../components/near-places/near-places';
+import PlacesList from '../../components/places-list/places-list';
 
 // #======================== OfferPage ========================# //
 
@@ -53,12 +53,19 @@ export default function OfferPage(offerPageProps: OfferPageProps): JSX.Element {
           </div>
         </div>
 
-        <Map defaultLocation={location} />
+        <Map defaultLocation={location} offers={nearPlaces} />
 
       </section>
 
       <div className='container'>
-        <NearPlaces nearPlaces={nearPlaces} />
+        <section className='near-places places'>
+          <h2 className='near-places__title'>
+            Other places in the neighborhood
+          </h2>
+          <PlacesList
+            offers={nearPlaces}
+          />
+        </section>
       </div>
     </main>
   );
