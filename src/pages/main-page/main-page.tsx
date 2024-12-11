@@ -17,7 +17,7 @@ type MainPageProps = {
 export default function MainPage(mainPageProps: MainPageProps): JSX.Element {
   const { offers } = mainPageProps;
 
-  const [selectedPoint, setSelectedPoint] = useState<PlaceCardType | undefined>(undefined);
+  const [selectedPoint, setSelectedPoint] = useState<PlaceCardType>();
 
   const handleListItemHover = (listItemId: string) => {
     const currentPoint = offers.find((offer) => offer.id === listItemId);

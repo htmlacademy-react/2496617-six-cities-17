@@ -36,37 +36,15 @@ export type PlaceCardType = {
   previewImage: string;
 };
 
-export type FavoriteOfferType = {
-  id: string;
-  title: string;
-  type: string;
-  price: number;
-  city: CityType;
-  location: LocationType;
-  isFavorite: boolean;
-  isPremium: boolean;
-  rating: number;
-  previewImage: string;
-};
-
-export type OfferType = {
-  id: string;
-  title: string;
+export type OfferType = Omit<PlaceCardType, 'previewImage'> & {
   description: string;
-  type: string;
-  price: number;
   images: string[];
-  city: CityType;
-  location: LocationType;
   goods: string[];
   host: {
     isPro: boolean;
     name: string;
     avatarUrl: string;
   };
-  isPremium: boolean;
-  isFavorite: boolean;
-  rating: number;
   bedrooms: number;
   maxAdults: number;
 };

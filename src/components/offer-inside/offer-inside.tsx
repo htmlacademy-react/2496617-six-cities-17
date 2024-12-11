@@ -1,10 +1,10 @@
 // ^======================== OfferInside ========================^ //
 
-export default function OfferInside(
-  { goods }: {
-    goods: string[];
-  }
-): JSX.Element {
+type OfferInsideProps = {
+  goods: string[];
+};
+
+export default function OfferInside({ goods }: OfferInsideProps): JSX.Element {
   return (
     <div className='offer__inside'>
       <h2 className='offer__inside-title'>What&#39;s inside</h2>

@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { PlaceCardType, ReviewType, OfferType } from '../../types';
-import { useScrollToTop } from '../../hooks/use-scroll-to-top';
+import useScrollToTop from '../../hooks/use-scroll-to-top';
 
 // %------------ components ------------% //
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
@@ -9,7 +9,7 @@ import OfferInside from '../../components/offer-inside/offer-inside';
 import OfferHeader from '../../components/offer-header/offer-header';
 import OfferHost from '../../components/offer-host/offer-host';
 import Reviews from '../../components/reviews/reviews';
-import NearPlaces from '../../components/near-places/near-places';
+import PlacesList from '../../components/places-list/places-list';
 
 // #======================== OfferPage ========================# //
 
@@ -26,6 +26,9 @@ export default function OfferPage(offerPageProps: OfferPageProps): JSX.Element {
     host: { name, isPro, avatarUrl }, location, isPremium
   } = offerData;
 
+  const offerHeaderData = { rating, type, maxAdults, bedrooms, price, isFavorite, isPremium };
+  const offerHostData = { name, isPro, avatarUrl, description };
+
   useScrollToTop();
 
   return (
@@ -40,35 +43,29 @@ export default function OfferPage(offerPageProps: OfferPageProps): JSX.Element {
         <div className='offer__container container'>
           <div className='offer__wrapper'>
 
-            <OfferHeader
-              rating={rating}
-              type={type}
-              maxAdults={maxAdults}
-              bedrooms={bedrooms}
-              price={price}
-              isFavorite={isFavorite}
-              isPremium={isPremium}
-            />
+            <OfferHeader offerHeaderData={offerHeaderData} />
 
             <OfferInside goods={goods} />
 
-            <OfferHost
-              name={name}
-              isPro={isPro}
-              avatarUrl={avatarUrl}
-              description={description}
-            />
+            <OfferHost offerHostData={offerHostData} />
 
             <Reviews reviews={reviews} />
           </div>
         </div>
 
-        <Map defaultLocation={location} />
+        <Map defaultLocation={location} offers={nearPlaces} />
 
       </section>
 
       <div className='container'>
-        <NearPlaces nearPlaces={nearPlaces} />
+        <section className='near-places places'>
+          <h2 className='near-places__title'>
+            Other places in the neighborhood
+          </h2>
+          <PlacesList
+            offers={nearPlaces}
+          />
+        </section>
       </div>
     </main>
   );
