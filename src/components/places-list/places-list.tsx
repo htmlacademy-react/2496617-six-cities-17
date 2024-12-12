@@ -16,11 +16,7 @@ export default function PlacesList(placesListProps: PlacesListProps): JSX.Elemen
 
   const { offers, onListItemHover } = placesListProps;
 
-  const handleListItemHover = (id: string) => {
-    if (onListItemHover) {
-      onListItemHover(id);
-    }
-  };
+  const handleListItemHover = (id: string) => onListItemHover && onListItemHover(id);
 
   const path = useLocation().pathname;
 
