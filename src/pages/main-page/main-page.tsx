@@ -7,6 +7,8 @@ import PlacesSorting from '../../components/places-sorting/places-sorting';
 import PlacesList from '../../components/places-list/places-list';
 import Map from '../../components/map/map';
 import Navigation from '../../components/navigation/navigation';
+import { useAppSelector } from '../../hooks';
+import { capitalize } from '../../utils/utils';
 
 // #======================== MainPage ========================# //
 
@@ -16,13 +18,16 @@ type MainPageProps = {
 
 export default function MainPage(mainPageProps: MainPageProps): JSX.Element {
   const { offers } = mainPageProps;
-
   const [selectedPoint, setSelectedPoint] = useState<PlaceCardType>();
+  const selectedCityName = useAppSelector((state) => state.city);
 
   const handleListItemHover = (listItemId: string) => {
     const currentPoint = offers.find((offer) => offer.id === listItemId);
     setSelectedPoint(currentPoint);
   };
+
+  const offerBySelectedCity = offers.find((offer) => offer.city.name.toLowerCase() === selectedCityName.toLowerCase());
+  const selectedCityLocation = offerBySelectedCity?.city.location;
 
   return (
     <div className='page page--gray page--main'>
@@ -41,7 +46,7 @@ export default function MainPage(mainPageProps: MainPageProps): JSX.Element {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">
-                {offers.length} places to stay in Amsterdam
+                {offers.length} places to stay in {capitalize(selectedCityName)}
               </b>
 
               <PlacesSorting />
@@ -55,7 +60,7 @@ export default function MainPage(mainPageProps: MainPageProps): JSX.Element {
 
             <div className='cities__right-section'>
               <Map
-                defaultLocation={offers[0].city.location}
+                defaultCity={selectedCityLocation}
                 offers={offers}
                 selectedPoint={selectedPoint}
               />
