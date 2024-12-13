@@ -1,5 +1,4 @@
 // %------------ components ------------% //
-import { PlaceCardType } from '../../types';
 import { CardListType } from '../../const';
 import PlaceCard from '../place-card/place-card';
 import classNames from 'classnames';
@@ -9,18 +8,15 @@ import { useAppSelector } from '../../hooks';
 // ^======================== PlacesList ========================^ //
 
 type PlacesListProps = {
-  offers: PlaceCardType[];
   onListItemHover?: (id: string) => void;
 };
 
 export default function PlacesList(placesListProps: PlacesListProps): JSX.Element {
-
-  const { offers, onListItemHover } = placesListProps;
+  const {onListItemHover } = placesListProps;
   const path = useLocation().pathname;
   const handleListItemHover = (id: string) => onListItemHover && onListItemHover(id);
 
-  const selectedCityName = useAppSelector((state) => state.city);
-  const selectedOffers = offers.filter((offer) => selectedCityName.toLowerCase() === offer.city.name.toLowerCase());
+  const selectedOffers = useAppSelector((state) => state.offers);
 
   return (
     <div

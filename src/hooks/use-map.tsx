@@ -5,7 +5,7 @@ import { LocationType } from '../types';
 
 export const useMap = (
   mapRef: MutableRefObject<HTMLDivElement | null>,
-  defaultCity: LocationType
+  cityLocation: LocationType
 ) => {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef(false);
@@ -14,10 +14,10 @@ export const useMap = (
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = leaflet.map(mapRef.current, {
         center: {
-          lat: defaultCity.latitude,
-          lng: defaultCity.longitude,
+          lat: cityLocation.latitude,
+          lng: cityLocation.longitude,
         },
-        zoom: defaultCity.zoom,
+        zoom: cityLocation.zoom,
       });
 
       leaflet
@@ -33,20 +33,20 @@ export const useMap = (
 
       isRenderedRef.current = true;
     }
-  }, [mapRef, defaultCity]);
+  }, [mapRef, cityLocation]);
 
   useEffect(() => {
     if (map) {
       map.setView(
         {
-          lat: defaultCity.latitude,
-          lng: defaultCity.longitude,
+          lat: cityLocation.latitude,
+          lng: cityLocation.longitude,
         },
-        defaultCity.zoom,
+        cityLocation.zoom,
       );
     }
 
-  }, [map, defaultCity]);
+  }, [map, cityLocation]);
 
   return map;
 };

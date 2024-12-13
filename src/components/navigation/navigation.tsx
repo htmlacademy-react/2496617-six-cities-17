@@ -1,6 +1,6 @@
 import { LOCATIONS } from '../../const.ts';
 import NavButton from '../nav-button/nav-button';
-import { changeCity } from '../../store/action';
+import { changeCity, fillOfferList } from '../../store/action';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.ts';
 
@@ -8,13 +8,14 @@ import { useAppDispatch, useAppSelector } from '../../hooks/index.ts';
 
 export default function Navigation(): JSX.Element {
   const dispatch = useAppDispatch();
-  const defaultCity = useAppSelector((state) => state.city);
+  const defaultCityName = useAppSelector((state) => state.cityName);
 
-  const [activeLocation, setActiveLocation] = useState<string | null>(defaultCity);
+  const [activeLocation, setActiveLocation] = useState<string | null>(defaultCityName);
 
   const onNavLinkClick = (location: string) => {
     setActiveLocation(location);
     dispatch(changeCity(location));
+    dispatch(fillOfferList());
   };
 
   return (

@@ -1,33 +1,27 @@
 import { Helmet } from 'react-helmet-async';
 import { PlaceCardType } from '../../types';
 import { useState } from 'react';
+import { useAppSelector } from '../../hooks';
+import { capitalize } from '../../utils/utils';
 
 // %------------ components ------------% //
 import PlacesSorting from '../../components/places-sorting/places-sorting';
 import PlacesList from '../../components/places-list/places-list';
 import Map from '../../components/map/map';
 import Navigation from '../../components/navigation/navigation';
-import { useAppSelector } from '../../hooks';
-import { capitalize } from '../../utils/utils';
 
 // #======================== MainPage ========================# //
 
-type MainPageProps = {
-  offers: PlaceCardType[];
-};
-
-export default function MainPage(mainPageProps: MainPageProps): JSX.Element {
-  const { offers } = mainPageProps;
+export default function MainPage(): JSX.Element {
   const [selectedPoint, setSelectedPoint] = useState<PlaceCardType>();
-  const selectedCityName = useAppSelector((state) => state.city);
+  const selectedCityName = useAppSelector((state) => state.cityName);
+  const selectedCityLocation = useAppSelector((state) => state.cityLocation);
+  const offers = useAppSelector((state) => state.offers);
 
   const handleListItemHover = (listItemId: string) => {
     const currentPoint = offers.find((offer) => offer.id === listItemId);
     setSelectedPoint(currentPoint);
   };
-
-  const offerBySelectedCity = offers.find((offer) => offer.city.name.toLowerCase() === selectedCityName.toLowerCase());
-  const selectedCityLocation = offerBySelectedCity?.city.location;
 
   return (
     <div className='page page--gray page--main'>
@@ -52,7 +46,6 @@ export default function MainPage(mainPageProps: MainPageProps): JSX.Element {
               <PlacesSorting />
 
               <PlacesList
-                offers={offers}
                 onListItemHover={handleListItemHover}
               />
 
@@ -60,7 +53,7 @@ export default function MainPage(mainPageProps: MainPageProps): JSX.Element {
 
             <div className='cities__right-section'>
               <Map
-                defaultCity={selectedCityLocation}
+                cityLocation={selectedCityLocation}
                 offers={offers}
                 selectedPoint={selectedPoint}
               />
