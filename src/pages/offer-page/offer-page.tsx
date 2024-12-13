@@ -53,7 +53,7 @@ export default function OfferPage(offerPageProps: OfferPageProps): JSX.Element {
           </div>
         </div>
 
-        <Map defaultCity={location} offers={nearPlaces} />
+        <Map cityLocation={location} offers={nearPlaces} />
 
       </section>
 

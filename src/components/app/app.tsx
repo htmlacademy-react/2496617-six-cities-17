@@ -16,7 +16,6 @@ import { PlaceCardType, ReviewType, OfferType } from '../../types';
 
 type AppProps = {
   mocks: {
-    OFFERS: PlaceCardType[];
     NEAR_PLACES: PlaceCardType[];
     FAVORITE_OFFERS: PlaceCardType[];
     REVIEWS: ReviewType[];
