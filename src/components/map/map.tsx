@@ -14,24 +14,24 @@ type MapProps = {
   selectedPoint?: PlaceCardType;
 };
 
+const defaultCustomIcon = leaflet.icon({
+  iconUrl: URL_MARKER_DEFAULT,
+  iconSize: [28, 40],
+  iconAnchor: [16, 40],
+});
+
+const currentCustomIcon = leaflet.icon({
+  iconUrl: URL_MARKER_CURRENT,
+  iconSize: [28, 40],
+  iconAnchor: [16, 40],
+});
+
 export default function Map({ cityLocation, offers, selectedPoint }: MapProps): JSX.Element {
 
   const path = useLocation().pathname;
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, cityLocation);
-
-  const defaultCustomIcon = leaflet.icon({
-    iconUrl: URL_MARKER_DEFAULT,
-    iconSize: [28, 40],
-    iconAnchor: [16, 40],
-  });
-
-  const currentCustomIcon = leaflet.icon({
-    iconUrl: URL_MARKER_CURRENT,
-    iconSize: [28, 40],
-    iconAnchor: [16, 40],
-  });
 
   useEffect(() => {
 
