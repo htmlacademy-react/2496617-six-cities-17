@@ -16,7 +16,6 @@ import { PlaceCardType, ReviewType, OfferType } from '../../types';
 
 type AppProps = {
   mocks: {
-    OFFERS: PlaceCardType[];
     NEAR_PLACES: PlaceCardType[];
     FAVORITE_OFFERS: PlaceCardType[];
     REVIEWS: ReviewType[];
@@ -25,13 +24,13 @@ type AppProps = {
 };
 
 export default function App({ mocks }: AppProps): JSX.Element {
-  const { OFFERS, NEAR_PLACES, FAVORITE_OFFERS, REVIEWS, OFFER } = mocks;
+  const { NEAR_PLACES, FAVORITE_OFFERS, REVIEWS, OFFER } = mocks;
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Layout />}>
-            <Route index element={<MainPage offers={OFFERS} />} />
+            <Route index element={<MainPage />} />
             <Route
               path={AppRoute.Offer}
               element={

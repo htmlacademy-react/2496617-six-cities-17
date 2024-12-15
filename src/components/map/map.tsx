@@ -9,17 +9,17 @@ import classNames from 'classnames';
 
 // ^======================== map ========================^ //
 type MapProps = {
-  defaultLocation: LocationType;
+  cityLocation: LocationType;
   offers?: PlaceCardType[];
   selectedPoint?: PlaceCardType;
 };
 
-export default function Map({ defaultLocation, offers, selectedPoint }: MapProps): JSX.Element {
+export default function Map({ cityLocation, offers, selectedPoint }: MapProps): JSX.Element {
 
   const path = useLocation().pathname;
 
   const mapRef = useRef(null);
-  const map = useMap(mapRef, defaultLocation);
+  const map = useMap(mapRef, cityLocation);
 
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,
@@ -52,7 +52,7 @@ export default function Map({ defaultLocation, offers, selectedPoint }: MapProps
           .addTo(markerLayer);
       });
     }
-  }, [map, offers, selectedPoint, defaultCustomIcon, currentCustomIcon]);
+  }, [map, offers, selectedPoint, defaultCustomIcon, currentCustomIcon, cityLocation]);
 
   return (
     <section

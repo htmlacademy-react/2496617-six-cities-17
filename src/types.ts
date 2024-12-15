@@ -1,3 +1,4 @@
+import { store } from './store';
 // %======================== types ========================% //
 
 export type LocationType = {
@@ -48,3 +49,6 @@ export type OfferType = Omit<PlaceCardType, 'previewImage'> & {
   bedrooms: number;
   maxAdults: number;
 };
+
+export type State = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

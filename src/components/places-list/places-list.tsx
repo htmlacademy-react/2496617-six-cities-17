@@ -1,28 +1,22 @@
 // %------------ components ------------% //
-import { PlaceCardType } from '../../types';
 import { CardListType } from '../../const';
 import PlaceCard from '../place-card/place-card';
 import classNames from 'classnames';
 import { useLocation } from 'react-router-dom';
+import { useAppSelector } from '../../hooks';
 
 // ^======================== PlacesList ========================^ //
 
 type PlacesListProps = {
-  offers: PlaceCardType[];
   onListItemHover?: (id: string) => void;
 };
 
 export default function PlacesList(placesListProps: PlacesListProps): JSX.Element {
-
-  const { offers, onListItemHover } = placesListProps;
-
-  const handleListItemHover = (id: string) => {
-    if (onListItemHover) {
-      onListItemHover(id);
-    }
-  };
-
+  const {onListItemHover } = placesListProps;
   const path = useLocation().pathname;
+  const handleListItemHover = (id: string) => onListItemHover && onListItemHover(id);
+
+  const selectedOffers = useAppSelector((state) => state.offers);
 
   return (
     <div
@@ -32,7 +26,7 @@ export default function PlacesList(placesListProps: PlacesListProps): JSX.Elemen
         { 'near-places__list': path.startsWith('/offer') }
       )}
     >
-      {offers.map((offer) => (
+      {selectedOffers.map((offer) => (
         <PlaceCard
           key={offer.id}
           cardListType={CardListType.CITIES}

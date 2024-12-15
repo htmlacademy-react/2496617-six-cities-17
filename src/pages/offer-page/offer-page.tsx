@@ -53,7 +53,7 @@ export default function OfferPage(offerPageProps: OfferPageProps): JSX.Element {
           </div>
         </div>
 
-        <Map defaultLocation={location} offers={nearPlaces} />
+        <Map cityLocation={location} offers={nearPlaces} />
 
       </section>
 
@@ -62,9 +62,7 @@ export default function OfferPage(offerPageProps: OfferPageProps): JSX.Element {
           <h2 className='near-places__title'>
             Other places in the neighborhood
           </h2>
-          <PlacesList
-            offers={nearPlaces}
-          />
+          <PlacesList />
         </section>
       </div>
     </main>

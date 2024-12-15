@@ -62,10 +62,11 @@ const RATING_OPTIONS = [
 const DATE_FORMAT: string = 'MMMM YYYY';
 
 const URL_MARKER_DEFAULT =
-  '../markup/img/pin.svg';
+  '../img/pin.svg';
 
 const URL_MARKER_CURRENT =
-  '../markup/img/pin-active.svg';
+  '../img/pin-active.svg';
 
+const DEFAULT_CITY_NAME = 'paris';
 
-export { AppRoute, AuthorizationStatus, PLACES_SORTING_OPTIONS, DATE_FORMAT, LOCATIONS, RATING_OPTIONS, CardListType, URL_MARKER_CURRENT, URL_MARKER_DEFAULT };
+export { AppRoute, AuthorizationStatus, PLACES_SORTING_OPTIONS, DATE_FORMAT, LOCATIONS, RATING_OPTIONS, CardListType, URL_MARKER_CURRENT, URL_MARKER_DEFAULT, DEFAULT_CITY_NAME };
