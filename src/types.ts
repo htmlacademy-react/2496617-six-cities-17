@@ -50,5 +50,5 @@ export type OfferType = Omit<PlaceCardType, 'previewImage'> & {
   maxAdults: number;
 };
 
-export type State = ReturnType<typeof store.getState>;
+export type AppState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
