@@ -52,7 +52,7 @@ export default function Map({ cityLocation, offers, selectedPoint }: MapProps): 
           .addTo(markerLayer);
       });
     }
-  }, [map, offers, selectedPoint, defaultCustomIcon, currentCustomIcon, cityLocation]);
+  }, [map, offers, selectedPoint, cityLocation]);
 
   return (
     <section

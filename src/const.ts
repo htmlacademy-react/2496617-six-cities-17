@@ -20,12 +20,12 @@ enum CardListType {
   NEAR_PLACES = 'near-places'
 }
 
-const PLACES_SORTING_OPTIONS: string[] = [
-  'Popular',
-  'Price: low to high',
-  'Price: high to low',
-  'Top rated first',
-];
+enum SortingOptions {
+  POPULAR = 'Popular',
+  BY_LOW_PRICE = 'Price: low to high',
+  BY_HIGHT_PRICE = 'Price: high to low',
+  BY_RATING = 'Top rated first',
+}
 
 const LOCATIONS: string[] = [
   'paris',
@@ -69,4 +69,4 @@ const URL_MARKER_CURRENT =
 
 const DEFAULT_CITY_NAME = 'paris';
 
-export { AppRoute, AuthorizationStatus, PLACES_SORTING_OPTIONS, DATE_FORMAT, LOCATIONS, RATING_OPTIONS, CardListType, URL_MARKER_CURRENT, URL_MARKER_DEFAULT, DEFAULT_CITY_NAME };
+export { AppRoute, AuthorizationStatus, SortingOptions, DATE_FORMAT, LOCATIONS, RATING_OPTIONS, CardListType, URL_MARKER_CURRENT, URL_MARKER_DEFAULT, DEFAULT_CITY_NAME };
