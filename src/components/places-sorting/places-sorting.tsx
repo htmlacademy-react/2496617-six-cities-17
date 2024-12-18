@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { SortingOptions } from '../../const';
+import { SortingOption } from '../../const';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -21,7 +21,7 @@ export default function PlacesSorting(): JSX.Element {
   const placesSortingTypeRef = useRef<HTMLElement>(null);
   const optionsListRef = useRef<HTMLUListElement>(null);
 
-  const onOptionClick = (option: SortingOptions) => {
+  const onOptionClick = (option: SortingOption) => {
     dispatch(changeSortingType(option));
     setIsListOpen(false);
   };
@@ -47,7 +47,7 @@ export default function PlacesSorting(): JSX.Element {
           { 'places__options--opened': isListOpen }
         )}
       >
-        {Object.values(SortingOptions).map((placesSortingOption) => (
+        {Object.values(SortingOption).map((placesSortingOption) => (
           <li
             key={placesSortingOption}
             className={classNames(

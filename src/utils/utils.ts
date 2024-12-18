@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { PlaceCardType } from '../types';
-import { SortingOptions } from '../const';
+import { SortingOption } from '../const';
 
 // %======================== utils ========================% //
 const capitalize = (value: string) => value[0].toUpperCase() + value.slice(1);
@@ -17,15 +17,15 @@ const compareOffersByLowPrice = (a: PlaceCardType, b: PlaceCardType) => a.price 
 const compareOffersByHighPrice = (a: PlaceCardType, b: PlaceCardType) => b.price - a.price;
 const compareOffersByRating = (a: PlaceCardType, b: PlaceCardType) => b.rating - a.rating;
 
-const sortOffers = (offers: PlaceCardType[], sortingType: SortingOptions): PlaceCardType[] => {
+const sortOffers = (offers: PlaceCardType[], sortingType: SortingOption): PlaceCardType[] => {
   switch (sortingType) {
-    case SortingOptions.POPULAR:
+    case SortingOption.POPULAR:
       return offers;
-    case SortingOptions.BY_LOW_PRICE:
+    case SortingOption.BY_LOW_PRICE:
       return [...offers].sort(compareOffersByLowPrice);
-    case SortingOptions.BY_HIGHT_PRICE:
+    case SortingOption.BY_HIGHT_PRICE:
       return [...offers].sort(compareOffersByHighPrice);
-    case SortingOptions.BY_RATING:
+    case SortingOption.BY_RATING:
       return [...offers].sort(compareOffersByRating);
 
     default:

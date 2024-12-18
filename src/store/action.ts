@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import { SortingOptions } from '../const';
+import { SortingOption } from '../const';
 
 // %======================== action ========================% //
 
@@ -7,4 +7,4 @@ export const changeCity = createAction<string>('changeCity');
 
 export const fillOfferList = createAction('fillOfferList');
 
-export const changeSortingType = createAction<SortingOptions>('changeSortingType');
+export const changeSortingType = createAction<SortingOption>('changeSortingType');
