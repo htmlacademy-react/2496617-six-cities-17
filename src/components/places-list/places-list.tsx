@@ -14,7 +14,7 @@ type PlacesListProps = {
 export default function PlacesList(placesListProps: PlacesListProps): JSX.Element {
   const {onListItemHover } = placesListProps;
   const path = useLocation().pathname;
-  const handleListItemHover = (id: string) => onListItemHover && onListItemHover(id);
+  const handleListItemHover = (id: string) => onListItemHover?.(id);
 
   const selectedOffers = useAppSelector((state) => state.offers);
 
