@@ -69,4 +69,7 @@ const URL_MARKER_CURRENT =
 
 const DEFAULT_CITY_NAME = 'paris';
 
-export { AppRoute, AuthorizationStatus, SortingOption, DATE_FORMAT, LOCATIONS, RATING_OPTIONS, CardListType, URL_MARKER_CURRENT, URL_MARKER_DEFAULT, DEFAULT_CITY_NAME };
+const BACKEND_URL = 'https://16.design.htmlacademy.pro/six-cities';
+const REQUEST_TIMEOUT = 5000;
+
+export { AppRoute, AuthorizationStatus, SortingOption, DATE_FORMAT, LOCATIONS, RATING_OPTIONS, CardListType, URL_MARKER_CURRENT, URL_MARKER_DEFAULT, DEFAULT_CITY_NAME, BACKEND_URL, REQUEST_TIMEOUT };
