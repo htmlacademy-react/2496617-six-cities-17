@@ -1,6 +1,16 @@
 import { store } from './store';
 // %======================== types ========================% //
 
+export type InitialState = {
+  cityName: string;
+  cityLocation: LocationType;
+  allOffers: PlaceCardType[];
+  offers: PlaceCardType[];
+  sortingType: string;
+  error: null | string;
+  isDataLoading: boolean;
+}
+
 export type LocationType = {
   latitude: number;
   longitude: number;
@@ -52,3 +62,8 @@ export type OfferType = Omit<PlaceCardType, 'previewImage'> & {
 
 export type AppState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export type DetailMessageType = {
+  type: string;
+  message: string;
+};

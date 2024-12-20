@@ -11,6 +11,9 @@ import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import { PlaceCardType, ReviewType, OfferType } from '../../types';
+import { useAppSelector } from '../../hooks';
+import Preloader from '../preloader/preloader';
+import ErrorMessage from '../error-message/error-message';
 
 // ^======================== App ========================^ //
 
@@ -25,6 +28,17 @@ type AppProps = {
 
 export default function App({ mocks }: AppProps): JSX.Element {
   const { NEAR_PLACES, FAVORITE_OFFERS, REVIEWS, OFFER } = mocks;
+  const isDataLoading = useAppSelector((state) => state.isDataLoading);
+  const error = useAppSelector((state) => state.error);
+
+  if (isDataLoading) {
+    return <Preloader />;
+  }
+
+  if (error) {
+    return <ErrorMessage />;
+  }
+
   return (
     <HelmetProvider>
       <BrowserRouter>
