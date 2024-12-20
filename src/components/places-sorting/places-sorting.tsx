@@ -52,7 +52,7 @@ export default function PlacesSorting(): JSX.Element {
             key={placesSortingOption}
             className={classNames(
               'places__option',
-              { 'places__option--active': selectedOption === placesSortingOption }
+              { 'places__option--active': selectedOption === String(placesSortingOption) }
             )}
             tabIndex={0}
             onClick={() => onOptionClick(placesSortingOption)}
