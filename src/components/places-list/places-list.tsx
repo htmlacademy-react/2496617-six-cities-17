@@ -16,17 +16,20 @@ export default function PlacesList(placesListProps: PlacesListProps): JSX.Elemen
   const path = useLocation().pathname;
   const handleListItemHover = (id: string) => onListItemHover?.(id);
 
-  const selectedOffers = useAppSelector((state) => state.offers);
+  const isOfferPage = path.startsWith('/offer');
+
+  const availableOffers = useAppSelector((state) => state.offers);
+  const lastSlicesOfferNumber: number | undefined = isOfferPage ? 3 : undefined;
 
   return (
     <div
       className={classNames(
         'places__list',
         { 'cities__places-list tabs__content': path === '/' },
-        { 'near-places__list': path.startsWith('/offer') }
+        { 'near-places__list': isOfferPage }
       )}
     >
-      {selectedOffers.map((offer) => (
+      {availableOffers.slice(0, lastSlicesOfferNumber).map((offer) => (
         <PlaceCard
           key={offer.id}
           cardListType={CardListType.CITIES}
