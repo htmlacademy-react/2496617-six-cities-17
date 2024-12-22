@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, MutableRefObject } from 'react';
 import leaflet, { Map } from 'leaflet';
 import { LocationType } from '../types';
+import { useLocation } from 'react-router-dom';
 // %======================== useMap ========================% //
 
 export const useMap = (
@@ -10,6 +11,8 @@ export const useMap = (
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef(false);
 
+  const isOfferPage = useLocation().pathname.startsWith('/offer');
+
   useEffect(() => {
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = leaflet.map(mapRef.current, {
@@ -18,6 +21,7 @@ export const useMap = (
           lng: cityLocation.longitude,
         },
         zoom: cityLocation.zoom,
+        scrollWheelZoom: !isOfferPage,
       });
 
       leaflet
