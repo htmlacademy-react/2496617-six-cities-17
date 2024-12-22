@@ -1,33 +1,8 @@
+import { StatusCodes } from 'http-status-codes';
+
 // *======================== const ========================* //
-
-enum AppRoute {
-  Main = '/',
-  Favorites = '/favorites',
-  Offer = '/offer/:id',
-  Login = '/login',
-  NotFound = '*'
-}
-
-enum AuthorizationStatus {
-  Auth = 'AUTH',
-  NoAuth = 'NO_AUTH',
-  Unknown = 'UNKNOWN',
-}
-
-enum CardListType {
-  CITIES = 'cities',
-  FAVORITES = 'favorites',
-  NEAR_PLACES = 'near-places'
-}
-
-enum SortingOptions {
-  POPULAR = 'Popular',
-  BY_LOW_PRICE = 'Price: low to high',
-  BY_HIGHT_PRICE = 'Price: high to low',
-  BY_RATING = 'Top rated first',
-}
-
-const LOCATIONS: string[] = [
+// *------------ data ------------* //
+export const LOCATIONS: string[] = [
   'paris',
   'cologne',
   'brussels',
@@ -36,7 +11,7 @@ const LOCATIONS: string[] = [
   'dusseldorf',
 ];
 
-const RATING_OPTIONS = [
+export const RATING_OPTIONS = [
   {
     value: 5,
     title: 'perfect',
@@ -59,14 +34,62 @@ const RATING_OPTIONS = [
   }
 ];
 
-const DATE_FORMAT: string = 'MMMM YYYY';
+// *------------ view ------------* //
+export enum CardListType {
+  CITIES = 'cities',
+  FAVORITES = 'favorites',
+  NEAR_PLACES = 'near-places'
+}
 
-const URL_MARKER_DEFAULT =
+export enum SortingOption {
+  POPULAR = 'Popular',
+  BY_LOW_PRICE = 'Price: low to high',
+  BY_HIGHT_PRICE = 'Price: high to low',
+  BY_RATING = 'Top rated first',
+}
+
+export const DATE_FORMAT: string = 'MMMM YYYY';
+
+export const URL_MARKER_DEFAULT =
   '../img/pin.svg';
 
-const URL_MARKER_CURRENT =
+export const URL_MARKER_CURRENT =
   '../img/pin-active.svg';
 
-const DEFAULT_CITY_NAME = 'paris';
+export const DEFAULT_CITY_NAME = 'paris';
 
-export { AppRoute, AuthorizationStatus, SortingOptions, DATE_FORMAT, LOCATIONS, RATING_OPTIONS, CardListType, URL_MARKER_CURRENT, URL_MARKER_DEFAULT, DEFAULT_CITY_NAME };
+export const DEFAULT_CITY_LOCATION = {
+  latitude: 48.85661,
+  longitude: 2.351499,
+  zoom: 13
+};
+
+export enum AppRoute {
+  Main = '/',
+  Favorites = '/favorites',
+  Offer = '/offer/:id',
+  Login = '/login',
+  NotFound = '*'
+}
+
+// *------------ network ------------* //
+export enum APIRoute {
+  Offers = '/offers'
+}
+
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
+export const BACKEND_URL = 'https://16.design.htmlacademy.pro/six-cities';
+export const REQUEST_TIMEOUT = 5000;
+
+
+export const TIMEOUT_SHOW_ERROR = 2000;
+
+export const StatusCodeMapping: Record<number, boolean> = {
+  [StatusCodes.BAD_REQUEST]: true,
+  [StatusCodes.UNAUTHORIZED]: true,
+  [StatusCodes.NOT_FOUND]: true,
+};

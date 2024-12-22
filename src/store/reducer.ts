@@ -1,30 +1,42 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, changeSortingType, fillOfferList } from './action';
-import { OFFERS } from '../mock/offers';
-import { getCityLocation, getOffersByCityName, sortOffers } from '../utils/utils';
-import { DEFAULT_CITY_NAME, SortingOptions } from '../const';
+import { changeCity, changeSortingType, loadOffers, setDataLoading, setError } from './action';
+import { getOffersByCityName, getCityLocation, sortOffers } from '../utils/utils';
+import { DEFAULT_CITY_NAME, DEFAULT_CITY_LOCATION, SortingOption } from '../const';
+import { InitialState } from '../types';
 
 // %======================== reducer ========================% //
 
-const initialCityState = {
+const initialCityState: InitialState = {
   cityName: DEFAULT_CITY_NAME,
-  cityLocation: getCityLocation(OFFERS),
-  offers: getOffersByCityName(OFFERS, DEFAULT_CITY_NAME),
-  sortingType: SortingOptions.POPULAR,
+  cityLocation: DEFAULT_CITY_LOCATION,
+  allOffers: [],
+  offers: [],
+  sortingType: SortingOption.POPULAR,
+  error: null,
+  isDataLoading: false,
 };
 
 export const reducer = createReducer(initialCityState, (builder) => {
   builder
     .addCase(changeCity, (state, action) => {
       state.cityName = action.payload;
-      state.sortingType = SortingOptions.POPULAR;
+      state.sortingType = SortingOption.POPULAR;
+      state.offers = getOffersByCityName(state.allOffers, state.cityName);
+      state.cityLocation = getCityLocation(state.offers);
     })
-    .addCase(fillOfferList, (state) => {
-      state.offers = getOffersByCityName(OFFERS, state.cityName);
+    .addCase(loadOffers, (state, action) => {
+      state.allOffers = action.payload;
+      state.offers = getOffersByCityName(state.allOffers, state.cityName);
       state.cityLocation = getCityLocation(state.offers);
     })
     .addCase(changeSortingType, (state, action) => {
-      state.sortingType = action.payload || SortingOptions.POPULAR;
-      state.offers = sortOffers(getOffersByCityName(OFFERS, state.cityName), action.payload);
+      state.sortingType = action.payload || SortingOption.POPULAR;
+      state.offers = sortOffers(getOffersByCityName(state.allOffers, state.cityName), action.payload);
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
+    })
+    .addCase(setDataLoading, (state, action) => {
+      state.isDataLoading = action.payload;
     });
 });
