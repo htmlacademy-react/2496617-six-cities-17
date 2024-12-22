@@ -37,7 +37,7 @@ export const useMap = (
 
       isRenderedRef.current = true;
     }
-  }, [mapRef, cityLocation]);
+  }, [mapRef, cityLocation, isOfferPage]);
 
   useEffect(() => {
     if (map) {
