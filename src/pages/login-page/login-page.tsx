@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { FormEvent, useRef } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-action';
@@ -14,9 +14,7 @@ type LoginPageProps = {
 export default function LoginPage({ authorizationStatus }: LoginPageProps): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return <Navigate to={AppRoute.Main} />;
@@ -30,7 +28,6 @@ export default function LoginPage({ authorizationStatus }: LoginPageProps): JSX.
         login: loginRef.current.value,
         password: passwordRef.current.value
       }));
-      navigate(AppRoute.Main);
     }
   };
 

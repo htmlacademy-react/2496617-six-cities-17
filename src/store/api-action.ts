@@ -1,10 +1,10 @@
 // %======================== api-action ========================% //
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, AppState, PlaceCardType, AuthData, UserData } from '../types';
+import { AppDispatch, AppState, PlaceCardType, AuthData, UserData, OfferType } from '../types';
 import { AxiosInstance } from 'axios';
-import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
-import { loadOffers, requireAuthorization, setLogin, setDataLoading, setError } from './action';
+import { APIRoute, AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
+import { loadOffers, requireAuthorization, setLogin, setDataLoading, setError, loadOffer, redirectToRoute } from './action';
 import { store } from './index';
 import { dropLogin, dropToken, getLogin, saveLogin, saveToken } from '../services/token';
 
@@ -22,6 +22,27 @@ export const fetchOffersAction = createAsyncThunk<
   try {
     const { data } = await api.get<PlaceCardType[]>(APIRoute.Offers);
     dispatch(loadOffers(data));
+  } finally {
+    dispatch(setDataLoading(false));
+  }
+});
+
+// @------------------------ fetchOffer ------------------------@ //
+export const fetchOfferAction = createAsyncThunk<
+  void,
+  string,
+  {
+    dispatch: AppDispatch;
+    state: AppState;
+    extra: AxiosInstance;
+  }
+>('fetchOffer', async (id, { dispatch, extra: api }) => {
+  dispatch(setDataLoading(true));
+  try {
+    const { data } = await api.get<OfferType>(`${APIRoute.Offers}/${id}`);
+    dispatch(loadOffer(data));
+  } catch (error) {
+    dispatch(redirectToRoute(AppRoute.NotFound));
   } finally {
     dispatch(setDataLoading(false));
   }
@@ -62,6 +83,7 @@ export const loginAction = createAsyncThunk<
   saveLogin(login);
   dispatch(requireAuthorization(AuthorizationStatus.Auth));
   dispatch(setLogin(login));
+  dispatch(redirectToRoute(AppRoute.Main));
 });
 
 // @------------------------ logout ------------------------@ //
@@ -79,6 +101,7 @@ export const logoutAction = createAsyncThunk<
   dropLogin();
   dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
   dispatch(setLogin(''));
+  dispatch(redirectToRoute(AppRoute.Main));
 });
 
 

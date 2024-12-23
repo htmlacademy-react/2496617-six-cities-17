@@ -19,15 +19,16 @@ export default function PlaceCard({
 
   const { id, previewImage, isPremium, price, isFavorite, rating, title, type } = placeCardData;
 
+
   return (
     <article
       className={`${cardListType}__card place-card`}
-      onMouseEnter={() => onPlaceCardMouseEnter && onPlaceCardMouseEnter(id)}
+      onMouseEnter={() => onPlaceCardMouseEnter?.(id)}
     >
       {isPremium && (<PremiumMark className='place-card__mark' />)}
 
       <div className={`${cardListType}__image-wrapper place-card__image-wrapper`}>
-        <Link to={generatePath(AppRoute.Offer, {id}) }>
+        <Link to={generatePath(AppRoute.Offers, { id })} >
           <img
             className="place-card__image"
             src={previewImage}
@@ -58,7 +59,11 @@ export default function PlaceCard({
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={generatePath(AppRoute.Offer, {id})}>{title}</Link>
+          <Link
+            to={generatePath(AppRoute.Offers, { id })}
+          >
+            {title}
+          </Link>
         </h2>
         <p className="place-card__type">{capitalize(type)}</p>
       </div>

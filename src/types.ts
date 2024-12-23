@@ -13,6 +13,7 @@ export type InitialState = {
   isDataLoading: boolean;
   authorizationStatus: AuthorizationStatus;
   login: string | null;
+  currentOffer: OfferType;
 };
 
 export type LocationType = {

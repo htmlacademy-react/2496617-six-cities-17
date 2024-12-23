@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { PlaceCardType, ReviewType, OfferType } from '../../types';
+import { PlaceCardType, ReviewType } from '../../types';
 import useScrollToTop from '../../hooks/use-scroll-to-top';
 
 // %------------ components ------------% //
@@ -10,17 +10,38 @@ import OfferHeader from '../../components/offer-header/offer-header';
 import OfferHost from '../../components/offer-host/offer-host';
 import Reviews from '../../components/reviews/reviews';
 import PlacesList from '../../components/places-list/places-list';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useParams } from 'react-router-dom';
+import { fetchOfferAction } from '../../store/api-action';
+import { useEffect } from 'react';
 
 // #======================== OfferPage ========================# //
 
 type OfferPageProps = {
-  offerData: OfferType;
   nearPlaces: PlaceCardType[];
   reviews: ReviewType[];
 };
 
 export default function OfferPage(offerPageProps: OfferPageProps): JSX.Element {
-  const { offerData, nearPlaces, reviews } = offerPageProps;
+  useScrollToTop();
+  const { nearPlaces, reviews } = offerPageProps;
+  const offerData = useAppSelector((state) => state.currentOffer);
+  const dispatch = useAppDispatch();
+
+  const { id } = useParams<{
+    id: string;
+  }>();
+
+  useEffect(() => {
+    if (id && (!offerData || offerData.id !== id)) {
+      dispatch(fetchOfferAction(id));
+    }
+  }, [id, offerData, dispatch]);
+
+
+  if (!offerData || offerData.id !== id) {
+    return <div>Loading...</div>;
+  }
 
   const { images, rating, type, bedrooms, maxAdults, goods, price, isFavorite, description,
     host: { name, isPro, avatarUrl }, location, isPremium
@@ -29,7 +50,6 @@ export default function OfferPage(offerPageProps: OfferPageProps): JSX.Element {
   const offerHeaderData = { rating, type, maxAdults, bedrooms, price, isFavorite, isPremium };
   const offerHostData = { name, isPro, avatarUrl, description };
 
-  useScrollToTop();
 
   return (
     <main className='page__main page__main--offer'>

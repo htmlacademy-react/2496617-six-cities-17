@@ -40,7 +40,7 @@ export default function HeaderNav(): JSX.Element {
             <li className='header__nav-item'>
               <Link
                 className='header__nav-link'
-                to={AppRoute.Login}
+                to={''}
                 onClick={() => {
                   dispatch(logoutAction());
                 }}

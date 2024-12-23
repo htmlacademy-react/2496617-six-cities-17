@@ -1,8 +1,12 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { browserHistory } from '../../browser-history/browser-history';
+import { Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import { PlaceCardType, ReviewType, OfferType } from '../../types';
+import { useAppSelector } from '../../hooks';
 
 // %------------ components ------------% //
+import HistoryRouter from '../history-router/history-router';
 import PrivateRoute from '../private-route/private-route';
 import Layout from '../layout/layout';
 import MainPage from '../../pages/main-page/main-page';
@@ -10,8 +14,6 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
-import { PlaceCardType, ReviewType, OfferType } from '../../types';
-import { useAppSelector } from '../../hooks';
 import Preloader from '../preloader/preloader';
 import ErrorMessage from '../error-message/error-message';
 
@@ -27,7 +29,7 @@ type AppProps = {
 };
 
 export default function App({ mocks }: AppProps): JSX.Element {
-  const { NEAR_PLACES, FAVORITE_OFFERS, REVIEWS, OFFER } = mocks;
+  const { NEAR_PLACES, FAVORITE_OFFERS, REVIEWS } = mocks;
   const isDataLoading = useAppSelector((state) => state.isDataLoading);
   const error = useAppSelector((state) => state.error);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -42,15 +44,14 @@ export default function App({ mocks }: AppProps): JSX.Element {
 
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <HistoryRouter history={browserHistory}>
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route index element={<MainPage />} />
             <Route
-              path={AppRoute.Offer}
+              path={AppRoute.Offers}
               element={
                 <OfferPage
-                  offerData={OFFER}
                   nearPlaces={NEAR_PLACES}
                   reviews={REVIEWS}
                 />
@@ -68,7 +69,7 @@ export default function App({ mocks }: AppProps): JSX.Element {
             <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
           </Route>
         </Routes>
-      </BrowserRouter >
+      </ HistoryRouter>
     </HelmetProvider >
   );
 }

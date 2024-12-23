@@ -34,6 +34,43 @@ export const RATING_OPTIONS = [
   }
 ];
 
+export const EMPTY_OFFER = {
+  id: '',
+  title: '',
+  description: '',
+  type: '',
+  price: 0,
+  images: [
+    '',
+  ],
+  city: {
+    name: '',
+    location: {
+      latitude: 0,
+      longitude:0,
+      zoom: 0,
+    }
+  },
+  location: {
+    latitude: 0,
+    longitude: 0,
+    zoom: 0,
+  },
+  goods: [
+    '',
+  ],
+  host: {
+    isPro: false,
+    name: '',
+    avatarUrl: '',
+  },
+  isPremium: false,
+  isFavorite: false,
+  rating: 0,
+  bedrooms: 0,
+  maxAdults: 0,
+};
+
 // *------------ view ------------* //
 export enum CardListType {
   CITIES = 'cities',
@@ -67,7 +104,7 @@ export const DEFAULT_CITY_LOCATION = {
 export enum AppRoute {
   Main = '/',
   Favorites = '/favorites',
-  Offer = '/offer/:id',
+  Offers = '/offers/:id',
   Login = '/login',
   NotFound = '*'
 }
