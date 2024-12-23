@@ -9,9 +9,10 @@ import { OFFER } from './mock/offer';
 import { NEAR_PLACES } from './mock/near-places';
 import { FAVORITE_OFFERS } from './mock/favorite-offers';
 import { REVIEWS } from './mock/reviews.ts';
-import { fetchOffersAction } from './store/api-action.ts';
+import { checkAuthAction, fetchOffersAction } from './store/api-action.ts';
 
 store.dispatch(fetchOffersAction());
+store.dispatch(checkAuthAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

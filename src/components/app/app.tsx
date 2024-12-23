@@ -30,8 +30,9 @@ export default function App({ mocks }: AppProps): JSX.Element {
   const { NEAR_PLACES, FAVORITE_OFFERS, REVIEWS, OFFER } = mocks;
   const isDataLoading = useAppSelector((state) => state.isDataLoading);
   const error = useAppSelector((state) => state.error);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
-  if (isDataLoading) {
+  if (authorizationStatus === AuthorizationStatus.Unknown || isDataLoading) {
     return <Preloader />;
   }
 
@@ -58,7 +59,7 @@ export default function App({ mocks }: AppProps): JSX.Element {
             <Route
               path={AppRoute.Favorites}
               element={
-                <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+                <PrivateRoute>
                   <FavoritesPage favoriteOffers={FAVORITE_OFFERS} />
                 </PrivateRoute>
               }

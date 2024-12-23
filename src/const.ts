@@ -74,7 +74,9 @@ export enum AppRoute {
 
 // *------------ network ------------* //
 export enum APIRoute {
-  Offers = '/offers'
+  Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout',
 }
 
 export enum AuthorizationStatus {
