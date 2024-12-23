@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 import { AppRoute, AuthorizationStatus, SortingOption } from '../const';
-import { OfferType, PlaceCardType } from '../types';
+import { OfferType, PlaceCardType, ReviewType } from '../types';
 
 // %======================== action ========================% //
 
@@ -15,6 +15,8 @@ export const loadOffers = createAction<PlaceCardType[]>('loadOffers');
 export const loadOffer = createAction<OfferType>('loadOffer');
 
 export const loadNearPlaces = createAction<PlaceCardType[]>('loadNearPlaces');
+
+export const loadReviews = createAction<ReviewType[]>('loadNearReviews');
 
 export const setError = createAction<string | null>('setError');
 

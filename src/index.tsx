@@ -5,10 +5,7 @@ import { Provider } from 'react-redux';
 import { store } from './store/index.ts';
 
 // %------------ mocks ------------% //
-import { OFFER } from './mock/offer';
-import { NEAR_PLACES } from './mock/near-places';
 import { FAVORITE_OFFERS } from './mock/favorite-offers';
-import { REVIEWS } from './mock/reviews.ts';
 import { checkAuthAction, fetchOffersAction } from './store/api-action.ts';
 
 store.dispatch(fetchOffersAction());
@@ -21,7 +18,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App mocks={{ NEAR_PLACES, FAVORITE_OFFERS, REVIEWS, OFFER }} />
+      <App mocks={{FAVORITE_OFFERS}} />
     </Provider>
   </React.StrictMode>
 );

@@ -2,7 +2,7 @@ import { browserHistory } from '../../browser-history/browser-history';
 import { Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { PlaceCardType, ReviewType, OfferType } from '../../types';
+import { PlaceCardType } from '../../types';
 import { useAppSelector } from '../../hooks';
 
 // %------------ components ------------% //
@@ -21,15 +21,12 @@ import ErrorMessage from '../error-message/error-message';
 
 type AppProps = {
   mocks: {
-    NEAR_PLACES: PlaceCardType[];
     FAVORITE_OFFERS: PlaceCardType[];
-    REVIEWS: ReviewType[];
-    OFFER: OfferType;
   };
 };
 
 export default function App({ mocks }: AppProps): JSX.Element {
-  const { FAVORITE_OFFERS, REVIEWS } = mocks;
+  const { FAVORITE_OFFERS } = mocks;
   const isDataLoading = useAppSelector((state) => state.isDataLoading);
   const error = useAppSelector((state) => state.error);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -51,9 +48,7 @@ export default function App({ mocks }: AppProps): JSX.Element {
             <Route
               path={AppRoute.Offers}
               element={
-                <OfferPage
-                  reviews={REVIEWS}
-                />
+                <OfferPage />
               }
             />
             <Route
