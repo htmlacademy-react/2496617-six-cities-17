@@ -1,10 +1,18 @@
 import Review from '../../components/review/review';
 import ReviewForm from '../../components/review-form/review-form';
 import { ReviewType } from '../../types';
+import { useAppSelector } from '../../hooks';
+import { AuthorizationStatus } from '../../const';
 
 // ^======================== Reviews ========================^ //
 
-export default function Reviews({ reviews }: { reviews: ReviewType[] }): JSX.Element {
+type ReviewsProps = {
+  reviews: ReviewType[];
+};
+
+export default function Reviews({ reviews }: ReviewsProps): JSX.Element {
+
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   return (
     <section className='offer__reviews reviews'>
       <h2 className='reviews__title'>
@@ -19,7 +27,8 @@ export default function Reviews({ reviews }: { reviews: ReviewType[] }): JSX.Ele
         ))}
       </ul>
 
-      <ReviewForm />
+      {authorizationStatus === AuthorizationStatus.Auth && <ReviewForm />}
+
 
     </section>
   );
