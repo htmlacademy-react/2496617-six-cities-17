@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 import { AppRoute, AuthorizationStatus, SortingOption } from '../const';
-import { OfferType, PlaceCardType, ReviewType } from '../types';
+import { OfferType, PlaceCardType, ReviewData, ReviewType } from '../types';
 
 // %======================== action ========================% //
 
@@ -27,3 +27,5 @@ export const requireAuthorization = createAction<AuthorizationStatus>('requireAu
 export const setLogin = createAction<string | null>('setLogin');
 
 export const redirectToRoute = createAction<AppRoute>('redirectToRoute');
+
+export const sendReview = createAction<ReviewData>('sendReview');

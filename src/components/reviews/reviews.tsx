@@ -8,9 +8,10 @@ import { AuthorizationStatus } from '../../const';
 
 type ReviewsProps = {
   reviews: ReviewType[];
+  offerId: string;
 };
 
-export default function Reviews({ reviews }: ReviewsProps): JSX.Element {
+export default function Reviews({ reviews, offerId }: ReviewsProps): JSX.Element {
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   return (
@@ -27,7 +28,7 @@ export default function Reviews({ reviews }: ReviewsProps): JSX.Element {
         ))}
       </ul>
 
-      {authorizationStatus === AuthorizationStatus.Auth && <ReviewForm />}
+      {authorizationStatus === AuthorizationStatus.Auth && <ReviewForm offerId={offerId} />}
 
 
     </section>

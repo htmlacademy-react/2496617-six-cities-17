@@ -1,10 +1,10 @@
 // %======================== api-action ========================% //
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, AppState, PlaceCardType, AuthData, UserData, OfferType, ReviewType } from '../types';
+import { AppDispatch, AppState, PlaceCardType, AuthData, UserData, OfferType, ReviewType, ReviewData } from '../types';
 import { AxiosInstance } from 'axios';
 import { APIRoute, AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
-import { loadOffers, requireAuthorization, setLogin, setDataLoading, setError, loadOffer, redirectToRoute, loadNearPlaces, loadReviews } from './action';
+import { loadOffers, requireAuthorization, setLogin, setDataLoading, setError, loadOffer, redirectToRoute, loadNearPlaces, loadReviews, sendReview } from './action';
 import { store } from './index';
 import { dropLogin, dropToken, getLogin, saveLogin, saveToken } from '../services/token';
 
@@ -83,6 +83,29 @@ export const fetchReviewsAction = createAsyncThunk<
     dispatch(loadReviews(data));
   } finally {
     dispatch(setDataLoading(false));
+  }
+});
+
+// @------------------------ postReview ------------------------@ //
+export const postReviewAction = createAsyncThunk<
+  void,
+  {
+    comment: string;
+    rating: number;
+    offerId: string;
+  },
+  {
+    dispatch: AppDispatch;
+    state: AppState;
+    extra: AxiosInstance;
+  }
+>('postReview', async ({ comment, rating, offerId }, { dispatch, extra: api }) => {
+  try {
+    await api.post<ReviewData>(APIRoute.Reviews.replace(':offerId', offerId), { rating, comment });
+    dispatch(sendReview({ comment, rating }));
+
+  } catch (error) {
+    dispatch(setError('Could not post your comment'));
   }
 });
 

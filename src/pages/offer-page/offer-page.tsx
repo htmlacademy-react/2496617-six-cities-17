@@ -67,7 +67,7 @@ export default function OfferPage(): JSX.Element {
 
             <OfferHost offerHostData={offerHostData} />
 
-            <Reviews reviews={reviews} />
+            <Reviews reviews={reviews} offerId={id} />
           </div>
         </div>
 
