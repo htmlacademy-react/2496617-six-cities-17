@@ -2,7 +2,6 @@ import { browserHistory } from '../../browser-history/browser-history';
 import { Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { PlaceCardType } from '../../types';
 import { useAppSelector } from '../../hooks';
 
 // %------------ components ------------% //
@@ -19,14 +18,7 @@ import ErrorMessage from '../error-message/error-message';
 
 // ^======================== App ========================^ //
 
-type AppProps = {
-  mocks: {
-    FAVORITE_OFFERS: PlaceCardType[];
-  };
-};
-
-export default function App({ mocks }: AppProps): JSX.Element {
-  const { FAVORITE_OFFERS } = mocks;
+export default function App(): JSX.Element {
   const isDataLoading = useAppSelector((state) => state.isDataLoading);
   const error = useAppSelector((state) => state.error);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -55,7 +47,7 @@ export default function App({ mocks }: AppProps): JSX.Element {
               path={AppRoute.Favorites}
               element={
                 <PrivateRoute>
-                  <FavoritesPage favoriteOffers={FAVORITE_OFFERS} />
+                  <FavoritesPage />
                 </PrivateRoute>
               }
             />

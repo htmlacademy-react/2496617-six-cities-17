@@ -6,9 +6,11 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-action';
 
 export default function HeaderNav(): JSX.Element {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const dispatch = useAppDispatch();
+
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const login = useAppSelector((state) => state.login);
+  const favoritesAmount = useAppSelector((state) => state.favoriteOffers).length;
 
   const getHeaderAuthElement = () => {
     switch (authorizationStatus) {
@@ -26,16 +28,16 @@ export default function HeaderNav(): JSX.Element {
         return (
           <>
             <li className='header__nav-item user'>
-              <a
+              <Link
                 className='header__nav-link header__nav-link--profile'
-                href='#'
+                to={AppRoute.Favorites}
               >
                 <div className='header__avatar-wrapper user__avatar-wrapper'></div>
                 <span className='header__user-name user__name'>
                   {login}
                 </span>
-                <span className='header__favorite-count'>3</span>
-              </a>
+                <span className='header__favorite-count'>{favoritesAmount}</span>
+              </Link>
             </li>
             <li className='header__nav-item'>
               <Link

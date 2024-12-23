@@ -67,6 +67,25 @@ export const fetchNearPlacesAction = createAsyncThunk<
   }
 });
 
+// @------------------------ fetchFavoriteOffers ------------------------@ //
+export const fetchFavoriteOffersAction = createAsyncThunk<
+  void,
+  undefined,
+  {
+    dispatch: AppDispatch;
+    state: AppState;
+    extra: AxiosInstance;
+  }
+>('fetchFavoriteOffers', async (_arg, { dispatch, extra: api }) => {
+  dispatch(setDataLoading(true));
+  try {
+    const { data } = await api.get<PlaceCardType[]>(APIRoute.Favorites);
+    dispatch(loadNearPlaces(data));
+  } finally {
+    dispatch(setDataLoading(false));
+  }
+});
+
 // @------------------------ fetchReviews ------------------------@ //
 export const fetchReviewsAction = createAsyncThunk<
   void,

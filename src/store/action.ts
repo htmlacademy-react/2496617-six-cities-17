@@ -18,6 +18,8 @@ export const loadNearPlaces = createAction<PlaceCardType[]>('loadNearPlaces');
 
 export const loadReviews = createAction<ReviewType[]>('loadNearReviews');
 
+export const loadFavoriteOffers = createAction<PlaceCardType[]>('loadFavoriteOffers');
+
 export const setError = createAction<string | null>('setError');
 
 export const setDataLoading = createAction<boolean>('setDataLoading');

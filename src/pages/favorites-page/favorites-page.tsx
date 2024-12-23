@@ -3,16 +3,13 @@ import { Link } from 'react-router-dom';
 import { PlaceCardType } from '../../types';
 import PlaceCard from '../../components/place-card/place-card';
 import { CardListType } from '../../const';
+import { useAppSelector } from '../../hooks';
 
 // #======================== FavoritesPage ========================# //
 
-type FavoritePageProps = {
-  favoriteOffers: PlaceCardType[];
-};
+export default function FavoritesPage(): JSX.Element {
 
-export default function FavoritesPage(favoritePageProps: FavoritePageProps): JSX.Element {
-
-  const { favoriteOffers } = favoritePageProps;
+  const favoriteOffers = useAppSelector((state) => state.favoriteOffers);
 
   const offersByCity = favoriteOffers.reduce<Record<string, PlaceCardType[]>>((acc, offer) => {
     const city = offer.city.name;
