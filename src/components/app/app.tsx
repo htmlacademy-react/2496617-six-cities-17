@@ -29,7 +29,7 @@ type AppProps = {
 };
 
 export default function App({ mocks }: AppProps): JSX.Element {
-  const { NEAR_PLACES, FAVORITE_OFFERS, REVIEWS } = mocks;
+  const { FAVORITE_OFFERS, REVIEWS } = mocks;
   const isDataLoading = useAppSelector((state) => state.isDataLoading);
   const error = useAppSelector((state) => state.error);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -52,7 +52,6 @@ export default function App({ mocks }: AppProps): JSX.Element {
               path={AppRoute.Offers}
               element={
                 <OfferPage
-                  nearPlaces={NEAR_PLACES}
                   reviews={REVIEWS}
                 />
               }

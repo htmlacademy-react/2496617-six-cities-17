@@ -3,23 +3,21 @@ import { CardListType } from '../../const';
 import PlaceCard from '../place-card/place-card';
 import classNames from 'classnames';
 import { useLocation } from 'react-router-dom';
-import { useAppSelector } from '../../hooks';
+import { PlaceCardType } from '../../types';
 
 // ^======================== PlacesList ========================^ //
 
 type PlacesListProps = {
+  offers: PlaceCardType[];
   onListItemHover?: (id: string) => void;
 };
 
 export default function PlacesList(placesListProps: PlacesListProps): JSX.Element {
-  const {onListItemHover } = placesListProps;
+  const { onListItemHover, offers } = placesListProps;
   const path = useLocation().pathname;
   const handleListItemHover = (id: string) => onListItemHover?.(id);
 
   const isOfferPage = path.startsWith('/offer');
-
-  const availableOffers = useAppSelector((state) => state.offers);
-  const lastSlicesOfferNumber: number | undefined = isOfferPage ? 3 : undefined;
 
   return (
     <div
@@ -29,7 +27,7 @@ export default function PlacesList(placesListProps: PlacesListProps): JSX.Elemen
         { 'near-places__list': isOfferPage }
       )}
     >
-      {availableOffers.slice(0, lastSlicesOfferNumber).map((offer) => (
+      {offers.map((offer) => (
         <PlaceCard
           key={offer.id}
           cardListType={CardListType.CITIES}

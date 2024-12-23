@@ -4,7 +4,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, AppState, PlaceCardType, AuthData, UserData, OfferType } from '../types';
 import { AxiosInstance } from 'axios';
 import { APIRoute, AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
-import { loadOffers, requireAuthorization, setLogin, setDataLoading, setError, loadOffer, redirectToRoute } from './action';
+import { loadOffers, requireAuthorization, setLogin, setDataLoading, setError, loadOffer, redirectToRoute, loadNearPlaces } from './action';
 import { store } from './index';
 import { dropLogin, dropToken, getLogin, saveLogin, saveToken } from '../services/token';
 
@@ -43,6 +43,25 @@ export const fetchOfferAction = createAsyncThunk<
     dispatch(loadOffer(data));
   } catch (error) {
     dispatch(redirectToRoute(AppRoute.NotFound));
+  } finally {
+    dispatch(setDataLoading(false));
+  }
+});
+
+// @------------------------ fetchNearPlaces ------------------------@ //
+export const fetchNearPlacesAction = createAsyncThunk<
+  void,
+  string,
+  {
+    dispatch: AppDispatch;
+    state: AppState;
+    extra: AxiosInstance;
+  }
+>('fetchNearByPlaces', async (offerId, { dispatch, extra: api }) => {
+  dispatch(setDataLoading(true));
+  try {
+    const { data } = await api.get<PlaceCardType[]>(APIRoute.nearPlaces.replace(':offerId', offerId));
+    dispatch(loadNearPlaces(data));
   } finally {
     dispatch(setDataLoading(false));
   }

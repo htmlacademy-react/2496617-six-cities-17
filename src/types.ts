@@ -14,6 +14,7 @@ export type InitialState = {
   authorizationStatus: AuthorizationStatus;
   login: string | null;
   currentOffer: OfferType;
+  nearPlaces: PlaceCardType[];
 };
 
 export type LocationType = {

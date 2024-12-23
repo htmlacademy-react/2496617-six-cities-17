@@ -14,6 +14,8 @@ export const loadOffers = createAction<PlaceCardType[]>('loadOffers');
 
 export const loadOffer = createAction<OfferType>('loadOffer');
 
+export const loadNearPlaces = createAction<PlaceCardType[]>('loadNearPlaces');
+
 export const setError = createAction<string | null>('setError');
 
 export const setDataLoading = createAction<boolean>('setDataLoading');
