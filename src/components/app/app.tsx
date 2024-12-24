@@ -14,21 +14,15 @@ import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import Preloader from '../preloader/preloader';
-import ErrorMessage from '../error-message/error-message';
 
 // ^======================== App ========================^ //
 
 export default function App(): JSX.Element {
   const isDataLoading = useAppSelector((state) => state.isDataLoading);
-  const error = useAppSelector((state) => state.error);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   if (authorizationStatus === AuthorizationStatus.Unknown || isDataLoading) {
     return <Preloader />;
-  }
-
-  if (error) {
-    return <ErrorMessage />;
   }
 
   return (

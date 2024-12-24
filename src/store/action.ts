@@ -20,8 +20,6 @@ export const loadReviews = createAction<ReviewType[]>('loadNearReviews');
 
 export const loadFavoriteOffers = createAction<PlaceCardType[]>('loadFavoriteOffers');
 
-export const setError = createAction<string | null>('setError');
-
 export const setDataLoading = createAction<boolean>('setDataLoading');
 
 export const requireAuthorization = createAction<AuthorizationStatus>('requireAuthorization');

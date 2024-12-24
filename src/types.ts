@@ -9,7 +9,6 @@ export type InitialState = {
   allOffers: PlaceCardType[];
   offers: PlaceCardType[];
   sortingType: string;
-  error: null | string;
   isDataLoading: boolean;
   authorizationStatus: AuthorizationStatus;
   login: string | null;

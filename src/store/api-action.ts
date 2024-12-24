@@ -2,11 +2,11 @@
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, AppState, PlaceCardType, AuthData, UserData, OfferType, ReviewType, ReviewData } from '../types';
-import { AxiosInstance } from 'axios';
-import { APIRoute, AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
-import { loadOffers, requireAuthorization, setLogin, setDataLoading, setError, loadOffer, redirectToRoute, loadNearPlaces, loadReviews, sendReview } from './action';
-import { store } from './index';
+import { AxiosError, AxiosInstance } from 'axios';
+import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
+import { loadOffers, requireAuthorization, setLogin, setDataLoading, loadOffer, redirectToRoute, loadNearPlaces, loadReviews, sendReview } from './action';
 import { dropLogin, dropToken, getLogin, saveLogin, saveToken } from '../services/token';
+import { toast } from 'react-toastify';
 
 // @------------------------ fetchOffers ------------------------@ //
 export const fetchOffersAction = createAsyncThunk<
@@ -124,7 +124,10 @@ export const postReviewAction = createAsyncThunk<
     dispatch(sendReview({ comment, rating }));
 
   } catch (error) {
-    dispatch(setError('Could not post your comment'));
+    if (error instanceof AxiosError) {
+      const errorMessage: string = error.message;
+      toast.warn(errorMessage);
+    }
   }
 });
 
@@ -182,12 +185,4 @@ export const logoutAction = createAsyncThunk<
   dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
   dispatch(setLogin(''));
   dispatch(redirectToRoute(AppRoute.Main));
-});
-
-
-// @------------------------ clearError ------------------------@ //
-export const clearErrorAction = createAsyncThunk('clearError', () => {
-  setTimeout(() => {
-    store.dispatch(setError(null));
-  }, TIMEOUT_SHOW_ERROR);
 });
