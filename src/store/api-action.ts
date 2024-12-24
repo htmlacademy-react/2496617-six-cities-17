@@ -4,7 +4,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, AppState, PlaceCardType, AuthData, UserData, OfferType, ReviewType, ReviewData } from '../types';
 import { AxiosError, AxiosInstance } from 'axios';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
-import { loadOffers, requireAuthorization, setLogin, setDataLoading, loadOffer, redirectToRoute, loadNearPlaces, loadReviews, sendReview } from './action';
+import { loadOffers, requireAuthorization, setLogin, setDataLoading, loadOffer, redirectToRoute, loadNearPlaces, loadReviews } from './action';
 import { dropLogin, dropToken, getLogin, saveLogin, saveToken } from '../services/token';
 import { toast } from 'react-toastify';
 
@@ -57,7 +57,7 @@ export const fetchNearPlacesAction = createAsyncThunk<
     state: AppState;
     extra: AxiosInstance;
   }
->('fetchNearByPlaces', async (offerId, { dispatch, extra: api }) => {
+>('fetchNearPlaces', async (offerId, { dispatch, extra: api }) => {
   dispatch(setDataLoading(true));
   try {
     const { data } = await api.get<PlaceCardType[]>(APIRoute.NearPlaces.replace(':offerId', offerId));
@@ -95,7 +95,7 @@ export const fetchReviewsAction = createAsyncThunk<
     state: AppState;
     extra: AxiosInstance;
   }
->('fetchNearByPlaces', async (offerId, { dispatch, extra: api }) => {
+>('fetchReviews', async (offerId, { dispatch, extra: api }) => {
   dispatch(setDataLoading(true));
   try {
     const { data } = await api.get<ReviewType[]>(APIRoute.Reviews.replace(':offerId', offerId));
@@ -121,7 +121,7 @@ export const postReviewAction = createAsyncThunk<
 >('postReview', async ({ comment, rating, offerId }, { dispatch, extra: api }) => {
   try {
     await api.post<ReviewData>(APIRoute.Reviews.replace(':offerId', offerId), { rating, comment });
-    dispatch(sendReview({ comment, rating }));
+    dispatch(fetchReviewsAction(offerId));
 
   } catch (error) {
     if (error instanceof AxiosError) {
