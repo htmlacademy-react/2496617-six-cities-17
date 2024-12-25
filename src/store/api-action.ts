@@ -8,15 +8,17 @@ import { loadOffers, requireAuthorization, setLogin, setDataLoading, loadOffer, 
 import { dropLogin, dropToken, getLogin, saveLogin, saveToken } from '../services/token';
 import { toast } from 'react-toastify';
 
+type AsyncThunkType = {
+  dispatch: AppDispatch;
+  state: AppState;
+  extra: AxiosInstance;
+}
+
 // @------------------------ fetchOffers ------------------------@ //
 export const fetchOffersAction = createAsyncThunk<
   void,
   undefined,
-  {
-    dispatch: AppDispatch;
-    state: AppState;
-    extra: AxiosInstance;
-  }
+  AsyncThunkType
 >('fetchOffers', async (_arg, { dispatch, extra: api }) => {
   dispatch(setDataLoading(true));
   try {
@@ -31,11 +33,7 @@ export const fetchOffersAction = createAsyncThunk<
 export const fetchOfferAction = createAsyncThunk<
   void,
   string,
-  {
-    dispatch: AppDispatch;
-    state: AppState;
-    extra: AxiosInstance;
-  }
+  AsyncThunkType
 >('fetchOffer', async (id, { dispatch, extra: api }) => {
   dispatch(setDataLoading(true));
   try {
@@ -52,11 +50,7 @@ export const fetchOfferAction = createAsyncThunk<
 export const fetchNearPlacesAction = createAsyncThunk<
   void,
   string,
-  {
-    dispatch: AppDispatch;
-    state: AppState;
-    extra: AxiosInstance;
-  }
+  AsyncThunkType
 >('fetchNearPlaces', async (offerId, { dispatch, extra: api }) => {
   dispatch(setDataLoading(true));
   try {
@@ -71,11 +65,7 @@ export const fetchNearPlacesAction = createAsyncThunk<
 export const fetchFavoriteOffersAction = createAsyncThunk<
   void,
   undefined,
-  {
-    dispatch: AppDispatch;
-    state: AppState;
-    extra: AxiosInstance;
-  }
+  AsyncThunkType
 >('fetchFavoriteOffers', async (_arg, { dispatch, extra: api }) => {
   dispatch(setDataLoading(true));
   try {
@@ -90,11 +80,7 @@ export const fetchFavoriteOffersAction = createAsyncThunk<
 export const fetchReviewsAction = createAsyncThunk<
   void,
   string,
-  {
-    dispatch: AppDispatch;
-    state: AppState;
-    extra: AxiosInstance;
-  }
+  AsyncThunkType
 >('fetchReviews', async (offerId, { dispatch, extra: api }) => {
   dispatch(setDataLoading(true));
   try {
@@ -113,11 +99,7 @@ export const postReviewAction = createAsyncThunk<
     rating: number;
     offerId: string;
   },
-  {
-    dispatch: AppDispatch;
-    state: AppState;
-    extra: AxiosInstance;
-  }
+  AsyncThunkType
 >('postReview', async ({ comment, rating, offerId }, { dispatch, extra: api }) => {
   try {
     await api.post<ReviewData>(APIRoute.Reviews.replace(':offerId', offerId), { rating, comment });
@@ -135,11 +117,7 @@ export const postReviewAction = createAsyncThunk<
 export const checkAuthAction = createAsyncThunk<
   void,
   undefined,
-  {
-    dispatch: AppDispatch;
-    state: AppState;
-    extra: AxiosInstance;
-  }
+  AsyncThunkType
 >('checkAuth', async (_arg, { dispatch, extra: api }) => {
   try {
     await api.get(APIRoute.Login);
@@ -155,11 +133,7 @@ export const checkAuthAction = createAsyncThunk<
 export const loginAction = createAsyncThunk<
   void,
   AuthData,
-  {
-    dispatch: AppDispatch;
-    state: AppState;
-    extra: AxiosInstance;
-  }
+  AsyncThunkType
 >('login', async ({ login: email, password }, { dispatch, extra: api }) => {
   const { data: { token, email: login } } = await api.post<UserData>(APIRoute.Login, { email, password });
   saveToken(token);
@@ -173,11 +147,7 @@ export const loginAction = createAsyncThunk<
 export const logoutAction = createAsyncThunk<
   void,
   undefined,
-  {
-    dispatch: AppDispatch;
-    state: AppState;
-    extra: AxiosInstance;
-  }
+  AsyncThunkType
 >('logout', async (_arg, { dispatch, extra: api }) => {
   await api.delete(APIRoute.Logout);
   dropToken();

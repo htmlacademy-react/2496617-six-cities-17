@@ -87,6 +87,8 @@ export enum SortingOption {
 
 export const DATE_FORMAT: string = 'MMMM YYYY';
 
+export const NEAR_PLACES_AMOUNT = 3;
+
 export const URL_MARKER_DEFAULT =
   '../img/pin.svg';
 

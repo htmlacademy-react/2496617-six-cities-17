@@ -13,13 +13,14 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useParams } from 'react-router-dom';
 import { fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-action';
 import { useEffect } from 'react';
+import { NEAR_PLACES_AMOUNT } from '../../const';
 
 // #======================== OfferPage ========================# //
 
 export default function OfferPage(): JSX.Element {
   useScrollToTop();
 
-  const nearPlaces = useAppSelector((state) => state.nearPlaces).slice(0, 3);
+  const nearPlaces = useAppSelector((state) => state.nearPlaces).slice(0, NEAR_PLACES_AMOUNT);
   const offerData = useAppSelector((state) => state.currentOffer);
   const reviews = useAppSelector((state) => state.reviews);
   const dispatch = useAppDispatch();
@@ -29,13 +30,12 @@ export default function OfferPage(): JSX.Element {
   }>();
 
   useEffect(() => {
-    if (id && (!offerData || offerData.id !== id)) {
+    if (id && (offerData.id !== id)) {
       dispatch(fetchOfferAction(id));
       dispatch(fetchNearPlacesAction(id));
       dispatch(fetchReviewsAction(id));
     }
-  }, [id, offerData, dispatch]);
-
+  }, [id, offerData.id, dispatch]);
 
   if (!offerData || offerData.id !== id) {
     return <div>Loading...</div>;

@@ -35,7 +35,7 @@ export default function ReviewForm({ offerId }: ReviewFormProps): JSX.Element {
     setReviewFormState(reviewFormInitialState);
   };
 
-  const submitCondition: boolean = Boolean(rating) && (comment.length >= 50 && comment.length < 300);
+  const submitCondition = Boolean(rating) && (comment.length >= 50 && comment.length < 300);
 
   return (
     <form
