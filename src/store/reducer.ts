@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, changeSortingType, loadOffers, setDataLoading, setError } from './action';
+import { changeCity, changeSortingType, loadFavoriteOffers, loadNearPlaces, loadOffer, loadOffers, loadReviews, requireAuthorization, setDataLoading, setLogin } from './action';
 import { getOffersByCityName, getCityLocation, sortOffers } from '../utils/utils';
-import { DEFAULT_CITY_NAME, DEFAULT_CITY_LOCATION, SortingOption } from '../const';
+import { DEFAULT_CITY_NAME, DEFAULT_CITY_LOCATION, SortingOption, AuthorizationStatus, EMPTY_OFFER } from '../const';
 import { InitialState } from '../types';
 
 // %======================== reducer ========================% //
@@ -12,8 +12,13 @@ const initialCityState: InitialState = {
   allOffers: [],
   offers: [],
   sortingType: SortingOption.POPULAR,
-  error: null,
   isDataLoading: false,
+  authorizationStatus: AuthorizationStatus.Unknown,
+  login: '',
+  currentOffer: EMPTY_OFFER,
+  nearPlaces: [],
+  reviews: [],
+  favoriteOffers: [],
 };
 
 export const reducer = createReducer(initialCityState, (builder) => {
@@ -33,10 +38,25 @@ export const reducer = createReducer(initialCityState, (builder) => {
       state.sortingType = action.payload || SortingOption.POPULAR;
       state.offers = sortOffers(getOffersByCityName(state.allOffers, state.cityName), action.payload);
     })
-    .addCase(setError, (state, action) => {
-      state.error = action.payload;
-    })
     .addCase(setDataLoading, (state, action) => {
       state.isDataLoading = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
+    })
+    .addCase(setLogin, (state, action) => {
+      state.login = action.payload;
+    })
+    .addCase(loadOffer, (state, action) => {
+      state.currentOffer = action.payload;
+    })
+    .addCase(loadNearPlaces, (state, action) => {
+      state.nearPlaces = action.payload;
+    })
+    .addCase(loadReviews, (state, action) => {
+      state.reviews = action.payload;
+    })
+    .addCase(loadFavoriteOffers, (state, action) => {
+      state.favoriteOffers = action.payload;
     });
 });

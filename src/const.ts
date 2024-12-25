@@ -34,6 +34,43 @@ export const RATING_OPTIONS = [
   }
 ];
 
+export const EMPTY_OFFER = {
+  id: '',
+  title: '',
+  description: '',
+  type: '',
+  price: 0,
+  images: [
+    '',
+  ],
+  city: {
+    name: '',
+    location: {
+      latitude: 0,
+      longitude:0,
+      zoom: 0,
+    }
+  },
+  location: {
+    latitude: 0,
+    longitude: 0,
+    zoom: 0,
+  },
+  goods: [
+    '',
+  ],
+  host: {
+    isPro: false,
+    name: '',
+    avatarUrl: '',
+  },
+  isPremium: false,
+  isFavorite: false,
+  rating: 0,
+  bedrooms: 0,
+  maxAdults: 0,
+};
+
 // *------------ view ------------* //
 export enum CardListType {
   CITIES = 'cities',
@@ -67,14 +104,19 @@ export const DEFAULT_CITY_LOCATION = {
 export enum AppRoute {
   Main = '/',
   Favorites = '/favorites',
-  Offer = '/offer/:id',
+  Offers = '/offers/:id',
   Login = '/login',
   NotFound = '*'
 }
 
 // *------------ network ------------* //
 export enum APIRoute {
-  Offers = '/offers'
+  Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout',
+  NearPlaces = 'offers/:offerId/nearby',
+  Reviews = '/comments/:offerId',
+  Favorites = '/favorite'
 }
 
 export enum AuthorizationStatus {
@@ -85,8 +127,6 @@ export enum AuthorizationStatus {
 export const BACKEND_URL = 'https://16.design.htmlacademy.pro/six-cities';
 export const REQUEST_TIMEOUT = 5000;
 
-
-export const TIMEOUT_SHOW_ERROR = 2000;
 
 export const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,

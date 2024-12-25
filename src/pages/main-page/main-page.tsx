@@ -47,6 +47,7 @@ export default function MainPage(): JSX.Element {
 
               <PlacesList
                 onListItemHover={handleListItemHover}
+                offers={offers}
               />
 
             </section>

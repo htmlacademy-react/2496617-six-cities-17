@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
-import { SortingOption } from '../const';
-import { PlaceCardType } from '../types';
+import { AppRoute, AuthorizationStatus, SortingOption } from '../const';
+import { OfferType, PlaceCardType, ReviewType } from '../types';
 
 // %======================== action ========================% //
 
@@ -12,6 +12,18 @@ export const changeSortingType = createAction<SortingOption>('changeSortingType'
 
 export const loadOffers = createAction<PlaceCardType[]>('loadOffers');
 
-export const setError = createAction<string | null>('setError');
+export const loadOffer = createAction<OfferType>('loadOffer');
+
+export const loadNearPlaces = createAction<PlaceCardType[]>('loadNearPlaces');
+
+export const loadReviews = createAction<ReviewType[]>('loadNearReviews');
+
+export const loadFavoriteOffers = createAction<PlaceCardType[]>('loadFavoriteOffers');
 
 export const setDataLoading = createAction<boolean>('setDataLoading');
+
+export const requireAuthorization = createAction<AuthorizationStatus>('requireAuthorization');
+
+export const setLogin = createAction<string | null>('setLogin');
+
+export const redirectToRoute = createAction<AppRoute>('redirectToRoute');

@@ -1,4 +1,6 @@
 import { store } from './store';
+import { AuthorizationStatus } from './const';
+
 // %======================== types ========================% //
 
 export type InitialState = {
@@ -7,9 +9,14 @@ export type InitialState = {
   allOffers: PlaceCardType[];
   offers: PlaceCardType[];
   sortingType: string;
-  error: null | string;
   isDataLoading: boolean;
-}
+  authorizationStatus: AuthorizationStatus;
+  login: string | null;
+  currentOffer: OfferType;
+  nearPlaces: PlaceCardType[];
+  reviews: ReviewType[];
+  favoriteOffers: PlaceCardType[];
+};
 
 export type LocationType = {
   latitude: number;
@@ -66,4 +73,20 @@ export type AppDispatch = typeof store.dispatch;
 export type DetailMessageType = {
   type: string;
   message: string;
+};
+
+export type UserData = {
+  id: number;
+  email: string;
+  token: string;
+};
+
+export type AuthData = {
+  login: string;
+  password: string;
+};
+
+export type ReviewData = {
+  rating: number;
+  comment: string;
 };

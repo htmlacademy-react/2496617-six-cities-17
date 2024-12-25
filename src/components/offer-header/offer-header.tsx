@@ -5,6 +5,7 @@ import { capitalize, convertRating } from '../../utils/utils';
 // ^======================== OfferHeader ========================^ //
 type OfferHeaderProps = {
   offerHeaderData: {
+    title: string;
     rating: number;
     type: string;
     bedrooms: number;
@@ -17,7 +18,7 @@ type OfferHeaderProps = {
 
 export default function OfferHeader({ offerHeaderData }: OfferHeaderProps): JSX.Element {
 
-  const { rating, type, bedrooms, maxAdults, price, isFavorite, isPremium } = offerHeaderData;
+  const {title, rating, type, bedrooms, maxAdults, price, isFavorite, isPremium } = offerHeaderData;
 
   return (
     <>
@@ -25,7 +26,7 @@ export default function OfferHeader({ offerHeaderData }: OfferHeaderProps): JSX.
 
       <div className='offer__name-wrapper'>
         <h1 className='offer__name'>
-          Beautiful &amp; luxurious studio at great location
+          {title}
         </h1>
         <BookmarkButton
           elementClass='offer__bookmark'

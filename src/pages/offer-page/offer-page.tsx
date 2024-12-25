@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async';
-import { PlaceCardType, ReviewType, OfferType } from '../../types';
 import useScrollToTop from '../../hooks/use-scroll-to-top';
 
 // %------------ components ------------% //
@@ -10,26 +9,45 @@ import OfferHeader from '../../components/offer-header/offer-header';
 import OfferHost from '../../components/offer-host/offer-host';
 import Reviews from '../../components/reviews/reviews';
 import PlacesList from '../../components/places-list/places-list';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useParams } from 'react-router-dom';
+import { fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-action';
+import { useEffect } from 'react';
 
 // #======================== OfferPage ========================# //
 
-type OfferPageProps = {
-  offerData: OfferType;
-  nearPlaces: PlaceCardType[];
-  reviews: ReviewType[];
-};
+export default function OfferPage(): JSX.Element {
+  useScrollToTop();
 
-export default function OfferPage(offerPageProps: OfferPageProps): JSX.Element {
-  const { offerData, nearPlaces, reviews } = offerPageProps;
+  const nearPlaces = useAppSelector((state) => state.nearPlaces).slice(0, 3);
+  const offerData = useAppSelector((state) => state.currentOffer);
+  const reviews = useAppSelector((state) => state.reviews);
+  const dispatch = useAppDispatch();
 
-  const { images, rating, type, bedrooms, maxAdults, goods, price, isFavorite, description,
+  const { id } = useParams<{
+    id: string;
+  }>();
+
+  useEffect(() => {
+    if (id && (!offerData || offerData.id !== id)) {
+      dispatch(fetchOfferAction(id));
+      dispatch(fetchNearPlacesAction(id));
+      dispatch(fetchReviewsAction(id));
+    }
+  }, [id, offerData, dispatch]);
+
+
+  if (!offerData || offerData.id !== id) {
+    return <div>Loading...</div>;
+  }
+
+  const { title, images, rating, type, bedrooms, maxAdults, goods, price, isFavorite, description,
     host: { name, isPro, avatarUrl }, location, isPremium
   } = offerData;
 
-  const offerHeaderData = { rating, type, maxAdults, bedrooms, price, isFavorite, isPremium };
+  const offerHeaderData = { title, rating, type, maxAdults, bedrooms, price, isFavorite, isPremium };
   const offerHostData = { name, isPro, avatarUrl, description };
 
-  useScrollToTop();
 
   return (
     <main className='page__main page__main--offer'>
@@ -49,7 +67,7 @@ export default function OfferPage(offerPageProps: OfferPageProps): JSX.Element {
 
             <OfferHost offerHostData={offerHostData} />
 
-            <Reviews reviews={reviews} />
+            <Reviews reviews={reviews} offerId={id} />
           </div>
         </div>
 
@@ -62,7 +80,7 @@ export default function OfferPage(offerPageProps: OfferPageProps): JSX.Element {
           <h2 className='near-places__title'>
             Other places in the neighborhood
           </h2>
-          <PlacesList />
+          <PlacesList offers={nearPlaces} />
         </section>
       </div>
     </main>

@@ -1,18 +1,26 @@
 import { ChangeEvent, useState } from 'react';
 import { RATING_OPTIONS } from '../../const';
 import RatingButton from '../rating-button/rating-button';
+import { useAppDispatch } from '../../hooks';
+import { postReviewAction } from '../../store/api-action';
+
 // ^======================== review-form ========================^ //
 
-export default function ReviewForm(): JSX.Element {
+type ReviewFormProps = {
+  offerId: string;
+};
+
+export default function ReviewForm({ offerId }: ReviewFormProps): JSX.Element {
+  const dispatch = useAppDispatch();
 
   const reviewFormInitialState = {
+    comment: '',
     rating: 0,
-    text: ''
   };
 
   const [reviewFormState, setReviewFormState] = useState(reviewFormInitialState);
 
-  const { rating, text } = reviewFormState;
+  const { comment, rating } = reviewFormState;
 
   const handleRatingChange = (value: number): void => {
     setReviewFormState((prevState) => ({
@@ -21,15 +29,13 @@ export default function ReviewForm(): JSX.Element {
     }));
   };
 
-  const formSubmitHandler = (e: ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const formSubmitHandler = (evt: ChangeEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    dispatch(postReviewAction({ comment, rating, offerId }));
     setReviewFormState(reviewFormInitialState);
   };
 
-  const submitCondition: boolean =
-    Boolean(rating) && !text
-    || Boolean(rating) && (text.length >= 50 && text.length < 300)
-    || (text.length >= 50 && text.length < 300);
+  const submitCondition: boolean = Boolean(rating) && (comment.length >= 50 && comment.length < 300);
 
   return (
     <form
@@ -57,11 +63,11 @@ export default function ReviewForm(): JSX.Element {
         id='review'
         name='review'
         placeholder='Tell how was your stay, what you like and what can be improved'
-        value={reviewFormState.text}
+        value={reviewFormState.comment}
         onChange={(e) => {
           setReviewFormState((prevState) => ({
             ...prevState,
-            text: e.target.value,
+            comment: e.target.value,
           }));
         }}
       />
@@ -74,7 +80,7 @@ export default function ReviewForm(): JSX.Element {
         <button
           className='reviews__submit form__submit button'
           type='submit'
-          disabled={submitCondition}
+          disabled={!submitCondition}
         >
           Submit
         </button>

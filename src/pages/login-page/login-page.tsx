@@ -1,6 +1,9 @@
 import { Helmet } from 'react-helmet-async';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { Navigate } from 'react-router-dom';
+import { FormEvent, useRef } from 'react';
+import { useAppDispatch } from '../../hooks';
+import { loginAction } from '../../store/api-action';
 
 // #======================== LoginPage ========================# //
 
@@ -9,10 +12,24 @@ type LoginPageProps = {
 };
 
 export default function LoginPage({ authorizationStatus }: LoginPageProps): JSX.Element {
+  const loginRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
+  const dispatch = useAppDispatch();
 
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return <Navigate to={AppRoute.Main} />;
   }
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    if (loginRef.current !== null && passwordRef.current !== null) {
+      dispatch(loginAction({
+        login: loginRef.current.value,
+        password: passwordRef.current.value
+      }));
+    }
+  };
 
   return (
     <div className='page page--gray page--login'>
@@ -24,7 +41,7 @@ export default function LoginPage({ authorizationStatus }: LoginPageProps): JSX.
         <div className='page__login-container container'>
           <section className='login'>
             <h1 className='login__title'>Sign in</h1>
-            <form className='login__form form' action='#' method='post'>
+            <form className='login__form form' onSubmit={handleSubmit}>
               <div className='login__input-wrapper form__input-wrapper'>
                 <label className='visually-hidden'>E-mail</label>
                 <input
@@ -33,6 +50,7 @@ export default function LoginPage({ authorizationStatus }: LoginPageProps): JSX.
                   name='email'
                   placeholder='Email'
                   required
+                  ref={loginRef}
                 />
               </div>
               <div className='login__input-wrapper form__input-wrapper'>
@@ -43,9 +61,13 @@ export default function LoginPage({ authorizationStatus }: LoginPageProps): JSX.
                   name='password'
                   placeholder='Password'
                   required
+                  ref={passwordRef}
                 />
               </div>
-              <button className='login__submit form__submit button' type='submit'>
+              <button
+                className='login__submit form__submit button'
+                type='submit'
+              >
                 Sign in
               </button>
             </form>
