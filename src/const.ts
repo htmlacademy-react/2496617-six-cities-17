@@ -89,6 +89,8 @@ export const DATE_FORMAT: string = 'MMMM YYYY';
 
 export const NEAR_PLACES_AMOUNT = 3;
 
+export const SHOWN_REVIEWS_AMOUNT = 10;
+
 export const URL_MARKER_DEFAULT =
   '../img/pin.svg';
 
