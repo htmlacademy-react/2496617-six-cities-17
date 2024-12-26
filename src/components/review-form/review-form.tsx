@@ -29,7 +29,7 @@ export default function ReviewForm({ offerId }: ReviewFormProps): JSX.Element {
     }));
   };
 
-  const formSubmitHandler = (evt: ChangeEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (evt: ChangeEvent<HTMLFormElement>) => {
     evt.preventDefault();
     dispatch(postReviewAction({ comment, rating, offerId }));
     setReviewFormState(reviewFormInitialState);
@@ -40,7 +40,7 @@ export default function ReviewForm({ offerId }: ReviewFormProps): JSX.Element {
   return (
     <form
       className='reviews__form form'
-      onSubmit={formSubmitHandler}
+      onSubmit={handleFormSubmit}
     >
       <label className='reviews__label form__label' htmlFor='review'>
         Your review
