@@ -86,6 +86,10 @@ export type AuthData = {
   password: string;
 };
 
+export type AuthResponse = {
+  email: string;
+};
+
 export type ReviewData = {
   rating: number;
   comment: string;

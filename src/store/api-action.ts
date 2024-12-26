@@ -1,11 +1,11 @@
 // %======================== api-action ========================% //
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, AppState, PlaceCardType, AuthData, UserData, OfferType, ReviewType, ReviewData } from '../types';
+import { AppDispatch, AppState, PlaceCardType, AuthData, UserData, OfferType, ReviewType, ReviewData, AuthResponse } from '../types';
 import { AxiosError, AxiosInstance } from 'axios';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import { loadOffers, requireAuthorization, setLogin, setDataLoading, loadOffer, redirectToRoute, loadNearPlaces, loadReviews } from './action';
-import { dropLogin, dropToken, getLogin, saveLogin, saveToken } from '../services/token';
+import { dropToken, saveToken } from '../services/token';
 import { toast } from 'react-toastify';
 
 type AsyncThunkType = {
@@ -119,9 +119,9 @@ export const checkAuthAction = createAsyncThunk<
   AsyncThunkType
 >('checkAuth', async (_arg, { dispatch, extra: api }) => {
   try {
-    await api.get(APIRoute.Login);
+    const { data: { email } } = await api.get<AuthResponse>(APIRoute.Login);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
-    dispatch(setLogin(getLogin()));
+    dispatch(setLogin(email));
   } catch (error) {
     dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     dispatch(setLogin(''));
@@ -134,11 +134,9 @@ export const loginAction = createAsyncThunk<
   AuthData,
   AsyncThunkType
 >('login', async ({ login: email, password }, { dispatch, extra: api }) => {
-  const { data: { token, email: login } } = await api.post<UserData>(APIRoute.Login, { email, password });
+  const { data: { token } } = await api.post<UserData>(APIRoute.Login, { email, password });
   saveToken(token);
-  saveLogin(login);
   dispatch(requireAuthorization(AuthorizationStatus.Auth));
-  dispatch(setLogin(login));
   dispatch(redirectToRoute(AppRoute.Main));
 });
 
@@ -150,8 +148,6 @@ export const logoutAction = createAsyncThunk<
 >('logout', async (_arg, { dispatch, extra: api }) => {
   await api.delete(APIRoute.Logout);
   dropToken();
-  dropLogin();
   dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
-  dispatch(setLogin(''));
   dispatch(redirectToRoute(AppRoute.Main));
 });
