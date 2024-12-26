@@ -19,10 +19,10 @@ import { NEAR_PLACES_AMOUNT } from '../../const';
 
 export default function OfferPage(): JSX.Element {
   useScrollToTop();
-
-  const nearPlaces = useAppSelector((state) => state.nearPlaces).slice(0, NEAR_PLACES_AMOUNT);
   const offerData = useAppSelector((state) => state.currentOffer);
+  const nearPlaces = useAppSelector((state) => state.nearPlaces).slice(0, NEAR_PLACES_AMOUNT);
   const reviews = useAppSelector((state) => state.reviews);
+
   const dispatch = useAppDispatch();
 
   const { id } = useParams<{
@@ -31,9 +31,11 @@ export default function OfferPage(): JSX.Element {
 
   useEffect(() => {
     if (id && (offerData.id !== id)) {
-      dispatch(fetchOfferAction(id));
-      dispatch(fetchNearPlacesAction(id));
-      dispatch(fetchReviewsAction(id));
+      dispatch(fetchOfferAction(id))
+        .then(() => {
+          dispatch(fetchNearPlacesAction(id));
+          dispatch(fetchReviewsAction(id));
+        });
     }
   }, [id, offerData.id, dispatch]);
 

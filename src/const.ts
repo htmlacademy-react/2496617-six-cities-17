@@ -47,7 +47,7 @@ export const EMPTY_OFFER = {
     name: '',
     location: {
       latitude: 0,
-      longitude:0,
+      longitude: 0,
       zoom: 0,
     }
   },

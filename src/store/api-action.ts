@@ -12,7 +12,7 @@ type AsyncThunkType = {
   dispatch: AppDispatch;
   state: AppState;
   extra: AxiosInstance;
-}
+};
 
 // @------------------------ fetchOffers ------------------------@ //
 export const fetchOffersAction = createAsyncThunk<
@@ -104,7 +104,6 @@ export const postReviewAction = createAsyncThunk<
   try {
     await api.post<ReviewData>(APIRoute.Reviews.replace(':offerId', offerId), { rating, comment });
     dispatch(fetchReviewsAction(offerId));
-
   } catch (error) {
     if (error instanceof AxiosError) {
       const errorMessage: string = error.message;
