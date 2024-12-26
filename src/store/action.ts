@@ -27,3 +27,5 @@ export const requireAuthorization = createAction<AuthorizationStatus>('requireAu
 export const setLogin = createAction<string | null>('setLogin');
 
 export const redirectToRoute = createAction<AppRoute>('redirectToRoute');
+
+export const setError = createAction<string | null>('setError');

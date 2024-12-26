@@ -14,6 +14,7 @@ import { useParams } from 'react-router-dom';
 import { fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-action';
 import { useEffect } from 'react';
 import { NEAR_PLACES_AMOUNT } from '../../const';
+import Preloader from '../../components/preloader/preloader';
 
 // #======================== OfferPage ========================# //
 
@@ -22,6 +23,7 @@ export default function OfferPage(): JSX.Element {
   const offerData = useAppSelector((state) => state.currentOffer);
   const nearPlaces = useAppSelector((state) => state.nearPlaces).slice(0, NEAR_PLACES_AMOUNT);
   const reviews = useAppSelector((state) => state.reviews);
+  const error = useAppSelector((state) => state.error);
 
   const dispatch = useAppDispatch();
 
@@ -30,17 +32,17 @@ export default function OfferPage(): JSX.Element {
   }>();
 
   useEffect(() => {
-    if (id && (offerData.id !== id)) {
+    if (id && (offerData.id !== id) && !error) {
       dispatch(fetchOfferAction(id))
         .then(() => {
           dispatch(fetchNearPlacesAction(id));
           dispatch(fetchReviewsAction(id));
         });
     }
-  }, [id, offerData.id, dispatch]);
+  }, [id, offerData.id, dispatch, error]);
 
   if (!offerData || offerData.id !== id) {
-    return <div>Loading...</div>;
+    return <Preloader />;
   }
 
   const { title, images, rating, type, bedrooms, maxAdults, goods, price, isFavorite, description,

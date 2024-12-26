@@ -4,7 +4,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, AppState, PlaceCardType, AuthData, UserData, OfferType, ReviewType, ReviewData, AuthResponse } from '../types';
 import { AxiosError, AxiosInstance } from 'axios';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
-import { loadOffers, requireAuthorization, setLogin, setDataLoading, loadOffer, redirectToRoute, loadNearPlaces, loadReviews } from './action';
+import { loadOffers, requireAuthorization, setLogin, setDataLoading, loadOffer, redirectToRoute, loadNearPlaces, loadReviews, setError } from './action';
 import { dropToken, saveToken } from '../services/token';
 import { toast } from 'react-toastify';
 
@@ -24,6 +24,11 @@ export const fetchOffersAction = createAsyncThunk<
   try {
     const { data } = await api.get<PlaceCardType[]>(APIRoute.Offers);
     dispatch(loadOffers(data));
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      const errorMessage: string = error.message;
+      dispatch(setError(errorMessage));
+    }
   } finally {
     dispatch(setDataLoading(false));
   }
@@ -40,7 +45,11 @@ export const fetchOfferAction = createAsyncThunk<
     const { data } = await api.get<OfferType>(`${APIRoute.Offers}/${id}`);
     dispatch(loadOffer(data));
   } catch (error) {
-    dispatch(redirectToRoute(AppRoute.NotFound));
+    if (error instanceof AxiosError) {
+      const errorMessage: string = error.message;
+      dispatch(setError(errorMessage));
+    }
+    // dispatch(redirectToRoute(AppRoute.NotFound));
   } finally {
     dispatch(setDataLoading(false));
   }
@@ -56,6 +65,11 @@ export const fetchNearPlacesAction = createAsyncThunk<
   try {
     const { data } = await api.get<PlaceCardType[]>(APIRoute.NearPlaces.replace(':offerId', offerId));
     dispatch(loadNearPlaces(data));
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      const errorMessage: string = error.message;
+      dispatch(setError(errorMessage));
+    }
   } finally {
     dispatch(setDataLoading(false));
   }
@@ -71,6 +85,11 @@ export const fetchFavoriteOffersAction = createAsyncThunk<
   try {
     const { data } = await api.get<PlaceCardType[]>(APIRoute.Favorites);
     dispatch(loadNearPlaces(data));
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      const errorMessage: string = error.message;
+      dispatch(setError(errorMessage));
+    }
   } finally {
     dispatch(setDataLoading(false));
   }
@@ -86,6 +105,11 @@ export const fetchReviewsAction = createAsyncThunk<
   try {
     const { data } = await api.get<ReviewType[]>(APIRoute.Reviews.replace(':offerId', offerId));
     dispatch(loadReviews(data));
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      const errorMessage: string = error.message;
+      dispatch(setError(errorMessage));
+    }
   } finally {
     dispatch(setDataLoading(false));
   }

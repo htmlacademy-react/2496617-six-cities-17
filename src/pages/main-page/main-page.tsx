@@ -19,6 +19,7 @@ export default function MainPage(): JSX.Element {
   const selectedCityName = useAppSelector((state) => state.cityName);
   const selectedCityLocation = useAppSelector((state) => state.cityLocation);
   const offers = useAppSelector((state) => state.offers);
+  const error = useAppSelector((state) => state.error);
   const dispatch = useAppDispatch();
 
   const handleListItemHover = (listItemId: string) => {
@@ -27,11 +28,11 @@ export default function MainPage(): JSX.Element {
   };
 
   useEffect(() => {
-    if (offers.length <= 0) {
+    if (offers.length <= 0 && !error) {
       dispatch(fetchOffersAction());
     }
 
-  }, [offers.length, dispatch]);
+  }, [offers.length, dispatch, error]);
 
   return (
     <div className='page page--gray page--main'>

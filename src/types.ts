@@ -16,6 +16,7 @@ export type InitialState = {
   nearPlaces: PlaceCardType[];
   reviews: ReviewType[];
   favoriteOffers: PlaceCardType[];
+  error: string | null;
 };
 
 export type LocationType = {
