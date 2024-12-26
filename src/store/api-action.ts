@@ -1,12 +1,11 @@
-// %======================== api-action ========================% //
-
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, AppState, PlaceCardType, AuthData, UserData, OfferType, ReviewType, ReviewData, AuthResponse } from '../types';
 import { AxiosError, AxiosInstance } from 'axios';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import { loadOffers, requireAuthorization, setLogin, setDataLoading, loadOffer, redirectToRoute, loadNearPlaces, loadReviews, setError } from './action';
 import { dropToken, saveToken } from '../services/token';
-import { toast } from 'react-toastify';
+
+// %======================== api-action ========================% //
 
 type AsyncThunkType = {
   dispatch: AppDispatch;
@@ -49,7 +48,7 @@ export const fetchOfferAction = createAsyncThunk<
       const errorMessage: string = error.message;
       dispatch(setError(errorMessage));
     }
-    // dispatch(redirectToRoute(AppRoute.NotFound));
+    dispatch(redirectToRoute(AppRoute.NotFound));
   } finally {
     dispatch(setDataLoading(false));
   }
@@ -61,7 +60,6 @@ export const fetchNearPlacesAction = createAsyncThunk<
   string,
   AsyncThunkType
 >('fetchNearPlaces', async (offerId, { dispatch, extra: api }) => {
-  dispatch(setDataLoading(true));
   try {
     const { data } = await api.get<PlaceCardType[]>(APIRoute.NearPlaces.replace(':offerId', offerId));
     dispatch(loadNearPlaces(data));
@@ -70,8 +68,6 @@ export const fetchNearPlacesAction = createAsyncThunk<
       const errorMessage: string = error.message;
       dispatch(setError(errorMessage));
     }
-  } finally {
-    dispatch(setDataLoading(false));
   }
 });
 
@@ -101,7 +97,6 @@ export const fetchReviewsAction = createAsyncThunk<
   string,
   AsyncThunkType
 >('fetchReviews', async (offerId, { dispatch, extra: api }) => {
-  dispatch(setDataLoading(true));
   try {
     const { data } = await api.get<ReviewType[]>(APIRoute.Reviews.replace(':offerId', offerId));
     dispatch(loadReviews(data));
@@ -110,8 +105,6 @@ export const fetchReviewsAction = createAsyncThunk<
       const errorMessage: string = error.message;
       dispatch(setError(errorMessage));
     }
-  } finally {
-    dispatch(setDataLoading(false));
   }
 });
 
@@ -131,7 +124,7 @@ export const postReviewAction = createAsyncThunk<
   } catch (error) {
     if (error instanceof AxiosError) {
       const errorMessage: string = error.message;
-      toast.warn(errorMessage);
+      dispatch(setError(errorMessage));
     }
   }
 });
