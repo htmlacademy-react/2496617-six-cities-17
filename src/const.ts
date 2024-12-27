@@ -91,6 +91,11 @@ export const NEAR_PLACES_AMOUNT = 3;
 
 export const SHOWN_REVIEWS_AMOUNT = 10;
 
+export const CommentLength = {
+  MIN: 50,
+  MAX: 300,
+} as const;
+
 export const URL_MARKER_DEFAULT =
   '../img/pin.svg';
 

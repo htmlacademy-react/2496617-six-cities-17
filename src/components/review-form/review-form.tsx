@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react';
-import { RATING_OPTIONS } from '../../const';
+import { CommentLength, RATING_OPTIONS } from '../../const';
 import RatingButton from '../rating-button/rating-button';
 import { useAppDispatch } from '../../hooks';
 import { postReviewAction } from '../../store/api-action';
@@ -35,7 +35,8 @@ export default function ReviewForm({ offerId }: ReviewFormProps): JSX.Element {
     setReviewFormState(reviewFormInitialState);
   };
 
-  const submitCondition = Boolean(rating) && (comment.length >= 50 && comment.length < 300);
+  const submitCondition = Boolean(rating) &&
+    (comment.length >= CommentLength.MIN && comment.length < CommentLength.MAX);
 
   return (
     <form
