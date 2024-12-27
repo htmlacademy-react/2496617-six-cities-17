@@ -1,22 +1,39 @@
 import { store } from './store';
-import { AuthorizationStatus } from './const';
+import { AuthorizationStatus, DataStatus } from './const';
 
 // %======================== types ========================% //
 
 export type InitialState = {
-  cityName: string;
-  cityLocation: LocationType;
-  allOffers: PlaceCardType[];
-  offers: PlaceCardType[];
-  sortingType: string;
-  isDataLoading: boolean;
-  authorizationStatus: AuthorizationStatus;
-  login: string | null;
-  currentOffer: OfferType;
-  nearPlaces: PlaceCardType[];
-  reviews: ReviewType[];
-  favoriteOffers: PlaceCardType[];
-  error: string | null;
+  auth: {
+    status: AuthorizationStatus;
+    login: string | null;
+  };
+  city: {
+    name: string;
+    location: LocationType;
+  };
+  offers: {
+    all: PlaceCardType[];
+    sorted: PlaceCardType[];
+    sortingType: string;
+    status: DataStatus;
+  };
+  offer: {
+    data: OfferType;
+    status: DataStatus;
+  };
+  nearPlaces: {
+    data: PlaceCardType[];
+    status: DataStatus;
+  };
+  reviews: {
+    data: ReviewType[];
+    status: DataStatus;
+  };
+  favoriteOffers: {
+    data: PlaceCardType[];
+    status: DataStatus;
+  };
 };
 
 export type LocationType = {

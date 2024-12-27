@@ -1,24 +1,19 @@
 import { Helmet } from 'react-helmet-async';
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { Navigate } from 'react-router-dom';
 import { FormEvent, useRef } from 'react';
-import { useAppDispatch } from '../../hooks';
-import { loginAction } from '../../store/api-action';
+import { useAppDispatch, useAppSelector, } from '../../hooks';
+import { checkAuthAction, loginAction } from '../../store/api-action';
+import { useEffect } from 'react';
+import { redirectToRoute } from '../../store/action';
+import { getAuthStatus } from '../../store/selectors';
 
 // #======================== LoginPage ========================# //
 
-type LoginPageProps = {
-  authorizationStatus: AuthorizationStatus;
-};
-
-export default function LoginPage({ authorizationStatus }: LoginPageProps): JSX.Element {
+export default function LoginPage(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const dispatch = useAppDispatch();
-
-  if (authorizationStatus === AuthorizationStatus.Auth) {
-    return <Navigate to={AppRoute.Main} />;
-  }
+  const authStatus = useAppSelector(getAuthStatus);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -30,6 +25,12 @@ export default function LoginPage({ authorizationStatus }: LoginPageProps): JSX.
       }));
     }
   };
+  useEffect(() => {
+    if (authStatus === AuthorizationStatus.Auth) {
+      dispatch(checkAuthAction());
+      dispatch(redirectToRoute(AppRoute.Main));
+    }
+  }, [authStatus, dispatch]);
 
   return (
     <div className='page page--gray page--login'>

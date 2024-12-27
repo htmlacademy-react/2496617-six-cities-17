@@ -13,16 +13,18 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useParams } from 'react-router-dom';
 import { fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-action';
 import { useEffect } from 'react';
-import { NEAR_PLACES_AMOUNT } from '../../const';
+import { DataStatus, NEAR_PLACES_AMOUNT } from '../../const';
 import Preloader from '../../components/preloader/preloader';
+import { getNearPlaces, getOfferData, getOfferStatus, getReviews } from '../../store/selectors';
 
 // #======================== OfferPage ========================# //
 
 export default function OfferPage(): JSX.Element {
   useScrollToTop();
-  const offerData = useAppSelector((state) => state.currentOffer);
-  const nearPlaces = useAppSelector((state) => state.nearPlaces).slice(0, NEAR_PLACES_AMOUNT);
-  const reviews = useAppSelector((state) => state.reviews);
+  const offerData = useAppSelector(getOfferData);
+  const offerStatus = useAppSelector(getOfferStatus);
+  const nearPlaces = useAppSelector(getNearPlaces).slice(0, NEAR_PLACES_AMOUNT);
+  const reviews = useAppSelector(getReviews);
 
   const dispatch = useAppDispatch();
 
@@ -38,8 +40,12 @@ export default function OfferPage(): JSX.Element {
     }
   }, [id, offerData.id, dispatch]);
 
-  if (!offerData || offerData.id !== id) {
+  if (offerData.id !== id) {
     return <Preloader />;
+  }
+
+  if (offerStatus === DataStatus.Error) {
+    return <div>error</div>;
   }
 
   const { title, images, rating, type, bedrooms, maxAdults, goods, price, isFavorite, description,

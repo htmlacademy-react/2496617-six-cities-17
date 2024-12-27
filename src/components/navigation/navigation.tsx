@@ -2,12 +2,13 @@ import { LOCATIONS } from '../../const.ts';
 import NavButton from '../nav-button/nav-button';
 import { changeCity } from '../../store/action';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.ts';
+import { getCityName } from '../../store/selectors.ts';
 
 // ^======================== Navigation ========================^ //
 
 export default function Navigation(): JSX.Element {
   const dispatch = useAppDispatch();
-  const currentCityName = useAppSelector((state) => state.cityName);
+  const currentCityName = useAppSelector(getCityName);
 
   const onNavLinkClick = (location: string) => {
     dispatch(changeCity(location));

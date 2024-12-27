@@ -142,3 +142,10 @@ export const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.UNAUTHORIZED]: false,
   [StatusCodes.NOT_FOUND]: true,
 };
+
+export enum DataStatus {
+  Unknown = 'unknown',
+  Loading = 'loading',
+  Loaded = 'loaded',
+  Error = 'error',
+}

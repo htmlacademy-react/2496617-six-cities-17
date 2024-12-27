@@ -4,12 +4,13 @@ import { PlaceCardType } from '../../types';
 import PlaceCard from '../../components/place-card/place-card';
 import { CardListType } from '../../const';
 import { useAppSelector } from '../../hooks';
+import { getFavoriteOffers } from '../../store/selectors';
 
 // #======================== FavoritesPage ========================# //
 
 export default function FavoritesPage(): JSX.Element {
 
-  const favoriteOffers = useAppSelector((state) => state.favoriteOffers);
+  const favoriteOffers = useAppSelector(getFavoriteOffers);
 
   const offersByCity = favoriteOffers.reduce<Record<string, PlaceCardType[]>>((acc, offer) => {
     const city = offer.city.name;

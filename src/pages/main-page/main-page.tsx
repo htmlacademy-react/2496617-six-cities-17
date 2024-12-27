@@ -9,19 +9,27 @@ import PlacesSorting from '../../components/places-sorting/places-sorting';
 import PlacesList from '../../components/places-list/places-list';
 import Map from '../../components/map/map';
 import Navigation from '../../components/navigation/navigation';
+import { getCityLocation, getCityName, getOffersStatus, getSortedOffers } from '../../store/selectors';
+import Preloader from '../../components/preloader/preloader';
+import { DataStatus } from '../../const';
 
 // #======================== MainPage ========================# //
 
 export default function MainPage(): JSX.Element {
   const [selectedPoint, setSelectedPoint] = useState<PlaceCardType>();
-  const selectedCityName = useAppSelector((state) => state.cityName);
-  const selectedCityLocation = useAppSelector((state) => state.cityLocation);
-  const offers = useAppSelector((state) => state.offers);
+  const selectedCityName = useAppSelector(getCityName);
+  const selectedCityLocation = useAppSelector(getCityLocation);
+  const sortedOffers = useAppSelector(getSortedOffers);
+  const offersStatus = useAppSelector(getOffersStatus);
 
   const handleListItemHover = (listItemId: string) => {
-    const currentPoint = offers.find((offer) => offer.id === listItemId);
+    const currentPoint = sortedOffers.find((offer) => offer.id === listItemId);
     setSelectedPoint(currentPoint);
   };
+
+  if (offersStatus === DataStatus.Loading) {
+    return <Preloader />;
+  }
 
   return (
     <div className='page page--gray page--main'>
@@ -40,14 +48,14 @@ export default function MainPage(): JSX.Element {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">
-                {offers.length} places to stay in {capitalize(selectedCityName)}
+                {sortedOffers.length} places to stay in {capitalize(selectedCityName)}
               </b>
 
               <PlacesSorting />
 
               <PlacesList
                 onListItemHover={handleListItemHover}
-                offers={offers}
+                offers={sortedOffers}
               />
 
             </section>
@@ -55,7 +63,7 @@ export default function MainPage(): JSX.Element {
             <div className='cities__right-section'>
               <Map
                 cityLocation={selectedCityLocation}
-                offers={offers}
+                offers={sortedOffers}
                 selectedPoint={selectedPoint}
               />
             </div>
