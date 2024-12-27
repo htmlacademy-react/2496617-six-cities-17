@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, AppState, PlaceCardType, AuthData, UserData, OfferType, ReviewType, ReviewData, AuthResponse } from '../types';
-import { AxiosError, AxiosInstance } from 'axios';
+import { AxiosInstance } from 'axios';
 import { APIRoute } from '../const';
 import { dropToken, saveToken } from '../services/token';
 
@@ -47,18 +47,8 @@ export const fetchReviewsAction = createAsyncThunk<
   ReviewType[],
   string,
   AsyncThunkType
->('fetchReviews', async (offerId, { extra: api }) => {
+>('reviews/fetchReviews', async (offerId, { extra: api }) => {
   const { data } = await api.get<ReviewType[]>(APIRoute.Reviews.replace(':offerId', offerId));
-  return data;
-});
-
-// @------------------------ fetchFavoriteOffers ------------------------@ //
-export const fetchFavoriteOffersAction = createAsyncThunk<
-  PlaceCardType[],
-  undefined,
-  AsyncThunkType
->('fetchFavoriteOffers', async (_arg, { extra: api }) => {
-  const { data } = await api.get<PlaceCardType[]>(APIRoute.Favorites);
   return data;
 });
 
@@ -71,16 +61,19 @@ export const postReviewAction = createAsyncThunk<
     offerId: string;
   },
   AsyncThunkType
->('postReview', async ({ comment, rating, offerId }, { dispatch, extra: api }) => {
-  try {
-    await api.post<ReviewData>(APIRoute.Reviews.replace(':offerId', offerId), { rating, comment });
-    dispatch(fetchReviewsAction(offerId));
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      const errorMessage: string = error.message;
-      console.log(errorMessage)
-    }
-  }
+>('reviews/postReview', async ({ comment, rating, offerId }, { dispatch, extra: api }) => {
+  await api.post<ReviewData>(APIRoute.Reviews.replace(':offerId', offerId), { rating, comment });
+  dispatch(fetchReviewsAction(offerId));
+});
+
+// @------------------------ fetchFavoriteOffers ------------------------@ //
+export const fetchFavoriteOffersAction = createAsyncThunk<
+  PlaceCardType[],
+  undefined,
+  AsyncThunkType
+>('fetchFavoriteOffers', async (_arg, { extra: api }) => {
+  const { data } = await api.get<PlaceCardType[]>(APIRoute.Favorites);
+  return data;
 });
 
 // @------------------------ checkAuth ------------------------@ //

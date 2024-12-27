@@ -3,7 +3,7 @@ import { changeCity, changeSortingType } from './action';
 import { getOffersByCityName, getCityLocation, sortOffers } from '../utils/utils';
 import { DEFAULT_CITY_NAME, DEFAULT_CITY_LOCATION, SortingOption, AuthorizationStatus, EMPTY_OFFER, DataStatus } from '../const';
 import { InitialState } from '../types';
-import { checkAuthAction, fetchFavoriteOffersAction, fetchNearPlacesAction, fetchOfferAction, fetchOffersAction, fetchReviewsAction, loginAction, logoutAction } from './api-action';
+import { checkAuthAction, fetchFavoriteOffersAction, fetchNearPlacesAction, fetchOfferAction, fetchOffersAction, fetchReviewsAction, loginAction, logoutAction, postReviewAction } from './api-action';
 import { toast } from 'react-toastify';
 
 // %======================== reducer ========================% //
@@ -54,7 +54,7 @@ export const reducer = createReducer(initialCityState, (builder) => {
       state.offers.sorted = sortOffers(getOffersByCityName(state.offers.all, state.city.name), action.payload);
     })
 
-    // @------------ auth ------------@ //
+    // @------------ check auth ------------@ //
     .addCase(checkAuthAction.fulfilled, (state, action) => {
       state.auth.status = AuthorizationStatus.Auth;
       state.auth.login = action.payload;
@@ -62,13 +62,24 @@ export const reducer = createReducer(initialCityState, (builder) => {
     .addCase(checkAuthAction.rejected, (state) => {
       state.auth.status = AuthorizationStatus.NoAuth;
       state.auth.login = '';
+      toast.error('Could not check authorization');
     })
+    // @------------ login ------------@ //
     .addCase(loginAction.fulfilled, (state) => {
       state.auth.status = AuthorizationStatus.Auth;
     })
+    .addCase(loginAction.rejected, (state) => {
+      state.auth.status = AuthorizationStatus.Unknown;
+      toast.error('Could not sign in');
+    })
+    // @------------ logout ------------@ //
     .addCase(logoutAction.fulfilled, (state) => {
       state.auth.status = AuthorizationStatus.NoAuth;
       state.auth.login = '';
+    })
+    .addCase(logoutAction.rejected, (state) => {
+      state.auth.status = AuthorizationStatus.Auth;
+      toast.error('Could not sign out');
     })
 
     // @------------ offers ------------@ //
@@ -111,7 +122,7 @@ export const reducer = createReducer(initialCityState, (builder) => {
       toast.error('Could not load near places');
     })
 
-    // @------------ reviews ------------@ //
+    // @------------ get reviews ------------@ //
     .addCase(fetchReviewsAction.pending, (state) => {
       state.reviews.status = DataStatus.Loading;
     })
@@ -122,6 +133,11 @@ export const reducer = createReducer(initialCityState, (builder) => {
     .addCase(fetchReviewsAction.rejected, (state) => {
       state.reviews.status = DataStatus.Error;
       toast.error('Could not load reviews');
+    })
+
+    // @------------ post review ------------@ //
+    .addCase(postReviewAction.rejected, () => {
+      toast.error('Could not send review');
     })
 
     // @------------ favoriteOffers ------------@ //
