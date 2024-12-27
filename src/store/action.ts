@@ -4,28 +4,28 @@ import { OfferType, PlaceCardType, ReviewType } from '../types';
 
 // %======================== action ========================% //
 
-export const changeCity = createAction<string>('changeCity');
+export const changeCity = createAction<string>('city/changeCity');
 
-export const fillOfferList = createAction('fillOfferList');
+export const fillOfferList = createAction('offers/fillOfferList');
 
-export const changeSortingType = createAction<SortingOption>('changeSortingType');
+export const changeSortingType = createAction<SortingOption>('sorting/changeSortingType');
 
-export const loadOffers = createAction<PlaceCardType[]>('loadOffers');
+export const loadOffers = createAction<PlaceCardType[]>('offers/loadOffers');
 
-export const loadOffer = createAction<OfferType>('loadOffer');
+export const loadOffer = createAction<OfferType>('offer/loadOffer');
 
-export const loadNearPlaces = createAction<PlaceCardType[]>('loadNearPlaces');
+export const loadNearPlaces = createAction<PlaceCardType[]>('offer/loadNearPlaces');
 
-export const loadReviews = createAction<ReviewType[]>('loadNearReviews');
+export const loadReviews = createAction<ReviewType[]>('offer/loadNearReviews');
 
-export const loadFavoriteOffers = createAction<PlaceCardType[]>('loadFavoriteOffers');
+export const loadFavoriteOffers = createAction<PlaceCardType[]>('favorites/loadFavoriteOffers');
 
-export const setDataLoading = createAction<boolean>('setDataLoading');
+export const setDataLoading = createAction<boolean>('data/setDataLoading');
 
-export const requireAuthorization = createAction<AuthorizationStatus>('requireAuthorization');
+export const requireAuthorization = createAction<AuthorizationStatus>('auth/requireAuthorization');
 
-export const setLogin = createAction<string | null>('setLogin');
+export const setLogin = createAction<string | null>('auth/setLogin');
 
-export const redirectToRoute = createAction<AppRoute>('redirectToRoute');
+export const redirectToRoute = createAction<AppRoute>('navigation/redirectToRoute');
 
-export const setError = createAction<string | null>('setError');
+export const setError = createAction<string | null>('app/setError');
