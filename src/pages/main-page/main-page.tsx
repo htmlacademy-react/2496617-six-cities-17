@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { PlaceCardType } from '../../types';
 import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppSelector } from '../../hooks';
 import { capitalize } from '../../utils/utils';
 
 // %------------ components ------------% //
@@ -9,8 +9,6 @@ import PlacesSorting from '../../components/places-sorting/places-sorting';
 import PlacesList from '../../components/places-list/places-list';
 import Map from '../../components/map/map';
 import Navigation from '../../components/navigation/navigation';
-import { fetchOffersAction } from '../../store/api-action.ts';
-import { useEffect } from 'react';
 
 // #======================== MainPage ========================# //
 
@@ -19,20 +17,11 @@ export default function MainPage(): JSX.Element {
   const selectedCityName = useAppSelector((state) => state.cityName);
   const selectedCityLocation = useAppSelector((state) => state.cityLocation);
   const offers = useAppSelector((state) => state.offers);
-  const error = useAppSelector((state) => state.error);
-  const dispatch = useAppDispatch();
 
   const handleListItemHover = (listItemId: string) => {
     const currentPoint = offers.find((offer) => offer.id === listItemId);
     setSelectedPoint(currentPoint);
   };
-
-  useEffect(() => {
-    if (offers.length <= 0 && !error) {
-      dispatch(fetchOffersAction());
-    }
-
-  }, [offers.length, dispatch, error]);
 
   return (
     <div className='page page--gray page--main'>

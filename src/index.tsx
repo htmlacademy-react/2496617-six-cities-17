@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom/client';
 import App from './components/app/app.tsx';
 import { Provider } from 'react-redux';
 import { store } from './store/index.ts';
-import { checkAuthAction, fetchFavoriteOffersAction } from './store/api-action.ts';
+import { checkAuthAction, fetchFavoriteOffersAction, fetchOffersAction } from './store/api-action.ts';
 import { ToastContainer } from 'react-toastify';
 
+store.dispatch(fetchOffersAction());
 store.dispatch(checkAuthAction());
 store.dispatch(fetchFavoriteOffersAction());
 

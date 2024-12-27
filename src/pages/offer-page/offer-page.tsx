@@ -23,7 +23,6 @@ export default function OfferPage(): JSX.Element {
   const offerData = useAppSelector((state) => state.currentOffer);
   const nearPlaces = useAppSelector((state) => state.nearPlaces).slice(0, NEAR_PLACES_AMOUNT);
   const reviews = useAppSelector((state) => state.reviews);
-  const error = useAppSelector((state) => state.error);
 
   const dispatch = useAppDispatch();
 
@@ -32,14 +31,12 @@ export default function OfferPage(): JSX.Element {
   }>();
 
   useEffect(() => {
-    if (id && (offerData.id !== id) && !error) {
-      dispatch(fetchOfferAction(id))
-        .then(() => {
-          dispatch(fetchNearPlacesAction(id));
-          dispatch(fetchReviewsAction(id));
-        });
+    if (id && (offerData.id !== id)) {
+      dispatch(fetchOfferAction(id));
+      dispatch(fetchNearPlacesAction(id));
+      dispatch(fetchReviewsAction(id));
     }
-  }, [id, offerData.id, dispatch, error]);
+  }, [id, offerData.id, dispatch]);
 
   if (!offerData || offerData.id !== id) {
     return <Preloader />;
