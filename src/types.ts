@@ -7,6 +7,7 @@ export type InitialState = {
   auth: {
     status: AuthorizationStatus;
     login: string | null;
+    avatarUrl: string;
   };
   city: {
     name: string;
@@ -106,6 +107,7 @@ export type AuthData = {
 
 export type AuthResponse = {
   email: string;
+  avatarUrl: string;
 };
 
 export type ReviewData = {

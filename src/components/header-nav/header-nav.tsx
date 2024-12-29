@@ -4,13 +4,15 @@ import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-action';
-import { getAuthStatus, getFavoriteOffers, getLogin } from '../../store/selectors';
+import { getAuthStatus, getAvatarUrl, getFavoriteOffers, getLogin } from '../../store/selectors';
 
 export default function HeaderNav(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const authorizationStatus = useAppSelector(getAuthStatus);
   const login = useAppSelector(getLogin);
+  const avatarUrl = useAppSelector(getAvatarUrl);
+
   const favoritesAmount = useAppSelector(getFavoriteOffers).length;
 
   const getHeaderAuthElement = () => {
@@ -33,7 +35,11 @@ export default function HeaderNav(): JSX.Element {
                 className='header__nav-link header__nav-link--profile'
                 to={AppRoute.Favorites}
               >
-                <div className='header__avatar-wrapper user__avatar-wrapper'></div>
+                <div
+                  className='header__avatar-wrapper user__avatar-wrapper'
+                >
+                  <img src={avatarUrl} alt='' />
+                </div>
                 <span className='header__user-name user__name'>
                   {login}
                 </span>

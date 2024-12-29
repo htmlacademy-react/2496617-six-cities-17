@@ -78,12 +78,12 @@ export const fetchFavoriteOffersAction = createAsyncThunk<
 
 // @------------------------ checkAuth ------------------------@ //
 export const checkAuthAction = createAsyncThunk<
-  string,
+  AuthResponse,
   undefined,
   AsyncThunkType
 >('auth/checkAuth', async (_arg, { extra: api }) => {
-  const { data: { email } } = await api.get<AuthResponse>(APIRoute.Login);
-  return email;
+  const { data: { email, avatarUrl } } = await api.get<AuthResponse>(APIRoute.Login);
+  return { email, avatarUrl };
 });
 
 // @------------------------ login ------------------------@ //

@@ -8,6 +8,7 @@ export const getCityLocation = (state: AppState) => state.city.location;
 // @------------ auth ------------@ //
 export const getAuthStatus = (state: AppState) => state.auth.status;
 export const getLogin = (state: AppState) => state.auth.login;
+export const getAvatarUrl = (state: AppState) => state.auth.avatarUrl;
 
 // @------------ offers ------------@ //
 export const getAllOffers = (state: AppState) => state.offers.all;

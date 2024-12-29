@@ -16,6 +16,7 @@ const initialCityState: InitialState = {
   auth: {
     status: AuthorizationStatus.Unknown,
     login: '',
+    avatarUrl: '',
   },
   offers: {
     all: [],
@@ -57,12 +58,12 @@ export const reducer = createReducer(initialCityState, (builder) => {
     // @------------ check auth ------------@ //
     .addCase(checkAuthAction.fulfilled, (state, action) => {
       state.auth.status = AuthorizationStatus.Auth;
-      state.auth.login = action.payload;
+      state.auth.login = action.payload.email;
+      state.auth.avatarUrl = action.payload.avatarUrl;
     })
     .addCase(checkAuthAction.rejected, (state) => {
       state.auth.status = AuthorizationStatus.NoAuth;
       state.auth.login = '';
-      toast.error('Could not check authorization');
     })
     // @------------ login ------------@ //
     .addCase(loginAction.fulfilled, (state) => {
@@ -70,7 +71,6 @@ export const reducer = createReducer(initialCityState, (builder) => {
     })
     .addCase(loginAction.rejected, (state) => {
       state.auth.status = AuthorizationStatus.Unknown;
-      toast.error('Could not sign in');
     })
     // @------------ logout ------------@ //
     .addCase(logoutAction.fulfilled, (state) => {
@@ -79,7 +79,6 @@ export const reducer = createReducer(initialCityState, (builder) => {
     })
     .addCase(logoutAction.rejected, (state) => {
       state.auth.status = AuthorizationStatus.Auth;
-      toast.error('Could not sign out');
     })
 
     // @------------ offers ------------@ //
@@ -94,7 +93,6 @@ export const reducer = createReducer(initialCityState, (builder) => {
     })
     .addCase(fetchOffersAction.rejected, (state) => {
       state.offers.status = DataStatus.Error;
-      toast.error('Could not load offers data');
     })
 
     // @------------ offer ------------@ //
@@ -107,7 +105,6 @@ export const reducer = createReducer(initialCityState, (builder) => {
     })
     .addCase(fetchOfferAction.rejected, (state) => {
       state.offer.status = DataStatus.Error;
-      toast.error('Could not load offer data');
     })
     // @------------ nearPlaces ------------@ //
     .addCase(fetchNearPlacesAction.pending, (state) => {
@@ -119,7 +116,6 @@ export const reducer = createReducer(initialCityState, (builder) => {
     })
     .addCase(fetchNearPlacesAction.rejected, (state) => {
       state.nearPlaces.status = DataStatus.Error;
-      toast.error('Could not load near places');
     })
 
     // @------------ get reviews ------------@ //
@@ -132,7 +128,6 @@ export const reducer = createReducer(initialCityState, (builder) => {
     })
     .addCase(fetchReviewsAction.rejected, (state) => {
       state.reviews.status = DataStatus.Error;
-      toast.error('Could not load reviews');
     })
 
     // @------------ post review ------------@ //
@@ -151,7 +146,6 @@ export const reducer = createReducer(initialCityState, (builder) => {
     .addCase(fetchFavoriteOffersAction.rejected, (state) => {
       if (state.auth.status === AuthorizationStatus.Auth) {
         state.favoriteOffers.status = DataStatus.Error;
-        toast.error('Could not load favorite offers');
       } else {
         state.favoriteOffers.status = DataStatus.Unknown;
       }
