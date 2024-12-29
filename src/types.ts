@@ -1,5 +1,5 @@
 import { store } from './store';
-import { AuthorizationStatus, DataStatus } from './const';
+import { AuthorizationStatus, DataStatus, LoginStatus, PostingStatus } from './const';
 
 // %======================== types ========================% //
 
@@ -8,7 +8,7 @@ export type InitialState = {
     status: AuthorizationStatus;
     login: string | null;
     avatarUrl: string;
-    loginStatus: string;
+    loginStatus: LoginStatus;
   };
   city: {
     name: string;
@@ -31,6 +31,7 @@ export type InitialState = {
   reviews: {
     data: ReviewType[];
     status: DataStatus;
+    postingStatus: PostingStatus;
   };
   favoriteOffers: {
     data: PlaceCardType[];

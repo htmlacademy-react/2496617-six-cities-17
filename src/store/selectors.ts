@@ -28,6 +28,7 @@ export const getNearPlacesStatus = (state: AppState) => state.nearPlaces.status;
 // @------------ reviews ------------@ //
 export const getReviews = (state: AppState) => state.reviews.data;
 export const getReviewsStatus = (state: AppState) => state.reviews.status;
+export const getPostingStatus = (state: AppState) => state.reviews.postingStatus;
 
 // @------------ favoriteOffers ------------@ //
 export const getFavoriteOffers = (state: AppState) => state.favoriteOffers.data;

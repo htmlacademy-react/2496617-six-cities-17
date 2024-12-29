@@ -150,7 +150,14 @@ export enum DataStatus {
 }
 
 export enum LoginStatus {
+  Unknown = 'unknown',
   Processing = 'processing',
   LoggedIn = 'logged-in',
+  Error = 'error',
+}
+export enum PostingStatus {
+  Unknown = 'unknown',
+  Posting = 'posting',
+  Posted = 'posted',
   Error = 'error',
 }

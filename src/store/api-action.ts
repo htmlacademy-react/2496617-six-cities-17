@@ -37,7 +37,7 @@ export const fetchNearPlacesAction = createAsyncThunk<
   PlaceCardType[],
   string,
   AsyncThunkType
->('fetchNearPlaces', async (offerId, { extra: api }) => {
+>('offer/fetchNearPlaces', async (offerId, { extra: api }) => {
   const { data } = await api.get<PlaceCardType[]>(APIRoute.NearPlaces.replace(':offerId', offerId));
   return data;
 });
@@ -71,7 +71,7 @@ export const fetchFavoriteOffersAction = createAsyncThunk<
   PlaceCardType[],
   undefined,
   AsyncThunkType
->('fetchFavoriteOffers', async (_arg, { extra: api }) => {
+>('favoriteOffers/fetchFavoriteOffers', async (_arg, { extra: api }) => {
   const { data } = await api.get<PlaceCardType[]>(APIRoute.Favorites);
   return data;
 });

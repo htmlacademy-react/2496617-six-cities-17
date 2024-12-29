@@ -1,8 +1,9 @@
 import { ChangeEvent, useState } from 'react';
-import { CommentLength, RATING_OPTIONS } from '../../const';
+import { CommentLength, PostingStatus, RATING_OPTIONS } from '../../const';
 import RatingButton from '../rating-button/rating-button';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { postReviewAction } from '../../store/api-action';
+import { getPostingStatus } from '../../store/selectors';
 
 // ^======================== review-form ========================^ //
 
@@ -12,6 +13,7 @@ type ReviewFormProps = {
 
 export default function ReviewForm({ offerId }: ReviewFormProps): JSX.Element {
   const dispatch = useAppDispatch();
+  const postingStatus = useAppSelector(getPostingStatus);
 
   const reviewFormInitialState = {
     comment: '',
@@ -81,9 +83,9 @@ export default function ReviewForm({ offerId }: ReviewFormProps): JSX.Element {
         <button
           className='reviews__submit form__submit button'
           type='submit'
-          disabled={!submitCondition}
+          disabled={!submitCondition || postingStatus === PostingStatus.Posting}
         >
-          Submit
+          {postingStatus === PostingStatus.Posting ? 'Posting...' : 'Submit'}
         </button>
       </div>
     </form>

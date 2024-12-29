@@ -70,9 +70,9 @@ export default function LoginPage(): JSX.Element {
               <button
                 className='login__submit form__submit button'
                 type='submit'
-                disabled={loginStatus === String(LoginStatus.Processing)}
+                disabled={loginStatus === LoginStatus.Processing}
               >
-                {loginStatus === String(LoginStatus.Processing) ? 'Signing in...' : 'Sign in'}
+                {loginStatus === LoginStatus.Processing ? 'Signing in...' : 'Sign in'}
               </button>
             </form>
           </section>

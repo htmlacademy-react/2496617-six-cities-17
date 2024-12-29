@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { changeCity, changeSortingType } from './action';
 import { getOffersByCityName, getCityLocation, sortOffers } from '../utils/utils';
-import { DEFAULT_CITY_NAME, DEFAULT_CITY_LOCATION, SortingOption, AuthorizationStatus, EMPTY_OFFER, DataStatus, LoginStatus } from '../const';
+import { DEFAULT_CITY_NAME, DEFAULT_CITY_LOCATION, SortingOption, AuthorizationStatus, EMPTY_OFFER, DataStatus, LoginStatus, PostingStatus } from '../const';
 import { InitialState } from '../types';
 import { checkAuthAction, fetchFavoriteOffersAction, fetchNearPlacesAction, fetchOfferAction, fetchOffersAction, fetchReviewsAction, loginAction, logoutAction, postReviewAction } from './api-action';
 import { toast } from 'react-toastify';
@@ -17,7 +17,7 @@ const initialCityState: InitialState = {
     status: AuthorizationStatus.Unknown,
     login: '',
     avatarUrl: '',
-    loginStatus: '',
+    loginStatus: LoginStatus.Unknown,
   },
   offers: {
     all: [],
@@ -36,6 +36,7 @@ const initialCityState: InitialState = {
   reviews: {
     data: [],
     status: DataStatus.Unknown,
+    postingStatus: PostingStatus.Unknown,
   },
   favoriteOffers: {
     data: [],
@@ -137,7 +138,14 @@ export const reducer = createReducer(initialCityState, (builder) => {
     })
 
     // @------------ post review ------------@ //
-    .addCase(postReviewAction.rejected, () => {
+    .addCase(postReviewAction.pending, (state) => {
+      state.reviews.postingStatus = PostingStatus.Posting;
+    })
+    .addCase(postReviewAction.fulfilled, (state) => {
+      state.reviews.postingStatus = PostingStatus.Posted;
+    })
+    .addCase(postReviewAction.rejected, (state) => {
+      state.reviews.postingStatus = PostingStatus.Error;
       toast.error('Could not send review');
     })
 
