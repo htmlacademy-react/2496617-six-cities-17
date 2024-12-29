@@ -3,7 +3,7 @@ import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 import { useEffect, useRef } from 'react';
 import leaflet, { layerGroup, Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { PlaceCardType, LocationType } from '../../types';
+import { PlaceCardType, LocationType, OfferType } from '../../types';
 import { useMap } from '../../hooks/use-map';
 import classNames from 'classnames';
 
@@ -12,6 +12,7 @@ type MapProps = {
   cityLocation: LocationType;
   offers?: PlaceCardType[];
   selectedPoint?: PlaceCardType;
+  currentOffer?: OfferType;
 };
 
 const defaultCustomIcon = leaflet.icon({
@@ -26,7 +27,7 @@ const currentCustomIcon = leaflet.icon({
   iconAnchor: [16, 40],
 });
 
-export default function Map({ cityLocation, offers, selectedPoint }: MapProps): JSX.Element {
+export default function Map({ cityLocation, offers, selectedPoint, currentOffer }: MapProps): JSX.Element {
 
   const path = useLocation().pathname;
 
@@ -34,11 +35,10 @@ export default function Map({ cityLocation, offers, selectedPoint }: MapProps): 
   const map = useMap(mapRef, cityLocation);
 
   useEffect(() => {
-
     if (map && offers) {
       const markerLayer = layerGroup().addTo(map);
 
-      offers.forEach((offer) => {
+      [...offers].forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,
           lng: offer.location.longitude,
@@ -51,8 +51,19 @@ export default function Map({ cityLocation, offers, selectedPoint }: MapProps): 
           )
           .addTo(markerLayer);
       });
+
+      if (currentOffer) {
+        const currenOfferMarker = new Marker({
+          lat: currentOffer.location.latitude,
+          lng: currentOffer.location.longitude,
+        });
+
+        currenOfferMarker
+          .setIcon(currentCustomIcon)
+          .addTo(markerLayer);
+      }
     }
-  }, [map, offers, selectedPoint, cityLocation]);
+  }, [map, offers, selectedPoint, cityLocation, currentOffer]);
 
   return (
     <section

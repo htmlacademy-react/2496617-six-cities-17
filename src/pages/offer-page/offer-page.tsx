@@ -48,8 +48,8 @@ export default function OfferPage(): JSX.Element {
     return <Preloader />;
   }
 
-  const { title, images, rating, type, bedrooms, maxAdults, goods, price, isFavorite, description,
-    host: { name, isPro, avatarUrl }, location, isPremium
+  const { city, title, images, rating, type, bedrooms, maxAdults, goods, price, isFavorite, description,
+    host: { name, isPro, avatarUrl }, isPremium
   } = offerData;
 
   const offerHeaderData = { title, rating, type, maxAdults, bedrooms, price, isFavorite, isPremium };
@@ -78,7 +78,7 @@ export default function OfferPage(): JSX.Element {
           </div>
         </div>
 
-        <Map cityLocation={location} offers={nearPlaces} />
+        <Map cityLocation={city.location} offers={nearPlaces} currentOffer={offerData} />
 
       </section>
 
