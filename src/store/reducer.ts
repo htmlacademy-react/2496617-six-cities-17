@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { changeCity, changeSortingType } from './action';
 import { getOffersByCityName, getCityLocation, sortOffers } from '../utils/utils';
-import { DEFAULT_CITY_NAME, DEFAULT_CITY_LOCATION, SortingOption, AuthorizationStatus, EMPTY_OFFER, DataStatus } from '../const';
+import { DEFAULT_CITY_NAME, DEFAULT_CITY_LOCATION, SortingOption, AuthorizationStatus, EMPTY_OFFER, DataStatus, LoginStatus } from '../const';
 import { InitialState } from '../types';
 import { checkAuthAction, fetchFavoriteOffersAction, fetchNearPlacesAction, fetchOfferAction, fetchOffersAction, fetchReviewsAction, loginAction, logoutAction, postReviewAction } from './api-action';
 import { toast } from 'react-toastify';
@@ -17,6 +17,7 @@ const initialCityState: InitialState = {
     status: AuthorizationStatus.Unknown,
     login: '',
     avatarUrl: '',
+    loginStatus: '',
   },
   offers: {
     all: [],
@@ -66,11 +67,16 @@ export const reducer = createReducer(initialCityState, (builder) => {
       state.auth.login = '';
     })
     // @------------ login ------------@ //
+    .addCase(loginAction.pending, (state) => {
+      state.auth.loginStatus = LoginStatus.Processing;
+    })
     .addCase(loginAction.fulfilled, (state) => {
       state.auth.status = AuthorizationStatus.Auth;
+      state.auth.loginStatus = LoginStatus.LoggedIn;
     })
     .addCase(loginAction.rejected, (state) => {
       state.auth.status = AuthorizationStatus.Unknown;
+      state.auth.loginStatus = LoginStatus.Error;
     })
     // @------------ logout ------------@ //
     .addCase(logoutAction.fulfilled, (state) => {

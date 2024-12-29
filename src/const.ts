@@ -148,3 +148,9 @@ export enum DataStatus {
   Loaded = 'loaded',
   Error = 'error',
 }
+
+export enum LoginStatus {
+  Processing = 'processing',
+  LoggedIn = 'logged-in',
+  Error = 'error',
+}

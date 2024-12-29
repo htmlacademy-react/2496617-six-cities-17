@@ -8,6 +8,7 @@ export type InitialState = {
     status: AuthorizationStatus;
     login: string | null;
     avatarUrl: string;
+    loginStatus: string;
   };
   city: {
     name: string;
