@@ -1,7 +1,7 @@
 import { browserHistory } from '../../browser-history/browser-history';
 import { Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 
 // %------------ components ------------% //
 import HistoryRouter from '../history-router/history-router';
