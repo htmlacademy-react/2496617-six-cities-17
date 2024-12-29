@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { PlaceCardType } from '../types';
+import { PlaceCardType, ReviewType } from '../types';
 import { SortingOption } from '../const';
 
 // %======================== utils ========================% //
@@ -33,4 +33,10 @@ const sortOffers = (offers: PlaceCardType[], sortingType: SortingOption): PlaceC
   }
 };
 
-export { capitalize, humanizeTime, convertRating, getOffersByCityName, getCityLocation, sortOffers, compareOffersByLowPrice };
+const sortReviews = (reviews: ReviewType[]): ReviewType[] =>
+  [...reviews].sort(
+    (a: ReviewType, b: ReviewType) =>
+      new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
+export { capitalize, humanizeTime, convertRating, getOffersByCityName, getCityLocation, sortOffers, compareOffersByLowPrice, sortReviews };

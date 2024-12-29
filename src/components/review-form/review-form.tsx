@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react';
-import { RATING_OPTIONS } from '../../const';
+import { CommentLength, RATING_OPTIONS } from '../../const';
 import RatingButton from '../rating-button/rating-button';
 import { useAppDispatch } from '../../hooks';
 import { postReviewAction } from '../../store/api-action';
@@ -29,18 +29,19 @@ export default function ReviewForm({ offerId }: ReviewFormProps): JSX.Element {
     }));
   };
 
-  const formSubmitHandler = (evt: ChangeEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (evt: ChangeEvent<HTMLFormElement>) => {
     evt.preventDefault();
     dispatch(postReviewAction({ comment, rating, offerId }));
     setReviewFormState(reviewFormInitialState);
   };
 
-  const submitCondition: boolean = Boolean(rating) && (comment.length >= 50 && comment.length < 300);
+  const submitCondition = Boolean(rating) &&
+    (comment.length >= CommentLength.MIN && comment.length < CommentLength.MAX);
 
   return (
     <form
       className='reviews__form form'
-      onSubmit={formSubmitHandler}
+      onSubmit={handleFormSubmit}
     >
       <label className='reviews__label form__label' htmlFor='review'>
         Your review

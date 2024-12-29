@@ -10,18 +10,22 @@ import OfferHost from '../../components/offer-host/offer-host';
 import Reviews from '../../components/reviews/reviews';
 import PlacesList from '../../components/places-list/places-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-action';
 import { useEffect } from 'react';
+import { AppRoute, DataStatus, NEAR_PLACES_AMOUNT } from '../../const';
+import Preloader from '../../components/preloader/preloader';
+import { getNearPlaces, getOfferData, getOfferStatus, getReviews } from '../../store/selectors';
 
 // #======================== OfferPage ========================# //
 
 export default function OfferPage(): JSX.Element {
   useScrollToTop();
+  const offerData = useAppSelector(getOfferData);
+  const offerStatus = useAppSelector(getOfferStatus);
+  const nearPlaces = useAppSelector(getNearPlaces).slice(0, NEAR_PLACES_AMOUNT);
+  const reviews = useAppSelector(getReviews);
 
-  const nearPlaces = useAppSelector((state) => state.nearPlaces).slice(0, 3);
-  const offerData = useAppSelector((state) => state.currentOffer);
-  const reviews = useAppSelector((state) => state.reviews);
   const dispatch = useAppDispatch();
 
   const { id } = useParams<{
@@ -29,16 +33,19 @@ export default function OfferPage(): JSX.Element {
   }>();
 
   useEffect(() => {
-    if (id && (!offerData || offerData.id !== id)) {
+    if (id && offerData.id !== id) {
       dispatch(fetchOfferAction(id));
       dispatch(fetchNearPlacesAction(id));
       dispatch(fetchReviewsAction(id));
     }
-  }, [id, offerData, dispatch]);
+  }, [id, offerData.id, dispatch]);
 
 
-  if (!offerData || offerData.id !== id) {
-    return <div>Loading...</div>;
+  if (offerData.id !== id) {
+    if (offerStatus === DataStatus.Error) {
+      return <Navigate to={AppRoute.NotFound} />;
+    }
+    return <Preloader />;
   }
 
   const { title, images, rating, type, bedrooms, maxAdults, goods, price, isFavorite, description,

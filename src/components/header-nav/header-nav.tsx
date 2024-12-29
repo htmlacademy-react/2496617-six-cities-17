@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-action';
+import { getAuthStatus, getFavoriteOffers, getLogin } from '../../store/selectors';
 
 export default function HeaderNav(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const login = useAppSelector((state) => state.login);
-  const favoritesAmount = useAppSelector((state) => state.favoriteOffers).length;
+  const authorizationStatus = useAppSelector(getAuthStatus);
+  const login = useAppSelector(getLogin);
+  const favoritesAmount = useAppSelector(getFavoriteOffers).length;
 
   const getHeaderAuthElement = () => {
     switch (authorizationStatus) {

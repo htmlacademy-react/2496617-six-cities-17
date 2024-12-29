@@ -5,12 +5,13 @@ import { useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeSortingType } from '../../store/action';
 import { capitalize } from '../../utils/utils';
+import { getSortingType } from '../../store/selectors';
 
 // ^======================== PlacesSorting ========================^ //
 
 export default function PlacesSorting(): JSX.Element {
   const [isListOpen, setIsListOpen] = useState(false);
-  const selectedOption = useAppSelector((state) => state.sortingType);
+  const selectedOption = useAppSelector(getSortingType);
 
   const dispatch = useAppDispatch();
 

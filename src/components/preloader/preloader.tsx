@@ -7,7 +7,7 @@ export default function Preloader(): JSX.Element {
       style={{
         position: 'fixed',
         inset: 0,
-        zIndex: 'calc(Infinity)',
+        zIndex: '10',
         display: 'grid',
         placeItems: 'center',
         backgroundColor: '#ffffff80',

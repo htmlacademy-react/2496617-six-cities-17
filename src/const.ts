@@ -47,7 +47,7 @@ export const EMPTY_OFFER = {
     name: '',
     location: {
       latitude: 0,
-      longitude:0,
+      longitude: 0,
       zoom: 0,
     }
   },
@@ -86,6 +86,15 @@ export enum SortingOption {
 }
 
 export const DATE_FORMAT: string = 'MMMM YYYY';
+
+export const NEAR_PLACES_AMOUNT = 3;
+
+export const SHOWN_REVIEWS_AMOUNT = 10;
+
+export const CommentLength = {
+  MIN: 50,
+  MAX: 300,
+} as const;
 
 export const URL_MARKER_DEFAULT =
   '../img/pin.svg';
@@ -127,9 +136,15 @@ export enum AuthorizationStatus {
 export const BACKEND_URL = 'https://16.design.htmlacademy.pro/six-cities';
 export const REQUEST_TIMEOUT = 5000;
 
-
 export const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
-  [StatusCodes.UNAUTHORIZED]: true,
+  [StatusCodes.UNAUTHORIZED]: false,
   [StatusCodes.NOT_FOUND]: true,
 };
+
+export enum DataStatus {
+  Unknown = 'unknown',
+  Loading = 'loading',
+  Loaded = 'loaded',
+  Error = 'error',
+}
