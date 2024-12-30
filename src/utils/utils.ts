@@ -11,7 +11,7 @@ const convertRating = (rating: number): string => `${Math.round(rating) * 20}%`;
 
 const getOffersByCityName = (offers: PlaceCardType[], cityName: string) => offers.filter((offer) => cityName.toLowerCase() === offer.city.name.toLowerCase());
 
-const getCityLocation = (offers: PlaceCardType[]) => offers[0].city.location;
+const defineCityLocation = (offers: PlaceCardType[]) => offers[0].city.location;
 
 const compareOffersByLowPrice = (a: PlaceCardType, b: PlaceCardType) => a.price - b.price;
 const compareOffersByHighPrice = (a: PlaceCardType, b: PlaceCardType) => b.price - a.price;
@@ -39,4 +39,4 @@ const sortReviews = (reviews: ReviewType[]): ReviewType[] =>
       new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 
-export { capitalize, humanizeTime, convertRating, getOffersByCityName, getCityLocation, sortOffers, compareOffersByLowPrice, sortReviews };
+export { capitalize, humanizeTime, convertRating, getOffersByCityName, defineCityLocation, sortOffers, compareOffersByLowPrice, sortReviews };

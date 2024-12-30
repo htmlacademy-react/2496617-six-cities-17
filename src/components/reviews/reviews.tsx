@@ -4,7 +4,7 @@ import { ReviewType } from '../../types';
 import { useAppSelector } from '../../hooks';
 import { AuthorizationStatus, SHOWN_REVIEWS_AMOUNT } from '../../const';
 import { sortReviews } from '../../utils/utils';
-import { getAuthStatus } from '../../store/selectors';
+import { getAuthStatus } from '../../store/auth-process/auth-process.selectors';
 
 // ^======================== Reviews ========================^ //
 

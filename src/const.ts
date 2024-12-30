@@ -69,7 +69,17 @@ export const EMPTY_OFFER = {
   rating: 0,
   bedrooms: 0,
   maxAdults: 0,
-};
+}; //! remove later
+
+export enum NameSpace {
+  Auth = 'AUTH',
+  City = 'CITY',
+  Offers = 'OFFERS',
+  Offer = 'OFFER',
+  NearPlaces = 'NEAR_PLACES',
+  Reviews = 'REVIEWS',
+  FavoriteOffers = 'FAVORITE_OFFERS',
+}
 
 // *------------ view ------------* //
 export enum CardListType {

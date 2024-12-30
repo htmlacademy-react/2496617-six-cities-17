@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-action';
-import { getAuthStatus, getAvatarUrl, getFavoriteOffers, getLogin } from '../../store/selectors';
+import { getAuthStatus, getAvatarUrl, getLogin } from '../../store/auth-process/auth-process.selectors';
+import { getFavoriteOffers } from '../../store/favorite-offers-process/favorite-offers-process.selectors';
 
 export default function HeaderNav(): JSX.Element {
   const dispatch = useAppDispatch();

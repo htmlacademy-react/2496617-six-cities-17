@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector, } from '../../hooks';
 import { checkAuthAction, loginAction } from '../../store/api-action';
 import { useEffect } from 'react';
 import { redirectToRoute } from '../../store/action';
-import { getAuthStatus, getLoginStatus } from '../../store/selectors';
+import { getAuthStatus, getLoginStatus } from '../../store/auth-process/auth-process.selectors';
 
 // #======================== LoginPage ========================# //
 

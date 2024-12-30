@@ -3,9 +3,9 @@ import { SortingOption } from '../../const';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeSortingType } from '../../store/action';
 import { capitalize } from '../../utils/utils';
-import { getSortingType } from '../../store/selectors';
+import { getSortingType } from '../../store/offers-process/offers-process.selectors';
+import { changeSortingType } from '../../store/offers-process/offers-process.slice';
 
 // ^======================== PlacesSorting ========================^ //
 
@@ -53,7 +53,7 @@ export default function PlacesSorting(): JSX.Element {
             key={placesSortingOption}
             className={classNames(
               'places__option',
-              { 'places__option--active': selectedOption === String(placesSortingOption) }
+              { 'places__option--active': selectedOption === placesSortingOption }
             )}
             tabIndex={0}
             onClick={() => onOptionClick(placesSortingOption)}

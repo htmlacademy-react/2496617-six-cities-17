@@ -1,5 +1,5 @@
 import { store } from './store';
-import { AuthorizationStatus, DataStatus, LoginStatus, PostingStatus } from './const';
+import { AuthorizationStatus, DataStatus, LoginStatus, PostingStatus, SortingOption } from './const';
 
 // %======================== types ========================% //
 
@@ -115,4 +115,36 @@ export type AuthResponse = {
 export type ReviewData = {
   rating: number;
   comment: string;
+};
+
+export type OffersProcess = {
+  cityName: string;
+  cityLocation: LocationType;
+  all: PlaceCardType[];
+  sorted: PlaceCardType[];
+  sortingType: SortingOption;
+  status: DataStatus;
+};
+
+export type AuthProcess = {
+  status: AuthorizationStatus;
+  login: string;
+  avatarUrl: string;
+  loginStatus: LoginStatus;
+};
+
+export type NearPlacesProcess = {
+  data: PlaceCardType[];
+  status: DataStatus;
+};
+
+export type FavoriteOffersProcess = {
+  data: PlaceCardType[];
+  status: DataStatus;
+};
+
+export type ReviewsProcess = {
+  data: ReviewType[];
+  status: DataStatus;
+  postingStatus: PostingStatus;
 };

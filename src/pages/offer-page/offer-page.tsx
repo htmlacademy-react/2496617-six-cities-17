@@ -9,13 +9,16 @@ import OfferHeader from '../../components/offer-header/offer-header';
 import OfferHost from '../../components/offer-host/offer-host';
 import Reviews from '../../components/reviews/reviews';
 import PlacesList from '../../components/places-list/places-list';
+import Preloader from '../../components/preloader/preloader';
+
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { Navigate, useParams } from 'react-router-dom';
 import { fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-action';
 import { useEffect } from 'react';
 import { AppRoute, DataStatus, NEAR_PLACES_AMOUNT } from '../../const';
-import Preloader from '../../components/preloader/preloader';
-import { getNearPlaces, getOfferData, getOfferStatus, getReviews } from '../../store/selectors';
+import { getOfferData, getOfferStatus } from '../../store/offer-process/offer-process.selectors';
+import { getNearPlaces } from '../../store/near-places-process/near-places-process.selectors';
+import { getReviews } from '../../store/reviews-process/reviews-process.selectors';
 
 // #======================== OfferPage ========================# //
 

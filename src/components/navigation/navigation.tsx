@@ -1,8 +1,8 @@
 import { LOCATIONS } from '../../const.ts';
 import NavButton from '../nav-button/nav-button';
-import { changeCity } from '../../store/action';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.ts';
-import { getCityName } from '../../store/selectors.ts';
+import { getCityName } from '../../store/offers-process/offers-process.selectors.ts';
+import { changeCity } from '../../store/offers-process/offers-process.slice.ts';
 
 // ^======================== Navigation ========================^ //
 

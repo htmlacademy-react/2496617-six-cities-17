@@ -3,7 +3,7 @@ import { CommentLength, PostingStatus, RATING_OPTIONS } from '../../const';
 import RatingButton from '../rating-button/rating-button';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { postReviewAction } from '../../store/api-action';
-import { getPostingStatus } from '../../store/selectors';
+import { getPostingStatus } from '../../store/reviews-process/reviews-process.selectors';
 
 // ^======================== review-form ========================^ //
 

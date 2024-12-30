@@ -9,9 +9,9 @@ import PlacesSorting from '../../components/places-sorting/places-sorting';
 import PlacesList from '../../components/places-list/places-list';
 import Map from '../../components/map/map';
 import Navigation from '../../components/navigation/navigation';
-import { getCityLocation, getCityName, getOffersStatus, getSortedOffers } from '../../store/selectors';
 import Preloader from '../../components/preloader/preloader';
 import { DataStatus } from '../../const';
+import { getCityLocation, getCityName, getOffersStatus, getSortedOffers } from '../../store/offers-process/offers-process.selectors';
 
 // #======================== MainPage ========================# //
 

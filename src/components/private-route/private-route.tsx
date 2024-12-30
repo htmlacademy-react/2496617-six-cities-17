@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
-import { getAuthStatus } from '../../store/selectors';
+import { getAuthStatus } from '../../store/auth-process/auth-process.selectors';
 
 // ^======================== PrivateRoute ========================^ //
 
