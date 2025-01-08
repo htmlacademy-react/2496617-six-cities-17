@@ -10,22 +10,22 @@ import Header from '../header/header';
 export default function Layout(): JSX.Element {
 
   const path = useLocation().pathname as AppRoute;
-  const isGrayPage = path === AppRoute.Main || path === AppRoute.Login;
+  const isMainPage = path === AppRoute.Main;
+  const isLoginPage = path === AppRoute.Login;
   const isFavoritesPage = path === AppRoute.Favorites;
 
   return (
     <div
       className={classNames(
         'page',
-        { 'page--gray': isGrayPage }
+        { 'page--gray': isMainPage || isLoginPage },
+        { 'page--main': isMainPage }
       )}
     >
 
       <Header />
 
-      <main>
-        <Outlet />
-      </main>
+      <Outlet />
 
       {
         isFavoritesPage &&

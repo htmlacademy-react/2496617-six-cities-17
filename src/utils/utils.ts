@@ -11,7 +11,7 @@ const convertRating = (rating: number): string => `${Math.round(rating) * 20}%`;
 
 const getOffersByCityName = (offers: PlaceCardType[], cityName: string) => offers.filter((offer) => cityName.toLowerCase() === offer.city.name.toLowerCase());
 
-const defineCityLocation = (offers: PlaceCardType[]) => offers[0].city.location;
+const defineCityLocation = (offers: PlaceCardType[]) => offers[0]?.city.location;
 
 const compareOffersByLowPrice = (a: PlaceCardType, b: PlaceCardType) => a.price - b.price;
 const compareOffersByHighPrice = (a: PlaceCardType, b: PlaceCardType) => b.price - a.price;
