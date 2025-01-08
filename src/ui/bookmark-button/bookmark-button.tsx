@@ -9,10 +9,12 @@ type BookmarkButtonProps = {
     width: number;
     height: number;
   };
+  onBookmarkButtonClick: () => void;
 };
 
 export default function BookmarkButton(bookmarkButtonProps: BookmarkButtonProps): JSX.Element {
-  const { elementClass, isFavorite, sizes: { width, height } } = bookmarkButtonProps;
+  const { elementClass, isFavorite, sizes: { width, height }, onBookmarkButtonClick } = bookmarkButtonProps;
+
   return (
     <button
       className={classNames(
@@ -20,6 +22,7 @@ export default function BookmarkButton(bookmarkButtonProps: BookmarkButtonProps)
         { [`${elementClass}-button--active`]: isFavorite }
       )}
       type='button'
+      onClick={onBookmarkButtonClick}
     >
       <svg className={`${elementClass}-icon`} width={width} height={height}>
         <use xlinkHref='#icon-bookmark' />

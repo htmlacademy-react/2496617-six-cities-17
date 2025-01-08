@@ -76,6 +76,18 @@ export const fetchFavoriteOffersAction = createAsyncThunk<
   return data;
 });
 
+// @------------------------ addToFavoritesAction ------------------------@ //
+export const addToFavoritesAction = createAsyncThunk<
+  PlaceCardType,
+  {
+    offerId: string;
+  },
+  AsyncThunkType
+>('favoriteOffers/addToFavorites', async ({ offerId }, { extra: api }) => {
+  await api.post<PlaceCardType>(APIRoute.Favorites.replace(':offerId', offerId), placeCardData);
+});
+
+
 // @------------------------ checkAuth ------------------------@ //
 export const checkAuthAction = createAsyncThunk<
   AuthResponse,

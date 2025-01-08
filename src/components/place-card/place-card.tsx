@@ -5,8 +5,8 @@ import { generatePath, Link } from 'react-router-dom';
 import BookmarkButton from '../../ui/bookmark-button/bookmark-button';
 import PremiumMark from '../../ui/premium-mark/premium-mark';
 import { memo } from 'react';
-
-// ^======================== place-card ========================^ //
+import { useAppDispatch } from '../../hooks';
+import { addToFavoritesAction } from '../../store/api-action';
 
 type PlaceCardProps = {
   cardListType: CardListType;
@@ -14,11 +14,17 @@ type PlaceCardProps = {
   onPlaceCardMouseEnter?: (id: string) => void;
 };
 
+// ^======================== PlaceCard ========================^ //
 function PlaceCard({
   cardListType, placeCardData, onPlaceCardMouseEnter,
 }: PlaceCardProps): JSX.Element {
 
   const { id, previewImage, isPremium, price, isFavorite, rating, title, type } = placeCardData;
+  const dispatch = useAppDispatch();
+
+  const handleAddToFavorites = () => {
+    dispatch(addToFavoritesAction(placeCardData));
+  };
 
   return (
     <article
@@ -49,6 +55,7 @@ function PlaceCard({
             elementClass='place-card__bookmark'
             isFavorite={isFavorite}
             sizes={{ width: 18, height: 19 }}
+            onBookmarkButtonClick={handleAddToFavorites}
           />
 
         </div>

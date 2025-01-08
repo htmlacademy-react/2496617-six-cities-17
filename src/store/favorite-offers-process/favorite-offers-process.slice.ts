@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { DataStatus, NameSpace } from '../../const';
 import { FavoriteOffersProcess } from '../../types';
-import { fetchFavoriteOffersAction } from '../api-action';
+import { addToFavoritesAction, fetchFavoriteOffersAction } from '../api-action';
 
 // %======================== favorite-offers-process.slice ========================% //
 
@@ -29,6 +29,10 @@ export const favoriteOffersProcess = createSlice({
         // } else {
         // state.status = DataStatus.Unknown;
         // }
+      })
+      .addCase(addToFavoritesAction.fulfilled, (state, action) => {
+        console.log(action);
+        state.data.push(action.payload);
       });
   }
 });

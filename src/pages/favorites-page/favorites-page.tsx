@@ -1,10 +1,11 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { PlaceCardType } from '../../types';
-import PlaceCard from '../../components/place-card/place-card';
 import { CardListType } from '../../const';
 import { useAppSelector } from '../../hooks';
 import { getFavoriteOffers } from '../../store/favorite-offers-process/favorite-offers-process.selectors';
+
+import PlaceCard from '../../components/place-card/place-card';
 
 // #======================== FavoritesPage ========================# //
 
