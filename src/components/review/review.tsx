@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { DATE_FORMAT } from '../../const';
 import { convertRating, humanizeTime } from '../../utils/utils';
 
@@ -15,8 +16,10 @@ type ReviewProps = {
   rating: number;
 };
 
-export default function Review(reviewProps: ReviewProps): JSX.Element {
+function Review(reviewProps: ReviewProps): JSX.Element {
+
   const { date, user: { name, avatarUrl }, comment, rating } = reviewProps;
+
   return (
     <li className='reviews__item'>
       <div className='reviews__user user'>
@@ -46,3 +49,5 @@ export default function Review(reviewProps: ReviewProps): JSX.Element {
     </li>
   );
 }
+
+export default memo(Review);

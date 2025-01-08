@@ -3,8 +3,7 @@ import { AppRoute } from '../../const';
 import classNames from 'classnames';
 
 // %------------ components ------------% //
-import Logo from '../logo/logo';
-import HeaderNav from '../header-nav/header-nav';
+import Header from '../header/header';
 
 // ^======================== Layout ========================^ //
 
@@ -21,17 +20,8 @@ export default function Layout(): JSX.Element {
         { 'page--gray': isGrayPage }
       )}
     >
-      <header className='header'>
-        <div className='container'>
-          <div className='header__wrapper'>
-            <div className='header__left'>
-              <Logo />
-            </div>
 
-            <HeaderNav />
-          </div>
-        </div>
-      </header>
+      <Header />
 
       <main>
         <Outlet />

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { SortingOption } from '../../const';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { capitalize } from '../../utils/utils';
@@ -9,7 +9,8 @@ import { changeSortingType } from '../../store/offers-process/offers-process.sli
 
 // ^======================== PlacesSorting ========================^ //
 
-export default function PlacesSorting(): JSX.Element {
+function PlacesSorting(): JSX.Element {
+
   const [isListOpen, setIsListOpen] = useState(false);
   const selectedOption = useAppSelector(getSortingType);
 
@@ -65,3 +66,5 @@ export default function PlacesSorting(): JSX.Element {
     </form>
   );
 }
+
+export default memo(PlacesSorting);

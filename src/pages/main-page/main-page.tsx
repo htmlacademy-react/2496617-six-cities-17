@@ -1,8 +1,10 @@
 import { Helmet } from 'react-helmet-async';
 import { PlaceCardType } from '../../types';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useAppSelector } from '../../hooks';
 import { capitalize } from '../../utils/utils';
+import { DataStatus } from '../../const';
+import { getCityLocation, getCityName, getOffersStatus, getSortedOffers } from '../../store/offers-process/offers-process.selectors';
 
 // %------------ components ------------% //
 import PlacesSorting from '../../components/places-sorting/places-sorting';
@@ -10,8 +12,6 @@ import PlacesList from '../../components/places-list/places-list';
 import Map from '../../components/map/map';
 import Navigation from '../../components/navigation/navigation';
 import Preloader from '../../components/preloader/preloader';
-import { DataStatus } from '../../const';
-import { getCityLocation, getCityName, getOffersStatus, getSortedOffers } from '../../store/offers-process/offers-process.selectors';
 
 // #======================== MainPage ========================# //
 
@@ -22,10 +22,13 @@ export default function MainPage(): JSX.Element {
   const sortedOffers = useAppSelector(getSortedOffers);
   const offersStatus = useAppSelector(getOffersStatus);
 
-  const handleListItemHover = (listItemId: string) => {
-    const currentPoint = sortedOffers.find((offer) => offer.id === listItemId);
-    setSelectedPoint(currentPoint);
-  };
+  const handleListItemHover = useCallback(
+    (listItemId: string) => {
+      const currentPoint = sortedOffers.find((offer) => offer.id === listItemId);
+      setSelectedPoint(currentPoint);
+    },
+    [sortedOffers]
+  );
 
   if (offersStatus === DataStatus.Loading) {
     return <Preloader />;

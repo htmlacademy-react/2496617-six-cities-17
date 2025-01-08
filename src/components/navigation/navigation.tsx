@@ -3,10 +3,11 @@ import NavButton from '../nav-button/nav-button';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.ts';
 import { getCityName } from '../../store/offers-process/offers-process.selectors.ts';
 import { changeCity } from '../../store/offers-process/offers-process.slice.ts';
+import { memo } from 'react';
 
 // ^======================== Navigation ========================^ //
 
-export default function Navigation(): JSX.Element {
+function Navigation(): JSX.Element {
   const dispatch = useAppDispatch();
   const currentCityName = useAppSelector(getCityName);
 
@@ -31,3 +32,5 @@ export default function Navigation(): JSX.Element {
     </div>
   );
 }
+
+export default memo(Navigation);

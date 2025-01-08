@@ -48,15 +48,14 @@ export default function HeaderNav(): JSX.Element {
               </Link>
             </li>
             <li className='header__nav-item'>
-              <Link
+              <a
                 className='header__nav-link'
-                to={''}
                 onClick={() => {
                   dispatch(logoutAction());
                 }}
               >
                 <span className='header__signout'>Sign out</span>
-              </Link>
+              </a>
             </li>
           </>
         );

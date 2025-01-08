@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
-import { useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import leaflet, { layerGroup, Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { PlaceCardType, LocationType, OfferType } from '../../types';
@@ -27,7 +27,7 @@ const currentCustomIcon = leaflet.icon({
   iconAnchor: [16, 40],
 });
 
-export default function Map({ cityLocation, offers, selectedPoint, currentOffer }: MapProps): JSX.Element {
+function Map({ cityLocation, offers, selectedPoint, currentOffer }: MapProps): JSX.Element {
 
   const path = useLocation().pathname;
 
@@ -76,3 +76,5 @@ export default function Map({ cityLocation, offers, selectedPoint, currentOffer 
     />
   );
 }
+
+export default memo(Map);

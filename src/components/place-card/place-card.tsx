@@ -4,6 +4,7 @@ import { capitalize, convertRating } from '../../utils/utils';
 import { generatePath, Link } from 'react-router-dom';
 import BookmarkButton from '../../ui/bookmark-button/bookmark-button';
 import PremiumMark from '../../ui/premium-mark/premium-mark';
+import { memo } from 'react';
 
 // ^======================== place-card ========================^ //
 
@@ -13,12 +14,11 @@ type PlaceCardProps = {
   onPlaceCardMouseEnter?: (id: string) => void;
 };
 
-export default function PlaceCard({
+function PlaceCard({
   cardListType, placeCardData, onPlaceCardMouseEnter,
 }: PlaceCardProps): JSX.Element {
 
   const { id, previewImage, isPremium, price, isFavorite, rating, title, type } = placeCardData;
-
 
   return (
     <article
@@ -70,3 +70,5 @@ export default function PlaceCard({
     </article>
   );
 }
+
+export default memo(PlaceCard);
