@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { DataStatus, EMPTY_OFFER, NameSpace } from '../../const';
-import { fetchOfferAction } from '../api-action';
+import { addToFavoriteAction, fetchOfferAction, removeFromFavoriteAction } from '../api-action';
 
 // %======================== offer-process.slice ========================% //
 
@@ -24,6 +24,12 @@ export const offerProcess = createSlice({
       })
       .addCase(fetchOfferAction.rejected, (state) => {
         state.status = DataStatus.Error;
+      })
+      .addCase(addToFavoriteAction.fulfilled, (state) => {
+        state.data.isFavorite = true;
+      })
+      .addCase(removeFromFavoriteAction.fulfilled, (state) => {
+        state.data.isFavorite = false;
       });
   }
 });

@@ -55,7 +55,7 @@ export default function OfferPage(): JSX.Element {
     host: { name, isPro, avatarUrl }, isPremium
   } = offerData;
 
-  const offerHeaderData = { title, rating, type, maxAdults, bedrooms, price, isFavorite, isPremium };
+  const offerHeaderData = { id, title, rating, type, maxAdults, bedrooms, price, isFavorite, isPremium };
   const offerHostData = { name, isPro, avatarUrl, description };
 
 

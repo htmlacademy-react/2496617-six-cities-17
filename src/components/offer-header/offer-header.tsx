@@ -1,3 +1,5 @@
+import { useAppDispatch } from '../../hooks';
+import { addToFavoriteAction, removeFromFavoriteAction } from '../../store/api-action';
 import BookmarkButton from '../../ui/bookmark-button/bookmark-button';
 import PremiumMark from '../../ui/premium-mark/premium-mark';
 import { capitalize, convertRating } from '../../utils/utils';
@@ -5,6 +7,7 @@ import { capitalize, convertRating } from '../../utils/utils';
 // ^======================== OfferHeader ========================^ //
 type OfferHeaderProps = {
   offerHeaderData: {
+    id: string;
     title: string;
     rating: number;
     type: string;
@@ -18,7 +21,17 @@ type OfferHeaderProps = {
 
 export default function OfferHeader({ offerHeaderData }: OfferHeaderProps): JSX.Element {
 
-  const {title, rating, type, bedrooms, maxAdults, price, isFavorite, isPremium } = offerHeaderData;
+  const { id, title, rating, type, bedrooms, maxAdults, price, isFavorite, isPremium } = offerHeaderData;
+
+  const dispatch = useAppDispatch();
+
+  const handleFavoriteToggle = () => {
+    if (isFavorite) {
+      dispatch(removeFromFavoriteAction(id));
+    } else {
+      dispatch(addToFavoriteAction(id));
+    }
+  };
 
   return (
     <>
@@ -32,6 +45,7 @@ export default function OfferHeader({ offerHeaderData }: OfferHeaderProps): JSX.
           elementClass='offer__bookmark'
           sizes={{ width: 31, height: 33 }}
           isFavorite={isFavorite}
+          onBookmarkButtonClick={handleFavoriteToggle}
         />
       </div>
 

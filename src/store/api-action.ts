@@ -77,16 +77,24 @@ export const fetchFavoriteOffersAction = createAsyncThunk<
 });
 
 // @------------------------ addToFavoritesAction ------------------------@ //
-export const addToFavoritesAction = createAsyncThunk<
+export const addToFavoriteAction = createAsyncThunk<
   PlaceCardType,
-  {
-    offerId: string;
-  },
+  string,
   AsyncThunkType
->('favoriteOffers/addToFavorites', async ({ offerId }, { extra: api }) => {
-  await api.post<PlaceCardType>(APIRoute.Favorites.replace(':offerId', offerId), placeCardData);
+>('favoriteOffers/addToFavorite', async (offerId, { extra: api }) => {
+  const { data } = await api.post<PlaceCardType>(`${APIRoute.Favorites}/${offerId}/1`);
+  return data;
 });
 
+// @------------------------ removeFromFavoritesAction ------------------------@ //
+export const removeFromFavoriteAction = createAsyncThunk<
+  PlaceCardType,
+  string,
+  AsyncThunkType
+>('favoriteOffers/removeFromFavorite', async (offerId, { extra: api }) => {
+  const { data } = await api.post<PlaceCardType>(`${APIRoute.Favorites}/${offerId}/0`);
+  return data;
+});
 
 // @------------------------ checkAuth ------------------------@ //
 export const checkAuthAction = createAsyncThunk<

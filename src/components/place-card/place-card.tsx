@@ -6,7 +6,7 @@ import BookmarkButton from '../../ui/bookmark-button/bookmark-button';
 import PremiumMark from '../../ui/premium-mark/premium-mark';
 import { memo } from 'react';
 import { useAppDispatch } from '../../hooks';
-import { addToFavoritesAction } from '../../store/api-action';
+import { addToFavoriteAction, removeFromFavoriteAction } from '../../store/api-action';
 
 type PlaceCardProps = {
   cardListType: CardListType;
@@ -22,8 +22,12 @@ function PlaceCard({
   const { id, previewImage, isPremium, price, isFavorite, rating, title, type } = placeCardData;
   const dispatch = useAppDispatch();
 
-  const handleAddToFavorites = () => {
-    dispatch(addToFavoritesAction(placeCardData));
+  const handleFavoriteToggle = () => {
+    if (isFavorite) {
+      dispatch(removeFromFavoriteAction(id));
+    } else {
+      dispatch(addToFavoriteAction(id));
+    }
   };
 
   return (
@@ -55,7 +59,7 @@ function PlaceCard({
             elementClass='place-card__bookmark'
             isFavorite={isFavorite}
             sizes={{ width: 18, height: 19 }}
-            onBookmarkButtonClick={handleAddToFavorites}
+            onBookmarkButtonClick={handleFavoriteToggle}
           />
 
         </div>

@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { DataStatus, DEFAULT_CITY_LOCATION, DEFAULT_CITY_NAME, NameSpace, SortingOption } from '../../const';
 import { OffersProcess } from '../../types';
-import { fetchOffersAction } from '../api-action';
-import { defineCityLocation, getOffersByCityName, sortOffers } from '../../utils/utils';
+import { addToFavoriteAction, fetchOffersAction, removeFromFavoriteAction } from '../api-action';
+import { defineCityLocation, getOffersByCityName, sortOffers, updateFavoriteStatus } from '../../utils/utils';
 
 // %======================== offers-process.slice ========================% //
 
@@ -43,6 +43,14 @@ export const offersProcess = createSlice({
       })
       .addCase(fetchOffersAction.rejected, (state) => {
         state.status = DataStatus.Error;
+      })
+      .addCase(addToFavoriteAction.fulfilled, (state, action) => {
+        state.all = updateFavoriteStatus(state.all, action.payload, true);
+        state.sorted = getOffersByCityName(state.all, state.cityName);
+      })
+      .addCase(removeFromFavoriteAction.fulfilled, (state, action) => {
+        state.all = updateFavoriteStatus(state.all, action.payload, false);
+        state.sorted = getOffersByCityName(state.all, state.cityName);
       });
   }
 });
