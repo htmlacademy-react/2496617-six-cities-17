@@ -11,10 +11,9 @@ import { sortReviews } from '../../utils/utils';
 
 type ReviewsProps = {
   reviews: ReviewType[];
-  offerId: string;
 };
 
-function Reviews({ reviews, offerId }: ReviewsProps): JSX.Element {
+function Reviews({ reviews }: ReviewsProps): JSX.Element {
 
   const authorizationStatus = useAppSelector(getAuthStatus);
   const shownReviews = sortReviews(reviews).slice(0, SHOWN_REVIEWS_AMOUNT);
@@ -33,7 +32,7 @@ function Reviews({ reviews, offerId }: ReviewsProps): JSX.Element {
         ))}
       </ul>
 
-      {authorizationStatus === AuthorizationStatus.Auth && <ReviewForm offerId={offerId} />}
+      {authorizationStatus === AuthorizationStatus.Auth && <ReviewForm />}
 
 
     </section>

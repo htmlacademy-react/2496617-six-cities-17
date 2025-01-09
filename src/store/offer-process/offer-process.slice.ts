@@ -1,11 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { DataStatus, EMPTY_OFFER, NameSpace } from '../../const';
+import { DataStatus, NameSpace } from '../../const';
+import { OfferType } from '../../types';
 import { addToFavoriteAction, fetchOfferAction, removeFromFavoriteAction } from '../api-action';
 
 // %======================== offer-process.slice ========================% //
 
-const initialState = {
-  data: EMPTY_OFFER,
+type InitialState = {
+  data: null | OfferType;
+  status: DataStatus;
+};
+
+const initialState: InitialState = {
+  data: null,
   status: DataStatus.Unknown,
 };
 
@@ -26,10 +32,14 @@ export const offerProcess = createSlice({
         state.status = DataStatus.Error;
       })
       .addCase(addToFavoriteAction.fulfilled, (state) => {
-        state.data.isFavorite = true;
+        if (state.data) {
+          state.data.isFavorite = true;
+        }
       })
       .addCase(removeFromFavoriteAction.fulfilled, (state) => {
-        state.data.isFavorite = false;
+        if (state.data) {
+          state.data.isFavorite = false;
+        }
       });
   }
 });

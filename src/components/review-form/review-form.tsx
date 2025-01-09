@@ -1,19 +1,17 @@
 import { ChangeEvent, useState } from 'react';
 import { CommentLength, PostingStatus, RATING_OPTIONS } from '../../const';
-import RatingButton from '../rating-button/rating-button';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { postReviewAction } from '../../store/api-action';
+import { getOfferData } from '../../store/offer-process/offer-process.selectors';
 import { getPostingStatus } from '../../store/reviews-process/reviews-process.selectors';
+import RatingButton from '../rating-button/rating-button';
 
 // ^======================== review-form ========================^ //
 
-type ReviewFormProps = {
-  offerId: string;
-};
-
-export default function ReviewForm({ offerId }: ReviewFormProps): JSX.Element {
+export default function ReviewForm(): JSX.Element {
   const dispatch = useAppDispatch();
   const postingStatus = useAppSelector(getPostingStatus);
+  const offerId = useAppSelector(getOfferData)?.id;
 
   const reviewFormInitialState = {
     comment: '',
@@ -33,8 +31,10 @@ export default function ReviewForm({ offerId }: ReviewFormProps): JSX.Element {
 
   const handleFormSubmit = (evt: ChangeEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    dispatch(postReviewAction({ comment, rating, offerId }));
-    setReviewFormState(reviewFormInitialState);
+    if (offerId) {
+      dispatch(postReviewAction({ comment, rating, offerId }));
+      setReviewFormState(reviewFormInitialState);
+    }
   };
 
   const submitCondition = Boolean(rating) &&

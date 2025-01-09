@@ -34,43 +34,6 @@ export const RATING_OPTIONS = [
   }
 ];
 
-export const EMPTY_OFFER = {
-  id: '',
-  title: '',
-  description: '',
-  type: '',
-  price: 0,
-  images: [
-    '',
-  ],
-  city: {
-    name: '',
-    location: {
-      latitude: 0,
-      longitude: 0,
-      zoom: 0,
-    }
-  },
-  location: {
-    latitude: 0,
-    longitude: 0,
-    zoom: 0,
-  },
-  goods: [
-    '',
-  ],
-  host: {
-    isPro: false,
-    name: '',
-    avatarUrl: '',
-  },
-  isPremium: false,
-  isFavorite: false,
-  rating: 0,
-  bedrooms: 0,
-  maxAdults: 0,
-}; //! remove later
-
 export enum NameSpace {
   Auth = 'AUTH',
   City = 'CITY',

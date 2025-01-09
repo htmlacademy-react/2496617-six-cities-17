@@ -37,15 +37,15 @@ export default function OfferPage(): JSX.Element {
   }>();
 
   useEffect(() => {
-    if (id && offerData.id !== id) {
+    if (id && !offerData) {
       dispatch(fetchOfferAction(id));
       dispatch(fetchNearPlacesAction(id));
       dispatch(fetchReviewsAction(id));
     }
-  }, [id, offerData.id, dispatch]);
+  }, [id, offerData, dispatch]);
 
 
-  if (offerData.id !== id) {
+  if (!offerData) {
     if (offerStatus === DataStatus.Error) {
       return <Navigate to={AppRoute.NotFound} />;
     }
@@ -60,10 +60,12 @@ export default function OfferPage(): JSX.Element {
   const offerHostData = { name, isPro, avatarUrl, description };
 
   const handleFavoriteToggle = () => {
-    if (isFavorite) {
-      dispatch(removeFromFavoriteAction(id));
-    } else {
-      dispatch(addToFavoriteAction(id));
+    if (id) {
+      if (isFavorite) {
+        dispatch(removeFromFavoriteAction(id));
+      } else {
+        dispatch(addToFavoriteAction(id));
+      }
     }
   };
 
@@ -92,7 +94,7 @@ export default function OfferPage(): JSX.Element {
 
             <OfferHost offerHostData={offerHostData} />
 
-            <Reviews reviews={reviews} offerId={id} />
+            <Reviews reviews={reviews} />
           </div>
         </div>
 
