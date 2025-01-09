@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, AppState, PlaceCardType, AuthData, UserData, OfferType, ReviewType, ReviewData, AuthResponse } from '../types';
 import { AxiosInstance } from 'axios';
 import { APIRoute } from '../const';
 import { dropToken, saveToken } from '../services/token';
+import { AppDispatch, AppState, AuthData, AuthResponse, OfferType, PlaceCardType, ReviewData, ReviewType, UserData } from '../types';
 
 // %======================== api-action ========================% //
 
@@ -111,9 +111,10 @@ export const loginAction = createAsyncThunk<
   void,
   AuthData,
   AsyncThunkType
->('auth/login', async ({ login: email, password }, { extra: api }) => {
+>('auth/login', async ({ login: email, password }, { dispatch, extra: api }) => {
   const { data: { token } } = await api.post<UserData>(APIRoute.Login, { email, password });
   saveToken(token);
+  dispatch(fetchFavoriteOffersAction());
 });
 
 // @------------------------ logout ------------------------@ //

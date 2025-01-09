@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import { DataStatus, NameSpace } from '../../const';
 import { FavoriteOffersProcess } from '../../types';
-import { fetchFavoriteOffersAction, addToFavoriteAction, removeFromFavoriteAction } from '../api-action';
-import { toast } from 'react-toastify';
+import { addToFavoriteAction, fetchFavoriteOffersAction, logoutAction, removeFromFavoriteAction } from '../api-action';
 
 // %======================== favorite-offers-process.slice ========================% //
 
@@ -41,6 +41,7 @@ export const favoriteOffersProcess = createSlice({
       })
       .addCase(removeFromFavoriteAction.rejected, () => {
         toast.error('Could not remove from favorite');
-      });
+      })
+      .addCase(logoutAction.fulfilled, () => initialState);
   }
 });
