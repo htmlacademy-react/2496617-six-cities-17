@@ -1,4 +1,9 @@
 import classNames from 'classnames';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { redirectToRoute } from '../../store/action';
+import { addToFavoriteAction, removeFromFavoriteAction } from '../../store/api-action';
+import { getAuthStatus } from '../../store/auth-process/auth-process.selectors';
 
 // ^======================== BookmarkButton ========================^ //
 
@@ -9,11 +14,25 @@ type BookmarkButtonProps = {
     width: number;
     height: number;
   };
-  onBookmarkButtonClick: () => void;
+  offerId: string;
 };
 
 export default function BookmarkButton(bookmarkButtonProps: BookmarkButtonProps): JSX.Element {
-  const { elementClass, isFavorite, sizes: { width, height }, onBookmarkButtonClick } = bookmarkButtonProps;
+  const { elementClass, isFavorite, sizes: { width, height }, offerId } = bookmarkButtonProps;
+  const dispatch = useAppDispatch();
+  const authStatus = useAppSelector(getAuthStatus);
+
+  const handleFavoriteToggle = () => {
+    if (authStatus === AuthorizationStatus.Auth) {
+      if (isFavorite) {
+        dispatch(removeFromFavoriteAction(offerId));
+      } else {
+        dispatch(addToFavoriteAction(offerId));
+      }
+    } else {
+      dispatch(redirectToRoute(AppRoute.Login));
+    }
+  };
 
   return (
     <button
@@ -22,14 +41,12 @@ export default function BookmarkButton(bookmarkButtonProps: BookmarkButtonProps)
         { [`${elementClass}-button--active`]: isFavorite }
       )}
       type='button'
-      onClick={onBookmarkButtonClick}
+      onClick={handleFavoriteToggle}
     >
       <svg className={`${elementClass}-icon`} width={width} height={height}>
         <use xlinkHref='#icon-bookmark' />
       </svg>
       <span className='visually-hidden'>{isFavorite ? 'Remove from bookmarks' : 'To bookmarks'}</span>
     </button >
-
-
   );
 }

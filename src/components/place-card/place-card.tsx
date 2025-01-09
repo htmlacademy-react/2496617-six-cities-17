@@ -1,12 +1,10 @@
+import { memo } from 'react';
+import { generatePath, Link } from 'react-router-dom';
 import { AppRoute, CardListType } from '../../const';
 import { PlaceCardType } from '../../types';
-import { capitalize, convertRating } from '../../utils/utils';
-import { generatePath, Link } from 'react-router-dom';
 import BookmarkButton from '../../ui/bookmark-button/bookmark-button';
 import PremiumMark from '../../ui/premium-mark/premium-mark';
-import { memo } from 'react';
-import { useAppDispatch } from '../../hooks';
-import { addToFavoriteAction, removeFromFavoriteAction } from '../../store/api-action';
+import { capitalize, convertRating } from '../../utils/utils';
 
 type PlaceCardProps = {
   cardListType: CardListType;
@@ -20,15 +18,6 @@ function PlaceCard({
 }: PlaceCardProps): JSX.Element {
 
   const { id, previewImage, isPremium, price, isFavorite, rating, title, type } = placeCardData;
-  const dispatch = useAppDispatch();
-
-  const handleFavoriteToggle = () => {
-    if (isFavorite) {
-      dispatch(removeFromFavoriteAction(id));
-    } else {
-      dispatch(addToFavoriteAction(id));
-    }
-  };
 
   return (
     <article
@@ -59,7 +48,7 @@ function PlaceCard({
             elementClass='place-card__bookmark'
             isFavorite={isFavorite}
             sizes={{ width: 18, height: 19 }}
-            onBookmarkButtonClick={handleFavoriteToggle}
+            offerId={id}
           />
 
         </div>

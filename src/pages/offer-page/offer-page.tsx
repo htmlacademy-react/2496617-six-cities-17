@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { AppRoute, DataStatus, NEAR_PLACES_AMOUNT } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { addToFavoriteAction, fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction, removeFromFavoriteAction } from '../../store/api-action';
+import { fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-action';
 import { getNearPlaces } from '../../store/near-places-process/near-places-process.selectors';
 import { getOfferData, getOfferStatus } from '../../store/offer-process/offer-process.selectors';
 import { getReviews } from '../../store/reviews-process/reviews-process.selectors';
@@ -59,16 +59,6 @@ export default function OfferPage(): JSX.Element {
   const offerHeaderData = { title, rating, type, maxAdults, bedrooms, price, isPremium };
   const offerHostData = { name, isPro, avatarUrl, description };
 
-  const handleFavoriteToggle = () => {
-    if (id) {
-      if (isFavorite) {
-        dispatch(removeFromFavoriteAction(id));
-      } else {
-        dispatch(addToFavoriteAction(id));
-      }
-    }
-  };
-
   return (
     <main className='page__main page__main--offer'>
       <Helmet>
@@ -87,7 +77,7 @@ export default function OfferPage(): JSX.Element {
               elementClass='offer__bookmark'
               sizes={{ width: 31, height: 33 }}
               isFavorite={isFavorite}
-              onBookmarkButtonClick={handleFavoriteToggle}
+              offerId={id as string}
             />
 
             <OfferInside goods={goods} />
