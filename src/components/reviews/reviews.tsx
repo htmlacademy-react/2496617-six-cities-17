@@ -1,11 +1,11 @@
-import Review from '../../components/review/review';
-import ReviewForm from '../../components/review-form/review-form';
-import { ReviewType } from '../../types';
-import { useAppSelector } from '../../hooks';
-import { AuthorizationStatus, SHOWN_REVIEWS_AMOUNT } from '../../const';
-import { sortReviews } from '../../utils/utils';
-import { getAuthStatus } from '../../store/auth-process/auth-process.selectors';
 import { memo } from 'react';
+import ReviewForm from '../../components/review-form/review-form';
+import Review from '../../components/review/review';
+import { AuthorizationStatus, SHOWN_REVIEWS_AMOUNT } from '../../const';
+import { useAppSelector } from '../../hooks';
+import { getAuthStatus } from '../../store/auth-process/auth-process.selectors';
+import { ReviewType } from '../../types';
+import { sortReviews } from '../../utils/utils';
 
 // ^======================== Reviews ========================^ //
 

@@ -2,23 +2,24 @@ import { Helmet } from 'react-helmet-async';
 import useScrollToTop from '../../hooks/use-scroll-to-top';
 
 // %------------ components ------------% //
-import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import Map from '../../components/map/map';
-import OfferInside from '../../components/offer-inside/offer-inside';
+import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferHeader from '../../components/offer-header/offer-header';
 import OfferHost from '../../components/offer-host/offer-host';
-import Reviews from '../../components/reviews/reviews';
+import OfferInside from '../../components/offer-inside/offer-inside';
 import PlacesList from '../../components/places-list/places-list';
 import Preloader from '../../components/preloader/preloader';
+import Reviews from '../../components/reviews/reviews';
 
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { Navigate, useParams } from 'react-router-dom';
-import { fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-action';
 import { useEffect } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
 import { AppRoute, DataStatus, NEAR_PLACES_AMOUNT } from '../../const';
-import { getOfferData, getOfferStatus } from '../../store/offer-process/offer-process.selectors';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { addToFavoriteAction, fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction, removeFromFavoriteAction } from '../../store/api-action';
 import { getNearPlaces } from '../../store/near-places-process/near-places-process.selectors';
+import { getOfferData, getOfferStatus } from '../../store/offer-process/offer-process.selectors';
 import { getReviews } from '../../store/reviews-process/reviews-process.selectors';
+import BookmarkButton from '../../ui/bookmark-button/bookmark-button';
 
 // #======================== OfferPage ========================# //
 
@@ -55,9 +56,16 @@ export default function OfferPage(): JSX.Element {
     host: { name, isPro, avatarUrl }, isPremium
   } = offerData;
 
-  const offerHeaderData = { id, title, rating, type, maxAdults, bedrooms, price, isFavorite, isPremium };
+  const offerHeaderData = { title, rating, type, maxAdults, bedrooms, price, isPremium };
   const offerHostData = { name, isPro, avatarUrl, description };
 
+  const handleFavoriteToggle = () => {
+    if (isFavorite) {
+      dispatch(removeFromFavoriteAction(id));
+    } else {
+      dispatch(addToFavoriteAction(id));
+    }
+  };
 
   return (
     <main className='page__main page__main--offer'>
@@ -72,6 +80,13 @@ export default function OfferPage(): JSX.Element {
           <div className='offer__wrapper'>
 
             <OfferHeader offerHeaderData={offerHeaderData} />
+
+            <BookmarkButton
+              elementClass='offer__bookmark'
+              sizes={{ width: 31, height: 33 }}
+              isFavorite={isFavorite}
+              onBookmarkButtonClick={handleFavoriteToggle}
+            />
 
             <OfferInside goods={goods} />
 
