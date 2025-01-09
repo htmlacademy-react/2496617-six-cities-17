@@ -5,6 +5,7 @@ import { useAppSelector } from '../../hooks';
 import { AuthorizationStatus, SHOWN_REVIEWS_AMOUNT } from '../../const';
 import { sortReviews } from '../../utils/utils';
 import { getAuthStatus } from '../../store/auth-process/auth-process.selectors';
+import { memo } from 'react';
 
 // ^======================== Reviews ========================^ //
 
@@ -13,7 +14,7 @@ type ReviewsProps = {
   offerId: string;
 };
 
-export default function Reviews({ reviews, offerId }: ReviewsProps): JSX.Element {
+function Reviews({ reviews, offerId }: ReviewsProps): JSX.Element {
 
   const authorizationStatus = useAppSelector(getAuthStatus);
   const shownReviews = sortReviews(reviews).slice(0, SHOWN_REVIEWS_AMOUNT);
@@ -38,3 +39,5 @@ export default function Reviews({ reviews, offerId }: ReviewsProps): JSX.Element
     </section>
   );
 }
+
+export default memo(Reviews);

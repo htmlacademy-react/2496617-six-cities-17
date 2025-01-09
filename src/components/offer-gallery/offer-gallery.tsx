@@ -1,8 +1,10 @@
+import { memo } from 'react';
+
 // ^======================== OfferGalley ========================^ //
 type OfferGalleryProps = {
   images: string[];
 };
-export default function OfferGallery(offerGalleryProps: OfferGalleryProps): JSX.Element {
+function OfferGallery(offerGalleryProps: OfferGalleryProps): JSX.Element {
   const { images } = offerGalleryProps;
   return (
     <div className='offer__gallery-container container'>
@@ -25,3 +27,5 @@ export default function OfferGallery(offerGalleryProps: OfferGalleryProps): JSX.
     </div>
   );
 }
+
+export default memo(OfferGallery);

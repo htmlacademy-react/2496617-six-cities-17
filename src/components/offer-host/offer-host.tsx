@@ -1,6 +1,7 @@
-// ^======================== OfferHost ========================^ //
-
 import classNames from 'classnames';
+import { memo } from 'react';
+
+// ^======================== OfferHost ========================^ //
 
 type OfferHostProps = {
   offerHostData: {
@@ -11,8 +12,9 @@ type OfferHostProps = {
   };
 };
 
-export default function OfferHost({ offerHostData }: OfferHostProps): JSX.Element {
+function OfferHost({ offerHostData }: OfferHostProps): JSX.Element {
   const { name, isPro, avatarUrl, description } = offerHostData;
+
   return (
     <div className='offer__host'>
       <h2 className='offer__host-title'>Meet the host</h2>
@@ -42,3 +44,5 @@ export default function OfferHost({ offerHostData }: OfferHostProps): JSX.Elemen
     </div>
   );
 }
+
+export default memo(OfferHost);

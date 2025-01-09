@@ -19,7 +19,7 @@ type OfferHeaderProps = {
   };
 };
 
-export default function OfferHeader({ offerHeaderData }: OfferHeaderProps): JSX.Element {
+function OfferHeader({ offerHeaderData }: OfferHeaderProps): JSX.Element {
 
   const { id, title, rating, type, bedrooms, maxAdults, price, isFavorite, isPremium } = offerHeaderData;
 
@@ -74,3 +74,5 @@ export default function OfferHeader({ offerHeaderData }: OfferHeaderProps): JSX.
     </>
   );
 }
+
+export default OfferHeader;
