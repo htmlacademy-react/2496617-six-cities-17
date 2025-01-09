@@ -37,12 +37,12 @@ export default function OfferPage(): JSX.Element {
   }>();
 
   useEffect(() => {
-    if (id && !offerData) {
+    if (id) {
       dispatch(fetchOfferAction(id));
       dispatch(fetchNearPlacesAction(id));
       dispatch(fetchReviewsAction(id));
     }
-  }, [id, offerData, dispatch]);
+  }, [id, dispatch]);
 
 
   if (!offerData) {
@@ -72,7 +72,7 @@ export default function OfferPage(): JSX.Element {
   return (
     <main className='page__main page__main--offer'>
       <Helmet>
-        <title>6 cities - offer</title>
+        <title>6 cities - {title}</title>
       </Helmet>
       <section className='offer'>
 
