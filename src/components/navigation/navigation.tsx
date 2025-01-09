@@ -3,7 +3,6 @@ import NavButton from '../nav-button/nav-button';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.ts';
 import { getCityName } from '../../store/offers-process/offers-process.selectors.ts';
 import { changeCity } from '../../store/offers-process/offers-process.slice.ts';
-import { memo } from 'react';
 
 // ^======================== Navigation ========================^ //
 
@@ -23,7 +22,7 @@ function Navigation(): JSX.Element {
             <NavButton
               key={location}
               name={location}
-              isActive={location === currentCityName}
+              isActive={location.toLowerCase() === currentCityName.toLowerCase()}
               onNavLinkClick={() => onNavLinkClick(location)}
             />
           ))}
@@ -33,4 +32,4 @@ function Navigation(): JSX.Element {
   );
 }
 
-export default memo(Navigation);
+export default Navigation;
