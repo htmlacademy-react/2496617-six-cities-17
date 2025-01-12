@@ -1,12 +1,12 @@
 import { LOCATIONS } from '../../const.ts';
 import NavButton from '../nav-button/nav-button';
-import { changeCity } from '../../store/action';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.ts';
-import { getCityName } from '../../store/selectors.ts';
+import { getCityName } from '../../store/offers-process/offers-process.selectors.ts';
+import { changeCity } from '../../store/offers-process/offers-process.slice.ts';
 
 // ^======================== Navigation ========================^ //
 
-export default function Navigation(): JSX.Element {
+function Navigation(): JSX.Element {
   const dispatch = useAppDispatch();
   const currentCityName = useAppSelector(getCityName);
 
@@ -22,7 +22,7 @@ export default function Navigation(): JSX.Element {
             <NavButton
               key={location}
               name={location}
-              isActive={location === currentCityName}
+              isActive={location.toLowerCase() === currentCityName.toLowerCase()}
               onNavLinkClick={() => onNavLinkClick(location)}
             />
           ))}
@@ -31,3 +31,5 @@ export default function Navigation(): JSX.Element {
     </div>
   );
 }
+
+export default Navigation;

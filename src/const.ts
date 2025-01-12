@@ -34,42 +34,15 @@ export const RATING_OPTIONS = [
   }
 ];
 
-export const EMPTY_OFFER = {
-  id: '',
-  title: '',
-  description: '',
-  type: '',
-  price: 0,
-  images: [
-    '',
-  ],
-  city: {
-    name: '',
-    location: {
-      latitude: 0,
-      longitude: 0,
-      zoom: 0,
-    }
-  },
-  location: {
-    latitude: 0,
-    longitude: 0,
-    zoom: 0,
-  },
-  goods: [
-    '',
-  ],
-  host: {
-    isPro: false,
-    name: '',
-    avatarUrl: '',
-  },
-  isPremium: false,
-  isFavorite: false,
-  rating: 0,
-  bedrooms: 0,
-  maxAdults: 0,
-};
+export enum NameSpace {
+  Auth = 'AUTH',
+  City = 'CITY',
+  Offers = 'OFFERS',
+  Offer = 'OFFER',
+  NearPlaces = 'NEAR_PLACES',
+  Reviews = 'REVIEWS',
+  FavoriteOffers = 'FAVORITE_OFFERS',
+}
 
 // *------------ view ------------* //
 export enum CardListType {
@@ -146,5 +119,18 @@ export enum DataStatus {
   Unknown = 'unknown',
   Loading = 'loading',
   Loaded = 'loaded',
+  Error = 'error',
+}
+
+export enum LoginStatus {
+  Unknown = 'unknown',
+  Processing = 'processing',
+  LoggedIn = 'logged-in',
+  Error = 'error',
+}
+export enum PostingStatus {
+  Unknown = 'unknown',
+  Posting = 'posting',
+  Posted = 'posted',
   Error = 'error',
 }

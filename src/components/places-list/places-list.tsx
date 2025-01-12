@@ -4,6 +4,7 @@ import PlaceCard from '../place-card/place-card';
 import classNames from 'classnames';
 import { useLocation } from 'react-router-dom';
 import { PlaceCardType } from '../../types';
+import { memo } from 'react';
 
 // ^======================== PlacesList ========================^ //
 
@@ -12,9 +13,11 @@ type PlacesListProps = {
   onListItemHover?: (id: string) => void;
 };
 
-export default function PlacesList(placesListProps: PlacesListProps): JSX.Element {
+function PlacesList(placesListProps: PlacesListProps): JSX.Element {
   const { onListItemHover, offers } = placesListProps;
+
   const path = useLocation().pathname;
+
   const handleListItemHover = (id: string) => onListItemHover?.(id);
 
   const isOfferPage = path.startsWith('/offer');
@@ -38,3 +41,5 @@ export default function PlacesList(placesListProps: PlacesListProps): JSX.Elemen
     </div>
   );
 }
+
+export default memo(PlacesList);

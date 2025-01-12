@@ -1,11 +1,11 @@
 import { Helmet } from 'react-helmet-async';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute, AuthorizationStatus, LoginStatus } from '../../const';
 import { FormEvent, useRef } from 'react';
 import { useAppDispatch, useAppSelector, } from '../../hooks';
 import { checkAuthAction, loginAction } from '../../store/api-action';
 import { useEffect } from 'react';
 import { redirectToRoute } from '../../store/action';
-import { getAuthStatus } from '../../store/selectors';
+import { getAuthStatus, getLoginStatus } from '../../store/auth-process/auth-process.selectors';
 
 // #======================== LoginPage ========================# //
 
@@ -14,6 +14,7 @@ export default function LoginPage(): JSX.Element {
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const dispatch = useAppDispatch();
   const authStatus = useAppSelector(getAuthStatus);
+  const loginStatus = useAppSelector(getLoginStatus);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -25,6 +26,7 @@ export default function LoginPage(): JSX.Element {
       }));
     }
   };
+
   useEffect(() => {
     if (authStatus === AuthorizationStatus.Auth) {
       dispatch(checkAuthAction());
@@ -68,8 +70,9 @@ export default function LoginPage(): JSX.Element {
               <button
                 className='login__submit form__submit button'
                 type='submit'
+                disabled={loginStatus === LoginStatus.Processing}
               >
-                Sign in
+                {loginStatus === LoginStatus.Processing ? 'Signing in...' : 'Sign in'}
               </button>
             </form>
           </section>

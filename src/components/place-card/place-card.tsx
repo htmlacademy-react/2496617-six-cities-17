@@ -1,11 +1,10 @@
+import { memo } from 'react';
+import { generatePath, Link } from 'react-router-dom';
 import { AppRoute, CardListType } from '../../const';
 import { PlaceCardType } from '../../types';
-import { capitalize, convertRating } from '../../utils/utils';
-import { generatePath, Link } from 'react-router-dom';
 import BookmarkButton from '../../ui/bookmark-button/bookmark-button';
 import PremiumMark from '../../ui/premium-mark/premium-mark';
-
-// ^======================== place-card ========================^ //
+import { capitalize, convertRating } from '../../utils/utils';
 
 type PlaceCardProps = {
   cardListType: CardListType;
@@ -13,12 +12,12 @@ type PlaceCardProps = {
   onPlaceCardMouseEnter?: (id: string) => void;
 };
 
-export default function PlaceCard({
+// ^======================== PlaceCard ========================^ //
+function PlaceCard({
   cardListType, placeCardData, onPlaceCardMouseEnter,
 }: PlaceCardProps): JSX.Element {
 
   const { id, previewImage, isPremium, price, isFavorite, rating, title, type } = placeCardData;
-
 
   return (
     <article
@@ -49,6 +48,7 @@ export default function PlaceCard({
             elementClass='place-card__bookmark'
             isFavorite={isFavorite}
             sizes={{ width: 18, height: 19 }}
+            offerId={id}
           />
 
         </div>
@@ -70,3 +70,5 @@ export default function PlaceCard({
     </article>
   );
 }
+
+export default memo(PlaceCard);

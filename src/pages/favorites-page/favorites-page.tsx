@@ -1,16 +1,19 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { PlaceCardType } from '../../types';
-import PlaceCard from '../../components/place-card/place-card';
 import { CardListType } from '../../const';
-import { useAppSelector } from '../../hooks';
-import { getFavoriteOffers } from '../../store/selectors';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getFavoriteOffers } from '../../store/favorite-offers-process/favorite-offers-process.selectors';
+
+import PlaceCard from '../../components/place-card/place-card';
+import { changeCity } from '../../store/offers-process/offers-process.slice';
 
 // #======================== FavoritesPage ========================# //
 
 export default function FavoritesPage(): JSX.Element {
 
   const favoriteOffers = useAppSelector(getFavoriteOffers);
+  const dispatch = useAppDispatch();
 
   const offersByCity = favoriteOffers.reduce<Record<string, PlaceCardType[]>>((acc, offer) => {
     const city = offer.city.name;
@@ -20,6 +23,10 @@ export default function FavoritesPage(): JSX.Element {
     acc[city].push(offer);
     return acc;
   }, {});
+
+  const handleCityLinkClick = (city: string) => {
+    dispatch(changeCity(city));
+  };
 
   return (
     <div className='page'>
@@ -36,7 +43,13 @@ export default function FavoritesPage(): JSX.Element {
                 <li key={city} className='favorites__locations-items'>
                   <div className='favorites__locations locations locations--current'>
                     <div className='locations__item'>
-                      <Link className='locations__item-link' to='/'>
+                      <Link
+                        className='locations__item-link'
+                        to='/'
+                        onClick={() => {
+                          handleCityLinkClick(city);
+                        }}
+                      >
                         <span>{city}</span>
                       </Link>
                     </div>

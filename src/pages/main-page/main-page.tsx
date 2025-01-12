@@ -1,76 +1,46 @@
 import { Helmet } from 'react-helmet-async';
-import { PlaceCardType } from '../../types';
-import { useState } from 'react';
 import { useAppSelector } from '../../hooks';
-import { capitalize } from '../../utils/utils';
+import { DataStatus } from '../../const';
+import { getOffersStatus, getSortedOffers } from '../../store/offers-process/offers-process.selectors';
+import classNames from 'classnames';
 
 // %------------ components ------------% //
-import PlacesSorting from '../../components/places-sorting/places-sorting';
-import PlacesList from '../../components/places-list/places-list';
-import Map from '../../components/map/map';
 import Navigation from '../../components/navigation/navigation';
-import { getCityLocation, getCityName, getOffersStatus, getSortedOffers } from '../../store/selectors';
 import Preloader from '../../components/preloader/preloader';
-import { DataStatus } from '../../const';
+import Cities from '../../components/cities/cities';
+import CitiesEmpty from '../../components/cities-empty/cities-empty';
 
 // #======================== MainPage ========================# //
 
 export default function MainPage(): JSX.Element {
-  const [selectedPoint, setSelectedPoint] = useState<PlaceCardType>();
-  const selectedCityName = useAppSelector(getCityName);
-  const selectedCityLocation = useAppSelector(getCityLocation);
-  const sortedOffers = useAppSelector(getSortedOffers);
-  const offersStatus = useAppSelector(getOffersStatus);
 
-  const handleListItemHover = (listItemId: string) => {
-    const currentPoint = sortedOffers.find((offer) => offer.id === listItemId);
-    setSelectedPoint(currentPoint);
-  };
+  const offersStatus = useAppSelector(getOffersStatus);
+  const sortedOffers = useAppSelector(getSortedOffers);
 
   if (offersStatus === DataStatus.Loading) {
     return <Preloader />;
   }
 
   return (
-    <div className='page page--gray page--main'>
+    <main
+      className={classNames(
+        'page__main page__main--index',
+        { 'page__main--index-empty': sortedOffers.length === 0 }
+      )}
+    >
       <Helmet>
         <title>6 cities</title>
       </Helmet>
+      <h1 className='visually-hidden'>Cities</h1>
 
-      <main className='page__main page__main--index'>
-        <h1 className='visually-hidden'>Cities</h1>
+      <Navigation />
 
-        <Navigation />
+      {
+        sortedOffers.length !== 0
+          ? <Cities offers={sortedOffers} />
+          : <CitiesEmpty />
+      }
 
-        <div className='cities'>
-          <div className='cities__places-container container'>
-
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">
-                {sortedOffers.length} places to stay in {capitalize(selectedCityName)}
-              </b>
-
-              <PlacesSorting />
-
-              <PlacesList
-                onListItemHover={handleListItemHover}
-                offers={sortedOffers}
-              />
-
-            </section>
-
-            <div className='cities__right-section'>
-              <Map
-                cityLocation={selectedCityLocation}
-                offers={sortedOffers}
-                selectedPoint={selectedPoint}
-              />
-            </div>
-
-          </div>
-        </div>
-      </main>
-    </div>
+    </main>
   );
 }

@@ -1,4 +1,4 @@
-import BookmarkButton from '../../ui/bookmark-button/bookmark-button';
+import { memo } from 'react';
 import PremiumMark from '../../ui/premium-mark/premium-mark';
 import { capitalize, convertRating } from '../../utils/utils';
 
@@ -11,14 +11,13 @@ type OfferHeaderProps = {
     bedrooms: number;
     maxAdults: number;
     price: number;
-    isFavorite: boolean;
     isPremium: boolean;
   };
 };
 
-export default function OfferHeader({ offerHeaderData }: OfferHeaderProps): JSX.Element {
+function OfferHeader({ offerHeaderData }: OfferHeaderProps): JSX.Element {
 
-  const {title, rating, type, bedrooms, maxAdults, price, isFavorite, isPremium } = offerHeaderData;
+  const { title, rating, type, bedrooms, maxAdults, price, isPremium } = offerHeaderData;
 
   return (
     <>
@@ -28,11 +27,7 @@ export default function OfferHeader({ offerHeaderData }: OfferHeaderProps): JSX.
         <h1 className='offer__name'>
           {title}
         </h1>
-        <BookmarkButton
-          elementClass='offer__bookmark'
-          sizes={{ width: 31, height: 33 }}
-          isFavorite={isFavorite}
-        />
+
       </div>
 
       <div className='offer__rating rating'>
@@ -60,3 +55,5 @@ export default function OfferHeader({ offerHeaderData }: OfferHeaderProps): JSX.
     </>
   );
 }
+
+export default memo(OfferHeader);

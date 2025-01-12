@@ -1,19 +1,19 @@
-import Review from '../../components/review/review';
+import { memo } from 'react';
 import ReviewForm from '../../components/review-form/review-form';
-import { ReviewType } from '../../types';
-import { useAppSelector } from '../../hooks';
+import Review from '../../components/review/review';
 import { AuthorizationStatus, SHOWN_REVIEWS_AMOUNT } from '../../const';
+import { useAppSelector } from '../../hooks';
+import { getAuthStatus } from '../../store/auth-process/auth-process.selectors';
+import { ReviewType } from '../../types';
 import { sortReviews } from '../../utils/utils';
-import { getAuthStatus } from '../../store/selectors';
 
 // ^======================== Reviews ========================^ //
 
 type ReviewsProps = {
   reviews: ReviewType[];
-  offerId: string;
 };
 
-export default function Reviews({ reviews, offerId }: ReviewsProps): JSX.Element {
+function Reviews({ reviews }: ReviewsProps): JSX.Element {
 
   const authorizationStatus = useAppSelector(getAuthStatus);
   const shownReviews = sortReviews(reviews).slice(0, SHOWN_REVIEWS_AMOUNT);
@@ -32,9 +32,11 @@ export default function Reviews({ reviews, offerId }: ReviewsProps): JSX.Element
         ))}
       </ul>
 
-      {authorizationStatus === AuthorizationStatus.Auth && <ReviewForm offerId={offerId} />}
+      {authorizationStatus === AuthorizationStatus.Auth && <ReviewForm />}
 
 
     </section>
   );
 }
+
+export default memo(Reviews);
