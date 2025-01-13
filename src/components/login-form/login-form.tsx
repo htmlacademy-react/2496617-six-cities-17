@@ -33,12 +33,16 @@ function LoginForm(): JSX.Element {
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-
     dispatch(loginAction({
-      login: loginFormState.email,
-      password: loginFormState.password
+      email: loginFormState.email,
+      password: loginFormState.password,
     }));
   };
+
+  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).+$/;
+  const submitCondition = loginFormState.email !== ''
+    && loginFormState.password !== ''
+    && passwordRegex.test(loginFormState.password);
 
   return (
     <form className='login__form form' onSubmit={handleSubmit}>
@@ -62,14 +66,14 @@ function LoginForm(): JSX.Element {
           name='password'
           placeholder='Password'
           required
-          onChange={onPasswordInputChange}
           value={loginFormState.password}
+          onChange={onPasswordInputChange}
         />
       </div>
       <button
         className='login__submit form__submit button'
         type='submit'
-        disabled={loginStatus === LoginStatus.Processing}
+        disabled={(loginStatus === LoginStatus.Processing) || !submitCondition}
       >
         {loginStatus === LoginStatus.Processing ? 'Signing in...' : 'Sign in'}
       </button>

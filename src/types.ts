@@ -67,7 +67,7 @@ export type UserData = {
 };
 
 export type AuthData = {
-  login: string;
+  email: string;
   password: string;
 };
 

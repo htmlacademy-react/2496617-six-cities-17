@@ -16,20 +16,10 @@ export default function HeaderNav(): JSX.Element {
 
   const favoritesAmount = useAppSelector(getFavoriteOffers).length;
 
-  const getHeaderAuthElement = () => {
-    switch (authorizationStatus) {
-      case AuthorizationStatus.NoAuth:
-        return (
-          <li className="header__nav-item user">
-            <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Login}>
-              <div className="header__avatar-wrapper user__avatar-wrapper">
-              </div>
-              <span className="header__login">Sign in</span>
-            </Link>
-          </li>
-        );
-      case AuthorizationStatus.Auth:
-        return (
+  return (
+    <nav className='header__nav'>
+      <ul className='header__nav-list'>
+        {authorizationStatus === AuthorizationStatus.Auth ?
           <>
             <li className='header__nav-item user'>
               <Link
@@ -57,15 +47,14 @@ export default function HeaderNav(): JSX.Element {
                 <span className='header__signout'>Sign out</span>
               </a>
             </li>
-          </>
-        );
-    }
-  };
-
-  return (
-    <nav className='header__nav'>
-      <ul className='header__nav-list'>
-        {getHeaderAuthElement()}
+          </> :
+          <li className="header__nav-item user">
+            <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Login}>
+              <div className="header__avatar-wrapper user__avatar-wrapper">
+              </div>
+              <span className="header__login">Sign in</span>
+            </Link>
+          </li>}
       </ul>
     </nav>
   );
