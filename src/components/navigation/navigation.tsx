@@ -22,7 +22,7 @@ function Navigation(): JSX.Element {
             <NavButton
               key={location}
               name={location}
-              isActive={location.toLowerCase() === currentCityName.toLowerCase()}
+              isActive={location === currentCityName}
               onNavLinkClick={() => onNavLinkClick(location)}
             />
           ))}

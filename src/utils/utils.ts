@@ -9,7 +9,7 @@ export const humanizeTime = (value: string | null | undefined, format: string): 
 
 export const convertRating = (rating: number): string => `${Math.round(rating) * 20}%`;
 
-export const getOffersByCityName = (offers: PlaceCardType[], cityName: string) => offers.filter((offer) => cityName.toLowerCase() === offer.city.name.toLowerCase());
+export const getOffersByCityName = (offers: PlaceCardType[], cityName: string) => offers.filter((offer) => cityName === offer.city.name);
 
 export const defineCityLocation = (offers: PlaceCardType[]) => offers[0]?.city.location;
 
