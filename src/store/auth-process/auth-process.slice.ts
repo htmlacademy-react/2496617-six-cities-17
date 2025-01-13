@@ -22,10 +22,12 @@ export const authProcess = createSlice({
         state.status = AuthorizationStatus.Auth;
         state.login = action.payload.email;
         state.avatarUrl = action.payload.avatarUrl;
+        state.loginStatus = LoginStatus.LoggedIn;
       })
       .addCase(checkAuthAction.rejected, (state) => {
         state.status = AuthorizationStatus.NoAuth;
         state.login = '';
+        state.loginStatus = LoginStatus.Unknown;
       })
       // @------------ login ------------@ //
       .addCase(loginAction.pending, (state) => {
@@ -43,9 +45,11 @@ export const authProcess = createSlice({
       .addCase(logoutAction.fulfilled, (state) => {
         state.status = AuthorizationStatus.NoAuth;
         state.login = '';
+        state.loginStatus = LoginStatus.Unknown;
       })
       .addCase(logoutAction.rejected, (state) => {
         state.status = AuthorizationStatus.Auth;
+        state.loginStatus = LoginStatus.LoggedIn;
       });
   }
 });
