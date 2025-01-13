@@ -38,8 +38,8 @@ export default function HeaderNav(): JSX.Element {
               >
                 <div
                   className='header__avatar-wrapper user__avatar-wrapper'
+                  style={{ backgroundImage: avatarUrl }}
                 >
-                  <img src={avatarUrl} alt='' />
                 </div>
                 <span className='header__user-name user__name'>
                   {login}
