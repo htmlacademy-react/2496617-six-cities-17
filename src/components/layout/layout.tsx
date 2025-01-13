@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { Outlet, useLocation } from 'react-router-dom';
 import { AppRoute } from '../../const';
-
-// %------------ components ------------% //
+import { useAppSelector } from '../../hooks';
+import { getFavoriteOffers } from '../../store/favorite-offers-process/favorite-offers-process.selectors';
 import Header from '../header/header';
 
 // ^======================== Layout ========================^ //
@@ -13,6 +13,7 @@ export default function Layout(): JSX.Element {
   const isMainPage = path === AppRoute.Main;
   const isLoginPage = path === AppRoute.Login;
   const isFavoritesPage = path === AppRoute.Favorites;
+  const isFavoriteOffersEmpty = useAppSelector(getFavoriteOffers).length === 0;
 
   return (
     <div
@@ -20,7 +21,8 @@ export default function Layout(): JSX.Element {
         'page',
         { 'page--gray': isMainPage || isLoginPage },
         { 'page--main': isMainPage },
-        { 'page--login': isLoginPage }
+        { 'page--login': isLoginPage },
+        { 'page--favorites-empty': isFavoriteOffersEmpty }
       )}
     >
 
