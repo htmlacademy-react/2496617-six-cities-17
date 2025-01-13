@@ -1,5 +1,5 @@
-import { store } from './store';
 import { AuthorizationStatus, DataStatus, LoginStatus, PostingStatus, SortingOption } from './const';
+import { store } from './store';
 
 // %======================== types ========================% //
 
@@ -76,9 +76,16 @@ export type AuthResponse = {
   avatarUrl: string;
 };
 
-export type ReviewData = {
-  rating: number;
+export type ReviewResponse = {
   comment: string;
+  date: string;
+  id: string;
+  rating: number;
+  user: {
+    name: string;
+    isPro: boolean;
+    avatarUrl: string;
+  };
 };
 
 export type OffersProcess = {

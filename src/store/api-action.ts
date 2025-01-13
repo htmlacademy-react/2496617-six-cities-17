@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import { APIRoute } from '../const';
 import { dropToken, saveToken } from '../services/token';
-import { AppDispatch, AppState, AuthData, AuthResponse, OfferType, PlaceCardType, ReviewData, ReviewType, UserData } from '../types';
+import { AppDispatch, AppState, AuthData, AuthResponse, OfferType, PlaceCardType, ReviewResponse, ReviewType, UserData } from '../types';
 
 // %======================== api-action ========================% //
 
@@ -54,16 +54,16 @@ export const fetchReviewsAction = createAsyncThunk<
 
 // @------------------------ postReview ------------------------@ //
 export const postReviewAction = createAsyncThunk<
-  void,
+  ReviewResponse,
   {
     comment: string;
     rating: number;
     offerId: string;
   },
   AsyncThunkType
->('reviews/postReview', async ({ comment, rating, offerId }, { dispatch, extra: api }) => {
-  await api.post<ReviewData>(APIRoute.Reviews.replace(':offerId', offerId), { rating, comment });
-  dispatch(fetchReviewsAction(offerId));
+>('reviews/postReview', async ({ comment, rating, offerId }, { extra: api }) => {
+  const { data } = await api.post<ReviewResponse>(APIRoute.Reviews.replace(':offerId', offerId), { rating, comment });
+  return data;
 });
 
 // @------------------------ fetchFavoriteOffers ------------------------@ //
