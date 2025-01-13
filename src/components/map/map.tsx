@@ -1,11 +1,11 @@
-import { useLocation } from 'react-router-dom';
-import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
-import { memo, useEffect, useRef } from 'react';
+import classNames from 'classnames';
 import leaflet, { layerGroup, Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { PlaceCardType, LocationType, OfferType } from '../../types';
+import { memo, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
+import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 import { useMap } from '../../hooks/use-map';
-import classNames from 'classnames';
+import { LocationType, OfferType, PlaceCardType } from '../../types';
 
 // ^======================== map ========================^ //
 type MapProps = {
@@ -63,7 +63,7 @@ function Map({ cityLocation, offers, selectedPoint, currentOffer }: MapProps): J
           .addTo(markerLayer);
       }
     }
-  }, [map, offers, selectedPoint, cityLocation, currentOffer]);
+  }, [currentOffer, map, offers, selectedPoint]);
 
   return (
     <section

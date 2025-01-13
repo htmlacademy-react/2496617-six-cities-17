@@ -37,13 +37,18 @@ export default function OfferPage(): JSX.Element {
   }>();
 
   useEffect(() => {
-    if (id) {
+    if (id && offerStatus === DataStatus.Unknown) {
       dispatch(fetchOfferAction(id));
+    }
+  }, [id, dispatch, offerStatus]);
+
+  useEffect(() => {
+    if (id && offerStatus === DataStatus.Loaded) {
       dispatch(fetchNearPlacesAction(id));
       dispatch(fetchReviewsAction(id));
     }
-  }, [id, dispatch]);
 
+  }, [id, dispatch, offerStatus]);
 
   if (!offerData) {
     if (offerStatus === DataStatus.Error) {
@@ -88,7 +93,11 @@ export default function OfferPage(): JSX.Element {
           </div>
         </div>
 
-        <Map cityLocation={city.location} offers={nearPlaces} currentOffer={offerData} />
+        {
+          nearPlaces.length !== 0
+            ? <Map cityLocation={city.location} offers={nearPlaces} currentOffer={offerData} />
+            : null
+        }
 
       </section>
 
