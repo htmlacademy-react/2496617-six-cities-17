@@ -1,31 +1,17 @@
-import { Helmet } from 'react-helmet-async';
-import { AppRoute, AuthorizationStatus, LoginStatus } from '../../const';
-import { FormEvent, useRef } from 'react';
-import { useAppDispatch, useAppSelector, } from '../../hooks';
-import { checkAuthAction, loginAction } from '../../store/api-action';
 import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
+import LoginForm from '../../components/login-form/login-form';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { useAppDispatch, useAppSelector, } from '../../hooks';
 import { redirectToRoute } from '../../store/action';
-import { getAuthStatus, getLoginStatus } from '../../store/auth-process/auth-process.selectors';
+import { checkAuthAction } from '../../store/api-action';
+import { getAuthStatus } from '../../store/auth-process/auth-process.selectors';
 
 // #======================== LoginPage ========================# //
 
 export default function LoginPage(): JSX.Element {
-  const loginRef = useRef<HTMLInputElement | null>(null);
-  const passwordRef = useRef<HTMLInputElement | null>(null);
   const dispatch = useAppDispatch();
   const authStatus = useAppSelector(getAuthStatus);
-  const loginStatus = useAppSelector(getLoginStatus);
-
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
-
-    if (loginRef.current !== null && passwordRef.current !== null) {
-      dispatch(loginAction({
-        login: loginRef.current.value,
-        password: passwordRef.current.value
-      }));
-    }
-  };
 
   useEffect(() => {
     if (authStatus === AuthorizationStatus.Auth) {
@@ -44,37 +30,7 @@ export default function LoginPage(): JSX.Element {
         <div className='page__login-container container'>
           <section className='login'>
             <h1 className='login__title'>Sign in</h1>
-            <form className='login__form form' onSubmit={handleSubmit}>
-              <div className='login__input-wrapper form__input-wrapper'>
-                <label className='visually-hidden'>E-mail</label>
-                <input
-                  className='login__input form__input'
-                  type='email'
-                  name='email'
-                  placeholder='Email'
-                  required
-                  ref={loginRef}
-                />
-              </div>
-              <div className='login__input-wrapper form__input-wrapper'>
-                <label className='visually-hidden'>Password</label>
-                <input
-                  className='login__input form__input'
-                  type='password'
-                  name='password'
-                  placeholder='Password'
-                  required
-                  ref={passwordRef}
-                />
-              </div>
-              <button
-                className='login__submit form__submit button'
-                type='submit'
-                disabled={loginStatus === LoginStatus.Processing}
-              >
-                {loginStatus === LoginStatus.Processing ? 'Signing in...' : 'Sign in'}
-              </button>
-            </form>
+            <LoginForm />
           </section>
           <section className='locations locations--login locations--current'>
             <div className='locations__item'>

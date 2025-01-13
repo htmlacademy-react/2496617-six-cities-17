@@ -67,10 +67,10 @@ export default function ReviewForm(): JSX.Element {
         name='review'
         placeholder='Tell how was your stay, what you like and what can be improved'
         value={reviewFormState.comment}
-        onChange={(e) => {
+        onChange={(evt) => {
           setReviewFormState((prevState) => ({
             ...prevState,
-            comment: e.target.value,
+            comment: evt.target.value,
           }));
         }}
       />
