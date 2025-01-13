@@ -1,6 +1,6 @@
+import classNames from 'classnames';
 import { Outlet, useLocation } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import classNames from 'classnames';
 
 // %------------ components ------------% //
 import Header from '../header/header';
@@ -19,7 +19,8 @@ export default function Layout(): JSX.Element {
       className={classNames(
         'page',
         { 'page--gray': isMainPage || isLoginPage },
-        { 'page--main': isMainPage }
+        { 'page--main': isMainPage },
+        { 'page--login': isLoginPage }
       )}
     >
 
