@@ -1,25 +1,17 @@
+import classNames from 'classnames';
 import { Helmet } from 'react-helmet-async';
 import { useAppSelector } from '../../hooks';
-import { DataStatus } from '../../const';
-import { getOffersStatus, getSortedOffers } from '../../store/offers-process/offers-process.selectors';
-import classNames from 'classnames';
+import { getSortedOffers } from '../../store/offers-process/offers-process.selectors';
 
 // %------------ components ------------% //
-import Navigation from '../../components/navigation/navigation';
-import Preloader from '../../components/preloader/preloader';
-import Cities from '../../components/cities/cities';
 import CitiesEmpty from '../../components/cities-empty/cities-empty';
+import Cities from '../../components/cities/cities';
+import Navigation from '../../components/navigation/navigation';
 
 // #======================== MainPage ========================# //
 
 export default function MainPage(): JSX.Element {
-
-  const offersStatus = useAppSelector(getOffersStatus);
   const sortedOffers = useAppSelector(getSortedOffers);
-
-  if (offersStatus === DataStatus.Loading) {
-    return <Preloader />;
-  }
 
   return (
     <main
