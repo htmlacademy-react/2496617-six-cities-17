@@ -4,7 +4,6 @@ import LoginForm from '../../components/login-form/login-form';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector, } from '../../hooks';
 import { redirectToRoute } from '../../store/action';
-import { checkAuthAction } from '../../store/api-action';
 import { getAuthStatus } from '../../store/auth-process/auth-process.selectors';
 
 // #======================== LoginPage ========================# //
@@ -15,7 +14,6 @@ export default function LoginPage(): JSX.Element {
 
   useEffect(() => {
     if (authStatus === AuthorizationStatus.Auth) {
-      dispatch(checkAuthAction());
       dispatch(redirectToRoute(AppRoute.Main));
     }
   }, [authStatus, dispatch]);
