@@ -33,8 +33,9 @@ export const authProcess = createSlice({
       .addCase(loginAction.pending, (state) => {
         state.loginStatus = LoginStatus.Processing;
       })
-      .addCase(loginAction.fulfilled, (state) => {
+      .addCase(loginAction.fulfilled, (state, action) => {
         state.status = AuthorizationStatus.Auth;
+        state.login = action.payload;
         state.loginStatus = LoginStatus.LoggedIn;
       })
       .addCase(loginAction.rejected, (state) => {
