@@ -22,11 +22,11 @@ export const sortOffers = (offers: PlaceCardType[], sortingType: SortingOption):
     case SortingOption.POPULAR:
       return offers;
     case SortingOption.BY_LOW_PRICE:
-      return [...offers].sort(compareOffersByLowPrice);
+      return offers.toSorted(compareOffersByLowPrice);
     case SortingOption.BY_HIGHT_PRICE:
-      return [...offers].sort(compareOffersByHighPrice);
+      return offers.toSorted(compareOffersByHighPrice);
     case SortingOption.BY_RATING:
-      return [...offers].sort(compareOffersByRating);
+      return offers.toSorted(compareOffersByRating);
 
     default:
       return offers;
@@ -34,7 +34,7 @@ export const sortOffers = (offers: PlaceCardType[], sortingType: SortingOption):
 };
 
 export const sortReviews = (reviews: ReviewType[]): ReviewType[] =>
-  [...reviews].sort(
+  reviews.toSorted(
     (a: ReviewType, b: ReviewType) =>
       new Date(b.date).getTime() - new Date(a.date).getTime()
   );
