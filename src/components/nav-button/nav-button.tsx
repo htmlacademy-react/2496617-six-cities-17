@@ -1,4 +1,3 @@
-import { capitalize } from '../../utils/utils';
 import classNames from 'classnames';
 
 // ^======================== NavButton ========================^ //
@@ -23,7 +22,7 @@ export default function NavButton(navButtonProps: NavButtonProps): JSX.Element {
           { 'tabs__item--active': isActive }
         )}
       >
-        <span>{capitalize(name)}</span>
+        <span>{name}</span>
       </a>
     </li>
   );

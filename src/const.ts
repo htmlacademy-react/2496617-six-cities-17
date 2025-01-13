@@ -3,12 +3,12 @@ import { StatusCodes } from 'http-status-codes';
 // *======================== const ========================* //
 // *------------ data ------------* //
 export const LOCATIONS: string[] = [
-  'paris',
-  'cologne',
-  'brussels',
-  'amsterdam',
-  'hamburg',
-  'dusseldorf',
+  'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf',
 ];
 
 export const RATING_OPTIONS = [
@@ -75,7 +75,7 @@ export const URL_MARKER_DEFAULT =
 export const URL_MARKER_CURRENT =
   '../img/pin-active.svg';
 
-export const DEFAULT_CITY_NAME = 'paris';
+export const DEFAULT_CITY_NAME = 'Paris';
 
 export const DEFAULT_CITY_LOCATION = {
   latitude: 48.85661,

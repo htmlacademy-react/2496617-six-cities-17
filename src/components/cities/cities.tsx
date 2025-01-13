@@ -1,11 +1,10 @@
-import PlacesSorting from '../../components/places-sorting/places-sorting';
-import PlacesList from '../../components/places-list/places-list';
-import Map from '../../components/map/map';
-import { capitalize } from '../../utils/utils';
 import { useCallback, useState } from 'react';
-import { PlaceCardType } from '../../types';
+import Map from '../../components/map/map';
+import PlacesList from '../../components/places-list/places-list';
+import PlacesSorting from '../../components/places-sorting/places-sorting';
 import { useAppSelector } from '../../hooks';
 import { getCityLocation, getCityName } from '../../store/offers-process/offers-process.selectors';
+import { PlaceCardType } from '../../types';
 
 // ^======================== Cities ========================^ //
 
@@ -34,7 +33,7 @@ function Cities(citiesProps: CitiesProps): JSX.Element {
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">
-            {offers.length} places to stay in {capitalize(selectedCityName)}
+            {offers.length} places to stay in {selectedCityName}
           </b>
 
           <PlacesSorting />
