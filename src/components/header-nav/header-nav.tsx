@@ -1,11 +1,11 @@
-// ^======================== HeaderNav ========================^ //
-
 import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-action';
 import { getAuthStatus, getAvatarUrl, getLogin } from '../../store/auth-process/auth-process.selectors';
 import { getFavoriteOffers } from '../../store/favorite-offers-process/favorite-offers-process.selectors';
+
+// ^======================== HeaderNav ========================^ //
 
 export default function HeaderNav(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -28,7 +28,7 @@ export default function HeaderNav(): JSX.Element {
               >
                 <div
                   className='header__avatar-wrapper user__avatar-wrapper'
-                  style={{ backgroundImage: avatarUrl }}
+                  style={{ backgroundImage: `url(${avatarUrl})` }}
                 >
                 </div>
                 <span className='header__user-name user__name'>
