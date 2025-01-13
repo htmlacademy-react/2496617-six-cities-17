@@ -57,6 +57,7 @@ export default function ReviewForm(): JSX.Element {
             title={title}
             onRatingButtonChange={handleRatingChange}
             checked={reviewFormState.rating === value}
+            disabled={postingStatus === PostingStatus.Posting}
           />
         ))}
       </div>
@@ -67,6 +68,7 @@ export default function ReviewForm(): JSX.Element {
         name='review'
         placeholder='Tell how was your stay, what you like and what can be improved'
         value={reviewFormState.comment}
+        disabled={postingStatus === PostingStatus.Posting}
         onChange={(evt) => {
           setReviewFormState((prevState) => ({
             ...prevState,
