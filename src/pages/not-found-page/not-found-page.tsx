@@ -19,6 +19,7 @@ export default function NotFoundPage(): JSX.Element {
           height: '100dvh'
         }}
       >
+        <p>Error 404</p>
         <h1>Page not found :(</h1>
         <Link to='/'
           style={{
