@@ -64,6 +64,8 @@ export const NEAR_PLACES_AMOUNT = 3;
 
 export const SHOWN_REVIEWS_AMOUNT = 10;
 
+export const SHOWN_PHOTOS_AMOUNT = 6;
+
 export const CommentLength = {
   MIN: 50,
   MAX: 300,
