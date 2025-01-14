@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import Map from '../../components/map/map';
 import PlacesList from '../../components/places-list/places-list';
 import PlacesSorting from '../../components/places-sorting/places-sorting';
@@ -57,4 +57,4 @@ function Cities(citiesProps: CitiesProps): JSX.Element {
     </div>
   );
 }
-export default Cities;
+export default memo(Cities);

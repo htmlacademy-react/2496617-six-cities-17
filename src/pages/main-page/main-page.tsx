@@ -4,13 +4,14 @@ import { useAppSelector } from '../../hooks';
 import { getSortedOffers } from '../../store/offers-process/offers-process.selectors';
 
 // %------------ components ------------% //
+import { memo } from 'react';
 import CitiesEmpty from '../../components/cities-empty/cities-empty';
 import Cities from '../../components/cities/cities';
 import Navigation from '../../components/navigation/navigation';
 
 // #======================== MainPage ========================# //
 
-export default function MainPage(): JSX.Element {
+function MainPage(): JSX.Element {
   const sortedOffers = useAppSelector(getSortedOffers);
 
   return (
@@ -36,3 +37,5 @@ export default function MainPage(): JSX.Element {
     </main>
   );
 }
+
+export default memo(MainPage);
