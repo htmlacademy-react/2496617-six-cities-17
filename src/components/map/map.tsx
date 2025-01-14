@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import leaflet, { layerGroup, Marker } from 'leaflet';
+import leaflet, { Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { memo, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -34,36 +34,39 @@ function Map({ cityLocation, offers, selectedPoint, currentOffer }: MapProps): J
   const mapRef = useRef(null);
   const map = useMap(mapRef, cityLocation);
 
+  const markerLayerRef = useRef<leaflet.LayerGroup | null>(null);
+
   useEffect(() => {
     if (map && offers) {
-      const markerLayer = layerGroup().addTo(map);
+      if (!markerLayerRef.current) {
+        markerLayerRef.current = leaflet.layerGroup().addTo(map);
+      } else {
+        markerLayerRef.current.clearLayers();
+      }
 
-      [...offers].forEach((offer) => {
+      offers.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,
           lng: offer.location.longitude,
         });
 
         marker
-          .setIcon(offer.id === selectedPoint?.id
-            ? currentCustomIcon
-            : defaultCustomIcon,
-          )
-          .addTo(markerLayer);
+          .setIcon(offer.id === selectedPoint?.id ? currentCustomIcon : defaultCustomIcon)
+          .addTo(markerLayerRef.current!);
       });
 
       if (currentOffer) {
-        const currenOfferMarker = new Marker({
+        const currentOfferMarker = new Marker({
           lat: currentOffer.location.latitude,
           lng: currentOffer.location.longitude,
         });
 
-        currenOfferMarker
+        currentOfferMarker
           .setIcon(currentCustomIcon)
-          .addTo(markerLayer);
+          .addTo(markerLayerRef.current);
       }
     }
-  }, [currentOffer, map, offers, selectedPoint]);
+  }, [map, offers, selectedPoint, currentOffer]);
 
   return (
     <section
