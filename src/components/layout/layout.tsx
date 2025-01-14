@@ -12,7 +12,7 @@ export default function Layout(): JSX.Element {
   const path = useLocation().pathname as AppRoute;
   const isMainPage = path === AppRoute.Main;
   const isLoginPage = path === AppRoute.Login;
-  const isFavoritesPage = path === AppRoute.Favorites;
+  const isFavoritesPage = path === AppRoute.Favorite;
   const isFavoriteOffersEmpty = useAppSelector(getFavoriteOffers).length === 0;
 
   return (

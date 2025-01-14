@@ -18,7 +18,6 @@ function PlaceCard({
 }: PlaceCardProps): JSX.Element {
 
   const { id, previewImage, isPremium, price, isFavorite, rating, title, type } = placeCardData;
-
   return (
     <article
       className={`${cardListType}__card place-card`}
@@ -31,7 +30,7 @@ function PlaceCard({
           <img
             className="place-card__image"
             src={previewImage}
-            width={cardListType === CardListType.FAVORITES ? 150 : 260}
+            width={cardListType === CardListType.FAVORITE ? 150 : 260}
             height="auto"
             alt="Place image"
           />

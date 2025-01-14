@@ -9,9 +9,9 @@ import classNames from 'classnames';
 import PlaceCard from '../../components/place-card/place-card';
 import { changeCity } from '../../store/offers-process/offers-process.slice';
 
-// #======================== FavoritesPage ========================# //
+// #======================== FavoritePage ========================# //
 
-export default function FavoritesPage(): JSX.Element {
+export default function FavoritePage(): JSX.Element {
 
   const favoriteOffers = useAppSelector(getFavoriteOffers);
   const dispatch = useAppDispatch();
@@ -70,7 +70,7 @@ export default function FavoritesPage(): JSX.Element {
                       {cityOffers.map((offer) => (
                         <PlaceCard
                           key={offer.id}
-                          cardListType={CardListType.FAVORITES}
+                          cardListType={CardListType.FAVORITE}
                           placeCardData={offer}
                         />
                       ))}

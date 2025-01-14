@@ -14,7 +14,7 @@ export default function HeaderNav(): JSX.Element {
   const login = useAppSelector(getLogin);
   const avatarUrl = useAppSelector(getAvatarUrl);
 
-  const favoritesAmount = useAppSelector(getFavoriteOffers).length;
+  const favoriteAmount = useAppSelector(getFavoriteOffers).length;
 
   const location = useLocation();
 
@@ -26,7 +26,7 @@ export default function HeaderNav(): JSX.Element {
             <li className='header__nav-item user'>
               <Link
                 className='header__nav-link header__nav-link--profile'
-                to={AppRoute.Favorites}
+                to={AppRoute.Favorite}
               >
                 <div
                   className='header__avatar-wrapper user__avatar-wrapper'
@@ -36,7 +36,7 @@ export default function HeaderNav(): JSX.Element {
                 <span className='header__user-name user__name'>
                   {login}
                 </span>
-                <span className='header__favorite-count'>{favoritesAmount}</span>
+                <span className='header__favorite-count'>{favoriteAmount}</span>
               </Link>
             </li>
             <li className='header__nav-item'>

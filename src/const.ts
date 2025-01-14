@@ -47,7 +47,7 @@ export enum NameSpace {
 // *------------ view ------------* //
 export enum CardListType {
   CITIES = 'cities',
-  FAVORITES = 'favorites',
+  FAVORITE = 'favorite',
   NEAR_PLACES = 'near-places'
 }
 
@@ -87,7 +87,7 @@ export const DEFAULT_CITY_LOCATION = {
 
 export enum AppRoute {
   Main = '/',
-  Favorites = '/favorites',
+  Favorite = '/favorite',
   Offers = '/offers/:id',
   Login = '/login',
   NotFound = '*'
@@ -100,7 +100,7 @@ export enum APIRoute {
   Logout = '/logout',
   NearPlaces = 'offers/:offerId/nearby',
   Reviews = '/comments/:offerId',
-  Favorites = '/favorite'
+  Favorite = '/favorite'
 }
 
 export enum AuthorizationStatus {
