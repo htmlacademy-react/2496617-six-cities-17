@@ -10,10 +10,11 @@ import { capitalize, convertRating } from '../../utils/utils';
 type PlaceCardProps = {
   placeCardData: PlaceCardType;
   onPlaceCardMouseEnter?: (id: string) => void;
+  onPlaceCardMouseLeave?: () => void;
 };
 
 // ^======================== PlaceCard ========================^ //
-function PlaceCard({ placeCardData, onPlaceCardMouseEnter,
+function PlaceCard({ placeCardData, onPlaceCardMouseEnter, onPlaceCardMouseLeave
 }: PlaceCardProps): JSX.Element {
 
   const path = useLocation().pathname as AppRoute;
@@ -31,6 +32,7 @@ function PlaceCard({ placeCardData, onPlaceCardMouseEnter,
         { 'near-places__card': isOfferPage }
       )}
       onMouseEnter={() => onPlaceCardMouseEnter?.(id)}
+      onMouseLeave={() => onPlaceCardMouseLeave?.()}
     >
       {isPremium && (<PremiumMark className='place-card__mark' />)}
 

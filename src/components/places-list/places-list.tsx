@@ -1,21 +1,23 @@
 import classNames from 'classnames';
 import { memo } from 'react';
 import { useLocation } from 'react-router-dom';
+import { AppRoute } from '../../const';
 import { PlaceCardType } from '../../types';
 import PlaceCard from '../place-card/place-card';
-import { AppRoute } from '../../const';
 
 // ^======================== PlacesList ========================^ //
 
 type PlacesListProps = {
   offers: PlaceCardType[];
-  onListItemHover?: (id: string) => void;
+  onListItemEnter?: (id: string) => void;
+  onListItemLeave?: () => void;
 };
 
 function PlacesList(placesListProps: PlacesListProps): JSX.Element {
-  const { onListItemHover, offers } = placesListProps;
+  const { onListItemEnter, onListItemLeave, offers } = placesListProps;
   const path = useLocation().pathname as AppRoute;
-  const handleListItemHover = (id: string) => onListItemHover?.(id);
+  const handleListItemEnter = (id: string) => onListItemEnter?.(id);
+  const handleListItemLeave = () => onListItemLeave?.();
 
   return (
     <div
@@ -29,7 +31,8 @@ function PlacesList(placesListProps: PlacesListProps): JSX.Element {
         <PlaceCard
           key={offer.id}
           placeCardData={offer}
-          onPlaceCardMouseEnter={handleListItemHover}
+          onPlaceCardMouseEnter={handleListItemEnter}
+          onPlaceCardMouseLeave={handleListItemLeave}
         />
       ))}
     </div>

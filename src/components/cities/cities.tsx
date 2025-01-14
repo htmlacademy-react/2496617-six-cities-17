@@ -14,16 +14,23 @@ type CitiesProps = {
 
 function Cities(citiesProps: CitiesProps): JSX.Element {
   const { offers } = citiesProps;
-  const [selectedPoint, setSelectedPoint] = useState<PlaceCardType>();
+  const [selectedPoint, setSelectedPoint] = useState<PlaceCardType | undefined>(undefined);
   const selectedCityName = useAppSelector(getCityName);
   const selectedCityLocation = useAppSelector(getCityLocation);
 
-  const handleListItemHover = useCallback(
+  const handleListItemMouseEnter = useCallback(
     (listItemId: string) => {
       const currentPoint = offers.find((offer) => offer.id === listItemId);
       setSelectedPoint(currentPoint);
     },
     [offers]
+  );
+
+  const handleListItemMouseLeave = useCallback(
+    () => {
+      setSelectedPoint(undefined);
+    },
+    []
   );
 
   return (
@@ -39,7 +46,8 @@ function Cities(citiesProps: CitiesProps): JSX.Element {
           <PlacesSorting />
 
           <PlacesList
-            onListItemHover={handleListItemHover}
+            onListItemEnter={handleListItemMouseEnter}
+            onListItemLeave={handleListItemMouseLeave}
             offers={offers}
           />
 
