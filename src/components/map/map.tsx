@@ -34,25 +34,31 @@ function Map({ cityLocation, offers, selectedPoint, currentOffer }: MapProps): J
   const mapRef = useRef(null);
   const map = useMap(mapRef, cityLocation);
 
-  const markerLayerRef = useRef<leaflet.LayerGroup | null>(null);
+  const markersLayerRef = useRef<leaflet.LayerGroup | null>(null);
 
   useEffect(() => {
     if (map && offers) {
-      if (!markerLayerRef.current) {
-        markerLayerRef.current = leaflet.layerGroup().addTo(map);
-      } else {
-        markerLayerRef.current.clearLayers();
+      if (!markersLayerRef.current) {
+        markersLayerRef.current = leaflet.layerGroup().addTo(map);
       }
 
-      offers.forEach((offer) => {
-        const marker = new Marker({
-          lat: offer.location.latitude,
-          lng: offer.location.longitude,
-        });
+      const markerLayer = markersLayerRef.current;
 
-        marker
-          .setIcon(offer.id === selectedPoint?.id ? currentCustomIcon : defaultCustomIcon)
-          .addTo(markerLayerRef.current!);
+      offers.forEach((offer) => {
+        let existingMarker = markerLayer.getLayers().find(
+          (layer) => (layer as Marker).getLatLng().lat === offer.location.latitude &&
+            (layer as Marker).getLatLng().lng === offer.location.longitude
+        ) as Marker;
+        if (!existingMarker) {
+          existingMarker = new Marker({
+            lat: offer.location.latitude,
+            lng: offer.location.longitude,
+          });
+          existingMarker.addTo(markerLayer);
+        }
+
+        existingMarker
+          .setIcon(offer.id === selectedPoint?.id ? currentCustomIcon : defaultCustomIcon);
       });
 
       if (currentOffer) {
@@ -63,8 +69,12 @@ function Map({ cityLocation, offers, selectedPoint, currentOffer }: MapProps): J
 
         currentOfferMarker
           .setIcon(currentCustomIcon)
-          .addTo(markerLayerRef.current);
+          .addTo(markersLayerRef.current);
       }
+
+      return () => {
+        markerLayer.clearLayers();
+      };
     }
   }, [map, offers, selectedPoint, currentOffer]);
 

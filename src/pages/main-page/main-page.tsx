@@ -1,19 +1,16 @@
 import classNames from 'classnames';
-import { Helmet } from 'react-helmet-async';
-import { useAppSelector } from '../../hooks';
-import { getSortedOffers } from '../../store/offers-process/offers-process.selectors';
-
-// %------------ components ------------% //
 import { memo } from 'react';
+import { Helmet } from 'react-helmet-async';
 import CitiesEmpty from '../../components/cities-empty/cities-empty';
 import Cities from '../../components/cities/cities';
 import Navigation from '../../components/navigation/navigation';
+import { useAppSelector } from '../../hooks';
+import { getSortedOffers } from '../../store/offers-process/offers-process.selectors';
 
 // #======================== MainPage ========================# //
 
 function MainPage(): JSX.Element {
   const sortedOffers = useAppSelector(getSortedOffers);
-
   return (
     <main
       className={classNames(
