@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 import LoginForm from '../../components/login-form/login-form';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector, } from '../../hooks';
@@ -11,12 +12,19 @@ import { getAuthStatus } from '../../store/auth-process/auth-process.selectors';
 export default function LoginPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const authStatus = useAppSelector(getAuthStatus);
+  type LocationState = {
+    from?: string;
+  }
+  const location = useLocation();
+  const locationState = location.state as LocationState;
+
+  const fromPage = locationState?.from as AppRoute || AppRoute.Main;
 
   useEffect(() => {
     if (authStatus === AuthorizationStatus.Auth) {
-      dispatch(redirectToRoute(AppRoute.Main));
+      dispatch(redirectToRoute(fromPage));
     }
-  }, [authStatus, dispatch]);
+  }, [authStatus, dispatch, fromPage]);
 
   return (
     <main className='page__main page__main--login'>
