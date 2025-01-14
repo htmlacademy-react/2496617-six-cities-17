@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
-import { PlaceCardType, ReviewType } from '../types';
 import { SortingOption } from '../const';
+import { PlaceCardType, ReviewType } from '../types';
 
 // %======================== utils ========================% //
 export const capitalize = (value: string) => value[0].toUpperCase() + value.slice(1);
@@ -40,3 +40,5 @@ export const sortReviews = (reviews: ReviewType[]): ReviewType[] =>
   );
 
 export const updateFavoriteStatus = (offers: PlaceCardType[], payload: PlaceCardType, isFavorite: boolean) => offers.map((offer) => offer.id === payload.id ? { ...offer, isFavorite } : offer);
+
+export const getRandomInteger = (min: number, max: number): number => Math.floor(Math.random() * (max - min + 1)) + min;
