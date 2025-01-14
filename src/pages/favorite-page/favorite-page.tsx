@@ -1,13 +1,11 @@
+import classNames from 'classnames';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { CardListType } from '../../const';
+import PlaceCard from '../../components/place-card/place-card';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getFavoriteOffers } from '../../store/favorite-offers-process/favorite-offers-process.selectors';
-import { PlaceCardType } from '../../types';
-
-import classNames from 'classnames';
-import PlaceCard from '../../components/place-card/place-card';
 import { changeCity } from '../../store/offers-process/offers-process.slice';
+import { PlaceCardType } from '../../types';
 
 // #======================== FavoritePage ========================# //
 
@@ -70,7 +68,6 @@ export default function FavoritePage(): JSX.Element {
                       {cityOffers.map((offer) => (
                         <PlaceCard
                           key={offer.id}
-                          cardListType={CardListType.FAVORITE}
                           placeCardData={offer}
                         />
                       ))}

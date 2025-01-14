@@ -45,12 +45,6 @@ export enum NameSpace {
 }
 
 // *------------ view ------------* //
-export enum CardListType {
-  CITIES = 'cities',
-  FAVORITE = 'favorite',
-  NEAR_PLACES = 'near-places'
-}
-
 export enum SortingOption {
   POPULAR = 'Popular',
   BY_LOW_PRICE = 'Price: low to high',
