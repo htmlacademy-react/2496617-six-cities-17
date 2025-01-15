@@ -76,22 +76,22 @@ export const fetchFavoriteOffersAction = createAsyncThunk<
   return data;
 });
 
-// @------------------------ addToFavoriteAction ------------------------@ //
-export const addToFavoriteAction = createAsyncThunk<
+// @------------------------ addToFavoritesAction ------------------------@ //
+export const addToFavoritesAction = createAsyncThunk<
   PlaceCardType,
   string,
   AsyncThunkType
->('favoriteOffers/addToFavorite', async (offerId, { extra: api }) => {
+>('favoriteOffers/addToFavorites', async (offerId, { extra: api }) => {
   const { data } = await api.post<PlaceCardType>(`${APIRoute.Favorite}/${offerId}/1`);
   return data;
 });
 
-// @------------------------ removeFromFavoriteAction ------------------------@ //
-export const removeFromFavoriteAction = createAsyncThunk<
+// @------------------------ removeFromFavoritesAction ------------------------@ //
+export const removeFromFavoritesAction = createAsyncThunk<
   PlaceCardType,
   string,
   AsyncThunkType
->('favoriteOffers/removeFromFavorite', async (offerId, { extra: api }) => {
+>('favoriteOffers/removeFromFavorites', async (offerId, { extra: api }) => {
   const { data } = await api.post<PlaceCardType>(`${APIRoute.Favorite}/${offerId}/0`);
   return data;
 });

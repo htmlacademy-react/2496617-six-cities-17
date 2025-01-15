@@ -12,7 +12,7 @@ export default function Layout(): JSX.Element {
   const path = useLocation().pathname as AppRoute;
   const isMainPage = path === AppRoute.Main;
   const isLoginPage = path === AppRoute.Login;
-  const isFavoritePage = path === AppRoute.Favorite;
+  const isFavoritesPage = path === AppRoute.Favorites;
   const isFavoriteOffersEmpty = useAppSelector(getFavoriteOffers).length === 0;
 
   return (
@@ -22,7 +22,7 @@ export default function Layout(): JSX.Element {
         { 'page--gray': isMainPage || isLoginPage },
         { 'page--main': isMainPage },
         { 'page--login': isLoginPage },
-        { 'page--favorites-empty': isFavoritePage && isFavoriteOffersEmpty }
+        { 'page--favorites-empty': isFavoritesPage && isFavoriteOffersEmpty }
       )}
     >
 
@@ -31,7 +31,7 @@ export default function Layout(): JSX.Element {
       <Outlet />
 
       {
-        isFavoritePage &&
+        isFavoritesPage &&
         <footer className='footer container'>
           <a className='footer__logo-link' href='main.html'>
             <img

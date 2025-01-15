@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { DataStatus, NameSpace } from '../../const';
 import { NearPlacesProcess } from '../../types';
 import { updateFavoriteStatus } from '../../utils/utils';
-import { addToFavoriteAction, fetchNearPlacesAction, logoutAction, removeFromFavoriteAction } from '../api-action';
+import { addToFavoritesAction, fetchNearPlacesAction, logoutAction, removeFromFavoritesAction } from '../api-action';
 
 // %======================== near-places-process.slice ========================% //
 
@@ -27,10 +27,10 @@ export const nearPlacesProcess = createSlice({
       .addCase(fetchNearPlacesAction.rejected, (state) => {
         state.status = DataStatus.Error;
       })
-      .addCase(addToFavoriteAction.fulfilled, (state, action) => {
+      .addCase(addToFavoritesAction.fulfilled, (state, action) => {
         state.data = updateFavoriteStatus(state.data, action.payload, true);
       })
-      .addCase(removeFromFavoriteAction.fulfilled, (state, action) => {
+      .addCase(removeFromFavoritesAction.fulfilled, (state, action) => {
         state.data = updateFavoriteStatus(state.data, action.payload, false);
       })
       .addCase(logoutAction.fulfilled, (state) => {
