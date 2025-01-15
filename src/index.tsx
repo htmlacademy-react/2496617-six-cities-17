@@ -1,14 +1,18 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/app/app.tsx';
 import { Provider } from 'react-redux';
-import { store } from './store/index.ts';
-import { checkAuthAction, fetchFavoriteOffersAction, fetchOffersAction } from './store/api-action.ts';
 import { ToastContainer } from 'react-toastify';
+import App from './components/app/app.tsx';
+import { checkAuthAction, fetchFavoriteOffersAction, fetchOffersAction } from './store/api-action.ts';
+import { store } from './store/index.ts';
+import React from 'react';
 
 store.dispatch(fetchOffersAction());
-store.dispatch(checkAuthAction());
-store.dispatch(fetchFavoriteOffersAction());
+store.dispatch(checkAuthAction())
+  .then((response) => {
+    if (response.meta.requestStatus === 'fulfilled') {
+      store.dispatch(fetchFavoriteOffersAction());
+    }
+  });
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

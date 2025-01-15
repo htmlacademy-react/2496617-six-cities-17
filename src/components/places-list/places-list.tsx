@@ -1,41 +1,38 @@
-// %------------ components ------------% //
-import { CardListType } from '../../const';
-import PlaceCard from '../place-card/place-card';
 import classNames from 'classnames';
-import { useLocation } from 'react-router-dom';
-import { PlaceCardType } from '../../types';
 import { memo } from 'react';
+import { useLocation } from 'react-router-dom';
+import { AppRoute } from '../../const';
+import { PlaceCardType } from '../../types';
+import PlaceCard from '../place-card/place-card';
 
 // ^======================== PlacesList ========================^ //
 
 type PlacesListProps = {
   offers: PlaceCardType[];
-  onListItemHover?: (id: string) => void;
+  onListItemEnter?: (id: string) => void;
+  onListItemLeave?: () => void;
 };
 
 function PlacesList(placesListProps: PlacesListProps): JSX.Element {
-  const { onListItemHover, offers } = placesListProps;
-
-  const path = useLocation().pathname;
-
-  const handleListItemHover = (id: string) => onListItemHover?.(id);
-
-  const isOfferPage = path.startsWith('/offer');
+  const { onListItemEnter, onListItemLeave, offers } = placesListProps;
+  const path = useLocation().pathname as AppRoute;
+  const handleListItemEnter = (id: string) => onListItemEnter?.(id);
+  const handleListItemLeave = () => onListItemLeave?.();
 
   return (
     <div
       className={classNames(
         'places__list',
-        { 'cities__places-list tabs__content': path === '/' },
-        { 'near-places__list': isOfferPage }
+        { 'cities__places-list tabs__content': path === AppRoute.Main },
+        { 'near-places__list': path.startsWith('/offer') }
       )}
     >
       {offers.map((offer) => (
         <PlaceCard
           key={offer.id}
-          cardListType={CardListType.CITIES}
           placeCardData={offer}
-          onPlaceCardMouseEnter={handleListItemHover}
+          onPlaceCardMouseEnter={handleListItemEnter}
+          onPlaceCardMouseLeave={handleListItemLeave}
         />
       ))}
     </div>

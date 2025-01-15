@@ -1,37 +1,54 @@
+import classNames from 'classnames';
 import { memo } from 'react';
-import { generatePath, Link } from 'react-router-dom';
-import { AppRoute, CardListType } from '../../const';
+import { generatePath, Link, useLocation } from 'react-router-dom';
+import { AppRoute } from '../../const';
 import { PlaceCardType } from '../../types';
 import BookmarkButton from '../../ui/bookmark-button/bookmark-button';
 import PremiumMark from '../../ui/premium-mark/premium-mark';
 import { capitalize, convertRating } from '../../utils/utils';
 
 type PlaceCardProps = {
-  cardListType: CardListType;
   placeCardData: PlaceCardType;
   onPlaceCardMouseEnter?: (id: string) => void;
+  onPlaceCardMouseLeave?: () => void;
 };
 
 // ^======================== PlaceCard ========================^ //
-function PlaceCard({
-  cardListType, placeCardData, onPlaceCardMouseEnter,
+function PlaceCard({ placeCardData, onPlaceCardMouseEnter, onPlaceCardMouseLeave
 }: PlaceCardProps): JSX.Element {
 
-  const { id, previewImage, isPremium, price, isFavorite, rating, title, type } = placeCardData;
+  const path = useLocation().pathname as AppRoute;
+  const isMainPage = path === AppRoute.Main;
+  const isFavoritePage = path === AppRoute.Favorite;
+  const isOfferPage = path.startsWith('/offer');
 
+  const { id, previewImage, isPremium, price, isFavorite, rating, title, type } = placeCardData;
   return (
     <article
-      className={`${cardListType}__card place-card`}
+      className={classNames(
+        'place-card',
+        { 'cities__card': isMainPage },
+        { 'favorites__card': isFavoritePage },
+        { 'near-places__card': isOfferPage }
+      )}
       onMouseEnter={() => onPlaceCardMouseEnter?.(id)}
+      onMouseLeave={() => onPlaceCardMouseLeave?.()}
     >
       {isPremium && (<PremiumMark className='place-card__mark' />)}
 
-      <div className={`${cardListType}__image-wrapper place-card__image-wrapper`}>
+      <div
+        className={classNames(
+          'place-card__image-wrapper',
+          { 'cities__image-wrapper': isMainPage },
+          { 'favorites__image-wrapper': isFavoritePage },
+          { 'near-places__image-wrapper': isOfferPage }
+        )}
+      >
         <Link to={generatePath(AppRoute.Offers, { id })} >
           <img
             className="place-card__image"
             src={previewImage}
-            width={cardListType === CardListType.FAVORITES ? 150 : 260}
+            width={isFavoritePage ? 150 : 260}
             height="auto"
             alt="Place image"
           />

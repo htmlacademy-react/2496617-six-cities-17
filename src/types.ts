@@ -1,43 +1,7 @@
-import { store } from './store';
 import { AuthorizationStatus, DataStatus, LoginStatus, PostingStatus, SortingOption } from './const';
+import { store } from './store';
 
 // %======================== types ========================% //
-
-export type InitialState = {
-  auth: {
-    status: AuthorizationStatus;
-    login: string | null;
-    avatarUrl: string;
-    loginStatus: LoginStatus;
-  };
-  city: {
-    name: string;
-    location: LocationType;
-  };
-  offers: {
-    all: PlaceCardType[];
-    sorted: PlaceCardType[];
-    sortingType: string;
-    status: DataStatus;
-  };
-  offer: {
-    data: OfferType;
-    status: DataStatus;
-  };
-  nearPlaces: {
-    data: PlaceCardType[];
-    status: DataStatus;
-  };
-  reviews: {
-    data: ReviewType[];
-    status: DataStatus;
-    postingStatus: PostingStatus;
-  };
-  favoriteOffers: {
-    data: PlaceCardType[];
-    status: DataStatus;
-  };
-};
 
 export type LocationType = {
   latitude: number;
@@ -103,7 +67,7 @@ export type UserData = {
 };
 
 export type AuthData = {
-  login: string;
+  email: string;
   password: string;
 };
 
@@ -112,9 +76,16 @@ export type AuthResponse = {
   avatarUrl: string;
 };
 
-export type ReviewData = {
-  rating: number;
+export type ReviewResponse = {
   comment: string;
+  date: string;
+  id: string;
+  rating: number;
+  user: {
+    name: string;
+    isPro: boolean;
+    avatarUrl: string;
+  };
 };
 
 export type OffersProcess = {

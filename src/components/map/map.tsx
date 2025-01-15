@@ -1,11 +1,11 @@
+import classNames from 'classnames';
+import leaflet, { Marker } from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import { memo, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
-import { memo, useEffect, useRef } from 'react';
-import leaflet, { layerGroup, Marker } from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import { PlaceCardType, LocationType, OfferType } from '../../types';
 import { useMap } from '../../hooks/use-map';
-import classNames from 'classnames';
+import { LocationType, OfferType, PlaceCardType } from '../../types';
 
 // ^======================== map ========================^ //
 type MapProps = {
@@ -34,36 +34,49 @@ function Map({ cityLocation, offers, selectedPoint, currentOffer }: MapProps): J
   const mapRef = useRef(null);
   const map = useMap(mapRef, cityLocation);
 
+  const markersLayerRef = useRef<leaflet.LayerGroup | null>(null);
+
   useEffect(() => {
     if (map && offers) {
-      const markerLayer = layerGroup().addTo(map);
+      if (!markersLayerRef.current) {
+        markersLayerRef.current = leaflet.layerGroup().addTo(map);
+      }
 
-      [...offers].forEach((offer) => {
-        const marker = new Marker({
-          lat: offer.location.latitude,
-          lng: offer.location.longitude,
-        });
+      const markerLayer = markersLayerRef.current;
 
-        marker
-          .setIcon(offer.id === selectedPoint?.id
-            ? currentCustomIcon
-            : defaultCustomIcon,
-          )
-          .addTo(markerLayer);
+      offers.forEach((offer) => {
+        let existingMarker = markerLayer.getLayers().find(
+          (layer) => (layer as Marker).getLatLng().lat === offer.location.latitude &&
+            (layer as Marker).getLatLng().lng === offer.location.longitude
+        ) as Marker;
+        if (!existingMarker) {
+          existingMarker = new Marker({
+            lat: offer.location.latitude,
+            lng: offer.location.longitude,
+          });
+          existingMarker.addTo(markerLayer);
+        }
+
+        existingMarker
+          .setIcon(offer.id === selectedPoint?.id ? currentCustomIcon : defaultCustomIcon);
       });
 
       if (currentOffer) {
-        const currenOfferMarker = new Marker({
+        const currentOfferMarker = new Marker({
           lat: currentOffer.location.latitude,
           lng: currentOffer.location.longitude,
         });
 
-        currenOfferMarker
+        currentOfferMarker
           .setIcon(currentCustomIcon)
-          .addTo(markerLayer);
+          .addTo(markersLayerRef.current);
       }
+
+      return () => {
+        markerLayer.clearLayers();
+      };
     }
-  }, [map, offers, selectedPoint, cityLocation, currentOffer]);
+  }, [map, offers, selectedPoint, currentOffer]);
 
   return (
     <section

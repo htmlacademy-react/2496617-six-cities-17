@@ -34,7 +34,12 @@ function OfferHost({ offerHostData }: OfferHostProps): JSX.Element {
           />
         </div>
         <span className='offer__user-name'>{name}</span>
-        <span className='offer__user-status'>{isPro}</span>
+        {
+          isPro ?
+            <span className='offer__user-status'>
+              Pro
+            </span> : ''
+        }
       </div>
       <div className='offer__description'>
         <p className='offer__text'>

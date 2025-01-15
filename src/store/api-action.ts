@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import { APIRoute } from '../const';
 import { dropToken, saveToken } from '../services/token';
-import { AppDispatch, AppState, AuthData, AuthResponse, OfferType, PlaceCardType, ReviewData, ReviewType, UserData } from '../types';
+import { AppDispatch, AppState, AuthData, AuthResponse, OfferType, PlaceCardType, ReviewResponse, ReviewType, UserData } from '../types';
 
 // %======================== api-action ========================% //
 
@@ -54,16 +54,16 @@ export const fetchReviewsAction = createAsyncThunk<
 
 // @------------------------ postReview ------------------------@ //
 export const postReviewAction = createAsyncThunk<
-  void,
+  ReviewResponse,
   {
     comment: string;
     rating: number;
     offerId: string;
   },
   AsyncThunkType
->('reviews/postReview', async ({ comment, rating, offerId }, { dispatch, extra: api }) => {
-  await api.post<ReviewData>(APIRoute.Reviews.replace(':offerId', offerId), { rating, comment });
-  dispatch(fetchReviewsAction(offerId));
+>('reviews/postReview', async ({ comment, rating, offerId }, { extra: api }) => {
+  const { data } = await api.post<ReviewResponse>(APIRoute.Reviews.replace(':offerId', offerId), { rating, comment });
+  return data;
 });
 
 // @------------------------ fetchFavoriteOffers ------------------------@ //
@@ -72,27 +72,27 @@ export const fetchFavoriteOffersAction = createAsyncThunk<
   undefined,
   AsyncThunkType
 >('favoriteOffers/fetchFavoriteOffers', async (_arg, { extra: api }) => {
-  const { data } = await api.get<PlaceCardType[]>(APIRoute.Favorites);
+  const { data } = await api.get<PlaceCardType[]>(APIRoute.Favorite);
   return data;
 });
 
-// @------------------------ addToFavoritesAction ------------------------@ //
+// @------------------------ addToFavoriteAction ------------------------@ //
 export const addToFavoriteAction = createAsyncThunk<
   PlaceCardType,
   string,
   AsyncThunkType
 >('favoriteOffers/addToFavorite', async (offerId, { extra: api }) => {
-  const { data } = await api.post<PlaceCardType>(`${APIRoute.Favorites}/${offerId}/1`);
+  const { data } = await api.post<PlaceCardType>(`${APIRoute.Favorite}/${offerId}/1`);
   return data;
 });
 
-// @------------------------ removeFromFavoritesAction ------------------------@ //
+// @------------------------ removeFromFavoriteAction ------------------------@ //
 export const removeFromFavoriteAction = createAsyncThunk<
   PlaceCardType,
   string,
   AsyncThunkType
 >('favoriteOffers/removeFromFavorite', async (offerId, { extra: api }) => {
-  const { data } = await api.post<PlaceCardType>(`${APIRoute.Favorites}/${offerId}/0`);
+  const { data } = await api.post<PlaceCardType>(`${APIRoute.Favorite}/${offerId}/0`);
   return data;
 });
 
@@ -108,13 +108,14 @@ export const checkAuthAction = createAsyncThunk<
 
 // @------------------------ login ------------------------@ //
 export const loginAction = createAsyncThunk<
-  void,
+  string,
   AuthData,
   AsyncThunkType
->('auth/login', async ({ login: email, password }, { dispatch, extra: api }) => {
+>('auth/login', async ({ email: email, password }, { dispatch, extra: api }) => {
   const { data: { token } } = await api.post<UserData>(APIRoute.Login, { email, password });
   saveToken(token);
   dispatch(fetchFavoriteOffersAction());
+  return email;
 });
 
 // @------------------------ logout ------------------------@ //

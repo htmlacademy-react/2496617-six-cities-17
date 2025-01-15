@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { SHOWN_PHOTOS_AMOUNT } from '../../const';
 
 // ^======================== OfferGalley ========================^ //
 type OfferGalleryProps = {
@@ -10,7 +11,7 @@ function OfferGallery(offerGalleryProps: OfferGalleryProps): JSX.Element {
     <div className='offer__gallery-container container'>
       <div className='offer__gallery'>
 
-        {images.map((image) => (
+        {images.slice(0, SHOWN_PHOTOS_AMOUNT).map((image) => (
           <div
             key={image}
             className='offer__image-wrapper'

@@ -1,6 +1,5 @@
 import { useAppSelector } from '../../hooks';
 import { getCityName } from '../../store/offers-process/offers-process.selectors';
-import { capitalize } from '../../utils/utils';
 
 // ^======================== CitiesEmpty ========================^ //
 
@@ -12,7 +11,7 @@ function CitiesEmpty(): JSX.Element {
         <section className='cities__no-places'>
           <div className='cities__status-wrapper tabs__content'>
             <b className='cities__status'>No places to stay available</b>
-            <p className='cities__status-description'>We could not find any property available at the moment in {capitalize(selectedCity)}</p>
+            <p className='cities__status-description'>We could not find any property available at the moment in {selectedCity}</p>
           </div>
         </section>
         <div className='cities__right-section'></div>

@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { CommentLength, PostingStatus, RATING_OPTIONS } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { postReviewAction } from '../../store/api-action';
@@ -13,12 +13,13 @@ export default function ReviewForm(): JSX.Element {
   const postingStatus = useAppSelector(getPostingStatus);
   const offerId = useAppSelector(getOfferData)?.id;
 
-  const reviewFormInitialState = {
+  const reviewFormInitialState = useRef({
     comment: '',
-    rating: 0,
-  };
+    rating: 0
+  });
 
-  const [reviewFormState, setReviewFormState] = useState(reviewFormInitialState);
+  const [reviewFormState, setReviewFormState] = useState(reviewFormInitialState.current);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { comment, rating } = reviewFormState;
 
@@ -32,10 +33,24 @@ export default function ReviewForm(): JSX.Element {
   const handleFormSubmit = (evt: ChangeEvent<HTMLFormElement>) => {
     evt.preventDefault();
     if (offerId) {
+      setIsSubmitting(true);
       dispatch(postReviewAction({ comment, rating, offerId }));
-      setReviewFormState(reviewFormInitialState);
     }
   };
+
+  useEffect(() => {
+    if (isSubmitting) {
+      if (postingStatus === PostingStatus.Posted) {
+        setReviewFormState(reviewFormInitialState.current);
+        setIsSubmitting(false);
+      }
+
+      if (postingStatus === PostingStatus.Error) {
+        setIsSubmitting(false);
+      }
+    }
+  }, [postingStatus, isSubmitting]);
+
 
   const submitCondition = Boolean(rating) &&
     (comment.length >= CommentLength.MIN && comment.length < CommentLength.MAX);
@@ -57,6 +72,7 @@ export default function ReviewForm(): JSX.Element {
             title={title}
             onRatingButtonChange={handleRatingChange}
             checked={reviewFormState.rating === value}
+            disabled={postingStatus === PostingStatus.Posting}
           />
         ))}
       </div>
@@ -67,10 +83,11 @@ export default function ReviewForm(): JSX.Element {
         name='review'
         placeholder='Tell how was your stay, what you like and what can be improved'
         value={reviewFormState.comment}
-        onChange={(e) => {
+        disabled={postingStatus === PostingStatus.Posting}
+        onChange={(evt) => {
           setReviewFormState((prevState) => ({
             ...prevState,
-            comment: e.target.value,
+            comment: evt.target.value,
           }));
         }}
       />

@@ -1,26 +1,16 @@
-import { Helmet } from 'react-helmet-async';
-import { useAppSelector } from '../../hooks';
-import { DataStatus } from '../../const';
-import { getOffersStatus, getSortedOffers } from '../../store/offers-process/offers-process.selectors';
 import classNames from 'classnames';
-
-// %------------ components ------------% //
-import Navigation from '../../components/navigation/navigation';
-import Preloader from '../../components/preloader/preloader';
-import Cities from '../../components/cities/cities';
+import { memo } from 'react';
+import { Helmet } from 'react-helmet-async';
 import CitiesEmpty from '../../components/cities-empty/cities-empty';
+import Cities from '../../components/cities/cities';
+import Navigation from '../../components/navigation/navigation';
+import { useAppSelector } from '../../hooks';
+import { getSortedOffers } from '../../store/offers-process/offers-process.selectors';
 
 // #======================== MainPage ========================# //
 
-export default function MainPage(): JSX.Element {
-
-  const offersStatus = useAppSelector(getOffersStatus);
+function MainPage(): JSX.Element {
   const sortedOffers = useAppSelector(getSortedOffers);
-
-  if (offersStatus === DataStatus.Loading) {
-    return <Preloader />;
-  }
-
   return (
     <main
       className={classNames(
@@ -44,3 +34,5 @@ export default function MainPage(): JSX.Element {
     </main>
   );
 }
+
+export default memo(MainPage);

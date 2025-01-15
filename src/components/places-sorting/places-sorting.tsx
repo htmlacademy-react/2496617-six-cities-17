@@ -1,9 +1,7 @@
 import classNames from 'classnames';
+import { memo, useRef, useState } from 'react';
 import { SortingOption } from '../../const';
-import { memo, useState } from 'react';
-import { useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { capitalize } from '../../utils/utils';
 import { getSortingType } from '../../store/offers-process/offers-process.selectors';
 import { changeSortingType } from '../../store/offers-process/offers-process.slice';
 
@@ -37,7 +35,7 @@ function PlacesSorting(): JSX.Element {
         ref={placesSortingTypeRef}
         onClick={onSortingTypeClick}
       >
-        {capitalize(selectedOption)}
+        {selectedOption}
         <svg className="places__sorting-arrow" width={7} height={4}>
           <use xlinkHref="#icon-arrow-select" />
         </svg>

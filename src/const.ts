@@ -3,12 +3,12 @@ import { StatusCodes } from 'http-status-codes';
 // *======================== const ========================* //
 // *------------ data ------------* //
 export const LOCATIONS: string[] = [
-  'paris',
-  'cologne',
-  'brussels',
-  'amsterdam',
-  'hamburg',
-  'dusseldorf',
+  'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf',
 ];
 
 export const RATING_OPTIONS = [
@@ -45,12 +45,6 @@ export enum NameSpace {
 }
 
 // *------------ view ------------* //
-export enum CardListType {
-  CITIES = 'cities',
-  FAVORITES = 'favorites',
-  NEAR_PLACES = 'near-places'
-}
-
 export enum SortingOption {
   POPULAR = 'Popular',
   BY_LOW_PRICE = 'Price: low to high',
@@ -64,6 +58,8 @@ export const NEAR_PLACES_AMOUNT = 3;
 
 export const SHOWN_REVIEWS_AMOUNT = 10;
 
+export const SHOWN_PHOTOS_AMOUNT = 6;
+
 export const CommentLength = {
   MIN: 50,
   MAX: 300,
@@ -75,7 +71,7 @@ export const URL_MARKER_DEFAULT =
 export const URL_MARKER_CURRENT =
   '../img/pin-active.svg';
 
-export const DEFAULT_CITY_NAME = 'paris';
+export const DEFAULT_CITY_NAME = 'Paris';
 
 export const DEFAULT_CITY_LOCATION = {
   latitude: 48.85661,
@@ -85,7 +81,7 @@ export const DEFAULT_CITY_LOCATION = {
 
 export enum AppRoute {
   Main = '/',
-  Favorites = '/favorites',
+  Favorite = '/favorite',
   Offers = '/offers/:id',
   Login = '/login',
   NotFound = '*'
@@ -98,7 +94,7 @@ export enum APIRoute {
   Logout = '/logout',
   NearPlaces = 'offers/:offerId/nearby',
   Reviews = '/comments/:offerId',
-  Favorites = '/favorite'
+  Favorite = '/favorite'
 }
 
 export enum AuthorizationStatus {

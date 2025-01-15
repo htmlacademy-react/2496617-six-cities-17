@@ -1,11 +1,10 @@
-import PlacesSorting from '../../components/places-sorting/places-sorting';
-import PlacesList from '../../components/places-list/places-list';
+import { memo, useCallback, useState } from 'react';
 import Map from '../../components/map/map';
-import { capitalize } from '../../utils/utils';
-import { useCallback, useState } from 'react';
-import { PlaceCardType } from '../../types';
+import PlacesList from '../../components/places-list/places-list';
+import PlacesSorting from '../../components/places-sorting/places-sorting';
 import { useAppSelector } from '../../hooks';
 import { getCityLocation, getCityName } from '../../store/offers-process/offers-process.selectors';
+import { PlaceCardType } from '../../types';
 
 // ^======================== Cities ========================^ //
 
@@ -15,16 +14,23 @@ type CitiesProps = {
 
 function Cities(citiesProps: CitiesProps): JSX.Element {
   const { offers } = citiesProps;
-  const [selectedPoint, setSelectedPoint] = useState<PlaceCardType>();
+  const [selectedPoint, setSelectedPoint] = useState<PlaceCardType | undefined>(undefined);
   const selectedCityName = useAppSelector(getCityName);
   const selectedCityLocation = useAppSelector(getCityLocation);
 
-  const handleListItemHover = useCallback(
+  const handleListItemMouseEnter = useCallback(
     (listItemId: string) => {
       const currentPoint = offers.find((offer) => offer.id === listItemId);
       setSelectedPoint(currentPoint);
     },
     [offers]
+  );
+
+  const handleListItemMouseLeave = useCallback(
+    () => {
+      setSelectedPoint(undefined);
+    },
+    []
   );
 
   return (
@@ -34,13 +40,14 @@ function Cities(citiesProps: CitiesProps): JSX.Element {
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">
-            {offers.length} places to stay in {capitalize(selectedCityName)}
+            {`${offers.length} place${offers.length > 1 ? 's' : ''} to stay in ${selectedCityName}`}
           </b>
 
           <PlacesSorting />
 
           <PlacesList
-            onListItemHover={handleListItemHover}
+            onListItemEnter={handleListItemMouseEnter}
+            onListItemLeave={handleListItemMouseLeave}
             offers={offers}
           />
 
@@ -58,4 +65,4 @@ function Cities(citiesProps: CitiesProps): JSX.Element {
     </div>
   );
 }
-export default Cities;
+export default memo(Cities);

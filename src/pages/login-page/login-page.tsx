@@ -1,90 +1,61 @@
-import { Helmet } from 'react-helmet-async';
-import { AppRoute, AuthorizationStatus, LoginStatus } from '../../const';
-import { FormEvent, useRef } from 'react';
-import { useAppDispatch, useAppSelector, } from '../../hooks';
-import { checkAuthAction, loginAction } from '../../store/api-action';
 import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { Link, useLocation } from 'react-router-dom';
+import LoginForm from '../../components/login-form/login-form';
+import { AppRoute, AuthorizationStatus, LOCATIONS } from '../../const';
+import { useAppDispatch, useAppSelector, } from '../../hooks';
 import { redirectToRoute } from '../../store/action';
-import { getAuthStatus, getLoginStatus } from '../../store/auth-process/auth-process.selectors';
+import { getAuthStatus } from '../../store/auth-process/auth-process.selectors';
+import { changeCity } from '../../store/offers-process/offers-process.slice';
+import { getRandomInteger } from '../../utils/utils';
 
 // #======================== LoginPage ========================# //
 
 export default function LoginPage(): JSX.Element {
-  const loginRef = useRef<HTMLInputElement | null>(null);
-  const passwordRef = useRef<HTMLInputElement | null>(null);
   const dispatch = useAppDispatch();
   const authStatus = useAppSelector(getAuthStatus);
-  const loginStatus = useAppSelector(getLoginStatus);
-
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
-
-    if (loginRef.current !== null && passwordRef.current !== null) {
-      dispatch(loginAction({
-        login: loginRef.current.value,
-        password: passwordRef.current.value
-      }));
-    }
+  type LocationState = {
+    from?: string;
   };
+  const location = useLocation();
+  const locationState = location.state as LocationState;
+
+  const fromPage = locationState?.from as AppRoute || AppRoute.Main;
 
   useEffect(() => {
     if (authStatus === AuthorizationStatus.Auth) {
-      dispatch(checkAuthAction());
-      dispatch(redirectToRoute(AppRoute.Main));
+      dispatch(redirectToRoute(fromPage));
     }
-  }, [authStatus, dispatch]);
+  }, [authStatus, dispatch, fromPage]);
+
+  const randomCity = LOCATIONS[getRandomInteger(0, LOCATIONS.length - 1)];
+
+  const handleCityLinkClick = () => {
+    dispatch(changeCity(randomCity));
+  };
 
   return (
-    <div className='page page--gray page--login'>
+    <main className='page__main page__main--login'>
       <Helmet>
         <title>6 cities - login</title>
       </Helmet>
-
-      <main className='page__main page__main--login'>
-        <div className='page__login-container container'>
-          <section className='login'>
-            <h1 className='login__title'>Sign in</h1>
-            <form className='login__form form' onSubmit={handleSubmit}>
-              <div className='login__input-wrapper form__input-wrapper'>
-                <label className='visually-hidden'>E-mail</label>
-                <input
-                  className='login__input form__input'
-                  type='email'
-                  name='email'
-                  placeholder='Email'
-                  required
-                  ref={loginRef}
-                />
-              </div>
-              <div className='login__input-wrapper form__input-wrapper'>
-                <label className='visually-hidden'>Password</label>
-                <input
-                  className='login__input form__input'
-                  type='password'
-                  name='password'
-                  placeholder='Password'
-                  required
-                  ref={passwordRef}
-                />
-              </div>
-              <button
-                className='login__submit form__submit button'
-                type='submit'
-                disabled={loginStatus === LoginStatus.Processing}
-              >
-                {loginStatus === LoginStatus.Processing ? 'Signing in...' : 'Sign in'}
-              </button>
-            </form>
-          </section>
-          <section className='locations locations--login locations--current'>
-            <div className='locations__item'>
-              <a className='locations__item-link' href='#'>
-                <span>Amsterdam</span>
-              </a>
-            </div>
-          </section>
-        </div>
-      </main>
-    </div>
+      <div className='page__login-container container'>
+        <section className='login'>
+          <h1 className='login__title'>Sign in</h1>
+          <LoginForm />
+        </section>
+        <section className='locations locations--login locations--current'>
+          <div className='locations__item'>
+            <Link
+              className='locations__item-link'
+              to={AppRoute.Main}
+              onClick={handleCityLinkClick}
+            >
+              <span>{randomCity}</span>
+            </Link>
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }

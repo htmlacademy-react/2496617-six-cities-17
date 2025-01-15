@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import { DataStatus, NameSpace, PostingStatus } from '../../const';
 import { ReviewsProcess } from '../../types';
 import { fetchReviewsAction, postReviewAction } from '../api-action';
-import { toast } from 'react-toastify';
 
 // %======================== reviews-process.slice ========================% //
 
@@ -34,8 +34,9 @@ export const reviewsProcess = createSlice({
       .addCase(postReviewAction.pending, (state) => {
         state.postingStatus = PostingStatus.Posting;
       })
-      .addCase(postReviewAction.fulfilled, (state) => {
+      .addCase(postReviewAction.fulfilled, (state, action) => {
         state.postingStatus = PostingStatus.Posted;
+        state.data.push(action.payload);
       })
       .addCase(postReviewAction.rejected, (state) => {
         state.postingStatus = PostingStatus.Error;

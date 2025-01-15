@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef, MutableRefObject } from 'react';
 import leaflet, { Map } from 'leaflet';
-import { LocationType } from '../types';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { LocationType } from '../types';
 // %======================== useMap ========================% //
 
 export const useMap = (
@@ -37,9 +37,7 @@ export const useMap = (
 
       isRenderedRef.current = true;
     }
-  }, [mapRef, cityLocation, isOfferPage]);
 
-  useEffect(() => {
     if (map) {
       map.setView(
         {
@@ -49,8 +47,7 @@ export const useMap = (
         cityLocation.zoom,
       );
     }
-
-  }, [map, cityLocation]);
+  }, [map, mapRef, cityLocation, isOfferPage]);
 
   return map;
 };

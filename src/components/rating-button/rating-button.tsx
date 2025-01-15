@@ -2,12 +2,13 @@
 type RatingButtonProps = {
   value: number;
   title: string;
-  onRatingButtonChange: (value: number) => void;
   checked: boolean;
+  disabled: boolean;
+  onRatingButtonChange: (value: number) => void;
 };
 
 export default function RatingButton(ratingButtonProps: RatingButtonProps): JSX.Element {
-  const { value, checked, title, onRatingButtonChange } = ratingButtonProps;
+  const { value, checked, title, onRatingButtonChange, disabled } = ratingButtonProps;
 
   return (
     <>
@@ -18,6 +19,7 @@ export default function RatingButton(ratingButtonProps: RatingButtonProps): JSX.
         id={`${value}-stars`}
         type='radio'
         checked={checked}
+        disabled={disabled}
         onChange={(e) => {
           onRatingButtonChange(Number(e.target.value));
         }}
