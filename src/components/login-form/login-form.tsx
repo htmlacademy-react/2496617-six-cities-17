@@ -6,14 +6,14 @@ import { getLoginStatus } from '../../store/auth-process/auth-process.selectors'
 
 // ^======================== LoginForm ========================^ //
 
+const loginFormInitialState = {
+  email: '',
+  password: '',
+};
+
 function LoginForm(): JSX.Element {
   const dispatch = useAppDispatch();
   const loginStatus = useAppSelector(getLoginStatus);
-
-  const loginFormInitialState = {
-    email: '',
-    password: '',
-  };
 
   const [loginFormState, setLoginFormState] = useState(loginFormInitialState);
 
