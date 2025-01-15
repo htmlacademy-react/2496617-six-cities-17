@@ -93,11 +93,7 @@ export default function OfferPage(): JSX.Element {
           </div>
         </div>
 
-        {
-          nearPlaces.length !== 0
-            ? <Map cityLocation={city.location} offers={nearPlaces} currentOffer={offerData} />
-            : null
-        }
+        {nearPlaces.length !== 0 && <Map cityLocation={city.location} offers={nearPlaces} currentOffer={offerData} />}
 
       </section>
 
