@@ -114,16 +114,18 @@ export const loginAction = createAsyncThunk<
 >('auth/login', async ({ email: email, password }, { dispatch, extra: api }) => {
   const { data: { token } } = await api.post<UserData>(APIRoute.Login, { email, password });
   saveToken(token);
+  dispatch(fetchOffersAction());
   dispatch(fetchFavoriteOffersAction());
   return email;
 });
 
 // @------------------------ logout ------------------------@ //
 export const logoutAction = createAsyncThunk<
-  void,
-  undefined,
-  AsyncThunkType
->('auth/logout', async (_arg, { extra: api }) => {
+void,
+undefined,
+AsyncThunkType
+>('auth/logout', async (_arg, {dispatch, extra: api }) => {
   await api.delete(APIRoute.Logout);
+  dispatch(fetchOffersAction());
   dropToken();
 });

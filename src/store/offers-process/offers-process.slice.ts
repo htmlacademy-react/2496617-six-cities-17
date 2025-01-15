@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { DataStatus, DEFAULT_CITY_LOCATION, DEFAULT_CITY_NAME, NameSpace, SortingOption } from '../../const';
 import { OffersProcess } from '../../types';
 import { defineCityLocation, getOffersByCityName, sortOffers, updateFavoriteStatus } from '../../utils/utils';
-import { addToFavoritesAction, fetchFavoriteOffersAction, fetchOffersAction, logoutAction, removeFromFavoritesAction } from '../api-action';
+import { addToFavoritesAction, fetchOffersAction, removeFromFavoritesAction } from '../api-action';
 
 // %======================== offers-process.slice ========================% //
 
@@ -50,19 +50,6 @@ export const offersProcess = createSlice({
       })
       .addCase(removeFromFavoritesAction.fulfilled, (state, action) => {
         state.all = updateFavoriteStatus(state.all, action.payload, false);
-        state.sorted = getOffersByCityName(state.all, state.cityName);
-      })
-      .addCase(fetchFavoriteOffersAction.fulfilled, (state, action) => {
-        const favoriteOffers = action.payload;
-
-        state.all = state.all.map((offer) => ({
-          ...offer,
-          isFavorite: favoriteOffers.some((fav) => fav.id === offer.id)
-        }));
-        state.sorted = getOffersByCityName(state.all, state.cityName);
-      })
-      .addCase(logoutAction.fulfilled, (state) => {
-        state.all = state.all.map((offer) => ({ ...offer, isFavorite: false }));
         state.sorted = getOffersByCityName(state.all, state.cityName);
       });
   }
