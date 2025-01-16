@@ -3,5 +3,5 @@ import { AppState } from '../../types';
 
 // %======================== favorite-offers-process.selectors ========================% //
 
-export const getFavoriteOffers = (state: AppState) => state[NameSpace.FavoriteOffers].data;
-export const getFavoriteOffersStatus = (state: AppState) => state[NameSpace.FavoriteOffers].status;
+export const getFavoriteOffers = (state: Pick<AppState, NameSpace.FavoriteOffers>) => state[NameSpace.FavoriteOffers].data;
+export const getFavoriteOffersStatus = (state: Pick<AppState, NameSpace.FavoriteOffers>) => state[NameSpace.FavoriteOffers].status;
