@@ -1,16 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { DataStatus, NameSpace } from '../../const';
-import { OfferType } from '../../types';
+import { OfferProcess } from '../../types';
 import { addToFavoritesAction, fetchOfferAction, logoutAction, removeFromFavoritesAction } from '../api-action';
 
 // %======================== offer-process.slice ========================% //
 
-type InitialState = {
-  data: null | OfferType;
-  status: DataStatus;
-};
-
-const initialState: InitialState = {
+const initialState: OfferProcess = {
   data: null,
   status: DataStatus.Unknown,
 };

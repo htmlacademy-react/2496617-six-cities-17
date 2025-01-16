@@ -97,6 +97,11 @@ export type OffersProcess = {
   status: DataStatus;
 };
 
+export type OfferProcess = {
+  data: null | OfferType;
+  status: DataStatus;
+};
+
 export type AuthProcess = {
   status: AuthorizationStatus;
   login: string;
