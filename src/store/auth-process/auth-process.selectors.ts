@@ -3,7 +3,7 @@ import { AppState } from '../../types';
 
 // %======================== auth-process.selectors ========================% //
 
-export const getAuthStatus = (state: AppState): AuthorizationStatus => state[NameSpace.Auth].status;
-export const getLogin = (state: AppState): string => state[NameSpace.Auth].login;
-export const getLoginStatus = (state: AppState): LoginStatus => state[NameSpace.Auth].loginStatus;
-export const getAvatarUrl = (state: AppState): string => state[NameSpace.Auth].avatarUrl;
+export const getAuthStatus = (state: Pick<AppState, NameSpace.Auth>): AuthorizationStatus => state[NameSpace.Auth].status;
+export const getLogin = (state: Pick<AppState, NameSpace.Auth>): string => state[NameSpace.Auth].login;
+export const getLoginStatus = (state: Pick<AppState, NameSpace.Auth>): LoginStatus => state[NameSpace.Auth].loginStatus;
+export const getAvatarUrl = (state: Pick<AppState, NameSpace.Auth>): string => state[NameSpace.Auth].avatarUrl;
