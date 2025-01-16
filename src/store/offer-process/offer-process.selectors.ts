@@ -3,5 +3,5 @@ import { AppState } from '../../types';
 
 // %======================== offer-process.selectors ========================% //
 
-export const getOfferData = (state: AppState) => state[NameSpace.Offer].data;
-export const getOfferStatus = (state: AppState) => state[NameSpace.Offer].status;
+export const getOfferData = (state: Pick<AppState, NameSpace.Offer>) => state[NameSpace.Offer].data;
+export const getOfferStatus = (state: Pick<AppState, NameSpace.Offer>) => state[NameSpace.Offer].status;
