@@ -1,13 +1,14 @@
 import { describe, it } from 'vitest';
 import { AuthorizationStatus, LoginStatus, NameSpace } from '../../const';
 import { getAuthStatus, getLogin, getLoginStatus } from './auth-process.selectors';
+import { faker } from '@faker-js/faker';
 
 describe('AuthProcess selectors', () => {
   const state = {
     [NameSpace.Auth]: {
       status: AuthorizationStatus.Unknown,
-      login: 'test@test.com',
-      avatarUrl: './path-to-avatar.png',
+      login: faker.string.alpha(),
+      avatarUrl: faker.system.filePath(),
       loginStatus: LoginStatus.Unknown,
     }
   };

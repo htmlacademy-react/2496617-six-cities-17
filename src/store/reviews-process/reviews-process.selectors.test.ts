@@ -1,11 +1,13 @@
 import { describe, it } from 'vitest';
 import { DataStatus, NameSpace, PostingStatus } from '../../const';
+import { makeFakeReview } from '../../utils/mocks';
 import { getPostingStatus, getReviews, getReviewsStatus } from './reviews-process.selectors';
+import { getRandomInteger } from '../../utils/utils';
 
 describe('ReviewsProcess selectors', () => {
   const state = {
     [NameSpace.Reviews]: {
-      data: [],
+      data: Array.from({length: getRandomInteger(0, 10)}, makeFakeReview),
       status: DataStatus.Unknown,
       postingStatus: PostingStatus.Unknown,
     }

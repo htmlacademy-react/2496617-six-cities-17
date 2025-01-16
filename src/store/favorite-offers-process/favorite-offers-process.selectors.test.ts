@@ -1,11 +1,13 @@
 import { describe, it } from 'vitest';
 import { DataStatus, NameSpace } from '../../const';
 import { getFavoriteOffers, getFavoriteOffersStatus } from './favorite-offers-process.selectors';
+import { makeFakePlaceCard } from '../../utils/mocks';
+import { getRandomInteger } from '../../utils/utils';
 
 describe('FavoriteOffersProcess selectors', () => {
   const state = {
     [NameSpace.FavoriteOffers]: {
-      data: [],
+      data: Array.from({length: getRandomInteger(0, 10)}, makeFakePlaceCard),
       status: DataStatus.Unknown,
     }
   };

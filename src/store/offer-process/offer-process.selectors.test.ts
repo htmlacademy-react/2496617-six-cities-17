@@ -1,11 +1,12 @@
 import { describe, it } from 'vitest';
 import { DataStatus, NameSpace } from '../../const';
 import { getOfferData, getOfferStatus } from './offer-process.selectors';
+import { makeFakeOffer } from '../../utils/mocks';
 
 describe('OfferProcess selectors', () => {
   const state = {
     [NameSpace.Offer]: {
-      data: null,
+      data: makeFakeOffer(),
       status: DataStatus.Unknown,
     }
   };
