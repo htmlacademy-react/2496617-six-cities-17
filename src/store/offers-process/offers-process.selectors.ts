@@ -1,4 +1,4 @@
-import { NameSpace, SortingOption } from '../../const';
+import { DataStatus, NameSpace, SortingOption } from '../../const';
 import { AppState, PlaceCardType } from '../../types';
 
 // %======================== offers-process.selectors ========================% //
@@ -10,4 +10,4 @@ export const getAllOffers = (state: Pick<AppState, NameSpace.Offers>): PlaceCard
 export const getSortingType = (state: Pick<AppState, NameSpace.Offers>): SortingOption => state[NameSpace.Offers].sortingType;
 export const getSortedOffers = (state: Pick<AppState, NameSpace.Offers>): PlaceCardType[] => state[NameSpace.Offers].sorted;
 
-export const getOffersStatus = (state: Pick<AppState, NameSpace.Offers>) => state[NameSpace.Offers].status;
+export const getOffersStatus = (state: Pick<AppState, NameSpace.Offers>): DataStatus => state[NameSpace.Offers].status;
