@@ -27,6 +27,7 @@ export const authProcess = createSlice({
       .addCase(checkAuthAction.rejected, (state) => {
         state.status = AuthorizationStatus.NoAuth;
         state.login = '';
+        state.avatarUrl = '';
         state.loginStatus = LoginStatus.Unknown;
       })
       // @------------ login ------------@ //

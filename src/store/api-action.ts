@@ -121,10 +121,10 @@ export const loginAction = createAsyncThunk<
 
 // @------------------------ logout ------------------------@ //
 export const logoutAction = createAsyncThunk<
-  void,
-  undefined,
-  AsyncThunkType
->('auth/logout', async (_arg, { dispatch, extra: api }) => {
+void,
+undefined,
+AsyncThunkType
+>('auth/logout', async (_arg, {dispatch, extra: api }) => {
   await api.delete(APIRoute.Logout);
   dispatch(fetchOffersAction());
   dropToken();
