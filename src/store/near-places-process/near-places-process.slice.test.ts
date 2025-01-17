@@ -7,6 +7,26 @@ import { addToFavoritesAction, fetchNearPlacesAction, logoutAction } from '../ap
 import { nearPlacesProcess } from './near-places-process.slice';
 
 describe('NearPlacesProcess slice', () => {
+  const emptyAction = { type: '' };
+
+  it('Should return initial state with empty action', () => {
+    const expectedState = {
+      data: [],
+      status: DataStatus.Unknown,
+    };
+    const result = nearPlacesProcess.reducer(expectedState, emptyAction);
+    expect(result).toEqual(expectedState);
+  });
+
+  it('Should return default initial state with empty action and undefined state', () => {
+    const expectedState = {
+      data: [],
+      status: DataStatus.Unknown,
+    };
+    const result = nearPlacesProcess.reducer(undefined, emptyAction);
+    expect(result).toEqual(expectedState);
+  });
+
   it('Should set status to "loading" with "fetchNearPlacesAction.pending"', () => {
     const expectedState = {
       data: [],
@@ -53,7 +73,7 @@ describe('NearPlacesProcess slice', () => {
     expect(result).toEqual(expectedState);
   });
 
-  it('Should update favorite offers with "removeToFavoritesAction.fulfilled"', () => {
+  it('Should update favorite offers with "removeFromFavoritesAction.fulfilled"', () => {
     const mockNearPlaces = Array.from({ length: 10 }, makeFakePlaceCard);
     const mockNearPlace = mockNearPlaces[getRandomInteger(0, 10)];
 
