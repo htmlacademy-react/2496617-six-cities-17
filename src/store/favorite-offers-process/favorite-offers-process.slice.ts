@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { DataStatus, NameSpace } from '../../const';
 import { FavoriteOffersProcess } from '../../types';
-import { addToFavoritesAction, fetchFavoriteOffersAction, logoutAction, removeFromFavoritesAction } from '../api-action';
+import { fetchFavoriteOffersAction, logoutAction, removeFromFavoritesAction } from '../api-action';
 
 // %======================== favorite-offers-process.slice ========================% //
 
@@ -26,13 +26,6 @@ export const favoriteOffersProcess = createSlice({
       })
       .addCase(fetchFavoriteOffersAction.rejected, (state) => {
         state.status = DataStatus.Error;
-      })
-      .addCase(addToFavoritesAction.fulfilled, (state, action) => {
-        const updatedOffer = action.payload;
-        state.data.push(updatedOffer);
-      })
-      .addCase(addToFavoritesAction.rejected, () => {
-        toast.error('Could not add to favorite');
       })
       .addCase(removeFromFavoritesAction.fulfilled, (state, action) => {
         const updatedOffer = action.payload;
