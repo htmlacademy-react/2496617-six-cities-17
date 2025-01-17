@@ -76,18 +76,6 @@ export type AuthResponse = {
   avatarUrl: string;
 };
 
-export type ReviewResponse = {
-  comment: string;
-  date: string;
-  id: string;
-  rating: number;
-  user: {
-    name: string;
-    isPro: boolean;
-    avatarUrl: string;
-  };
-};
-
 export type OffersProcess = {
   cityName: string;
   cityLocation: LocationType;

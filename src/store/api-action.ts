@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import { APIRoute } from '../const';
 import { dropToken, saveToken } from '../services/token';
-import { AppDispatch, AppState, AuthData, AuthResponse, OfferType, PlaceCardType, ReviewResponse, ReviewType, UserData } from '../types';
+import { AppDispatch, AppState, AuthData, AuthResponse, OfferType, PlaceCardType, ReviewType, UserData } from '../types';
 
 // %======================== api-action ========================% //
 
@@ -54,7 +54,7 @@ export const fetchReviewsAction = createAsyncThunk<
 
 // @------------------------ postReview ------------------------@ //
 export const postReviewAction = createAsyncThunk<
-  ReviewResponse,
+  ReviewType,
   {
     comment: string;
     rating: number;
@@ -62,7 +62,7 @@ export const postReviewAction = createAsyncThunk<
   },
   AsyncThunkType
 >('reviews/postReview', async ({ comment, rating, offerId }, { extra: api }) => {
-  const { data } = await api.post<ReviewResponse>(APIRoute.Reviews.replace(':offerId', offerId), { rating, comment });
+  const { data } = await api.post<ReviewType>(APIRoute.Reviews.replace(':offerId', offerId), { rating, comment });
   return data;
 });
 
@@ -121,10 +121,10 @@ export const loginAction = createAsyncThunk<
 
 // @------------------------ logout ------------------------@ //
 export const logoutAction = createAsyncThunk<
-void,
-undefined,
-AsyncThunkType
->('auth/logout', async (_arg, {dispatch, extra: api }) => {
+  void,
+  undefined,
+  AsyncThunkType
+>('auth/logout', async (_arg, { dispatch, extra: api }) => {
   await api.delete(APIRoute.Logout);
   dispatch(fetchOffersAction());
   dropToken();

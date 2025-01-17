@@ -49,6 +49,12 @@ export const makeFakeReview = (): ReviewType => ({
   },
 });
 
+export const makeFakeReviewData = () => ({
+  comment: faker.string.alpha(),
+  rating: faker.number.int(),
+  offerId: faker.string.nanoid(),
+});
+
 export const makeFakeOffer = () => ({
   id: faker.string.nanoid(),
   title: faker.string.alpha(),
