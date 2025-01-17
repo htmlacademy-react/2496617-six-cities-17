@@ -7,6 +7,27 @@ import { fetchReviewsAction, postReviewAction } from '../api-action';
 import { reviewsProcess } from './reviews-process.slice';
 
 describe('ReviewsProcess Slice', () => {
+  const emptyAction = { type: '' };
+
+  it('Should return initial state with empty action', () => {
+    const expectedState = {
+      data: [],
+      status: DataStatus.Unknown,
+      postingStatus: PostingStatus.Unknown,
+    };
+    const result = reviewsProcess.reducer(expectedState, emptyAction);
+    expect(result).toEqual(expectedState);
+  });
+
+  it('Should return default initial state with empty action and undefined state', () => {
+    const expectedState = {
+      data: [],
+      status: DataStatus.Unknown,
+      postingStatus: PostingStatus.Unknown,
+    };
+    const result = reviewsProcess.reducer(undefined, emptyAction);
+    expect(result).toEqual(expectedState);
+  });
 
   it('Should set "status" to "loading" with "fetchReviewsAction.pending"', () => {
     const expectedState = {
