@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { DataStatus, DEFAULT_CITY_LOCATION, DEFAULT_CITY_NAME, LOCATIONS, SortingOption } from '../../const';
 import { makeFakePlaceCard, makeFakePlaceCardForCity } from '../../utils/mocks';
-import { defineCityLocation, getOffersByCityName, sortOffers } from '../../utils/utils';
-import { fetchOffersAction } from '../api-action';
+import { defineCityLocation, getOffersByCityName, sortOffers, updateFavoriteStatus } from '../../utils/utils';
+import { addToFavoritesAction, fetchOffersAction, removeFromFavoritesAction } from '../api-action';
 import { changeCity, changeSortingType, offersProcess } from './offers-process.slice';
 
 describe('OffersProcess Slice', () => {
@@ -143,36 +143,73 @@ describe('OffersProcess Slice', () => {
     expect(result).toEqual(expectedState);
   });
 
-  // it('Should update all offers and sorted offers with "addToFavoritesAction.fulfilled"', () => {
-  //   const mockOffers = [
-  //     ...Array.from({ length: 100 }, () => makeFakePlaceCardForCity(DEFAULT_CITY_NAME)),
-  //     ...Array.from({ length: 20 }, () => makeFakePlaceCardForCity(DEFAULT_CITY_NAME)),
-  //   ];
+  it('Should update all offers and sorted offers with "addToFavoritesAction.fulfilled"', () => {
+    const mockOffers = [
+      ...Array.from({ length: 100 }, () => makeFakePlaceCardForCity(DEFAULT_CITY_NAME)),
+      ...Array.from({ length: 20 }, () => makeFakePlaceCardForCity(DEFAULT_CITY_NAME)),
+    ];
+    const mockPayload = mockOffers[0];
+    const mockUpdatedOffers = updateFavoriteStatus(mockOffers, mockPayload, true);
 
-  //   const mockSortedOffers = getOffersByCityName(mockOffers, DEFAULT_CITY_NAME);
+    const mockSortedOffers = getOffersByCityName(mockOffers, DEFAULT_CITY_NAME);
+    const mockUpdatedSortedOffers = getOffersByCityName(mockUpdatedOffers, DEFAULT_CITY_NAME);
 
-  //   const mockPayload = mockOffers[0];
 
-  //   const initialState = {
-  //     cityName: DEFAULT_CITY_NAME,
-  //     cityLocation: DEFAULT_CITY_LOCATION,
-  //     all: mockOffers,
-  //     sorted: mockSortedOffers,
-  //     sortingType: SortingOption.POPULAR,
-  //     status: DataStatus.Loaded,
-  //   };
+    const initialState = {
+      cityName: DEFAULT_CITY_NAME,
+      cityLocation: DEFAULT_CITY_LOCATION,
+      all: mockOffers,
+      sorted: mockSortedOffers,
+      sortingType: SortingOption.POPULAR,
+      status: DataStatus.Loaded,
+    };
 
-  //   const expectedState = {
-  //     cityName: DEFAULT_CITY_NAME,
-  //     cityLocation: DEFAULT_CITY_LOCATION,
-  //     all: updateFavoriteStatus(mockOffers, mockPayload, true),
-  //     sorted: getOffersByCityName(mockOffers, DEFAULT_CITY_NAME),
-  //     sortingType: SortingOption.POPULAR,
-  //     status: DataStatus.Loaded,
-  //   };
+    const expectedState = {
+      cityName: DEFAULT_CITY_NAME,
+      cityLocation: DEFAULT_CITY_LOCATION,
+      all: mockUpdatedOffers,
+      sorted: mockUpdatedSortedOffers,
+      sortingType: SortingOption.POPULAR,
+      status: DataStatus.Loaded,
+    };
 
-  //   const result = offersProcess.reducer(initialState, addToFavoritesAction(mockPayload.id));
+    const result = offersProcess.reducer(initialState, addToFavoritesAction.fulfilled(mockPayload, mockPayload.id, ''));
 
-  //   expect(result).toEqual(expectedState);
-  // });
+    expect(result).toEqual(expectedState);
+  });
+
+  it('Should update all offers and sorted offers with "removeFromFavoritesAction.fulfilled"', () => {
+    const mockOffers = [
+      ...Array.from({ length: 100 }, () => makeFakePlaceCardForCity(DEFAULT_CITY_NAME)),
+      ...Array.from({ length: 20 }, () => makeFakePlaceCardForCity(DEFAULT_CITY_NAME)),
+    ];
+    const mockPayload = mockOffers[0];
+    const mockUpdatedOffers = updateFavoriteStatus(mockOffers, mockPayload, false);
+
+    const mockSortedOffers = getOffersByCityName(mockOffers, DEFAULT_CITY_NAME);
+    const mockUpdatedSortedOffers = getOffersByCityName(mockUpdatedOffers, DEFAULT_CITY_NAME);
+
+
+    const initialState = {
+      cityName: DEFAULT_CITY_NAME,
+      cityLocation: DEFAULT_CITY_LOCATION,
+      all: mockOffers,
+      sorted: mockSortedOffers,
+      sortingType: SortingOption.POPULAR,
+      status: DataStatus.Loaded,
+    };
+
+    const expectedState = {
+      cityName: DEFAULT_CITY_NAME,
+      cityLocation: DEFAULT_CITY_LOCATION,
+      all: mockUpdatedOffers,
+      sorted: mockUpdatedSortedOffers,
+      sortingType: SortingOption.POPULAR,
+      status: DataStatus.Loaded,
+    };
+
+    const result = offersProcess.reducer(initialState, removeFromFavoritesAction.fulfilled(mockPayload, mockPayload.id, ''));
+
+    expect(result).toEqual(expectedState);
+  });
 });
