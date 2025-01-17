@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { PlaceCardType, ReviewType } from '../types';
 import { getRandomInteger } from './utils';
+
 // %============== functions form mock data for tests ==============% //
 
 export const makeFakePlaceCard = (): PlaceCardType => ({
@@ -26,6 +27,15 @@ export const makeFakePlaceCard = (): PlaceCardType => ({
   rating: faker.number.int(),
   previewImage: faker.system.filePath()
 });
+
+export const makeFakePlaceCardForCity = (cityName: string): PlaceCardType => ({
+  ...makeFakePlaceCard(),
+  city: {
+    ...makeFakePlaceCard().city,
+    name: cityName,
+  },
+});
+
 
 export const makeFakeReview = (): ReviewType => ({
   id: faker.string.nanoid(),
