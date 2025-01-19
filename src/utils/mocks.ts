@@ -1,5 +1,7 @@
 import { faker } from '@faker-js/faker';
-import { PlaceCardType, ReviewType } from '../types';
+import { Action, ThunkDispatch } from '@reduxjs/toolkit';
+import { createAPI } from '../services/api';
+import { AppState, PlaceCardType, ReviewType } from '../types';
 import { getRandomInteger } from './utils';
 
 // %============== functions form mock data for tests ==============% //
@@ -87,3 +89,7 @@ export const makeFakeOffer = () => ({
   bedrooms: faker.number.int(),
   maxAdults: faker.number.int(),
 });
+
+export type AppThunkDispatch = ThunkDispatch<AppState, ReturnType<typeof createAPI>, Action>;
+
+export const extractActionsTypes = (actions: Action<string>[]) => actions.map(({ type }) => type);
