@@ -7,9 +7,9 @@ import { getFavoriteOffers } from '../../store/favorite-offers-process/favorite-
 import { changeCity } from '../../store/offers-process/offers-process.slice';
 import { PlaceCardType } from '../../types';
 
-// #======================== FavoritePage ========================# //
+// #======================== FavoritesPage ========================# //
 
-export default function FavoritePage(): JSX.Element {
+export default function FavoritesPage(): JSX.Element {
 
   const favoriteOffers = useAppSelector(getFavoriteOffers);
   const dispatch = useAppDispatch();

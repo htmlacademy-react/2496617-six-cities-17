@@ -81,8 +81,8 @@ export const DEFAULT_CITY_LOCATION = {
 
 export enum AppRoute {
   Main = '/',
-  Favorite = '/favorite',
-  Offers = '/offers/:id',
+  Favorites = '/favorites',
+  Offer = '/offer/:id',
   Login = '/login',
   NotFound = '*'
 }

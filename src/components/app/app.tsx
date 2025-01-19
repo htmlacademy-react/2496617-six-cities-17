@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { browserHistory } from '../../browser-history/browser-history';
 import { AppRoute, DataStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
-import FavoritePage from '../../pages/favorite-page/favorite-page';
+import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import MainPage from '../../pages/main-page/main-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
@@ -33,16 +33,16 @@ export default function App(): JSX.Element {
           <Route path='/' element={<Layout />}>
             <Route index element={<MainPage />} />
             <Route
-              path={AppRoute.Offers}
+              path={AppRoute.Offer}
               element={
                 <OfferPage />
               }
             />
             <Route
-              path={AppRoute.Favorite}
+              path={AppRoute.Favorites}
               element={
                 <PrivateRoute>
-                  <FavoritePage />
+                  <FavoritesPage />
                 </PrivateRoute>
               }
             />

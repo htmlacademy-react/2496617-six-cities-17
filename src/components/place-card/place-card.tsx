@@ -3,9 +3,9 @@ import { memo } from 'react';
 import { generatePath, Link, useLocation } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { PlaceCardType } from '../../types';
-import BookmarkButton from '../../ui/bookmark-button/bookmark-button';
-import PremiumMark from '../../ui/premium-mark/premium-mark';
 import { capitalize, convertRating } from '../../utils/utils';
+import BookmarkButton from '../bookmark-button/bookmark-button';
+import PremiumMark from '../premium-mark/premium-mark';
 
 type PlaceCardProps = {
   placeCardData: PlaceCardType;
@@ -19,7 +19,7 @@ function PlaceCard({ placeCardData, onPlaceCardMouseEnter, onPlaceCardMouseLeave
 
   const path = useLocation().pathname as AppRoute;
   const isMainPage = path === AppRoute.Main;
-  const isFavoritePage = path === AppRoute.Favorite;
+  const isFavoritesPage = path === AppRoute.Favorites;
   const isOfferPage = path.startsWith('/offer');
 
   const { id, previewImage, isPremium, price, isFavorite, rating, title, type } = placeCardData;
@@ -28,7 +28,7 @@ function PlaceCard({ placeCardData, onPlaceCardMouseEnter, onPlaceCardMouseLeave
       className={classNames(
         'place-card',
         { 'cities__card': isMainPage },
-        { 'favorites__card': isFavoritePage },
+        { 'favorites__card': isFavoritesPage },
         { 'near-places__card': isOfferPage }
       )}
       onMouseEnter={() => onPlaceCardMouseEnter?.(id)}
@@ -40,15 +40,15 @@ function PlaceCard({ placeCardData, onPlaceCardMouseEnter, onPlaceCardMouseLeave
         className={classNames(
           'place-card__image-wrapper',
           { 'cities__image-wrapper': isMainPage },
-          { 'favorites__image-wrapper': isFavoritePage },
+          { 'favorites__image-wrapper': isFavoritesPage },
           { 'near-places__image-wrapper': isOfferPage }
         )}
       >
-        <Link to={generatePath(AppRoute.Offers, { id })} >
+        <Link to={generatePath(AppRoute.Offer, { id })} >
           <img
             className="place-card__image"
             src={previewImage}
-            width={isFavoritePage ? 150 : 260}
+            width={isFavoritesPage ? 150 : 260}
             height="auto"
             alt="Place image"
           />
@@ -77,7 +77,7 @@ function PlaceCard({ placeCardData, onPlaceCardMouseEnter, onPlaceCardMouseLeave
         </div>
         <h2 className="place-card__name">
           <Link
-            to={generatePath(AppRoute.Offers, { id })}
+            to={generatePath(AppRoute.Offer, { id })}
           >
             {title}
           </Link>

@@ -16,7 +16,7 @@ function OfferHost({ offerHostData }: OfferHostProps): JSX.Element {
   const { name, isPro, avatarUrl, description } = offerHostData;
 
   return (
-    <div className='offer__host'>
+    <div className='offer__host' data-testid='offer-host'>
       <h2 className='offer__host-title'>Meet the host</h2>
       <div className='offer__host-user user'>
         <div
@@ -34,12 +34,10 @@ function OfferHost({ offerHostData }: OfferHostProps): JSX.Element {
           />
         </div>
         <span className='offer__user-name'>{name}</span>
-        {
-          isPro ?
-            <span className='offer__user-status'>
-              Pro
-            </span> : ''
-        }
+        {isPro &&
+          <span className='offer__user-status'>
+            Pro
+          </span>}
       </div>
       <div className='offer__description'>
         <p className='offer__text'>

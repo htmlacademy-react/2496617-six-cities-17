@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { redirectToRoute } from '../../store/action';
-import { addToFavoriteAction, removeFromFavoriteAction } from '../../store/api-action';
+import { addToFavoritesAction, removeFromFavoritesAction } from '../../store/api-action';
 import { getAuthStatus } from '../../store/auth-process/auth-process.selectors';
 
 // ^======================== BookmarkButton ========================^ //
@@ -25,9 +25,9 @@ export default function BookmarkButton(bookmarkButtonProps: BookmarkButtonProps)
   const handleFavoriteToggle = () => {
     if (authStatus === AuthorizationStatus.Auth) {
       if (isFavorite) {
-        dispatch(removeFromFavoriteAction(offerId));
+        dispatch(removeFromFavoritesAction(offerId));
       } else {
-        dispatch(addToFavoriteAction(offerId));
+        dispatch(addToFavoritesAction(offerId));
       }
     } else {
       dispatch(redirectToRoute(AppRoute.Login));

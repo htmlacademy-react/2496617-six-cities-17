@@ -3,5 +3,5 @@ import { AppState } from '../../types';
 
 // %======================== near-places-process.selectors ========================% //
 
-export const getNearPlaces = (state: AppState) => state[NameSpace.NearPlaces].data;
-export const getNearPlacesStatus = (state: AppState) => state[NameSpace.NearPlaces].status;
+export const getNearPlaces = (state: Pick<AppState, NameSpace.NearPlaces>) => state[NameSpace.NearPlaces].data;
+export const getNearPlacesStatus = (state: Pick<AppState, NameSpace.NearPlaces>) => state[NameSpace.NearPlaces].status;

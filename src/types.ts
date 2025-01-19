@@ -76,24 +76,17 @@ export type AuthResponse = {
   avatarUrl: string;
 };
 
-export type ReviewResponse = {
-  comment: string;
-  date: string;
-  id: string;
-  rating: number;
-  user: {
-    name: string;
-    isPro: boolean;
-    avatarUrl: string;
-  };
-};
-
 export type OffersProcess = {
   cityName: string;
   cityLocation: LocationType;
   all: PlaceCardType[];
   sorted: PlaceCardType[];
   sortingType: SortingOption;
+  status: DataStatus;
+};
+
+export type OfferProcess = {
+  data: null | OfferType;
   status: DataStatus;
 };
 

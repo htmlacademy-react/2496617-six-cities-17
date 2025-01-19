@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { DataStatus, NameSpace } from '../../const';
 import { FavoriteOffersProcess } from '../../types';
-import { addToFavoriteAction, fetchFavoriteOffersAction, logoutAction, removeFromFavoriteAction } from '../api-action';
+import { addToFavoritesAction, fetchFavoriteOffersAction, logoutAction, removeFromFavoritesAction } from '../api-action';
 
 // %======================== favorite-offers-process.slice ========================% //
 
@@ -27,19 +27,16 @@ export const favoriteOffersProcess = createSlice({
       .addCase(fetchFavoriteOffersAction.rejected, (state) => {
         state.status = DataStatus.Error;
       })
-      .addCase(addToFavoriteAction.fulfilled, (state, action) => {
+      .addCase(addToFavoritesAction.fulfilled, (state, action) => {
         const updatedOffer = action.payload;
         state.data.push(updatedOffer);
       })
-      .addCase(addToFavoriteAction.rejected, () => {
-        toast.error('Could not add to favorite');
-      })
-      .addCase(removeFromFavoriteAction.fulfilled, (state, action) => {
+      .addCase(removeFromFavoritesAction.fulfilled, (state, action) => {
         const updatedOffer = action.payload;
         const offerId = state.data.findIndex((offer) => offer.id === updatedOffer.id);
         state.data.splice(offerId, 1);
       })
-      .addCase(removeFromFavoriteAction.rejected, () => {
+      .addCase(removeFromFavoritesAction.rejected, () => {
         toast.error('Could not remove from favorite');
       })
       .addCase(logoutAction.fulfilled, () => initialState);

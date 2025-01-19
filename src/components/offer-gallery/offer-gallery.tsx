@@ -8,7 +8,10 @@ type OfferGalleryProps = {
 function OfferGallery(offerGalleryProps: OfferGalleryProps): JSX.Element {
   const { images } = offerGalleryProps;
   return (
-    <div className='offer__gallery-container container'>
+    <div
+      className='offer__gallery-container container'
+      data-testid='offer-gallery-container'
+    >
       <div className='offer__gallery'>
 
         {images.slice(0, SHOWN_PHOTOS_AMOUNT).map((image) => (
@@ -20,6 +23,7 @@ function OfferGallery(offerGalleryProps: OfferGalleryProps): JSX.Element {
               className='offer__image'
               src={image}
               alt='Photo studio'
+              data-testid='offer-gallery-image'
             />
           </div>)
         )}

@@ -19,8 +19,9 @@ type ReviewProps = {
 function Review(reviewProps: ReviewProps): JSX.Element {
 
   const { date, user: { name, avatarUrl }, comment, rating } = reviewProps;
+
   return (
-    <li className='reviews__item'>
+    <li className='reviews__item' data-testid='review'>
       <div className='reviews__user user'>
         <div className='reviews__avatar-wrapper user__avatar-wrapper'>
           <img
