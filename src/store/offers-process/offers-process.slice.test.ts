@@ -63,7 +63,7 @@ describe('OffersProcess Slice', () => {
   it('Should change sorting type with changeSortingType action', () => {
     const fakeOffers = [
       ...Array.from({ length: 100 }, () => makeFakePlaceCardForCity(DEFAULT_CITY_NAME)),
-      ...Array.from({ length: 20 }, () => makeFakePlaceCardForCity(LOCATIONS[1])),
+      ...Array.from({ length: 20 }, () => makeFakePlaceCardForCity(DEFAULT_CITY_NAME)),
     ];
 
     const initialState = {

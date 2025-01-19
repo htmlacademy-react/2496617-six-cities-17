@@ -16,7 +16,6 @@ describe('Async actions', () => {
   const mockAxiosAdapter = new MockAdapter(axios);
   const middleware = [thunk.withExtraArgument(axios)];
   const mockStoreCreator = configureMockStore<AppState, Action<string>, AppThunkDispatch>(middleware);
-
   let store: ReturnType<typeof mockStoreCreator>;
 
   beforeEach(() => {
@@ -26,7 +25,12 @@ describe('Async actions', () => {
   describe('checkAuthAction', () => {
 
     it('Should dispatch "checkAuthAction.pending" and "checkAuthAction.fulfilled" with thunk "checkAuthAction', async () => {
-      mockAxiosAdapter.onGet(APIRoute.Login).reply(200);
+      const mockAuthResponse = {
+        email: faker.internet.email,
+        avatarUrl: faker.system.filePath,
+      };
+
+      mockAxiosAdapter.onGet(APIRoute.Login).reply(200, mockAuthResponse);
 
       await store.dispatch(checkAuthAction());
       const actions = extractActionsTypes(store.getActions());
@@ -35,9 +39,6 @@ describe('Async actions', () => {
         checkAuthAction.pending.type,
         checkAuthAction.fulfilled.type,
       ]);
-
-      //? не проходит
-
     });
 
     it('Should dispatch "checkAuthAction.pending" and "checkAuthAction.rejected" with thunk "checkAuthAction',
