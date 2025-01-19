@@ -13,13 +13,13 @@ import Reviews from '../../components/reviews/reviews';
 
 import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
+import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 import { AppRoute, DataStatus, NEAR_PLACES_AMOUNT } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-action';
 import { getNearPlaces } from '../../store/near-places-process/near-places-process.selectors';
 import { getOfferData, getOfferStatus } from '../../store/offer-process/offer-process.selectors';
 import { getReviews } from '../../store/reviews-process/reviews-process.selectors';
-import BookmarkButton from '../../ui/bookmark-button/bookmark-button';
 
 // #======================== OfferPage ========================# //
 

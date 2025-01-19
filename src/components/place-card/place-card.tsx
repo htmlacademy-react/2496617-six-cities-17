@@ -3,9 +3,9 @@ import { memo } from 'react';
 import { generatePath, Link, useLocation } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { PlaceCardType } from '../../types';
-import BookmarkButton from '../../ui/bookmark-button/bookmark-button';
-import PremiumMark from '../../ui/premium-mark/premium-mark';
 import { capitalize, convertRating } from '../../utils/utils';
+import BookmarkButton from '../bookmark-button/bookmark-button';
+import PremiumMark from '../premium-mark/premium-mark';
 
 type PlaceCardProps = {
   placeCardData: PlaceCardType;
