@@ -57,6 +57,8 @@ export const makeFakeReviewData = () => ({
   offerId: faker.string.nanoid(),
 });
 
+export const makeFakeImages = (): string[] => Array.from({ length: getRandomInteger(6, 10) }, () => faker.system.filePath());
+
 export const makeFakeOffer = () => ({
   id: faker.string.nanoid(),
   title: faker.string.alpha(),
@@ -79,7 +81,7 @@ export const makeFakeOffer = () => ({
   isPremium: faker.datatype.boolean(),
   rating: faker.number.int(),
   description: faker.string.alpha(),
-  images: Array.from({ length: getRandomInteger(0, 10) }, () => faker.system.filePath()),
+  images: makeFakeImages(),
   goods: Array.from({ length: getRandomInteger(0, 10) }, () => faker.string.alpha()),
   host: {
     isPro: faker.datatype.boolean(),
