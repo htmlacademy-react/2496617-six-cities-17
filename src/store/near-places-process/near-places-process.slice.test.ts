@@ -3,7 +3,7 @@ import { describe, it } from 'vitest';
 import { DataStatus } from '../../const';
 import { makeFakePlaceCard } from '../../utils/mocks';
 import { getRandomInteger, updateFavoriteStatus } from '../../utils/utils';
-import { addToFavoritesAction, fetchNearPlacesAction, logoutAction } from '../api-action';
+import { addToFavoritesAction, fetchNearPlacesAction, logoutAction, removeFromFavoritesAction } from '../api-action';
 import { nearPlacesProcess } from './near-places-process.slice';
 
 describe('NearPlacesProcess slice', () => {
@@ -86,7 +86,7 @@ describe('NearPlacesProcess slice', () => {
       data: updateFavoriteStatus(mockNearPlaces, mockNearPlace, false),
       status: DataStatus.Unknown,
     };
-    const result = nearPlacesProcess.reducer(initialState, addToFavoritesAction.fulfilled(mockNearPlace, mockNearPlace.id, ''));
+    const result = nearPlacesProcess.reducer(initialState, removeFromFavoritesAction.fulfilled(mockNearPlace, mockNearPlace.id, ''));
     expect(result).toEqual(expectedState);
   });
 
