@@ -86,6 +86,7 @@ function Map({ cityLocation, offers, selectedPoint, currentOffer }: MapProps): J
         'map',
       )}
       ref={mapRef}
+      data-testid='map-element'
     />
   );
 }

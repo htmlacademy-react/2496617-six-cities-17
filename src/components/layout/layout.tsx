@@ -24,6 +24,7 @@ export default function Layout(): JSX.Element {
         { 'page--login': isLoginPage },
         { 'page--favorites-empty': isFavoritesPage && isFavoriteOffersEmpty }
       )}
+      data-testid='layout-element'
     >
 
       <Header />

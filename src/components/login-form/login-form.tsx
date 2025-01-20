@@ -56,6 +56,7 @@ function LoginForm(): JSX.Element {
           required
           value={loginFormState.email}
           onChange={onEmailInputChange}
+          data-testid='login-element'
         />
       </div>
       <div className='login__input-wrapper form__input-wrapper'>
@@ -68,6 +69,7 @@ function LoginForm(): JSX.Element {
           required
           value={loginFormState.password}
           onChange={onPasswordInputChange}
+          data-testid='password-element'
         />
       </div>
       <button

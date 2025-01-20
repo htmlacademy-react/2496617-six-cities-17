@@ -34,7 +34,7 @@ function Cities(citiesProps: CitiesProps): JSX.Element {
   );
 
   return (
-    <div className='cities'>
+    <div className='cities' data-testid='cities-element'>
       <div className='cities__places-container container'>
 
         <section className="cities__places places">

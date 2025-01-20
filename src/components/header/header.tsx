@@ -11,7 +11,7 @@ function Header(): JSX.Element {
   const path = useLocation().pathname as AppRoute;
 
   return (
-    <header className='header'>
+    <header className='header' data-testid='header-element'>
       <div className='container'>
         <div className='header__wrapper'>
           <div className='header__left'>

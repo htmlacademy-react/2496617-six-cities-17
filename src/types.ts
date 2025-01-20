@@ -1,3 +1,5 @@
+import { MockStore } from '@jedmao/redux-mock-store';
+import MockAdapter from 'axios-mock-adapter';
 import { AuthorizationStatus, DataStatus, LoginStatus, PostingStatus, SortingOption } from './const';
 import { store } from './store';
 
@@ -111,4 +113,10 @@ export type ReviewsProcess = {
   data: ReviewType[];
   status: DataStatus;
   postingStatus: PostingStatus;
+};
+
+export type ComponentWithMockStore = {
+  withStoreComponent: JSX.Element;
+  mockStore: MockStore;
+  mockAxiosAdapter: MockAdapter;
 };
