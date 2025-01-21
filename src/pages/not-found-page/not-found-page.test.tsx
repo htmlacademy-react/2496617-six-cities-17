@@ -3,7 +3,7 @@ import { describe } from 'vitest';
 import { withHistory } from '../../utils/mock-components';
 import NotFoundPage from './not-found-page';
 
-describe('Component: NotFoundPage', () => {
+describe('Page: NotFoundPage', () => {
   it('Should render correctly', () => {
     const expectedText = 'Error 404';
     const withHistoryComponent = withHistory(<NotFoundPage />);
