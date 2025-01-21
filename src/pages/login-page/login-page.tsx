@@ -35,7 +35,7 @@ export default function LoginPage(): JSX.Element {
   };
 
   return (
-    <main className='page__main page__main--login'>
+    <main className='page__main page__main--login' data-testid='login-page-element'>
       <Helmet>
         <title>6 cities - login</title>
       </Helmet>

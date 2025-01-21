@@ -18,6 +18,7 @@ export default function NotFoundPage(): JSX.Element {
           alignItems: 'center',
           height: '100dvh'
         }}
+        data-testid='not-found-page-element'
       >
         <p>Error 404</p>
         <h1>Page not found :(</h1>
