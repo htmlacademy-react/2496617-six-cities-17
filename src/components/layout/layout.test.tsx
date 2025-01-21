@@ -7,9 +7,9 @@ import Layout from './layout';
 describe('Component: Layout', () => {
   it('Should render correctly', () => {
     const layoutTestId = 'layout-element';
-    const withHistoryComponent = withHistory(<Layout />);
-    const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore());
-    render(withStoreComponent);
+    const { withStoreComponent } = withStore(<Layout />, makeFakeStore());
+    const withHistoryComponent = withHistory(withStoreComponent);
+    render(withHistoryComponent);
 
     expect(screen.getByTestId(layoutTestId)).toBeInTheDocument();
   });

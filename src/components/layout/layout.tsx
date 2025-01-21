@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
 import { getFavoriteOffers } from '../../store/favorite-offers-process/favorite-offers-process.selectors';
@@ -34,7 +34,7 @@ export default function Layout(): JSX.Element {
       {
         isFavoritesPage &&
         <footer className='footer container'>
-          <a className='footer__logo-link' href='main.html'>
+          <Link className='footer__logo-link' to={AppRoute.Main}>
             <img
               className='footer__logo'
               src='img/logo.svg'
@@ -42,7 +42,7 @@ export default function Layout(): JSX.Element {
               width={64}
               height={33}
             />
-          </a>
+          </Link>
         </footer>
       }
     </div>
