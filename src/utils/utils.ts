@@ -19,13 +19,13 @@ export const compareOffersByRating = (a: PlaceCardType, b: PlaceCardType) => b.r
 
 export const sortOffers = (offers: PlaceCardType[], sortingType: SortingOption): PlaceCardType[] => {
   switch (sortingType) {
-    case SortingOption.POPULAR:
+    case SortingOption.Popular:
       return offers;
-    case SortingOption.BY_LOW_PRICE:
+    case SortingOption.ByLowPrice:
       return offers.toSorted(compareOffersByLowPrice);
-    case SortingOption.BY_HIGHT_PRICE:
+    case SortingOption.ByHighPrice:
       return offers.toSorted(compareOffersByHighPrice);
-    case SortingOption.BY_RATING:
+    case SortingOption.ByRating:
       return offers.toSorted(compareOffersByRating);
 
     default:

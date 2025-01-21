@@ -95,7 +95,7 @@ export const makeFakeStore = (initialState?: Partial<AppState>): AppState => {
       cityLocation: DEFAULT_CITY_LOCATION,
       all: mockOffers,
       sorted: getOffersByCityName(mockOffers, DEFAULT_CITY_NAME),
-      sortingType: SortingOption.POPULAR,
+      sortingType: SortingOption.Popular,
       status: DataStatus.Unknown,
     },
     [NameSpace.Auth]: {

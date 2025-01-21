@@ -1,17 +1,17 @@
 import { describe, it } from 'vitest';
 import { DataStatus, DEFAULT_CITY_LOCATION, DEFAULT_CITY_NAME, NameSpace, SortingOption } from '../../const';
-import { getAllOffers, getCityLocation, getCityName, getOffersStatus, getSortedOffers, getSortingType } from './offers-process.selectors';
 import { makeFakePlaceCard } from '../../utils/mocks';
 import { getRandomInteger } from '../../utils/utils';
+import { getAllOffers, getCityLocation, getCityName, getOffersStatus, getSortedOffers, getSortingType } from './offers-process.selectors';
 
 describe('OffersProcess selectors', () => {
   const state = {
     [NameSpace.Offers]: {
       cityName: DEFAULT_CITY_NAME,
       cityLocation: DEFAULT_CITY_LOCATION,
-      all: Array.from({length: getRandomInteger(0, 120)}, makeFakePlaceCard),
+      all: Array.from({ length: getRandomInteger(0, 120) }, makeFakePlaceCard),
       sorted: Array.from({ length: getRandomInteger(0, 20) }, makeFakePlaceCard),
-      sortingType: SortingOption.POPULAR,
+      sortingType: SortingOption.Popular,
       status: DataStatus.Unknown,
     }
   };

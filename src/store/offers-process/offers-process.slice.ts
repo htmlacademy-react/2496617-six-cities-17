@@ -11,7 +11,7 @@ const initialState: OffersProcess = {
   cityLocation: DEFAULT_CITY_LOCATION,
   all: [],
   sorted: [],
-  sortingType: SortingOption.POPULAR,
+  sortingType: SortingOption.Popular,
   status: DataStatus.Unknown,
 };
 
@@ -21,12 +21,12 @@ export const offersProcess = createSlice({
   reducers: {
     changeCity: (state, action: PayloadAction<string>) => {
       state.cityName = action.payload;
-      state.sortingType = SortingOption.POPULAR;
+      state.sortingType = SortingOption.Popular;
       state.sorted = getOffersByCityName(state.all, state.cityName);
       state.cityLocation = defineCityLocation(state.sorted);
     },
     changeSortingType: (state, action: PayloadAction<SortingOption>) => {
-      state.sortingType = action.payload || SortingOption.POPULAR;
+      state.sortingType = action.payload || SortingOption.Popular;
       state.sorted = sortOffers(getOffersByCityName(state.all, state.cityName), action.payload);
     }
   },
