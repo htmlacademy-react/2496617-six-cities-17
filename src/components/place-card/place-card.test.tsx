@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, it } from 'vitest';
 import { withHistory, withStore } from '../../utils/mock-components';
 import { makeFakePlaceCard, makeFakeStore } from '../../utils/mocks';
+import { capitalize } from '../../utils/utils';
 import PlaceCard from './place-card';
 
 describe('Component: PlaceCard', () => {
@@ -14,7 +15,7 @@ describe('Component: PlaceCard', () => {
     const expectedPriceText = new RegExp(`${mockPlaceCardData.price}`);
     const expectedTitle = mockPlaceCardData.title;
     const ratingTestId = 'rating-element';
-    const expectedPlaceType = mockPlaceCardData.type;
+    const expectedPlaceType = capitalize(mockPlaceCardData.type);
 
     const { withStoreComponent } = withStore(
       <PlaceCard
