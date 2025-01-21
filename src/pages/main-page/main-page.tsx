@@ -17,6 +17,7 @@ function MainPage(): JSX.Element {
         'page__main page__main--index',
         { 'page__main--index-empty': sortedOffers.length === 0 }
       )}
+      data-testid='main-page-element'
     >
       <Helmet>
         <title>6 cities</title>
