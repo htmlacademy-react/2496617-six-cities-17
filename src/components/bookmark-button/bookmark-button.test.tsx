@@ -2,14 +2,14 @@ import { faker } from '@faker-js/faker';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it } from 'vitest';
+import { browserHistory } from '../../browser-history/browser-history';
 import { APIRoute, AppRoute, AuthorizationStatus, NameSpace } from '../../const';
-import { addToFavoritesAction } from '../../store/api-action';
+import { store } from '../../store';
+import { redirectToRoute } from '../../store/action';
+import { addToFavoritesAction, removeFromFavoritesAction } from '../../store/api-action';
 import { withStore } from '../../utils/mock-components';
 import { extractActionsTypes, makeFakePlaceCard, makeFakeStore } from '../../utils/mocks';
 import BookmarkButton from './bookmark-button';
-import { redirectToRoute } from '../../store/action';
-import { store } from '../../store';
-import { browserHistory } from '../../browser-history/browser-history';
 
 describe('Component: BookmarkButton', () => {
   it('Should render correctly', () => {
@@ -37,7 +37,7 @@ describe('Component: BookmarkButton', () => {
 
     const mockBookmarkButtonProps = {
       elementClass: faker.string.alpha(),
-      isFavorite: faker.datatype.boolean(),
+      isFavorite: false,
       sizes: {
         width: faker.number.int(),
         height: faker.number.int(),
@@ -52,14 +52,12 @@ describe('Component: BookmarkButton', () => {
       },
     });
 
-
     const { withStoreComponent, mockStore, mockAxiosAdapter } = withStore(
       <BookmarkButton {...mockBookmarkButtonProps} />,
       fakeStoreWithAuthorizedStatus
     );
 
     mockAxiosAdapter.onPost(`${APIRoute.Favorite}/${fakePlaceCardFavorite.id}/1`).reply(200, fakePlaceCardFavorite);
-
 
     render(withStoreComponent);
 
@@ -78,7 +76,7 @@ describe('Component: BookmarkButton', () => {
 
     const mockBookmarkButtonProps = {
       elementClass: faker.string.alpha(),
-      isFavorite: faker.datatype.boolean(),
+      isFavorite: true,
       sizes: {
         width: faker.number.int(),
         height: faker.number.int(),
@@ -93,14 +91,12 @@ describe('Component: BookmarkButton', () => {
       },
     });
 
-
     const { withStoreComponent, mockStore, mockAxiosAdapter } = withStore(
       <BookmarkButton {...mockBookmarkButtonProps} />,
       fakeStoreWithAuthorizedStatus
     );
 
-    mockAxiosAdapter.onPost(`${APIRoute.Favorite}/${fakePlaceCardNotFavorite.id}/1`).reply(200, fakePlaceCardNotFavorite);
-
+    mockAxiosAdapter.onPost(`${APIRoute.Favorite}/${fakePlaceCardNotFavorite.id}/0`).reply(200, fakePlaceCardNotFavorite);
 
     render(withStoreComponent);
 
@@ -109,8 +105,8 @@ describe('Component: BookmarkButton', () => {
     const actionsTypes = extractActionsTypes(mockStore.getActions());
 
     expect(actionsTypes).toEqual([
-      addToFavoritesAction.pending.type,
-      addToFavoritesAction.fulfilled.type,
+      removeFromFavoritesAction.pending.type,
+      removeFromFavoritesAction.fulfilled.type,
     ]);
   });
 
