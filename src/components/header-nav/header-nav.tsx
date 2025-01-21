@@ -45,6 +45,7 @@ export default function HeaderNav(): JSX.Element {
                 onClick={() => {
                   dispatch(logoutAction());
                 }}
+                data-testid='header-nav-link-element'
               >
                 <span className='header__signout'>Sign out</span>
               </a>
