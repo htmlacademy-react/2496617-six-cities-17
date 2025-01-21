@@ -69,11 +69,11 @@ export default function OfferPage(): JSX.Element {
       <Helmet>
         <title>6 cities - {title}</title>
       </Helmet>
-      <section className='offer'>
+      <section className='offer' data-testid='offer-section-element'>
 
         <OfferGallery images={images} />
 
-        <div className='offer__container container'>
+        <div className='offer__container container' data-testid='offer-container'>
           <div className='offer__wrapper'>
 
             <OfferHeader offerHeaderData={offerHeaderData} />
