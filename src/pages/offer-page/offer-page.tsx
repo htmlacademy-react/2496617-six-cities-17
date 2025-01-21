@@ -65,15 +65,15 @@ export default function OfferPage(): JSX.Element {
   const offerHostData = { name, isPro, avatarUrl, description };
 
   return (
-    <main className='page__main page__main--offer'>
+    <main className='page__main page__main--offer' data-testid='offer-page-element'>
       <Helmet>
         <title>6 cities - {title}</title>
       </Helmet>
-      <section className='offer' data-testid='offer-section-element'>
+      <section className='offer'>
 
         <OfferGallery images={images} />
 
-        <div className='offer__container container' data-testid='offer-container'>
+        <div className='offer__container container' >
           <div className='offer__wrapper'>
 
             <OfferHeader offerHeaderData={offerHeaderData} />

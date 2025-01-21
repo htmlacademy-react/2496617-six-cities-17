@@ -6,16 +6,14 @@ import OfferPage from './offer-page';
 
 describe('Page: OfferPage', () => {
   it('Should render correctly', () => {
-    const offerSectionTestId = 'offer-section-element';
-    const offerContainerTestId = 'offer-container';
+    const offerPageTestId = 'offer-page-element';
     const nearPlacesText = 'Other places in the neighborhood';
     const { withStoreComponent } = withStore(<OfferPage />, makeFakeStore());
     const withHistoryComponent = withHistory(withStoreComponent);
 
     render(withHistoryComponent);
 
-    expect(screen.getByTestId(offerSectionTestId));
-    expect(screen.getByTestId(offerContainerTestId));
+    expect(screen.getByTestId(offerPageTestId));
     expect(screen.getByText(nearPlacesText));
   });
 });
