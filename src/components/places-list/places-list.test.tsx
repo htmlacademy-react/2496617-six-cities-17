@@ -7,8 +7,8 @@ import PlacesList from './places-list';
 describe('Component: PlacesList', () => {
   it('Should render correctly', () => {
     const mockOffers = Array.from({ length: 20 }, makeFakePlaceCard);
-    const mockOnListItemEnter = () => { };
-    const mockOnListItemLeave = () => { };
+    const mockOnListItemEnter = vi.fn();
+    const mockOnListItemLeave = vi.fn();
     const placesListTestId = 'places-list-element';
 
     const { withStoreComponent } = withStore(

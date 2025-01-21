@@ -7,8 +7,8 @@ import PlaceCard from './place-card';
 describe('Component: PlaceCard', () => {
   it('Should render correctly', () => {
     const mockPlaceCardData = makeFakePlaceCard();
-    const mockOnPlaceCardMouseEnter = () => { };
-    const mockOnPlaceCardMouseLeave = () => { };
+    const mockOnPlaceCardMouseEnter = vi.fn();
+    const mockOnPlaceCardMouseLeave = vi.fn();
     const placeCardTestId = 'place-card-element';
     const expectedImageAltText = 'Place image';
     const expectedPriceText = new RegExp(`${mockPlaceCardData.price}`);

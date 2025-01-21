@@ -7,7 +7,7 @@ describe('Component: NavButton', () => {
   it('Should render correctly', () => {
     const mockCityName = faker.location.city();
     const mockActiveStatus = faker.datatype.boolean();
-    const mockOnNavLinkClick = () => { };
+    const mockOnNavLinkClick = vi.fn();
 
     render(
       <NavButton

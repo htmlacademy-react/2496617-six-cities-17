@@ -10,7 +10,7 @@ describe('Component: RatingButton', () => {
       title: faker.string.alpha(),
       checked: faker.datatype.boolean(),
       disabled: faker.datatype.boolean(),
-      onRatingButtonChange: () => { }
+      onRatingButtonChange: vi.fn()
     };
 
     const ratingInputTestId = 'rating-input';
