@@ -8,6 +8,7 @@ import FavoritesPage from './favorites-page';
 
 describe('Page: FavoritesPage', () => {
   it('Should render correctly if there are favorite offers', () => {
+    const favoritesPageTestId = 'favorites-page-element';
     const expectedHeadingText = 'Saved listing';
     const mockFavoriteOffersAmount = getRandomInteger(0, 120);
     const favoritesListTestId = 'favorites-list-element';
@@ -23,6 +24,7 @@ describe('Page: FavoritesPage', () => {
 
     render(withHistoryComponent);
 
+    expect(screen.getByTestId(favoritesPageTestId)).toBeInTheDocument();
     expect(screen.getByText(expectedHeadingText)).toBeInTheDocument();
     expect(screen.getByTestId(favoritesListTestId)).toBeInTheDocument();
   });

@@ -35,6 +35,7 @@ export default function FavoritesPage(): JSX.Element {
         'page__main page__main--favorites',
         { 'page__main--favorites-empty': isOffersByCityEmpty }
       )}
+      data-testid='favorites-page-element'
     >
       <Helmet>
         <title>6 cities - favorites</title>
