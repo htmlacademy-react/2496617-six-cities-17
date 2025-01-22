@@ -20,8 +20,8 @@ export default function RatingButton(ratingButtonProps: RatingButtonProps): JSX.
         type='radio'
         checked={checked}
         disabled={disabled}
-        onChange={(e) => {
-          onRatingButtonChange(Number(e.target.value));
+        onChange={(evt) => {
+          onRatingButtonChange(Number(evt.target.value));
         }}
         data-testid='rating-input'
       />

@@ -1,7 +1,8 @@
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeCity } from '../../store/offers-process/offers-process.slice';
 import { getCityName } from '../../store/offers-process/offers-process.selectors';
+import { changeCity } from '../../store/offers-process/offers-process.slice';
+import { MouseEvent } from 'react';
 
 // ^======================== NavButton ========================^ //
 
@@ -15,7 +16,8 @@ export default function NavButton(navButtonProps: NavButtonProps): JSX.Element {
   const dispatch = useAppDispatch();
   const currentCityName = useAppSelector(getCityName);
 
-  const handleNavLinkClick = () => {
+  const handleNavLinkClick = (evt: MouseEvent<HTMLElement>) => {
+    evt.preventDefault();
     dispatch(changeCity(cityName));
   };
 
