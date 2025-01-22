@@ -33,9 +33,9 @@ describe('Async actions', () => {
       mockAxiosAdapter.onGet(APIRoute.Login).reply(200, mockAuthResponse);
 
       await store.dispatch(checkAuthAction());
-      const actions = extractActionsTypes(store.getActions());
+      const actionTypes = extractActionsTypes(store.getActions());
 
-      expect(actions).toEqual([
+      expect(actionTypes).toEqual([
         checkAuthAction.pending.type,
         checkAuthAction.fulfilled.type,
       ]);
@@ -46,9 +46,9 @@ describe('Async actions', () => {
         mockAxiosAdapter.onGet(APIRoute.Login).reply(400);
 
         await store.dispatch(checkAuthAction());
-        const actions = extractActionsTypes(store.getActions());
+        const actionTypes = extractActionsTypes(store.getActions());
 
-        expect(actions).toEqual([
+        expect(actionTypes).toEqual([
           checkAuthAction.pending.type,
           checkAuthAction.rejected.type,
         ]);
