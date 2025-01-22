@@ -10,7 +10,7 @@ import { getOffersByCityName, getRandomInteger } from './utils';
 export const makeFakeLocation = (): LocationType => ({
   latitude: faker.location.latitude(),
   longitude: faker.location.longitude(),
-  zoom: faker.number.int()
+  zoom: faker.number.int(18)
 });
 
 export const makeFakeCity = (): CityType => ({
