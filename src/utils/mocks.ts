@@ -20,8 +20,8 @@ export const makeFakeCity = (): CityType => ({
 
 export const makeFakePlaceCard = (): PlaceCardType => ({
   id: faker.string.nanoid(),
-  title: faker.string.alpha(),
-  type: faker.string.alpha(),
+  title: faker.string.alpha(10),
+  type: faker.string.alpha(10),
   price: faker.number.int(),
   city: makeFakeCity(),
   location: makeFakeLocation(),
@@ -53,7 +53,7 @@ export const makeFakeReview = (): ReviewType => ({
 });
 
 export const makeFakeReviewData = () => ({
-  comment: faker.string.alpha(),
+  comment: faker.lorem.lines(1),
   rating: faker.number.int(),
   offerId: faker.string.nanoid(),
 });
@@ -62,8 +62,8 @@ export const makeFakeImages = (): string[] => Array.from({ length: getRandomInte
 
 export const makeFakeOffer = () => ({
   id: faker.string.nanoid(),
-  title: faker.string.alpha(),
-  type: faker.string.alpha(),
+  title: faker.string.alpha(10),
+  type: faker.string.alpha(10),
   price: faker.number.int(),
   city: makeFakeCity(),
   location: makeFakeLocation(),
@@ -72,11 +72,11 @@ export const makeFakeOffer = () => ({
   rating: faker.number.int(),
   description: faker.string.alpha(),
   images: makeFakeImages(),
-  goods: Array.from({ length: getRandomInteger(0, 10) }, () => faker.string.alpha()),
+  goods: Array.from({ length: getRandomInteger(0, 10) }, () => faker.string.alpha(10)),
   host: {
     isPro: faker.datatype.boolean(),
     name: faker.person.firstName(),
-    avatarUrl: faker.string.alpha(),
+    avatarUrl: faker.system.filePath(),
   },
   bedrooms: faker.number.int(),
   maxAdults: faker.number.int(),

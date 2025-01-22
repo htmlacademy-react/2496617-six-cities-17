@@ -93,7 +93,7 @@ describe('Async actions', () => {
         email: faker.internet.email(),
         password: faker.internet.password(),
       };
-      const fakerServerReply = { token: faker.string.alpha() };
+      const fakerServerReply = { token: faker.string.alpha(10) };
       mockAxiosAdapter.onPost(APIRoute.Login).reply(200, fakerServerReply);
 
       await store.dispatch(loginAction(fakeUser));
@@ -113,7 +113,7 @@ describe('Async actions', () => {
         email: faker.internet.email(),
         password: faker.internet.password(),
       };
-      const fakerServerReply = { token: faker.string.alpha() };
+      const fakerServerReply = { token: faker.string.alpha(10) };
       mockAxiosAdapter.onPost(APIRoute.Login).reply(200, fakerServerReply);
 
       const mockSaveToken = vi.spyOn(tokenStorage, 'saveToken');
