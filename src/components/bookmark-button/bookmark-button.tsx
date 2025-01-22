@@ -42,6 +42,7 @@ export default function BookmarkButton(bookmarkButtonProps: BookmarkButtonProps)
       )}
       type='button'
       onClick={handleFavoriteToggle}
+      data-testid='bookmark-button-element'
     >
       <svg className={`${elementClass}-icon`} width={width} height={height}>
         <use xlinkHref='#icon-bookmark' />

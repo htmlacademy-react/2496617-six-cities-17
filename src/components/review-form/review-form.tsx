@@ -64,7 +64,7 @@ export default function ReviewForm(): JSX.Element {
         Your review
       </label>
 
-      <div className='reviews__rating-form form__rating'>
+      <div className='reviews__rating-form form__rating' data-testid='review-rating-element'>
         {RATING_OPTIONS.map(({ value, title }) => (
           <RatingButton
             key={value}
@@ -90,6 +90,7 @@ export default function ReviewForm(): JSX.Element {
             comment: evt.target.value,
           }));
         }}
+        data-testid='textarea-element'
       />
       <div className='reviews__button-wrapper'>
         <p className='reviews__help'>

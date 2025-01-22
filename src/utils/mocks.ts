@@ -1,29 +1,30 @@
 import { faker } from '@faker-js/faker';
 import { Action, ThunkDispatch } from '@reduxjs/toolkit';
+import { AuthorizationStatus, DataStatus, DEFAULT_CITY_LOCATION, DEFAULT_CITY_NAME, LOCATIONS, LoginStatus, NameSpace, PostingStatus, SortingOption } from '../const';
 import { createAPI } from '../services/api';
-import { AppState, PlaceCardType, ReviewType } from '../types';
-import { getRandomInteger } from './utils';
+import { AppState, CityType, LocationType, PlaceCardType, ReviewType } from '../types';
+import { getOffersByCityName, getRandomInteger } from './utils';
 
 // %============== functions form mock data for tests ==============% //
+
+export const makeFakeLocation = (): LocationType => ({
+  latitude: faker.location.latitude(),
+  longitude: faker.location.longitude(),
+  zoom: faker.number.int(18)
+});
+
+export const makeFakeCity = (): CityType => ({
+  name: LOCATIONS[getRandomInteger(0, LOCATIONS.length - 1)],
+  location: makeFakeLocation(),
+});
 
 export const makeFakePlaceCard = (): PlaceCardType => ({
   id: faker.string.nanoid(),
   title: faker.string.alpha(),
   type: faker.string.alpha(),
   price: faker.number.int(),
-  city: {
-    name: faker.location.city(),
-    location: {
-      latitude: faker.location.latitude(),
-      longitude: faker.location.longitude(),
-      zoom: faker.number.int()
-    }
-  },
-  location: {
-    latitude: faker.location.latitude(),
-    longitude: faker.location.longitude(),
-    zoom: faker.number.int()
-  },
+  city: makeFakeCity(),
+  location: makeFakeLocation(),
   isFavorite: faker.datatype.boolean(),
   isPremium: faker.datatype.boolean(),
   rating: faker.number.int(),
@@ -41,7 +42,7 @@ export const makeFakePlaceCardForCity = (cityName: string): PlaceCardType => ({
 
 export const makeFakeReview = (): ReviewType => ({
   id: faker.string.nanoid(),
-  comment: faker.string.alpha(),
+  comment: faker.lorem.lines(1),
   date: faker.string.numeric(),
   rating: faker.number.int(),
   user: {
@@ -64,19 +65,8 @@ export const makeFakeOffer = () => ({
   title: faker.string.alpha(),
   type: faker.string.alpha(),
   price: faker.number.int(),
-  city: {
-    name: faker.location.city(),
-    location: {
-      latitude: faker.location.latitude(),
-      longitude: faker.location.longitude(),
-      zoom: faker.number.int()
-    }
-  },
-  location: {
-    latitude: faker.location.latitude(),
-    longitude: faker.location.longitude(),
-    zoom: faker.number.int()
-  },
+  city: makeFakeCity(),
+  location: makeFakeLocation(),
   isFavorite: faker.datatype.boolean(),
   isPremium: faker.datatype.boolean(),
   rating: faker.number.int(),
@@ -95,3 +85,42 @@ export const makeFakeOffer = () => ({
 export type AppThunkDispatch = ThunkDispatch<AppState, ReturnType<typeof createAPI>, Action>;
 
 export const extractActionsTypes = (actions: Action<string>[]) => actions.map(({ type }) => type);
+
+export const makeFakeStore = (initialState?: Partial<AppState>): AppState => {
+  const mockOffers = Array.from({ length: 120 }, makeFakePlaceCard);
+  const mockReviews = Array.from({ length: 10 }, makeFakeReview);
+  return {
+    [NameSpace.Offers]: {
+      cityName: DEFAULT_CITY_NAME,
+      cityLocation: DEFAULT_CITY_LOCATION,
+      all: mockOffers,
+      sorted: getOffersByCityName(mockOffers, DEFAULT_CITY_NAME),
+      sortingType: SortingOption.Popular,
+      status: DataStatus.Unknown,
+    },
+    [NameSpace.Auth]: {
+      status: AuthorizationStatus.Unknown,
+      login: faker.internet.email(),
+      avatarUrl: faker.system.filePath(),
+      loginStatus: LoginStatus.Unknown,
+    },
+    [NameSpace.Offer]: {
+      data: makeFakeOffer(),
+      status: DataStatus.Unknown,
+    },
+    [NameSpace.FavoriteOffers]: {
+      data: mockOffers,
+      status: DataStatus.Unknown,
+    },
+    [NameSpace.NearPlaces]: {
+      data: mockOffers,
+      status: DataStatus.Unknown,
+    },
+    [NameSpace.Reviews]: {
+      data: mockReviews,
+      status: DataStatus.Unknown,
+      postingStatus: PostingStatus.Unknown,
+    },
+    ...initialState ?? {},
+  };
+};

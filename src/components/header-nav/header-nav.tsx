@@ -19,7 +19,7 @@ export default function HeaderNav(): JSX.Element {
   const location = useLocation();
 
   return (
-    <nav className='header__nav'>
+    <nav className='header__nav' data-testid='header-nav-element'>
       <ul className='header__nav-list'>
         {authorizationStatus === AuthorizationStatus.Auth ?
           <>
@@ -45,6 +45,7 @@ export default function HeaderNav(): JSX.Element {
                 onClick={() => {
                   dispatch(logoutAction());
                 }}
+                data-testid='header-nav-link-element'
               >
                 <span className='header__signout'>Sign out</span>
               </a>

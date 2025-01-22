@@ -3,7 +3,7 @@ import leaflet, { Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { memo, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
+import { AppRoute, URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 import { useMap } from '../../hooks/use-map';
 import { LocationType, OfferType, PlaceCardType } from '../../types';
 
@@ -29,10 +29,10 @@ const currentCustomIcon = leaflet.icon({
 
 function Map({ cityLocation, offers, selectedPoint, currentOffer }: MapProps): JSX.Element {
 
-  const path = useLocation().pathname;
+  const path = useLocation().pathname as AppRoute;
 
   const mapRef = useRef(null);
-  const map = useMap(mapRef, cityLocation);
+  const map = useMap(mapRef, cityLocation, path);
 
   const markersLayerRef = useRef<leaflet.LayerGroup | null>(null);
 
@@ -82,10 +82,11 @@ function Map({ cityLocation, offers, selectedPoint, currentOffer }: MapProps): J
     <section
       className={classNames(
         { 'offer__map': path.startsWith('/offer') },
-        { 'cities__map': path === '/' },
+        { 'cities__map': path === AppRoute.Main },
         'map',
       )}
       ref={mapRef}
+      data-testid='map-element'
     />
   );
 }

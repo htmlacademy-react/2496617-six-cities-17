@@ -33,6 +33,7 @@ function PlaceCard({ placeCardData, onPlaceCardMouseEnter, onPlaceCardMouseLeave
       )}
       onMouseEnter={() => onPlaceCardMouseEnter?.(id)}
       onMouseLeave={() => onPlaceCardMouseLeave?.()}
+      data-testid='place-card-element'
     >
       {isPremium && (<PremiumMark className='place-card__mark' />)}
 
@@ -69,7 +70,7 @@ function PlaceCard({ placeCardData, onPlaceCardMouseEnter, onPlaceCardMouseLeave
           />
 
         </div>
-        <div className="place-card__rating rating">
+        <div className="place-card__rating rating" data-testid='rating-element'>
           <div className="place-card__stars rating__stars">
             <span style={{ width: `${convertRating(rating)}` }} />
             <span className="visually-hidden">Rating</span>

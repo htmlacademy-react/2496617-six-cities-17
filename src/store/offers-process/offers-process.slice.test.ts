@@ -14,7 +14,7 @@ describe('OffersProcess Slice', () => {
       cityLocation: DEFAULT_CITY_LOCATION,
       all: Array.from({ length: 120 }, makeFakePlaceCard),
       sorted: Array.from({ length: 20 }, makeFakePlaceCard),
-      sortingType: SortingOption.POPULAR,
+      sortingType: SortingOption.Popular,
       status: DataStatus.Unknown,
     };
     const result = offersProcess.reducer(expectedState, emptyAction);
@@ -27,7 +27,7 @@ describe('OffersProcess Slice', () => {
       cityLocation: DEFAULT_CITY_LOCATION,
       all: [],
       sorted: [],
-      sortingType: SortingOption.POPULAR,
+      sortingType: SortingOption.Popular,
       status: DataStatus.Unknown,
     };
     const result = offersProcess.reducer(undefined, emptyAction);
@@ -45,7 +45,7 @@ describe('OffersProcess Slice', () => {
       cityLocation: DEFAULT_CITY_LOCATION,
       all: mockOffers,
       sorted: getOffersByCityName(mockOffers, DEFAULT_CITY_NAME),
-      sortingType: SortingOption.POPULAR,
+      sortingType: SortingOption.Popular,
       status: DataStatus.Unknown,
     };
     const expectedState = {
@@ -53,7 +53,7 @@ describe('OffersProcess Slice', () => {
       cityLocation: defineCityLocation(getOffersByCityName(mockOffers, LOCATIONS[1])),
       all: mockOffers,
       sorted: getOffersByCityName(mockOffers, LOCATIONS[1]),
-      sortingType: SortingOption.POPULAR,
+      sortingType: SortingOption.Popular,
       status: DataStatus.Unknown,
     };
     const result = offersProcess.reducer(initialState, changeCity(LOCATIONS[1]));
@@ -63,7 +63,7 @@ describe('OffersProcess Slice', () => {
   it('Should change sorting type with changeSortingType action', () => {
     const fakeOffers = [
       ...Array.from({ length: 100 }, () => makeFakePlaceCardForCity(DEFAULT_CITY_NAME)),
-      ...Array.from({ length: 20 }, () => makeFakePlaceCardForCity(LOCATIONS[1])),
+      ...Array.from({ length: 20 }, () => makeFakePlaceCardForCity(DEFAULT_CITY_NAME)),
     ];
 
     const initialState = {
@@ -71,7 +71,7 @@ describe('OffersProcess Slice', () => {
       cityLocation: DEFAULT_CITY_LOCATION,
       all: fakeOffers,
       sorted: getOffersByCityName(fakeOffers, DEFAULT_CITY_NAME),
-      sortingType: SortingOption.POPULAR,
+      sortingType: SortingOption.Popular,
       status: DataStatus.Unknown,
     };
 
@@ -79,12 +79,12 @@ describe('OffersProcess Slice', () => {
       cityName: DEFAULT_CITY_NAME,
       cityLocation: DEFAULT_CITY_LOCATION,
       all: fakeOffers,
-      sorted: sortOffers(getOffersByCityName(fakeOffers, DEFAULT_CITY_NAME), SortingOption.BY_HIGHT_PRICE),
-      sortingType: SortingOption.BY_HIGHT_PRICE,
+      sorted: sortOffers(getOffersByCityName(fakeOffers, DEFAULT_CITY_NAME), SortingOption.ByHighPrice),
+      sortingType: SortingOption.ByHighPrice,
       status: DataStatus.Unknown,
     };
 
-    const result = offersProcess.reducer(initialState, changeSortingType(SortingOption.BY_HIGHT_PRICE));
+    const result = offersProcess.reducer(initialState, changeSortingType(SortingOption.ByHighPrice));
 
     expect(result).toEqual(expectedState);
   });
@@ -95,7 +95,7 @@ describe('OffersProcess Slice', () => {
       cityLocation: DEFAULT_CITY_LOCATION,
       all: [],
       sorted: [],
-      sortingType: SortingOption.POPULAR,
+      sortingType: SortingOption.Popular,
       status: DataStatus.Loading,
     };
 
@@ -116,7 +116,7 @@ describe('OffersProcess Slice', () => {
       cityLocation: defineCityLocation(mockSortedOffers),
       all: mockOffers,
       sorted: mockSortedOffers,
-      sortingType: SortingOption.POPULAR,
+      sortingType: SortingOption.Popular,
       status: DataStatus.Loaded,
     };
 
@@ -134,7 +134,7 @@ describe('OffersProcess Slice', () => {
       cityLocation: DEFAULT_CITY_LOCATION,
       all: [],
       sorted: [],
-      sortingType: SortingOption.POPULAR,
+      sortingType: SortingOption.Popular,
       status: DataStatus.Error,
     };
 
@@ -160,7 +160,7 @@ describe('OffersProcess Slice', () => {
       cityLocation: DEFAULT_CITY_LOCATION,
       all: mockOffers,
       sorted: mockSortedOffers,
-      sortingType: SortingOption.POPULAR,
+      sortingType: SortingOption.Popular,
       status: DataStatus.Loaded,
     };
 
@@ -169,7 +169,7 @@ describe('OffersProcess Slice', () => {
       cityLocation: DEFAULT_CITY_LOCATION,
       all: mockUpdatedOffers,
       sorted: mockUpdatedSortedOffers,
-      sortingType: SortingOption.POPULAR,
+      sortingType: SortingOption.Popular,
       status: DataStatus.Loaded,
     };
 
@@ -195,7 +195,7 @@ describe('OffersProcess Slice', () => {
       cityLocation: DEFAULT_CITY_LOCATION,
       all: mockOffers,
       sorted: mockSortedOffers,
-      sortingType: SortingOption.POPULAR,
+      sortingType: SortingOption.Popular,
       status: DataStatus.Loaded,
     };
 
@@ -204,7 +204,7 @@ describe('OffersProcess Slice', () => {
       cityLocation: DEFAULT_CITY_LOCATION,
       all: mockUpdatedOffers,
       sorted: mockUpdatedSortedOffers,
-      sortingType: SortingOption.POPULAR,
+      sortingType: SortingOption.Popular,
       status: DataStatus.Loaded,
     };
 

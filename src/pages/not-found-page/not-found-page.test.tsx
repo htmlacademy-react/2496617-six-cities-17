@@ -3,12 +3,12 @@ import { describe } from 'vitest';
 import { withHistory } from '../../utils/mock-components';
 import NotFoundPage from './not-found-page';
 
-describe('Component: NotFoundPage', () => {
+describe('Page: NotFoundPage', () => {
   it('Should render correctly', () => {
     const expectedText = 'Error 404';
-    const preparedComponent = withHistory(<NotFoundPage />);
+    const withHistoryComponent = withHistory(<NotFoundPage />);
 
-    render(preparedComponent);
+    render(withHistoryComponent);
 
     expect(screen.getByText(expectedText)).toBeInTheDocument();
   });

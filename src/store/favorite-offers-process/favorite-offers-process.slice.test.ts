@@ -73,7 +73,7 @@ describe('FavoriteOffersProcess slice', () => {
 
   it('Should remove a favorite offer from "data"', () => {
     const mockFavoriteOffers = Array.from({ length: 10 }, makeFakePlaceCard);
-    const mockFavoriteOffer = mockFavoriteOffers[getRandomInteger(0, 10)];
+    const mockFavoriteOffer = mockFavoriteOffers[getRandomInteger(0, mockFavoriteOffers.length - 1)];
     const mockFavoriteOfferIndex = mockFavoriteOffers.indexOf(mockFavoriteOffer);
 
     const initialState = {

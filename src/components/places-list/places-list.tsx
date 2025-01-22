@@ -26,6 +26,7 @@ function PlacesList(placesListProps: PlacesListProps): JSX.Element {
         { 'cities__places-list tabs__content': path === AppRoute.Main },
         { 'near-places__list': path.startsWith('/offer') }
       )}
+      data-testid='places-list-element'
     >
       {offers.map((offer) => (
         <PlaceCard

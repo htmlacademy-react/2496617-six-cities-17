@@ -35,10 +35,10 @@ describe('Redirect middleware', () => {
     expect(browserHistory.location.pathname).toBe(AppRoute.Login);
   });
 
-  it('Should not redirect to /login with empty action', () => {
-    const emptyAction = { type: '', payload: AppRoute.Login };
+  it('Should not redirect to /favorites with empty action', () => {
+    const emptyAction = { type: '', payload: AppRoute.Favorites };
     store.dispatch(emptyAction);
-    expect(browserHistory.location.pathname).not.toBe(AppRoute.Login);
+    expect(browserHistory.location.pathname).not.toBe(AppRoute.Offer);
   });
 });
 

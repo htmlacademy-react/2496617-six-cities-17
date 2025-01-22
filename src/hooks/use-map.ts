@@ -1,17 +1,18 @@
 import leaflet, { Map } from 'leaflet';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { AppRoute } from '../const';
 import { LocationType } from '../types';
 // %======================== useMap ========================% //
 
 export const useMap = (
   mapRef: MutableRefObject<HTMLDivElement | null>,
-  cityLocation: LocationType
+  cityLocation: LocationType,
+  path: AppRoute
 ) => {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef(false);
 
-  const isOfferPage = useLocation().pathname.startsWith('/offer');
+  const isOfferPage = path.startsWith('/offer');
 
   useEffect(() => {
     if (mapRef.current !== null && !isRenderedRef.current) {

@@ -35,13 +35,13 @@ export default function LoginPage(): JSX.Element {
   };
 
   return (
-    <main className='page__main page__main--login'>
+    <main className='page__main page__main--login' data-testid='login-page-element'>
       <Helmet>
         <title>6 cities - login</title>
       </Helmet>
       <div className='page__login-container container'>
         <section className='login'>
-          <h1 className='login__title'>Sign in</h1>
+          <h1 className='login__title' data-testid='login-title'>Sign in</h1>
           <LoginForm />
         </section>
         <section className='locations locations--login locations--current'>

@@ -46,10 +46,10 @@ export enum NameSpace {
 
 // *------------ view ------------* //
 export enum SortingOption {
-  POPULAR = 'Popular',
-  BY_LOW_PRICE = 'Price: low to high',
-  BY_HIGHT_PRICE = 'Price: high to low',
-  BY_RATING = 'Top rated first',
+  Popular = 'Popular',
+  ByLowPrice = 'Price: low to high',
+  ByHighPrice = 'Price: high to low',
+  ByRating = 'Top rated first',
 }
 
 export const DATE_FORMAT: string = 'MMMM YYYY';

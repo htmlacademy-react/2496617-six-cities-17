@@ -35,6 +35,7 @@ export default function FavoritesPage(): JSX.Element {
         'page__main page__main--favorites',
         { 'page__main--favorites-empty': isOffersByCityEmpty }
       )}
+      data-testid='favorites-page-element'
     >
       <Helmet>
         <title>6 cities - favorites</title>
@@ -48,9 +49,9 @@ export default function FavoritesPage(): JSX.Element {
         >
           {!isOffersByCityEmpty ?
             <><h1 className='favorites__title'>Saved listing</h1>
-              <ul className='favorites__list'>
+              <ul className='favorites__list' data-testid='favorites-list-element'>
                 {Object.entries(offersByCity).map(([city, cityOffers]) => (
-                  <li key={city} className='favorites__locations-items'>
+                  <li key={city} className='favorites__locations-items' data-testid='favorites-group-element'>
                     <div className='favorites__locations locations locations--current'>
                       <div className='locations__item'>
                         <Link

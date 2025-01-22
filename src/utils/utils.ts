@@ -19,14 +19,14 @@ export const compareOffersByRating = (a: PlaceCardType, b: PlaceCardType) => b.r
 
 export const sortOffers = (offers: PlaceCardType[], sortingType: SortingOption): PlaceCardType[] => {
   switch (sortingType) {
-    case SortingOption.POPULAR:
+    case SortingOption.Popular:
       return offers;
-    case SortingOption.BY_LOW_PRICE:
-      return offers.toSorted(compareOffersByLowPrice);
-    case SortingOption.BY_HIGHT_PRICE:
-      return offers.toSorted(compareOffersByHighPrice);
-    case SortingOption.BY_RATING:
-      return offers.toSorted(compareOffersByRating);
+    case SortingOption.ByLowPrice:
+      return [...offers].sort(compareOffersByLowPrice);
+    case SortingOption.ByHighPrice:
+      return [...offers].sort(compareOffersByHighPrice);
+    case SortingOption.ByRating:
+      return [...offers].sort(compareOffersByRating);
 
     default:
       return offers;
@@ -34,7 +34,7 @@ export const sortOffers = (offers: PlaceCardType[], sortingType: SortingOption):
 };
 
 export const sortReviews = (reviews: ReviewType[]): ReviewType[] =>
-  reviews.toSorted(
+  [...reviews].sort(
     (a: ReviewType, b: ReviewType) =>
       new Date(b.date).getTime() - new Date(a.date).getTime()
   );

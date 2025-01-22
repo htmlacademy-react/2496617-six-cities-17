@@ -19,7 +19,7 @@ function Reviews({ reviews }: ReviewsProps): JSX.Element {
   const shownReviews = sortReviews(reviews).slice(0, SHOWN_REVIEWS_AMOUNT);
 
   return (
-    <section className='offer__reviews reviews'>
+    <section className='offer__reviews reviews' data-testid='reviews-element'>
       <h2 className='reviews__title'>
         Reviews · <span className='reviews__amount'>{reviews.length}</span>
       </h2>
