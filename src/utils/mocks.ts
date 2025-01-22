@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 import { Action, ThunkDispatch } from '@reduxjs/toolkit';
-import { AuthorizationStatus, DataStatus, DEFAULT_CITY_LOCATION, DEFAULT_CITY_NAME, LoginStatus, NameSpace, PostingStatus, SortingOption } from '../const';
+import { AuthorizationStatus, DataStatus, DEFAULT_CITY_LOCATION, DEFAULT_CITY_NAME, LOCATIONS, LoginStatus, NameSpace, PostingStatus, SortingOption } from '../const';
 import { createAPI } from '../services/api';
 import { AppState, CityType, LocationType, PlaceCardType, ReviewType } from '../types';
 import { getOffersByCityName, getRandomInteger } from './utils';
@@ -14,7 +14,7 @@ export const makeFakeLocation = (): LocationType => ({
 });
 
 export const makeFakeCity = (): CityType => ({
-  name: faker.location.city(),
+  name: LOCATIONS[getRandomInteger(0, LOCATIONS.length - 1)],
   location: makeFakeLocation(),
 });
 
