@@ -74,6 +74,7 @@ describe('OffersProcess Slice', () => {
       sortingType: SortingOption.Popular,
       status: DataStatus.Unknown,
     };
+    console.log(initialState.sorted)
 
     const expectedState = {
       cityName: DEFAULT_CITY_NAME,
