@@ -58,7 +58,7 @@ describe('NearPlacesProcess slice', () => {
 
   it('Should update favorite offers with "addToFavoritesAction.fulfilled"', () => {
     const mockNearPlaces = Array.from({ length: 10 }, makeFakePlaceCard);
-    const mockNearPlace = mockNearPlaces[getRandomInteger(0, 10)];
+    const mockNearPlace = mockNearPlaces[getRandomInteger(0, mockNearPlaces.length - 1)];
 
     const initialState = {
       data: mockNearPlaces,
