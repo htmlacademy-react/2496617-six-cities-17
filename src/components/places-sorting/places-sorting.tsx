@@ -56,6 +56,7 @@ function PlacesSorting(): JSX.Element {
             )}
             tabIndex={0}
             onClick={() => onOptionClick(placesSortingOption)}
+            data-testid={`sorting-option-element-${placesSortingOption}`}
           >
             {placesSortingOption}
           </li>
