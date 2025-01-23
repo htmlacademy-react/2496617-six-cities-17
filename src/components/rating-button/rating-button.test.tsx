@@ -6,15 +6,15 @@ import RatingButton from './rating-button';
 describe('Component: RatingButton', () => {
   it('Should render correctly', () => {
     const mockRatingButtonProps = {
-      value: faker.number.int(),
-      title: faker.string.alpha(),
+      value: faker.number.int(5),
+      title: faker.string.alpha(10),
       checked: faker.datatype.boolean(),
       disabled: faker.datatype.boolean(),
       onRatingButtonChange: vi.fn()
     };
 
-    const ratingInputTestId = 'rating-input';
-    const ratingLabelTestId = 'rating-label';
+    const ratingInputTestId = `rating-input-${mockRatingButtonProps.value}`;
+    const ratingLabelTestId = `rating-label-${mockRatingButtonProps.value}`;
 
     render(
       <RatingButton
