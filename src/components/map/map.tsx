@@ -81,7 +81,7 @@ function Map({ cityLocation, offers, selectedPoint, currentOffer }: MapProps): J
   return (
     <section
       className={classNames(
-        { 'offer__map': path.startsWith('/offer') },
+        { 'offer__map': path.startsWith(AppRoute.Offer) },
         { 'cities__map': path === AppRoute.Main },
         'map',
       )}

@@ -1,10 +1,12 @@
 import { memo } from 'react';
 import { SHOWN_PHOTOS_AMOUNT } from '../../const';
 
-// ^======================== OfferGalley ========================^ //
+// ^======================== OfferGallery ========================^ //
+
 type OfferGalleryProps = {
   images: string[];
 };
+
 function OfferGallery(offerGalleryProps: OfferGalleryProps): JSX.Element {
   const { images } = offerGalleryProps;
   return (

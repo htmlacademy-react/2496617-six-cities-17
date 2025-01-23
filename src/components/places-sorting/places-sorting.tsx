@@ -27,7 +27,7 @@ function PlacesSorting(): JSX.Element {
   };
 
   return (
-    <form className="places__sorting" action="#" method="get">
+    <form className="places__sorting">
       <span className="places__sorting-caption">Sort by </span>
       <span
         className="places__sorting-type"

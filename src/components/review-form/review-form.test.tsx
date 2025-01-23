@@ -52,7 +52,7 @@ describe('Component: ReviewForm', () => {
     const mockRatingValue = 5;
     const mockComment = 'This is a test comment that meets the length requirement.';
 
-    mockAxiosAdapter.onPost(APIRoute.Reviews.replace(':offerId', mockOfferId), {
+    mockAxiosAdapter.onPost(`${APIRoute.Reviews}/${mockOfferId}`, {
       rating: mockRatingValue,
       comment: mockComment,
     }).reply(200);

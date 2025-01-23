@@ -12,7 +12,7 @@ export const useMap = (
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef(false);
 
-  const isOfferPage = path.startsWith('/offer');
+  const isOfferPage = path.startsWith(AppRoute.Offer);
 
   useEffect(() => {
     if (mapRef.current !== null && !isRenderedRef.current) {

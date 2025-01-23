@@ -94,7 +94,7 @@ describe('Async actions', () => {
     it('Should dispatch "fetchNearPlacesAction.pending", "fetchNearPlacesAction.fulfilled" when server response 200', async () => {
       const mockNearPlaces = Array.from({ length: getRandomInteger(10, 120) }, makeFakePlaceCard);
       const mockOfferId = faker.string.nanoid();
-      mockAxiosAdapter.onGet(APIRoute.NearPlaces.replace(':offerId', mockOfferId)).reply(200, mockNearPlaces);
+      mockAxiosAdapter.onGet(`${APIRoute.Offers}/${mockOfferId}${APIRoute.NearPlaces}`).reply(200, mockNearPlaces);
       await store.dispatch(fetchNearPlacesAction(mockOfferId));
 
       const emittedActions = store.getActions();
@@ -128,7 +128,7 @@ describe('Async actions', () => {
     it('Should dispatch "fetchReviewsAction.pending", "fetchReviewsAction.fulfilled" when server response 200', async () => {
       const mockReviews = Array.from({ length: getRandomInteger(10, 120) }, makeFakeReview);
       const mockOfferId = faker.string.nanoid();
-      mockAxiosAdapter.onGet(APIRoute.Reviews.replace(':offerId', mockOfferId)).reply(200, mockReviews);
+      mockAxiosAdapter.onGet(`${APIRoute.Reviews}/${mockOfferId}`).reply(200, mockReviews);
       await store.dispatch(fetchReviewsAction(mockOfferId));
 
       const emittedActions = store.getActions();
@@ -162,7 +162,7 @@ describe('Async actions', () => {
     it('Should dispatch "postReviewAction.pending", "postReviewAction.fulfilled" when server response 200', async () => {
       const mockReview = makeFakeReviewData();
 
-      mockAxiosAdapter.onPost(APIRoute.Reviews.replace(':offerId', mockReview.offerId), {
+      mockAxiosAdapter.onPost(`${APIRoute.Reviews}/${mockReview.offerId}`, {
         rating: mockReview.rating,
         comment: mockReview.comment,
       }).reply(200);

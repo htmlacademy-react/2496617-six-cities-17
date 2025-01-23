@@ -53,7 +53,7 @@ export default function ReviewForm(): JSX.Element {
 
 
   const submitCondition = Boolean(rating) &&
-    (comment.length >= CommentLength.MIN && comment.length < CommentLength.MAX);
+    (comment.length >= CommentLength.Min && comment.length < CommentLength.Max);
 
   return (
     <form

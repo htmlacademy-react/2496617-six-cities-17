@@ -61,8 +61,8 @@ export const SHOWN_REVIEWS_AMOUNT = 10;
 export const SHOWN_PHOTOS_AMOUNT = 6;
 
 export const CommentLength = {
-  MIN: 50,
-  MAX: 300,
+  Min: 50,
+  Max: 300,
 } as const;
 
 export const URL_MARKER_DEFAULT =
@@ -82,18 +82,20 @@ export const DEFAULT_CITY_LOCATION = {
 export enum AppRoute {
   Main = '/',
   Favorites = '/favorites',
-  Offer = '/offer/:id',
+  Offer = '/offer',
   Login = '/login',
   NotFound = '*'
 }
+
+export const OFFER_PATH_PARAM = '/:id';
 
 // *------------ network ------------* //
 export enum APIRoute {
   Offers = '/offers',
   Login = '/login',
   Logout = '/logout',
-  NearPlaces = 'offers/:offerId/nearby',
-  Reviews = '/comments/:offerId',
+  NearPlaces = '/nearby',
+  Reviews = '/comments',
   Favorite = '/favorite'
 }
 
@@ -104,6 +106,7 @@ export enum AuthorizationStatus {
 }
 export const BACKEND_URL = 'https://16.design.htmlacademy.pro/six-cities';
 export const REQUEST_TIMEOUT = 5000;
+export const AUTH_TOKEN_KEY_NAME = 'six-cities-token';
 
 export const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,

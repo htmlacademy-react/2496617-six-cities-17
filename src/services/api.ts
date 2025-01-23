@@ -1,10 +1,11 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { BACKEND_URL, REQUEST_TIMEOUT, StatusCodeMapping } from '../const';
-import { getToken } from './token';
-import { DetailMessageType } from '../types';
 import { toast } from 'react-toastify';
+import { BACKEND_URL, REQUEST_TIMEOUT, StatusCodeMapping } from '../const';
+import { DetailMessageType } from '../types';
+import { getToken } from './token';
 
 // %======================== api ========================% //
+
 const shouldDisplayError = (response: AxiosResponse) => Boolean(StatusCodeMapping[response.status]);
 
 export const createAPI = (): AxiosInstance => {

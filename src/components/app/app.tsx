@@ -1,6 +1,6 @@
 import { HelmetProvider } from 'react-helmet-async';
 import { Route, Routes } from 'react-router-dom';
-import { AppRoute, DataStatus } from '../../const';
+import { AppRoute, DataStatus, OFFER_PATH_PARAM } from '../../const';
 import { useAppSelector } from '../../hooks';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
@@ -29,10 +29,10 @@ export default function App(): JSX.Element {
   return (
     <HelmetProvider>
       <Routes>
-        <Route path='/' element={<Layout />}>
+        <Route path={AppRoute.Main} element={<Layout />}>
           <Route index element={<MainPage />} />
           <Route
-            path={AppRoute.Offer}
+            path={`${AppRoute.Offer}${OFFER_PATH_PARAM}`}
             element={
               <OfferPage />
             }

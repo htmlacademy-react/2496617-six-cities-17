@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { memo } from 'react';
 import { generatePath, Link, useLocation } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute, OFFER_PATH_PARAM } from '../../const';
 import { PlaceCardType } from '../../types';
 import { capitalize, convertRating } from '../../utils/utils';
 import BookmarkButton from '../bookmark-button/bookmark-button';
@@ -20,7 +20,7 @@ function PlaceCard({ placeCardData, onPlaceCardMouseEnter, onPlaceCardMouseLeave
   const path = useLocation().pathname as AppRoute;
   const isMainPage = path === AppRoute.Main;
   const isFavoritesPage = path === AppRoute.Favorites;
-  const isOfferPage = path.startsWith('/offer');
+  const isOfferPage = path.startsWith(AppRoute.Offer);
 
   const { id, previewImage, isPremium, price, isFavorite, rating, title, type } = placeCardData;
   return (
@@ -45,7 +45,7 @@ function PlaceCard({ placeCardData, onPlaceCardMouseEnter, onPlaceCardMouseLeave
           { 'near-places__image-wrapper': isOfferPage }
         )}
       >
-        <Link to={generatePath(AppRoute.Offer, { id })} >
+        <Link to={generatePath(`${AppRoute.Offer}${OFFER_PATH_PARAM}`, { id })} >
           <img
             className="place-card__image"
             src={previewImage}
@@ -78,7 +78,7 @@ function PlaceCard({ placeCardData, onPlaceCardMouseEnter, onPlaceCardMouseLeave
         </div>
         <h2 className="place-card__name">
           <Link
-            to={generatePath(AppRoute.Offer, { id })}
+            to={generatePath(`${AppRoute.Offer}${OFFER_PATH_PARAM}`, { id })}
           >
             {title}
           </Link>
