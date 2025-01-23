@@ -10,11 +10,10 @@ describe('Page: FavoritesPage', () => {
   it('Should render correctly if there are favorite offers', () => {
     const favoritesPageTestId = 'favorites-page-element';
     const expectedHeadingText = 'Saved listing';
-    const mockFavoriteOffersAmount = getRandomInteger(0, 120);
     const favoritesListTestId = 'favorites-list-element';
     const fakeStoreWithOffers = makeFakeStore({
       [NameSpace.FavoriteOffers]: {
-        data: Array.from({ length: mockFavoriteOffersAmount }, makeFakePlaceCard),
+        data: Array.from({ length: getRandomInteger(1, 120) }, makeFakePlaceCard),
         status: DataStatus.Unknown,
       }
     });

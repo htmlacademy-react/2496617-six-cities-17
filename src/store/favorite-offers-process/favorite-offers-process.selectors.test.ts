@@ -7,7 +7,7 @@ import { getRandomInteger } from '../../utils/utils';
 describe('FavoriteOffersProcess selectors', () => {
   const state = {
     [NameSpace.FavoriteOffers]: {
-      data: Array.from({length: getRandomInteger(0, 10)}, makeFakePlaceCard),
+      data: Array.from({length: getRandomInteger(1, 10)}, makeFakePlaceCard),
       status: DataStatus.Unknown,
     }
   };

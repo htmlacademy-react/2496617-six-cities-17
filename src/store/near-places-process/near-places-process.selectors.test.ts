@@ -7,7 +7,7 @@ import { getRandomInteger } from '../../utils/utils';
 describe('NearPlaces selectors', () => {
   const state = {
     [NameSpace.NearPlaces]: {
-      data: Array.from({length: getRandomInteger(0, 10)}, makeFakePlaceCard),
+      data: Array.from({length: getRandomInteger(1, 10)}, makeFakePlaceCard),
       status: DataStatus.Unknown
     }
   };

@@ -41,7 +41,7 @@ describe('ReviewsProcess Slice', () => {
   });
 
   it('Should set "status" to "loaded", "data" to array of reviews with "fetchReviewsAction.fulfilled"', () => {
-    const mockReviews = Array.from({ length: getRandomInteger(0, 10) }, makeFakeReview);
+    const mockReviews = Array.from({ length: getRandomInteger(1, 10) }, makeFakeReview);
     const mockOfferId = faker.string.nanoid();
     const expectedState = {
       data: mockReviews,

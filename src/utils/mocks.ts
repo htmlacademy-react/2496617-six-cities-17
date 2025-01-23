@@ -72,7 +72,7 @@ export const makeFakeOffer = () => ({
   rating: faker.number.int(),
   description: faker.string.alpha(),
   images: makeFakeImages(),
-  goods: Array.from({ length: getRandomInteger(0, 10) }, () => faker.string.alpha(10)),
+  goods: Array.from({ length: getRandomInteger(1, 10) }, () => faker.string.alpha(10)),
   host: {
     isPro: faker.datatype.boolean(),
     name: faker.person.firstName(),

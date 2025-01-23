@@ -9,8 +9,8 @@ describe('OffersProcess selectors', () => {
     [NameSpace.Offers]: {
       cityName: DEFAULT_CITY_NAME,
       cityLocation: DEFAULT_CITY_LOCATION,
-      all: Array.from({ length: getRandomInteger(0, 120) }, makeFakePlaceCard),
-      sorted: Array.from({ length: getRandomInteger(0, 20) }, makeFakePlaceCard),
+      all: Array.from({ length: getRandomInteger(1, 120) }, makeFakePlaceCard),
+      sorted: Array.from({ length: getRandomInteger(1, 20) }, makeFakePlaceCard),
       sortingType: SortingOption.Popular,
       status: DataStatus.Unknown,
     }
