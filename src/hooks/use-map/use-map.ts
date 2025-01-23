@@ -1,7 +1,7 @@
 import leaflet, { Map } from 'leaflet';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
-import { AppRoute } from '../const';
-import { LocationType } from '../types';
+import { AppRoute } from '../../const';
+import { LocationType } from '../../types';
 // %======================== useMap ========================% //
 
 export const useMap = (

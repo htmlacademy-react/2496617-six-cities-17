@@ -12,7 +12,7 @@ import Preloader from '../../components/preloader/preloader';
 import Reviews from '../../components/reviews/reviews';
 import { AppRoute, DataStatus, NEAR_PLACES_AMOUNT } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import useScrollToTop from '../../hooks/use-scroll-to-top';
+import useScrollToTop from '../../hooks/use-scroll-to-top/use-scroll-to-top';
 import { fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-action';
 import { getNearPlaces } from '../../store/near-places-process/near-places-process.selectors';
 import { getOfferData, getOfferStatus } from '../../store/offer-process/offer-process.selectors';

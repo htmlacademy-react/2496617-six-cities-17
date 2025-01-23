@@ -2,8 +2,8 @@ import { renderHook } from '@testing-library/react';
 import { Map } from 'leaflet';
 import { createRef, MutableRefObject } from 'react';
 import { describe } from 'vitest';
-import { AppRoute } from '../const';
-import { makeFakeLocation } from '../utils/mocks';
+import { AppRoute } from '../../const';
+import { makeFakeLocation } from '../../utils/mocks';
 import { useMap } from './use-map';
 
 describe('Hook: useMap', () => {
