@@ -76,6 +76,7 @@ function LoginForm(): JSX.Element {
         className='login__submit form__submit button'
         type='submit'
         disabled={(loginStatus === LoginStatus.Processing) || !submitCondition}
+        data-testid='login-submit-button'
       >
         {loginStatus === LoginStatus.Processing ? 'Signing in...' : 'Sign in'}
       </button>
