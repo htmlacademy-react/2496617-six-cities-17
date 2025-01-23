@@ -3,6 +3,7 @@ import { capitalize, convertRating } from '../../utils/utils';
 import PremiumMark from '../premium-mark/premium-mark';
 
 // ^======================== OfferHeader ========================^ //
+
 type OfferHeaderProps = {
   offerHeaderData: {
     title: string;

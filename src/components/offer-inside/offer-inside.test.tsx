@@ -6,7 +6,7 @@ import OfferInside from './offer-inside';
 describe('Component: OfferInside', () => {
   it('Should render correctly', () => {
     const MOCK_GOODS_AMOUNT = 10;
-    const mockGoods = Array.from({ length: MOCK_GOODS_AMOUNT }, faker.string.alpha);
+    const mockGoods = Array.from({ length: MOCK_GOODS_AMOUNT }, () => faker.string.alpha(10));
     const offerInsideTestId = 'offer-inside';
     const offerGoodTestId = 'offer-good';
     const expectedText = /What's inside/i;

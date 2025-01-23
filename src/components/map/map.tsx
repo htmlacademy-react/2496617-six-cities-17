@@ -4,8 +4,9 @@ import 'leaflet/dist/leaflet.css';
 import { memo, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AppRoute, URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
-import { useMap } from '../../hooks/use-map';
+
 import { LocationType, OfferType, PlaceCardType } from '../../types';
+import { useMap } from '../../hooks/use-map/use-map';
 
 // ^======================== map ========================^ //
 type MapProps = {
@@ -81,7 +82,7 @@ function Map({ cityLocation, offers, selectedPoint, currentOffer }: MapProps): J
   return (
     <section
       className={classNames(
-        { 'offer__map': path.startsWith('/offer') },
+        { 'offer__map': path.startsWith(AppRoute.Offer) },
         { 'cities__map': path === AppRoute.Main },
         'map',
       )}

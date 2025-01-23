@@ -1,6 +1,6 @@
-// ^======================== OfferInside ========================^ //
-
 import { memo } from 'react';
+
+// ^======================== OfferInside ========================^ //
 
 type OfferInsideProps = {
   goods: string[];

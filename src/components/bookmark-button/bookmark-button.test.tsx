@@ -14,13 +14,13 @@ import BookmarkButton from './bookmark-button';
 describe('Component: BookmarkButton', () => {
   it('Should render correctly', () => {
     const mockBookmarkButtonProps = {
-      elementClass: faker.string.alpha(),
+      elementClass: faker.string.alpha(10),
       isFavorite: faker.datatype.boolean(),
       sizes: {
         width: faker.number.int(),
         height: faker.number.int(),
       },
-      offerId: faker.string.alpha()
+      offerId: faker.string.nanoid()
     };
     const bookmarkButtonTestId = 'bookmark-button-element';
 
@@ -36,7 +36,7 @@ describe('Component: BookmarkButton', () => {
     const fakePlaceCardFavorite = { ...makeFakePlaceCard(), isFavorite: true };
 
     const mockBookmarkButtonProps = {
-      elementClass: faker.string.alpha(),
+      elementClass: faker.string.alpha(10),
       isFavorite: false,
       sizes: {
         width: faker.number.int(),
@@ -75,7 +75,7 @@ describe('Component: BookmarkButton', () => {
     const fakePlaceCardNotFavorite = { ...makeFakePlaceCard(), isFavorite: false };
 
     const mockBookmarkButtonProps = {
-      elementClass: faker.string.alpha(),
+      elementClass: faker.string.alpha(10),
       isFavorite: true,
       sizes: {
         width: faker.number.int(),
@@ -110,11 +110,11 @@ describe('Component: BookmarkButton', () => {
     ]);
   });
 
-  it('Should dispatch "redirectToRoute" when user click bookmark button if user is  not authorized', async () => {
+  it('Should dispatch "redirectToRoute" when user click bookmark button if user is not authorized', async () => {
     const fakePlaceCardNotFavorite = { ...makeFakePlaceCard(), isFavorite: false };
 
     const mockBookmarkButtonProps = {
-      elementClass: faker.string.alpha(),
+      elementClass: faker.string.alpha(10),
       isFavorite: faker.datatype.boolean(),
       sizes: {
         width: faker.number.int(),

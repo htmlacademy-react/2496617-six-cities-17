@@ -7,7 +7,7 @@ import { getRandomInteger } from '../../utils/utils';
 describe('ReviewsProcess selectors', () => {
   const state = {
     [NameSpace.Reviews]: {
-      data: Array.from({length: getRandomInteger(0, 10)}, makeFakeReview),
+      data: Array.from({length: getRandomInteger(1, 10)}, makeFakeReview),
       status: DataStatus.Unknown,
       postingStatus: PostingStatus.Unknown,
     }

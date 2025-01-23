@@ -7,7 +7,7 @@ describe('AuthProcess selectors', () => {
   const state = {
     [NameSpace.Auth]: {
       status: AuthorizationStatus.Unknown,
-      login: faker.string.alpha(),
+      login: faker.internet.email(),
       avatarUrl: faker.system.filePath(),
       loginStatus: LoginStatus.Unknown,
     }

@@ -6,9 +6,9 @@ import OfferHeader from './offer-header';
 describe('Component: OfferHeader', () => {
   it('Should render correctly', () => {
     const mockOfferHeaderData = {
-      title: faker.string.alpha(),
+      title: faker.string.alpha(10),
       rating: faker.number.int(),
-      type: faker.string.alpha(),
+      type: faker.string.alpha(10),
       bedrooms: faker.number.int(),
       maxAdults: faker.number.int(),
       price: faker.number.int(),

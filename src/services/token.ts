@@ -1,6 +1,6 @@
-// %======================== token ========================% //
+import { AUTH_TOKEN_KEY_NAME } from '../const';
 
-const AUTH_TOKEN_KEY_NAME = 'six-cities-token';
+// %======================== token ========================% //
 
 export type Token = string;
 export type Login = string;

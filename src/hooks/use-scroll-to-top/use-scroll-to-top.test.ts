@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { describe } from 'vitest';
-import { withHistory } from '../utils/mock-components';
+import { withHistory } from '../../utils/mock-components';
 import useScrollToTop from './use-scroll-to-top';
 
 describe('Hook: useScrollToTop', () => {

@@ -1,7 +1,7 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import useScrollToTop from '../../hooks/use-scroll-to-top';
-
-// %------------ components ------------% //
+import { Navigate, useParams } from 'react-router-dom';
+import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 import Map from '../../components/map/map';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferHeader from '../../components/offer-header/offer-header';
@@ -10,12 +10,9 @@ import OfferInside from '../../components/offer-inside/offer-inside';
 import PlacesList from '../../components/places-list/places-list';
 import Preloader from '../../components/preloader/preloader';
 import Reviews from '../../components/reviews/reviews';
-
-import { useEffect } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
-import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 import { AppRoute, DataStatus, NEAR_PLACES_AMOUNT } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import useScrollToTop from '../../hooks/use-scroll-to-top/use-scroll-to-top';
 import { fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-action';
 import { getNearPlaces } from '../../store/near-places-process/near-places-process.selectors';
 import { getOfferData, getOfferStatus } from '../../store/offer-process/offer-process.selectors';
@@ -37,10 +34,10 @@ export default function OfferPage(): JSX.Element {
   }>();
 
   useEffect(() => {
-    if (id && offerStatus === DataStatus.Unknown) {
+    if (id) {
       dispatch(fetchOfferAction(id));
     }
-  }, [id, dispatch, offerStatus]);
+  }, [id, dispatch]);
 
   useEffect(() => {
     if (id && offerStatus === DataStatus.Loaded) {

@@ -24,7 +24,7 @@ function PlacesList(placesListProps: PlacesListProps): JSX.Element {
       className={classNames(
         'places__list',
         { 'cities__places-list tabs__content': path === AppRoute.Main },
-        { 'near-places__list': path.startsWith('/offer') }
+        { 'near-places__list': path.startsWith(AppRoute.Offer) }
       )}
       data-testid='places-list-element'
     >

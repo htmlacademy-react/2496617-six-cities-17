@@ -38,7 +38,7 @@ export const fetchNearPlacesAction = createAsyncThunk<
   string,
   AsyncThunkType
 >('offer/fetchNearPlaces', async (offerId, { extra: api }) => {
-  const { data } = await api.get<PlaceCardType[]>(APIRoute.NearPlaces.replace(':offerId', offerId));
+  const { data } = await api.get<PlaceCardType[]>(`${APIRoute.Offers}/${offerId}${APIRoute.NearPlaces}`);
   return data;
 });
 
@@ -48,7 +48,7 @@ export const fetchReviewsAction = createAsyncThunk<
   string,
   AsyncThunkType
 >('reviews/fetchReviews', async (offerId, { extra: api }) => {
-  const { data } = await api.get<ReviewType[]>(APIRoute.Reviews.replace(':offerId', offerId));
+  const { data } = await api.get<ReviewType[]>(`${APIRoute.Reviews}/${offerId}`);
   return data;
 });
 
@@ -62,7 +62,7 @@ export const postReviewAction = createAsyncThunk<
   },
   AsyncThunkType
 >('reviews/postReview', async ({ comment, rating, offerId }, { extra: api }) => {
-  const { data } = await api.post<ReviewType>(APIRoute.Reviews.replace(':offerId', offerId), { rating, comment });
+  const { data } = await api.post<ReviewType>(`${APIRoute.Reviews}/${offerId}`, { rating, comment });
   return data;
 });
 
@@ -121,10 +121,10 @@ export const loginAction = createAsyncThunk<
 
 // @------------------------ logout ------------------------@ //
 export const logoutAction = createAsyncThunk<
-void,
-undefined,
-AsyncThunkType
->('auth/logout', async (_arg, {dispatch, extra: api }) => {
+  void,
+  undefined,
+  AsyncThunkType
+>('auth/logout', async (_arg, { dispatch, extra: api }) => {
   await api.delete(APIRoute.Logout);
   dispatch(fetchOffersAction());
   dropToken();
