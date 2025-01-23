@@ -110,7 +110,7 @@ describe('Component: BookmarkButton', () => {
     ]);
   });
 
-  it('Should dispatch "redirectToRoute" when user click bookmark button if user is  not authorized', async () => {
+  it('Should dispatch "redirectToRoute" when user click bookmark button if user is not authorized', async () => {
     const fakePlaceCardNotFavorite = { ...makeFakePlaceCard(), isFavorite: false };
 
     const mockBookmarkButtonProps = {

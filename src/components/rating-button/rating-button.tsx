@@ -23,13 +23,13 @@ export default function RatingButton(ratingButtonProps: RatingButtonProps): JSX.
         onChange={(evt) => {
           onRatingButtonChange(Number(evt.target.value));
         }}
-        data-testid='rating-input'
+        data-testid={`rating-input-${value}`}
       />
       <label
         htmlFor={`${value}-stars`}
         className='reviews__rating-label form__rating-label'
         title={title}
-        data-testid='rating-label'
+        data-testid={`rating-label-${value}`}
       >
         <svg className='form__star-image' width={37} height={33}>
           <use xlinkHref='#icon-star' />

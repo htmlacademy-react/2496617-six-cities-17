@@ -38,7 +38,7 @@ describe('Redirect middleware', () => {
   it('Should not redirect to /favorites with empty action', () => {
     const emptyAction = { type: '', payload: AppRoute.Favorites };
     store.dispatch(emptyAction);
-    expect(browserHistory.location.pathname).not.toBe(AppRoute.Offer);
+    expect(browserHistory.location.pathname).not.toBe(AppRoute.Favorites);
   });
 });
 

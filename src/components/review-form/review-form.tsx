@@ -102,6 +102,7 @@ export default function ReviewForm(): JSX.Element {
           className='reviews__submit form__submit button'
           type='submit'
           disabled={!submitCondition || postingStatus === PostingStatus.Posting}
+          data-testid='reviews-submit-button-element'
         >
           {postingStatus === PostingStatus.Posting ? 'Posting...' : 'Submit'}
         </button>
