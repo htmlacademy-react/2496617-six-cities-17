@@ -65,6 +65,11 @@ export const CommentLength = {
   Max: 300,
 } as const;
 
+export enum PlaceCardImageWidth {
+  General = 260,
+  Favorite = 150,
+}
+
 export const URL_MARKER_DEFAULT =
   '../img/pin.svg';
 

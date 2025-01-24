@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { memo } from 'react';
 import { generatePath, Link, useLocation } from 'react-router-dom';
-import { AppRoute, OFFER_PATH_PARAM } from '../../const';
+import { AppRoute, OFFER_PATH_PARAM, PlaceCardImageWidth } from '../../const';
 import { PlaceCardType } from '../../types';
 import { capitalize, convertRating } from '../../utils/utils';
 import BookmarkButton from '../bookmark-button/bookmark-button';
@@ -49,7 +49,11 @@ function PlaceCard({ placeCardData, onPlaceCardMouseEnter, onPlaceCardMouseLeave
           <img
             className="place-card__image"
             src={previewImage}
-            width={isFavoritesPage ? 150 : 260}
+            width={
+              isFavoritesPage
+                ? PlaceCardImageWidth.Favorite
+                : PlaceCardImageWidth.General
+            }
             height="auto"
             alt="Place image"
           />
